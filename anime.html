@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Anime</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="Gambar/LogoMyanime (2).png" type="image/x-icon">
+  </head>
+  <body>
+    <a href="index.html" class="back-btn">&#8592; Kembali</a>
+    <div id="blur-overlay"></div>
+    <div id="loader" style="display: none"></div>
+
+    <!-- Popup Season -->
+    <div id="seasonPopup" class="season-popup">
+      <span class="close-btn" onclick="closeSeasonPopup()">&times;</span>
+      <h3>Pilih Season</h3>
+      <ul class="season-list" id="seasonList"></ul>
+    </div>
+
+    <div class="container">
+      <h1 id="anime-title"></h1>
+      <img id="anime-image" src="" alt="Poster Anime" class="anime-poster" />
+      <div class="anime-info">
+        <div class="meta-info">
+          <div class="info-box">
+            <h3>Informasi</h3>
+            <div class="info-grid" id="anime-meta"></div>
+          </div>
+          <div class="genre-box">
+            <h3>Genre</h3>
+            <div class="genre-list" id="anime-genres"></div>
+          </div>
+        </div>
+        
+        <div class="synopsis-box">
+          <h3>Sinopsis</h3>
+          <p id="anime-desc" class="synopsis-text"></p>
+        </div>
+
+        <div class="action-buttons">
+          <a id="download-btn" class="btn-download">&#128190; Download</a>
+          <a id="streaming-link" class="btn-streaming">&#9658; Streaming</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Fungsi untuk mendapatkan slug dari URL
+      function getAnimeSlug() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('slug');
+      }
+
+      // Fungsi untuk menampilkan informasi
+      function renderAnimeInfo(anime) {
+        // Update informasi utama
+        document.title = `${anime.title} - Detail Anime`;
+        document.getElementById('anime-title').textContent = anime.title;
+        document.getElementById('anime-image').src = anime.image;
+        document.getElementById('anime-desc').textContent = anime.desc;
+
+        // Render metadata
+        const metaContainer = document.getElementById('anime-meta');
+        metaContainer.innerHTML = '';
+        if(anime.info) {
+          const metadata = [
+            ['Tipe', anime.info.type],
+            ['Episode', anime.info.episodes],
+            ['Status', anime.info.status],
+            ['Tayang', anime.info.aired],
+            ['Studio', anime.info.studios?.join(', ')],
+            ['Sumber', anime.info.source],
+            ['Durasi', anime.info.duration],
+            ['Rating', anime.info.rating]
+          ];
+          
+          metadata.forEach(([label, value]) => {
+            const div = document.createElement('div');
+            div.className = 'info-item';
+            div.innerHTML = `<strong>${label}:</strong> ${value || '-'}`;
+            metaContainer.appendChild(div);
+          });
+        }
+
+        // Render genre
+        const genreContainer = document.getElementById('anime-genres');
+        genreContainer.innerHTML = '';
+        if(anime.info?.genres) {
+          anime.info.genres.forEach(genre => {
+            const span = document.createElement('span');
+            span.className = 'genre-tag';
+            span.textContent = genre;
+            genreContainer.appendChild(span);
+          });
+        }
+      }
+
+      // Fungsi utama memuat data
+      async function loadAnimeData() {
+        try {
+          const slug = getAnimeSlug();
+          if (!slug) throw new Error('Slug tidak valid');
+
+          const response = await fetch('anime-data.json');
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          
+          const data = await response.json();
+          const anime = data.find(a => a.slug === slug);
+
+          if (!anime) {
+            document.body.innerHTML = `
+              <div class="error-container">
+                <h1>😞 Anime Tidak Ditemukan</h1>
+                <a href="index.html" class="back-btn">Kembali ke Beranda</a>
+              </div>`;
+            return;
+          }
+
+          renderAnimeInfo(anime);
+
+          // Handle tombol download
+          const downloadBtn = document.getElementById('download-btn');
+          if (anime.seasons?.length > 1) {
+            downloadBtn.onclick = () => showSeasonPopup(anime.seasons);
+          } else {
+            downloadBtn.onclick = () => {
+              showLoader(() => window.open(anime.download, '_blank'));
+            };
+          }
+
+          // Handle streaming
+          const streamingLink = document.getElementById('streaming-link');
+          streamingLink.href = `streaming.html?slug=${encodeURIComponent(slug)}`;
+
+        } catch (error) {
+          console.error('Error:', error);
+          document.body.innerHTML = `
+            <div class="error-container">
+              <h1>⚠️ Gagal Memuat Data</h1>
+              <p>${error.message}</p>
+              <a href="index.html" class="back-btn">Kembali ke Beranda</a>
+            </div>`;
+        }
+      }
+
+      // Fungsi loader
+      function showLoader(callback) {
+        const loader = document.getElementById('loader');
+        const blurOverlay = document.getElementById('blur-overlay');
+        loader.style.display = 'block';
+        blurOverlay.style.display = 'block';
+        setTimeout(() => {
+          loader.style.display = 'none';
+          blurOverlay.style.display = 'none';
+          callback?.();
+        }, 1000);
+      }
+
+      // Fungsi popup season
+      function showSeasonPopup(seasons) {
+        const popup = document.getElementById('seasonPopup');
+        const seasonList = document.getElementById('seasonList');
+        seasonList.innerHTML = seasons.map(season => `
+          <li class="season-item" onclick="window.open('${season.download}', '_blank'); closeSeasonPopup()">
+            ${season.name}
+          </li>
+        `).join('');
+        popup.style.display = 'block';
+        document.getElementById('blur-overlay').style.display = 'block';
+      }
+
+      function closeSeasonPopup() {
+        document.getElementById('seasonPopup').style.display = 'none';
+        document.getElementById('blur-overlay').style.display = 'none';
+      }
+
+      // Event listener
+      window.onclick = (event) => {
+        if (event.target === document.getElementById('blur-overlay')) {
+          closeSeasonPopup();
+        }
+      }
+
+      // Jalankan saat halaman dimuat
+      window.onload = loadAnimeData;
+      
+       // Fungsi untuk menampilkan loader
+  // Fungsi untuk menampilkan loader
+function showLoader(callback) {
+    const loader = document.getElementById('loader');
+    const blurOverlay = document.getElementById('blur-overlay');
+    
+    // Tampilkan loader
+    loader.style.display = 'block';
+    blurOverlay.style.display = 'block';
+    
+    // Jalankan callback segera
+    if (typeof callback === 'function') {
+        try {
+            callback();
+        } catch (error) {
+            console.error('Error dalam callback:', error);
+            // Sembunyikan loader jika error
+            loader.style.display = 'none';
+            blurOverlay.style.display = 'none';
+        }
+    }
+    
+    // Sembunyikan loader setelah 1 detik (meskipun user pindah tab)
+    const hideLoader = () => {
+        loader.style.display = 'none';
+        blurOverlay.style.display = 'none';
+    };
+    setTimeout(hideLoader, 1000);
+}
+
+// Fungsi utama memuat data
+async function loadAnimeData() {
+    try {
+        const slug = getAnimeSlug();
+        if (!slug) throw new Error('Slug tidak valid');
+
+        const response = await fetch('anime-data.json');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        const data = await response.json();
+        const anime = data.find(a => a.slug === slug);
+
+        if (!anime) {
+            document.body.innerHTML = `
+                <div class="error-container">
+                    <h1>😞 Anime Tidak Ditemukan</h1>
+                    <a href="index.html" class="back-btn">Kembali ke Beranda</a>
+                </div>`;
+            return;
+        }
+
+        renderAnimeInfo(anime);
+
+        // Handle tombol download
+        const downloadBtn = document.getElementById('download-btn');
+        if (anime.seasons?.length > 1) {
+            downloadBtn.onclick = () => showSeasonPopup(anime.seasons);
+        } else {
+            downloadBtn.onclick = () => {
+                showLoader(() => {
+                    const newWindow = window.open(anime.download, '_blank');
+                    
+                    // Fallback jika popup diblokir
+                    if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                        alert('Popup diblokir! Silakan izinkan popup untuk melanjutkan download.');
+                    }
+                });
+            };
+        }
+
+        // Handle streaming
+        const streamingLink = document.getElementById('streaming-link');
+        streamingLink.href = `streaming.html?slug=${encodeURIComponent(slug)}`;
+
+    } catch (error) {
+        console.error('Error:', error);
+        document.body.innerHTML = `
+            <div class="error-container">
+                <h1>⚠️ Gagal Memuat Data</h1>
+                <p>${error.message}</p>
+                <a href="index.html" class="back-btn">Kembali ke Beranda</a>
+            </div>`;
+    }
+}
+    </script>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streaming</title>
+    <link rel="stylesheet" href="watch.css">
+    <link rel="icon" href="Gambar/LogoMyanime (2).png" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn" style="color: black; text-decoration: none; border-radius: 15px; margin-bottom: 20px; display: block; padding: 15px; width: 100px; background-color: #ffa200 ;">← Kembali</a>
+        <div id="player-container">
+            <div class="video-container">
+                <iframe id="main-player" allowfullscreen></iframe>
+            </div>
+            <div id="episode-container" class="episode-list"></div>
+        </div>
+    </div>
+
+    <script>
+        // Ambil parameter dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const animeSlug = urlParams.get('slug');
+        
+        // Elemen DOM
+        const player = document.getElementById('main-player');
+        const episodeContainer = document.getElementById('episode-container');
+
+        // Fungsi untuk convert Google Drive URL ke format embed
+        function convertToEmbedUrl(url) {
+            try {
+                const match = url.match(/\/file\/d\/([^/]+)/);
+                if(match) {
+                    return `https://drive.google.com/file/d/${match[1]}/preview`;
+                }
+                return url;
+            } catch {
+                return url;
+            }
+        }
+
+        // Load data anime
+        fetch('anime-data.json')
+            .then(response => {
+                if(!response.ok) throw new Error('Gagal memuat data');
+                return response.json();
+            })
+            .then(data => {
+                const anime = data.find(a => a.slug === animeSlug);
+                
+                if(!anime) {
+                    showError('Anime tidak ditemukan!');
+                    return;
+                }
+
+                // Handle streaming data
+                let episodes = [];
+                if(Array.isArray(anime.streaming)) {
+                    episodes = anime.streaming.map(convertToEmbedUrl);
+                } else if(anime.streaming) {
+                    episodes = [convertToEmbedUrl(anime.streaming)];
+                }
+
+                if(episodes.length === 0) {
+                    showError('Episode belum tersedia');
+                    return;
+                }
+
+                // Set video pertama
+                player.src = episodes[0];
+                
+                // Buat daftar episode
+                createEpisodeButtons(episodes);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showError('Gagal memuat data anime');
+            });
+
+        function createEpisodeButtons(episodes) {
+            episodeContainer.innerHTML = '';
+            
+            episodes.forEach((episodeUrl, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'episode-btn' + (index === 0 ? ' current-episode' : '');
+                btn.textContent = `Episode ${index + 1}`;
+                
+                btn.onclick = () => {
+                    player.src = episodeUrl;
+                    document.querySelectorAll('.episode-btn').forEach(b => 
+                        b.classList.remove('current-episode'));
+                    btn.classList.add('current-episode');
+                };
+
+                episodeContainer.appendChild(btn);
+            });
+        }
+
+        function showError(message) {
+            document.body.innerHTML = `
+                <div class="container">
+                    <h1 style="color: #e74c3c">Error!</h1>
+                    <p>${message}</p>
+                    <a href="index.html" class="back-btn">Kembali ke beranda</a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

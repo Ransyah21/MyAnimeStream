@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyAnime</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="Gambar/LogoMyanime (2).png" type="image/x-icon">
+</head>
+<body>
+   
+<!-- memulai -->
+ <div class="abt"><a href="About.html">ABOUT</a></div>
+ <div class="banner">
+    <video class="background-video desktop" autoplay loop muted preload="auto"><source src="Gambar/LiveWalpaper.mp4"></video>
+</div>
+      <!-- header -->
+    <header>
+        <div class="container">
+            <h1 class="title">
+                <span>M</span>
+                <span>y</span>
+                <span>A</span>
+                <span>n</span>
+                <span>i</span>
+                <span>m</span>
+                <span>e</span>
+            </h1>
+            <p>Support Saya Di </p>
+            <p><a href="https://www.instagram.com/ransyah_32/">Instagram</a></p>
+            <p><a href="https://trakteer.id/ransyah4">Trakteer!</a></p>
+            <nav>
+                <ul id="menu">
+                    <li><a href="#">HOME</a></li>
+                    <li><a id="google-login-btn" href="#" >LOGIN</a></li>
+                </ul>
+            </nav>
+            <br>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search.." name="keyword">
+                    <div class="sparkle" id="sparkle-container"></div>
+                </div>
+            
+        </div>
+    </header>
+<!-- main -->
+    <main>
+        <div id="notification" class="hidden"></div>
+        <div class="container">
+            <div class="notice">
+                <p>masih dalam tahap sharing,</p>
+                <p>Anime recommended dari saya,dan tidak semua genre ada !
+                    ajak temanmu dan rekomendasikan anime favorit tanpa ads!
+                </p>
+            </div>
+            <!-- List Anime -->
+             <div id="content">
+            <section class="nama">
+                <h2>Anime Terbaru</h2>
+    <div class="anime-list" >
+    <div class="anime-item">
+            <a href="anime.html?slug=seiken-gakuin-no-makentsukai" ><img src="https://cdn.myanimelist.net/images/anime/1506/138529.jpg" alt="Seiken Gakuin no Makentsukai" class="tooltip" data-tooltip="Seiken Gakuin no Makentsukai adalah anime action fantasy tentang petualangan penyihir."></a>
+            <a href="anime.html?slug=seiken-gakuin-no-makentsukai" ><span>Seiken Gakuin no Makentsukai</span></a>
+            <button onclick="addToFavorites('Seiken Gakuin no Makentsukai', 'https://cdn.myanimelist.net/images/anime/1506/138529.jpg')">Add to Favorite</button>            
+
+        </div>
+        <div class="anime-item">
+            <a href="Nagasarete.html" onclick="ShowAlert(event)"  ><img src="https://cdn.myanimelist.net/images/anime/7/75254.jpg" alt="Wagitoushi"></a>
+            <a href="Nagasarete.html" onclick="ShowAlert(event)"  ><span>Nagasarete Airantou</span></a>
+            <button onclick="addToFavorites('Nagasarete Airantou', 'https://cdn.myanimelist.net/images/anime/7/75254.jpg')">Add to Favorite</button>            
+
+        </div>
+        <div class="anime-item">
+            <a href="anime.html?slug=chiyu-mahou-no-machigatta-tsukaikata"  ><img src="https://cdn.myanimelist.net/images/anime/1733/140802.jpg" alt=""></a>
+            <a href="anime.html?slug=chiyu-mahou-no-machigatta-tsukaikata"  ><span>chiyu mahou no machigatta tsukaikata</span></a>
+            <button onclick="addToFavorites('chiyu mahou no machigatta tsukaikata', 'https://cdn.myanimelist.net/images/anime/1733/140802.jpg')">Add to Favorite</button>            
+
+        </div>
+        <div class="anime-item">
+            <a href="anime.html?slug=chijou-saikyou-no-yome"  ><img src="https://cdn.myanimelist.net/images/anime/8/2357.jpg" alt=""></a>
+            <a href="anime.html?slug=chijou-saikyou-no-yome"  ><span>Chijou Saikyou no Yome</span></a>
+            <button onclick="addToFavorites('Chijou Saikyou no Yome', 'https://cdn.myanimelist.net/images/anime/8/2357.jpg')">Add to Favorite</button>            
+
+        </div>
+        <div class="anime-item">
+            <a href="anime.html?slug=kouritsu-ebisugawa-koukou-tenmonbu"  ><img src="https://cdn.myanimelist.net/images/anime/11/75842.jpg" alt=""></a>
+            <a href="anime.html?slug=kouritsu-ebisugawa-koukou-tenmonbu"  ><span>Kouritsu Ebisugawa Koukou Tenmonbu</span></a>
+            <button onclick="addToFavorites('Kouritsu Ebisugawa Koukou Tenmonbu', 'https://cdn.myanimelist.net/images/anime/11/75842.jpg')">Add to Favorite</button>            
+
+        </div>
+        <div class="anime-item">
+            <a href="anime.html?slug=ichigo-100" ><img src="https://cdn.myanimelist.net/images/anime/1157/132580.jpg" alt=""></a>
+            <a href="anime.html?slug=ichigo-100" ><span>ichigo 100%</span></a>
+            <button onclick="addToFavorites('ichigo 100%', 'https://cdn.myanimelist.net/images/anime/1157/132580.jpg')">Add to Favorite</button>            
+
+        </div>
+        <div class="anime-item">
+            <a href="anime.html?slug=otona-no-bouguya-san" ><img src="https://cdn.myanimelist.net/images/anime/1590/111713.jpg" alt=""></a>
+            <a href="anime.html?slug=otona-no-bouguya-san" ><span>Otona no bouguya-san</span></a>
+            <button onclick="addToFavorites('Otona no bouguya-san', 'https://cdn.myanimelist.net/images/anime/1590/111713.jpg')">Add to Favorite</button>   
+        </div>
+        <div class="anime-item">
+            <a href="anime.html?slug=shironeko-project-zero-chronicle" ><img src="https://cdn.myanimelist.net/images/anime/1072/111360.jpg" alt=""></a>
+            <a href="anime.html?slug=shironeko-project-zero-chronicle" ><span>Shironeko Project: Zero Chronicle</span></a>
+            <button onclick="addToFavorites('Shironeko Project: Zero Chronicle', 'https://cdn.myanimelist.net/images/anime/1072/111360.jpg')">Add to Favorite</button>   
+        </div>
+        <div class="anime-item">
+            <a href="anime.html?slug=sakura-sou-no-pet-na-kanojo" ><img src="https://cdn.myanimelist.net/images/anime/4/43643.jpg" alt=""></a>
+            <a href="anime.html?slug=sakura-sou-no-pet-na-kanojo" ><span>Sakura-sou no Pet na Kanojo</span></a>
+            <button onclick="addToFavorites('Sakura-sou no Pet na Kanojo', 'https://cdn.myanimelist.net/images/anime/4/43643.jpg')">Add to Favorite</button>
+        </div>
+        <div class="anime-item">
+            <a href="anime.html?slug=kusuriya-no-hitorigoto" ><img src="https://cdn.myanimelist.net/images/anime/1708/138033.jpg" alt=""></a>
+            <a href="anime.html?slug=kusuriya-no-hitorigoto" ><span>Kusuriya no Hitorigoto</span></a>
+            <button onclick="addToFavorites('Kusuriya no Hitorigoto', 'https://cdn.myanimelist.net/images/anime/1708/138033.jpg')">Add to Favorite</button>   
+        </div>
+        <div class="anime-item">
+            <a href="anime.html?slug=amagi-brilliant-park" ><img src="https://cdn.myanimelist.net/images/anime/5/85435.jpg" alt=""></a>
+            <a href="anime.html?slug=amagi-brilliant-park" ><span>Amagi Brilliant Park</span></a>
+            <button onclick="addToFavorites('Amagi Brilliant Park', 'https://cdn.myanimelist.net/images/anime/5/85435.jpg')">Add to Favorite</button>   
+        </div>                                                                                                    
+        <div class="anime-item">
+            <a href="anime.html?slug=midara-na-ao-chan-wa-benkyou-ga-dekinai" ><img src="https://cdn.myanimelist.net/images/anime/1718/98214.jpg" alt=""></a>
+            <a href="anime.html?slug=midara-na-ao-chan-wa-benkyou-ga-dekinai" ><span>Midara na Ao-chan wa Benkyou ga Dekinai</span></a>
+            <button onclick="addToFavorites('Midara na Ao-chan wa Benkyou ga Dekinai', 'https://cdn.myanimelist.net/images/anime/1718/98214.jpg')">Add to Favorite</button>   
+        </div>
+        <div class="anime-item">
+            <a href="anime.html?slug=asu-no-yoichi" ><img src="https://cdn.myanimelist.net/images/anime/6/20621.jpg" alt=""></a>
+            <a href="anime.html?slug=asu-no-yoichi" ><span>Asu no Yoichi!</span></a>
+            <button onclick="addToFavorites('Asu no Yoichi!', 'https://cdn.myanimelist.net/images/anime/6/20621.jpg')">Add to Favorite</button>   
+        </div>
+        <div class="anime-item">
+            <a href="anime.html?slug=bokura-wa-minna-kawai-sou"><img src="https://cdn.myanimelist.net/images/anime/1257/145479.jpg" alt=""></a>
+            <a href="anime.html?slug=bokura-wa-minna-kawai-sou"><span>Bokura wa Minna Kawai-sou</span></a>
+            <button onclick="addToFavorites('Bokura wa Minna Kawai-sou', 'https://cdn.myanimelist.net/images/anime/1257/145479.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href="anime.html?slug=busou-shoujo-machiavellianism"><img src="https://cdn.myanimelist.net/images/anime/3/83995.jpg" alt=""></a>
+            <a href="anime.html?slug=busou-shoujo-machiavellianism"><span>Busou Shoujo Machiave llianism</span></a>
+            <button onclick="addToFavorites('Busou Shoujo Machiave llianism', 'https://cdn.myanimelist.net/images/anime/3/83995.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href="anime.html?slug=cheat-kusushi-no-slow-life"><img src="https://cdn.myanimelist.net/images/anime/1787/115817.jpg" alt=""></a>
+            <a href="anime.html?slug=cheat-kusushi-no-slow-life"><span>Cheat Kusushi no Slow Life</span></a>
+            <button onclick="addToFavorites('Cheat Kusushi no Slow Life', 'https://cdn.myanimelist.net/images/anime/1787/115817.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href="anime.html?slug=danna-ga-nani-wo-itteiru-ka-wakaranai-ke"><img src="https://cdn.myanimelist.net/images/anime/7/75287.jpg" alt=""></a>
+            <a href="anime.html?slug=danna-ga-nani-wo-itteiru-ka-wakaranai-ke"><span>Danna ga Nani wo Itteiru ka Wakaranai Ken</span></a>
+            <button onclick="addToFavorites('Danna ga Nani wo Itteiru ka Wakaranai Ken', 'https://cdn.myanimelist.net/images/anime/7/75287.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href="anime.html?slug=denpa-onna-to-seishun-otoko"><img src="https://cdn.myanimelist.net/images/anime/1799/114806.jpg" alt=""></a>
+            <a href="anime.html?slug=denpa-onna-to-seishun-otoko"><span>Denpa Onna to Seishun Otoko</span></a>
+            <button onclick="addToFavorites('Denpa Onna to Seishun Otoko', 'https://cdn.myanimelist.net/images/anime/1799/114806.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href="anime.html?slug=full-dive-rpg"><img src="https://cdn.myanimelist.net/images/anime/1357/113277.jpg" alt=""></a>
+            <a href="anime.html?slug=full-dive-rpg"><span>Kyuukyoku Shinka shita Full Dive RPG</span></a>
+            <button onclick="addToFavorites('Kyuukyoku Shinka shita Full Dive RPG', 'https://cdn.myanimelist.net/images/anime/1357/113277.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href="anime.html?slug=full-metal-panic"><img src="https://cdn.myanimelist.net/images/anime/2/75259.jpg" alt=""></a>
+            <a href="anime.html?slug=full-metal-panic"><span>Full Metal Panic!</span></a>
+            <button onclick="addToFavorites('Full Metal Panic!', 'https://cdn.myanimelist.net/images/anime/2/75259.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href="anime.html?slug=Bokutachi no Remake.html"><img src="https://cdn.myanimelist.net/images/anime/1871/118309.jpg" alt=""></a>
+            <a href="anime.html?slug=Bokutachi no Remake.html"><span>Bokutachi no Remake</span></a>
+            <button onclick="addToFavorites('Bokutachi no Remake', 'https://cdn.myanimelist.net/images/anime/1871/118309.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href="anime.html?slug=gamers"><img src="https://cdn.myanimelist.net/images/anime/4/86828.jpg" alt=""></a>
+            <a href="anime.html?slug=gamers"><span>Gamers</span></a>
+            <button onclick="addToFavorites('Gamers', 'https://cdn.myanimelist.net/images/anime/4/86828.jpg')">Add to Favorite</button>            
+        </div>
+        
+        <div class="anime-item">
+            <a href="anime.html?slug=aishen"><img src="https://cdn.myanimelist.net/images/anime/6/78011.jpg" alt=""></a>
+            <a href="anime.html?slug=aishen"><span>Aishen Qiaokeli-ing...</span></a>
+            <button onclick="addToFavorites('Aishen Qiaokeli-ing...', 'https://cdn.myanimelist.net/images/anime/6/78011.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href="anime.html?slug=Relife.html"><img src="https://cdn.myanimelist.net/images/anime/3/82149.jpg" alt=""></a>
+            <a href="anime.html?slug=Relife.html"><span>ReLIFE</span></a>
+            <button onclick="addToFavorites('ReLIFE', 'https://cdn.myanimelist.net/images/anime/3/82149.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href="anime.html?slug=Kotoura.html"><img src="https://cdn.myanimelist.net/images/anime/10/75585.jpg" alt=""></a>
+            <a href="anime.html?slug=Kotoura.html"><span>Kotoura-san</span></a>
+            <button onclick="addToFavorites('Kotoura-san', 'https://cdn.myanimelist.net/images/anime/10/75585.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href=""><img src="https://cdn.myanimelist.net/images/anime/6/88354.jpg" alt=""></a>
+            <a href=""><span>UQ Holder! Mahou Sensei Negima! 2</span></a>
+            <button onclick="addToFavorites('UQ Holder! Mahou Sensei Negima! 2', 'https://cdn.myanimelist.net/images/anime/6/88354.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href=""><img src="https://cdn.myanimelist.net/images/anime/12/89535.jpg" alt=""></a>
+            <a href=""><span>Mahou Sensei Negima!</span></a>
+            <button onclick="addToFavorites('Mahou Sensei Negima!', 'https://cdn.myanimelist.net/images/anime/12/89535.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href=""><img src="https://cdn.myanimelist.net/images/anime/1885/139871.jpg" alt=""></a>
+            <a href=""><span>Bucchigiri?!</span></a>
+            <button onclick="addToFavorites('Bucchigiri?!', 'https://cdn.myanimelist.net/images/anime/1885/139871.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href=""><img src="https://cdn.myanimelist.net/images/anime/5/79459.jpg" alt=""></a>
+            <a href=""><span>Seisen Cerberus: Ryuukoku no Fatalités</span></a>
+            <button onclick="addToFavorites('Seisen Cerberus: Ryuukoku no Fatalités', 'https://cdn.myanimelist.net/images/anime/5/79459.jpg')">Add to Favorite</button>   
+        </div>
+        
+        <div class="anime-item">
+            <a href=""><img src="https://cdn.myanimelist.net/images/anime/1572/145903.jpg" alt=""></a>
+            <a href=""><span>Kekkon suru tte, Hontou desu ka</span></a>
+            <button onclick="addToFavorites('Kekkon suru tte, Hontou desu ka', 'https://cdn.myanimelist.net/images/anime/1572/145903.jpg')">Add to Favorite</button>   
+        </div>
+
+        <div class="anime-item">
+            <a href=""><img src="https://cdn.myanimelist.net/images/anime/1909/144684.jpg" alt=""></a>
+            <a href=""><span>Kimi wa Meido-sama.</span></a>
+            <button onclick="addToFavorites('Kimi wa Meido-sama.', 'https://cdn.myanimelist.net/images/anime/1909/144684.jpg')">Add to Favorite</button>   
+        </div>
+
+        <div class="anime-item">
+            <a href=""><img src="https://cdn.myanimelist.net/images/anime/1342/108321.jpg" alt=""></a>
+            <a href=""><span>Dokyuu Hentai HxEros</span></a>
+            <button onclick="addToFavorites('Dokyuu Hentai HxEros', 'https://cdn.myanimelist.net/images/anime/1342/108321.jpg')">Add to Favorite</button>   
+        </div>
+
+        <div class="anime-item">
+            <a href=""><img src="https://cdn.myanimelist.net/images/anime/1233/138531.jpg" alt=""></a>
+            <a href=""><span>Toaru Ossan no VRMMO Katsudouki</span></a>
+            <button onclick="addToFavorites('Toaru Ossan no VRMMO Katsudouki', 'https://cdn.myanimelist.net/images/anime/1233/138531.jpg')">Add to Favorite</button>   
+        </div>
+
+        <div class="anime-item">
+            <a href=""><img src="https://cdn.myanimelist.net/images/anime/1892/93420.jpg" alt=""></a>
+            <a href=""><span>Jashin-chan Dropkick</span></a>
+            <button onclick="addToFavorites('Jashin-chan Dropkick', 'https://cdn.myanimelist.net/images/anime/1892/93420.jpg')">Add to Favorite</button>   
+        </div>
+
+        <div class="anime-item">
+            <a href=""><img src="https://cdn.myanimelist.net/images/anime/1827/92122.jpg" alt=""></a>
+            <a href=""><span>Rewrite</span></a>
+            <button onclick="addToFavorites('Rewrite', 'https://cdn.myanimelist.net/images/anime/1827/92122.jpg')">Add to Favorite</button>   
+        </div>
+
+        <div class="anime-item">
+            <a href=""><img src="https://cdn.myanimelist.net/images/anime/7/75252.jpg" alt=""></a>
+            <a href=""><span>Ladies versus Butlers!</span></a>
+            <button onclick="addToFavorites('Ladies versus Butlers', 'https://cdn.myanimelist.net/images/anime/7/75252.jpg')">Add to Favorite</button>   
+        </div>
+
+
+    </main>
+<!-- Cookie Consent -->
+<div id="cookie-consent" class="cookie-consent">
+    <div class="cookie-content">
+        <p>Kami menggunakan cookie untuk memastikan pengalaman menonton terbaik. Dengan menggunakan situs ini, Anda setuju dengan <a href="privacy-policy.html">Kebijakan Privasi</a> dan <a href="terms-of-service.html">Syarat Penggunaan</a> kami.</p>
+        <div class="cookie-buttons">
+            <button id="accept-cookies" class="btn-accept">Setuju</button>
+            <button id="customize-cookies" class="btn-customize">Sesuaikan</button>
+        </div>
+    </div>
+</div>
+    <!--pagination-->
+        
+           <!-- Footer -->
+           <footer class="footer1">
+            <div class="footer-left"><h1>INFO MAZZEHH..</h1></div>
+            <div class="footer-dekripsi">
+                <p>Maaf kalo ada kesalahan, masih ada perbaikan! Follow saya di 
+                    <a href="https://www.instagram.com/ransyah_32/">Instagram</a> / 
+                    <a href="https://trakteer.id/ransyah4">Trakteer</a>
+                </p>
+                <h3 style="color: limegreen;">Maaf format download masih Gdrive</h3>
+            </div>                                
+        </footer>
+
+                        <script  src="javapertama.js" ></script>
+                        <script src="https://accounts.google.com/gsi/client" async defer></script>
+             
+                        
+</body>
+</html>
