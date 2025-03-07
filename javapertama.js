@@ -313,7 +313,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Kirim token ke backend (opsional) untuk validasi
   }
   const CLIENT_ID =
-    "429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com";
+    "429779218315-26p4ufctrmdd18pbgv5irgk9mms2tl2u.apps.googleusercontent.com";
   const REDIRECT_URI = "https://ransyah21.github.io/MyAnimeStream/";
   const menu = document.getElementById("menu");
   
