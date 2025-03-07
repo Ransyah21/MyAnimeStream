@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
   const CLIENT_ID =
     "429779218315-26p4ufctrmdd18pbgv5irgk9mms2tl2u.apps.googleusercontent.com";
-  const REDIRECT_URI = "http://127.0.0.1:5501/index.html";
+  const REDIRECT_URI = "https://ransyah21.github.io/-AniStream/";
   const menu = document.getElementById("menu");
   
   // Fungsi untuk login dengan Google
