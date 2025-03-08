@@ -202,7 +202,7 @@ let allAnimeData = [];
 let filteredData = [];
 
 // PERBAIKAN PATH JSON (gunakan forward slash)
-const JSON_PATH = 'anime-data.json'; // Sesuaikan dengan path sebenarnya
+const JSON_PATH = './anime-data.json'; // Sesuaikan dengan path sebenarnya
 
 async function loadAnimeData() {
   try {
