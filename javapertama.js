@@ -418,7 +418,13 @@ async function initAuth() {
     }
   }
 }
-
+if (accessToken) {
+  // Force refresh menu
+  setTimeout(() => {
+    updateMenu();
+    window.location.reload();
+  }, 1000);
+}
 
 // Fungsi untuk filter genre
 function renderGenreFilters() {
