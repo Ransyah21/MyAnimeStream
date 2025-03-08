@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // PAGINATION SYSTEM YANG DIPERBAIKI
 let currentPage = 1;
-let itemsPerPage = 25;
+let itemsPerPage = 30;
 let totalPages = 1;
 let allAnimeData = [];
 let filteredData = [];
@@ -431,72 +431,23 @@ async function initAuth() {
 }
 
 
-// Fungsi untuk filter genre
+// Variabel global
+let selectedGenre = null;
+
+// Fungsi untuk render genre filters
 function renderGenreFilters() {
-  
-// Toggle genre list
-document.querySelector('.genre-header').addEventListener('click', function() {
-  const container = document.querySelector('.genre-list-container');
-  const arrowDown = document.querySelector('.arrow-down');
-  const arrowUp = document.querySelector('.arrow-up');
-  
-  container.classList.toggle('collapsed');
-  arrowDown.style.display = container.classList.contains('collapsed') ? 'none' : 'block';
-  arrowUp.style.display = container.classList.contains('collapsed') ? 'block' : 'none';
-});
-
-// Fungsi filter genre (diperbarui dengan animasi)
-function filterByGenre(genre) {
-  const container = document.querySelector('.genre-list-container');
-  const animeList = document.querySelector('.anime-list');
-  
-  // Animasi collapse
-  container.classList.add('collapsed');
-  animeList.style.opacity = '0.5';
-  animeList.style.transform = 'translateY(20px)';
-  animeList.style.transition = 'all 0.3s ease';
-  
-  setTimeout(() => {
-      selectedGenre = genre;
-      currentPage = 1;
-      
-      // Filter data
-      if (!genre) {
-          filteredData = [...allAnimeData];
-      } else {
-          filteredData = allAnimeData.filter(anime => 
-              anime.info.genres.some(g => g === genre)
-          );
-      }
-      
-      totalPages = Math.ceil(filteredData.length / itemsPerPage);
-      
-      // Update tampilan
-      updateDisplay();
-      container.classList.remove('collapsed');
-      
-      // Reset animasi
-      setTimeout(() => {
-          animeList.style.opacity = '1';
-          animeList.style.transform = 'translateY(0)';
-      }, 100);
-  }, 300);
-  
-  // Update tombol aktif
-  document.querySelectorAll('.genre-btn').forEach(btn => {
-      btn.classList.toggle('selected', btn.textContent === genre);
-  });
-}
-
     const genreContainer = document.querySelector('.genre-list');
     const allGenres = new Set();
     
+    // Kumpulkan semua genre unik
     allAnimeData.forEach(anime => {
         anime.info.genres.forEach(genre => allGenres.add(genre));
     });
 
+    // Kosongkan container
     genreContainer.innerHTML = '';
     
+    // Buat tombol untuk setiap genre
     allGenres.forEach(genre => {
         const button = document.createElement('button');
         button.className = 'genre-btn';
@@ -505,33 +456,67 @@ function filterByGenre(genre) {
         genreContainer.appendChild(button);
     });
 
+    // Tambahkan tombol All
     const allButton = document.createElement('button');
-    allButton.className = 'genre-btn';
+    allButton.className = 'genre-btn selected'; // Set as selected by default
     allButton.textContent = 'All';
     allButton.addEventListener('click', () => filterByGenre(null));
     genreContainer.prepend(allButton);
 }
 
+// Fungsi filter genre dengan animasi
 function filterByGenre(genre) {
-    selectedGenre = genre;
-    currentPage = 1;
+    const container = document.querySelector('.genre-list-container');
+    const animeList = document.querySelector('.anime-list');
     
-    document.querySelectorAll('.genre-btn').forEach(btn => {
-        btn.classList.toggle('selected', btn.textContent === genre);
-    });
-
-    if (!genre) {
-        filteredData = [...allAnimeData];
-    } else {
-        filteredData = allAnimeData.filter(anime => 
-            anime.info.genres.some(g => g === genre)
-        );
-    }
+    // Animasi collapse
+    container.classList.add('collapsed');
+    animeList.style.opacity = '0.5';
+    animeList.style.transform = 'translateY(20px)';
+    animeList.style.transition = 'all 0.3s ease';
     
-    totalPages = Math.ceil(filteredData.length / itemsPerPage);
-    updateDisplay();
+    setTimeout(() => {
+        selectedGenre = genre;
+        currentPage = 1;
+        
+        // Filter data
+        if (!genre) {
+            filteredData = [...allAnimeData];
+        } else {
+            filteredData = allAnimeData.filter(anime => 
+                anime.info.genres.some(g => g === genre)
+            );
+        }
+        
+        totalPages = Math.ceil(filteredData.length / itemsPerPage);
+        
+        // Update tombol aktif
+        document.querySelectorAll('.genre-btn').forEach(btn => {
+            btn.classList.toggle('selected', btn.textContent === (genre || 'All'));
+        });
+        
+        // Update tampilan
+        updateDisplay();
+        container.classList.remove('collapsed');
+        
+        // Reset animasi
+        setTimeout(() => {
+            animeList.style.opacity = '1';
+            animeList.style.transform = 'translateY(0)';
+        }, 100);
+    }, 300);
 }
 
+// Toggle genre list (dipindahkan ke luar fungsi renderGenreFilters)
+document.querySelector('.genre-header').addEventListener('click', function() {
+    const container = document.querySelector('.genre-list-container');
+    const arrowDown = document.querySelector('.arrow-down');
+    const arrowUp = document.querySelector('.arrow-up');
+    
+    container.classList.toggle('collapsed');
+    arrowDown.style.display = container.classList.contains('collapsed') ? 'none' : 'block';
+    arrowUp.style.display = container.classList.contains('collapsed') ? 'block' : 'none';
+});
 // Fungsi utama
 async function loadAnimeData() {
   try {
@@ -623,6 +608,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   renderGenreFilters();
   updateDisplay();
+  filterByGenre(null);
+  renderGenreFilters();
   
   document.body.addEventListener('click', (e) => {
     if (e.target.id === 'prev-btn') {
