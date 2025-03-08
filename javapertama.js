@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', initSplashScreen);
 
 // LOGIN & FAVORITES SYSTEM
 const CLIENT_ID = "429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com";
-const REDIRECT_URI = "http://127.0.0.1:5501/index.html";
+const REDIRECT_URI = "https://ransyah21.github.io/MyAnimeStream/";
 
 // Fungsi Login Google
 function handleLogin() {
@@ -202,7 +202,21 @@ let allAnimeData = [];
 let filteredData = [];
 
 // PERBAIKAN PATH JSON (gunakan forward slash)
-const JSON_PATH = '/anime-data.json'; // Sesuaikan dengan path sebenarnya
+const JSON_PATH = 'anime-data.json'; // Sesuaikan dengan path sebenarnya
+
+async function loadAnimeData() {
+  try {
+    const response = await fetch(JSON_PATH);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    //... kode sebelumnya
+  } catch (error) {
+    console.error("Error loading data:", error);
+    showNotification("Failed to load anime data", "error");
+    return [];
+  }
+}
 
 async function loadAnimeData() {
   try {
@@ -377,8 +391,6 @@ function addToFavorites(anime) {
 
   showNotification("Anime berhasil ditambahkan ke favorit!", "success");
 }
-
-
 
 function showNotification(message, type = "info") {
   const notification = document.createElement("div");
