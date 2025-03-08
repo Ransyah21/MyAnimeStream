@@ -46,6 +46,23 @@
     </header>
 <!-- main -->
     <main>
+        <!-- Tambahkan di bawah .notice atau di lokasi yang diinginkan -->
+        <div class="genre-filter">
+            <div class="genre-header">
+                <h2 style="color: #ffa200;">Genre</h2>
+                <button class="genre-toggle">
+                    <svg class="arrow-down" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="#ffa200" d="M7 10l5 5 5-5z"/>
+                    </svg>
+                    <svg class="arrow-up" width="24" height="24" viewBox="0 0 24 24" style="display: none;">
+                        <path fill="#ffa200" d="M7 14l5-5 5 5z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="genre-list-container">
+                <div class="genre-list"></div>
+            </div>
+        </div>
         <div id="notification" class="hidden"></div>
         <div class="container">
             <div class="notice">

@@ -445,3 +445,260 @@ async function initAuth() {
     }
   }
 }
+
+
+// Fungsi untuk filter genre
+function renderGenreFilters() {
+  
+// Toggle genre list
+document.querySelector('.genre-header').addEventListener('click', function() {
+  const container = document.querySelector('.genre-list-container');
+  const arrowDown = document.querySelector('.arrow-down');
+  const arrowUp = document.querySelector('.arrow-up');
+  
+  container.classList.toggle('collapsed');
+  arrowDown.style.display = container.classList.contains('collapsed') ? 'none' : 'block';
+  arrowUp.style.display = container.classList.contains('collapsed') ? 'block' : 'none';
+});
+
+// Fungsi filter genre (diperbarui dengan animasi)
+function filterByGenre(genre) {
+  const container = document.querySelector('.genre-list-container');
+  const animeList = document.querySelector('.anime-list');
+  
+  // Animasi collapse
+  container.classList.add('collapsed');
+  animeList.style.opacity = '0.5';
+  animeList.style.transform = 'translateY(20px)';
+  animeList.style.transition = 'all 0.3s ease';
+  
+  setTimeout(() => {
+      selectedGenre = genre;
+      currentPage = 1;
+      
+      // Filter data
+      if (!genre) {
+          filteredData = [...allAnimeData];
+      } else {
+          filteredData = allAnimeData.filter(anime => 
+              anime.info.genres.some(g => g === genre)
+          );
+      }
+      
+      totalPages = Math.ceil(filteredData.length / itemsPerPage);
+      
+      // Update tampilan
+      updateDisplay();
+      container.classList.remove('collapsed');
+      
+      // Reset animasi
+      setTimeout(() => {
+          animeList.style.opacity = '1';
+          animeList.style.transform = 'translateY(0)';
+      }, 100);
+  }, 300);
+  
+  // Update tombol aktif
+  document.querySelectorAll('.genre-btn').forEach(btn => {
+      btn.classList.toggle('selected', btn.textContent === genre);
+  });
+}
+
+    const genreContainer = document.querySelector('.genre-list');
+    const allGenres = new Set();
+    
+    allAnimeData.forEach(anime => {
+        anime.info.genres.forEach(genre => allGenres.add(genre));
+    });
+
+    genreContainer.innerHTML = '';
+    
+    allGenres.forEach(genre => {
+        const button = document.createElement('button');
+        button.className = 'genre-btn';
+        button.textContent = genre;
+        button.addEventListener('click', () => filterByGenre(genre));
+        genreContainer.appendChild(button);
+    });
+
+    const allButton = document.createElement('button');
+    allButton.className = 'genre-btn';
+    allButton.textContent = 'All';
+    allButton.addEventListener('click', () => filterByGenre(null));
+    genreContainer.prepend(allButton);
+}
+
+function filterByGenre(genre) {
+    selectedGenre = genre;
+    currentPage = 1;
+    
+    document.querySelectorAll('.genre-btn').forEach(btn => {
+        btn.classList.toggle('selected', btn.textContent === genre);
+    });
+
+    if (!genre) {
+        filteredData = [...allAnimeData];
+    } else {
+        filteredData = allAnimeData.filter(anime => 
+            anime.info.genres.some(g => g === genre)
+        );
+    }
+    
+    totalPages = Math.ceil(filteredData.length / itemsPerPage);
+    updateDisplay();
+}
+
+// Fungsi utama
+async function loadAnimeData() {
+  try {
+    const response = await fetch(JSON_PATH);
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    
+    const data = await response.json();
+    if (!data.data || !Array.isArray(data.data)) {
+      throw new Error("Struktur JSON tidak valid!");
+    }
+    
+    return data.data || [];
+  } catch (error) {
+    console.error("Error:", error);
+    showNotification(`Gagal memuat data: ${error.message}`, "error");
+    return [];
+  }
+}
+
+function renderAnimeItems(data) {
+  const animeList = document.querySelector('.anime-list');
+  if (!animeList) return;
+  
+  animeList.innerHTML = data.map(anime => `
+    <div class="anime-item">
+      <a href="anime.html?slug=${anime.slug}">
+        <img src="${anime.image}" alt="${anime.title}">
+      </a>
+      <a href="anime.html?slug=${anime.slug}"><span>${anime.title}</span></a>
+      <button onclick="addToFavorites({
+    title: '${anime.title.replace(/'/g, "\\'")}', 
+    image: '${anime.image}', 
+    slug: '${anime.slug}'
+  })">Favorite</button>
+    </div>
+  `).join('');
+}
+
+function renderPagination() {
+  const paginationContainer = document.querySelector('.pagination-container') || document.createElement('div');
+  paginationContainer.className = 'pagination-container';
+  
+  paginationContainer.innerHTML = `
+    <div class="pagination-controls">
+      <button class="pagination-btn" id="prev-btn" ${currentPage === 1 ? 'disabled' : ''}>
+        Previous
+      </button>
+      <span class="page-info">Halaman ${currentPage} dari ${totalPages}</span>
+      <button class="pagination-btn" id="next-btn" ${currentPage === totalPages ? 'disabled' : ''}>
+        Next
+      </button>
+    </div>
+  `;
+
+  if (!document.querySelector('.pagination-container')) {
+    document.querySelector('main').appendChild(paginationContainer);
+  }
+}
+
+function updateDisplay() {
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  
+  const sectionTitle = document.querySelector('.nama h2');
+  if (selectedGenre) {
+    sectionTitle.textContent = `Genre: ${selectedGenre}`;
+  } else {
+    sectionTitle.textContent = 'Anime Terbaru';
+  }
+  
+  renderAnimeItems(filteredData.slice(start, end));
+  renderPagination();
+  window.scrollTo(0, 0);
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', async () => {
+  document.querySelectorAll('.anime-item').forEach(item => item.remove());
+  
+  allAnimeData = await loadAnimeData();
+  
+  if (allAnimeData.length === 0) {
+    showNotification("Tidak ada data anime yang ditemukan", "error");
+    return;
+  }
+  
+  filteredData = [...allAnimeData];
+  totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  
+  renderGenreFilters();
+  updateDisplay();
+  
+  document.body.addEventListener('click', (e) => {
+    if (e.target.id === 'prev-btn') {
+      currentPage = Math.max(1, currentPage - 1);
+      updateDisplay();
+    }
+    
+    if (e.target.id === 'next-btn') {
+      currentPage = Math.min(totalPages, currentPage + 1);
+      updateDisplay();
+    }
+  });
+});
+
+document.getElementById('search-input').addEventListener('input', function(e) {
+  const searchValue = e.target.value.toLowerCase();
+  
+  const baseData = selectedGenre ? 
+    allAnimeData.filter(anime => anime.info.genres.includes(selectedGenre)) : 
+    allAnimeData;
+    
+  filteredData = baseData.filter(anime => 
+    anime.title.toLowerCase().includes(searchValue) ||
+    anime.desc.toLowerCase().includes(searchValue)
+  );
+  
+  currentPage = 1;
+  totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  updateDisplay();
+});
+
+// Favorites System
+function addToFavorites(anime) {
+  let accessToken = localStorage.getItem('access_token');
+  if (!accessToken) {
+    showNotification("Silakan login terlebih dahulu!", "error");
+    return;
+  }
+
+  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  if (favorites.some(fav => fav.slug === anime.slug)) {
+    showNotification("Anime sudah ada di daftar favorit!", "info");
+    return;
+  }
+
+  favorites.push(anime);
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+  showNotification("Anime berhasil ditambahkan ke favorit!", "success");
+}
+
+// Notification System
+function showNotification(message, type = "info") {
+  const notification = document.createElement("div");
+  notification.className = `notification ${type}`;
+  notification.textContent = message;
+
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    notification.style.opacity = "0";
+    setTimeout(() => notification.remove(), 500);
+  }, 3000);
+}

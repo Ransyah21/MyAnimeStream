@@ -1089,13 +1089,65 @@
             ]
           }
         ]
+      },
+      {
+        "title": "Isekai Ojisan",
+        "slug": "isekai-ojisan",
+        "image": "https://i.pinimg.com/736x/41/d4/91/41d491b416c7d76cbd7f00bb312a27f8.jpg",
+        "info": {
+          "type": "TV",
+          "episodes": "13",
+          "status": "Tayang Selesai",
+          "aired": "6 Jul 2022 hingga 21 Des 2022",
+          "premiered": "Musim Panas 2022",
+          "broadcast": "Setiap Rabu pukul 22:00 (JST)",
+          "producers": [
+            "Atelier Musa",
+            "Kadokawa",
+            "NetEase",
+            "Memory-Tech",
+            "KlockWorx",
+            "BS11",
+            "Bandai Namco Music Live",
+            "Docomo Anime Store"
+          ],
+          "studios": ["Atelier Musa"],
+          "source": "Web Novel",
+          "genres": ["Komedi", "Fantasi", "Isekai"],
+          "themes": ["Dunia Paralel", "Permainan Video", "Perjalanan Waktu"],
+          "demographic": "Seinen",
+          "duration": "23 menit per ep.",
+          "rating": "PG-13 - Remaja 13 tahun ke atas"
+        },
+        "desc": "Seorang paman yang baru sadar dari koma 17 tahun, bercerita tentang petualangannya di dunia fantasi. Dengan kekuatan magis unik dan humor absurd, ia beradaptasi dengan kehidupan modern sambil mengenang pengalaman isekainya yang kacau.",
+        "seasons": [
+          {
+            "name": "Season 1",
+            "download": "https://drive.google.com/uc?id=1QihePEnpD_jeP15WWUEYk3wFkq73s6m6&export=download",
+            "streaming": [
+              "https://drive.google.com/file/d/1lKUQTN15_vh1vU6joWulqpnCzwrDlGHU/preview",
+              "https://drive.google.com/file/d/13ChZhcE1sMgOoilj1oZgfM4Mm4RuCp1f/preview",
+              "https://drive.google.com/file/d/1GfQs-5vZxEVgzKiHV6wswGUUwTqi4T3m/preview",
+              "https://drive.google.com/file/d/1dlMYqw0MZP5C2Db2EkiyTF50vLXgd_Vd/preview",
+              "https://drive.google.com/file/d/1ZjQMuO_gROpJnUAHzYne6l-2YKeEYq5l/preview",
+              "https://drive.google.com/file/d/113IlzZSFNn78_0UDf4kpnBZLTFF4OiPh/preview",
+              "https://drive.google.com/file/d/1zI9LPgk_FaRdQk90RXEIm6MyI0Qc7ZDs/preview",
+              "https://drive.google.com/file/d/1nXT9f7tdowpaj1S6ntH08EnxDxd65R7n/preview",
+              "https://drive.google.com/file/d/1f2uWqPsvlreZMR0W8a0GuiI4M85UlwRE/preview",
+              "https://drive.google.com/file/d/1pQdx4MmxeVbblknbVuzr2A-TbZDJM6ov/preview",
+              "https://drive.google.com/file/d/1RsLfK50nc5kB1eqJsGuD1GBj9kYXaoHC/preview",
+              "https://drive.google.com/file/d/1fHkNPlFbB6ADa15ApsJ-EeJKxlDryrOC/preview",
+              "https://drive.google.com/file/d/1237GE0LDXHdKonZ2E7yPLPfH_H-xMv38/preview"
+            ]
+          }
+        ]
       }
     
 ],
 "meta": {
   "current_page": 1,
   "per_page": 10,
-  "total_items": 17,
-  "total_pages": 2
+  "total_items": 18,
+  "total_pages": 10
 }
 }
