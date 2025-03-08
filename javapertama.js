@@ -1,11 +1,16 @@
+// Splash Screen System
 function createSplashScreen() {
-  // Cek apakah halaman utama ("My Anime"), kalau bukan, jangan buat splash
-  if (!window.location.pathname.includes("index.html")) return null;
+  // Cek hanya di halaman utama
+  const isHomePage = window.location.pathname.endsWith("index.html") || 
+                    window.location.pathname === "/";
+  
+  if (!isHomePage) return null;
 
+  // Create container
   const splashScreen = document.createElement("div");
   splashScreen.id = "myDynamicSplash";
 
-  // Tambahkan container untuk konten
+  // Create content
   const contentWrapper = document.createElement("div");
   contentWrapper.className = "splash-content";
 
@@ -22,7 +27,7 @@ function createSplashScreen() {
     title.appendChild(span);
   });
 
-  // Create cube grid
+  // Create loader
   const cubeGrid = document.createElement("div");
   cubeGrid.className = "sk-cube-grid";
   for (let i = 1; i <= 9; i++) {
@@ -31,103 +36,17 @@ function createSplashScreen() {
     cubeGrid.appendChild(cube);
   }
 
-  // Tambahkan elemen untuk pesan error
+  // Create error message
   const errorMessage = document.createElement("div");
   errorMessage.className = "network-status";
 
+  // Assemble components
   contentWrapper.appendChild(title);
   contentWrapper.appendChild(cubeGrid);
   contentWrapper.appendChild(errorMessage);
   splashScreen.appendChild(contentWrapper);
 
-  // Tambahkan style ke halaman
-  const style = document.createElement("style");
-  style.textContent = `
-    #myDynamicSplash {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: #181818;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease;
-    }
-
-    .splash-title {
-      font-size: 45px;
-      margin-bottom: 2rem;
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-
-    .splash-title span {
-      display: inline-flex;
-      font-family: "Play", sans-serif;
-      animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate;
-      margin: 0 3px;
-      color: #ffa200;
-      text-shadow: 0 0 10px #ff6b00;
-    }
-
-    @keyframes title-bounce {
-      0%, 60%, 100% {
-        transform: translateY(0) scale(1);
-      }
-      30% {
-        transform: translateY(-25px) scale(1.15);
-      }
-    }
-
-    @keyframes fire {
-      0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00; }
-      100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; }
-    }
-
-    .sk-cube-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 5px;
-      width: 40px;
-      height: 40px;
-      justify-content: center;
-      align-items: center;
-      margin: auto;
-    }
-
-    .sk-cube {
-      width: 10px;
-      height: 10px;
-      background-color: #ffa200;
-      animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
-    }
-
-    @keyframes sk-cubeGridScaleDelay {
-      0%, 70%, 100% { transform: scale3D(1, 1, 1); }
-      35% { transform: scale3D(0, 0, 1); }
-    }
-
-    .network-status {
-      position: absolute;
-      bottom: 20%;
-      color: #ff5555;
-      font-size: 1.2em;
-      text-align: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .network-status.show {
-      opacity: 1;
-    }
-  `;
-
-  document.head.appendChild(style);
+  // Add to DOM
   document.body.prepend(splashScreen);
 
   return { splashScreen, errorMessage };
@@ -135,430 +54,369 @@ function createSplashScreen() {
 
 function initSplashScreen() {
   const splashData = createSplashScreen();
-  if (!splashData) return; // Kalau bukan halaman "My Anime", langsung return
+  if (!splashData) return;
 
   const { splashScreen, errorMessage } = splashData;
   let isLoaded = false;
 
+  // Network error handler
   const showNetworkError = (message) => {
     errorMessage.textContent = message;
     errorMessage.classList.add("show");
   };
 
-  if (!navigator.onLine) {
-    showNetworkError("Your connection is offline");
-  }
+  // Initial network check
+  if (!navigator.onLine) showNetworkError("Koneksi internet offline");
 
-  window.addEventListener("offline", () => {
-    showNetworkError("Your connection is offline");
-  });
+  // Network event listeners
+  window.addEventListener("offline", () => showNetworkError("Koneksi internet offline"));
+  window.addEventListener("online", () => errorMessage.classList.remove("show"));
 
-  window.addEventListener("online", () => {
-    errorMessage.classList.remove("show");
-  });
-
+  // Connection quality check
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  if (connection && (connection.effectiveType === "slow-2g" || connection.effectiveType === "2g")) {
-    showNetworkError("Poor network connection detected");
+  if (connection) {
+    connection.addEventListener('change', () => {
+      if (connection.effectiveType === "slow-2g" || connection.effectiveType === "2g") {
+        showNetworkError("Koneksi internet lemah terdeteksi");
+      }
+    });
   }
 
+  // Hide splash screen
   const hideSplash = () => {
     if (isLoaded) return;
     isLoaded = true;
-
+    
     splashScreen.style.opacity = "0";
     splashScreen.addEventListener("transitionend", () => {
       splashScreen.remove();
-      document.head.querySelector("style").remove();
     });
   };
 
+  // Timeout handler
   const loadTimeout = setTimeout(() => {
-    if (!isLoaded) {
-      showNetworkError("Taking longer than usual...");
-    }
+    if (!isLoaded) showNetworkError("Memuat lebih lama dari biasanya...");
   }, 5000);
 
-  window.addEventListener("load", () => {
+  // Load event handler
+  const handleLoad = () => {
     clearTimeout(loadTimeout);
     hideSplash();
-  });
-}
+  };
 
-window.addEventListener("DOMContentLoaded", initSplashScreen);
-
-
-const data = [
-  "Seiken Gakuin no Makentsukai",
-  "Nagasarete Airantou",
-  "chiyu mahou no machigatta tsukaikata",
-  "Chijou Saikyou no Yome",
-  "Kouritsu Ebisugawa Koukou Tenmonbu",
-  "ichigo 100%",
-  "Otona no bouguya-san",
-  "Shironeko Project: Zero Chronicle",
-  "Sakura-sou no Pet na Kanojo",
-  "Kusuriya no Hitorigoto",
-  "Amagi Brilliant Park",
-  "Midara na Ao-chan wa Benkyou ga Dekinai",
-  "Asu no Yoichi!",
-  "Bokura wa Minna Kawai-sou",
-  "Busou Shoujo Machiavellianism",
-  "Cheat Kusushi no Slow Life",
-  "Danna ga Nani wo Itteiru ka Wakaranai Ken",
-  "Denpa Onna to Seishun Otoko",
-  "Kyuukyoku Shinka shita Full Dive RPG",
-  "Full Metal Panic!",
-  "Bokutachi no Remake",
-  "Gamers!",
-  "Aishen Qiaokeli-ing...",
-  "ReLIFE",
-  "Kotoura-san",
-  "UQ Holder! Mahou Sensei Negima! 2",
-  "Mahou Sensei Negima!",
-  "Bucchigiri?!",
-  "Seisen Cerberus: Ryuukoku no Fatalités",
-  "Mairimashita! Iruma-kun",
-  "Kimi wa Meido-sama.",
-  "Dokyuu Hentai HxEros",
-  "Toaru Ossan no VRMMO Katsudouki",
-  "Jashin-chan Dropkick",
-  "Rewrite",
-  "Ladies versus Butlers!",
-  "coba",
-];
-
-// Ambil elemen-elemen yang diperlukan
-const searchInput = document.getElementById("search-input");
-const animeItems = document.querySelectorAll(".anime-item");
-
-// Event listener untuk pencarian
-searchInput.addEventListener("keyup", function (event) {
-  const searchValue = searchInput.value.toLowerCase();
-  console.log("Searching for:", searchValue); // Debugging
-
-  // Perulangan untuk semua elemen <div> dalam .anime-item
-  animeItems.forEach(function (item, index) {
-    if (index < data.length) {
-      const animeTitle = data[index].toLowerCase();
-      if (animeTitle.includes(searchValue)) {
-        item.style.display = "block"; // Tampilkan elemen
-      } else {
-        item.style.display = "none"; // Sembunyikan elemen
+  // Event listeners
+  if (document.readyState === 'complete') {
+    handleLoad();
+  } else {
+    window.addEventListener('load', handleLoad);
+    document.addEventListener('DOMContentLoaded', () => {
+      if (document.readyState === 'interactive') {
+        setTimeout(handleLoad, 1000);
       }
-    }
-  });
-});
-
-document.addEventListener("DOMContentLoaded", async function () {
-  const searchInput = document.getElementById("search-input");
-  const resultsContainer = document.querySelector("main"); // Elemen tempat menampilkan hasil
-
-  if (searchInput) {
-    const data = await fetchData(); // Ambil data dari Database.html
-    console.log("Data fetched:", data);
-
-    // Event listener untuk pencarian
-    searchInput.addEventListener("keyup", function () {
-      const searchValue = searchInput.value.toLowerCase();
-
-      // Filter data berdasarkan pencarian
-      const results = data.filter((item) =>
-        item.toLowerCase().includes(searchValue)
-      );
-
-      // Tampilkan hasil pencarian
-      resultsContainer.innerHTML = results
-        .map(
-          (anime) =>
-            `<div class="anime-item">
-               <span>${anime}</span>
-             </div>`
-        )
-        .join("");
     });
   }
-});
-  
-  function ShowAlert(event) {
-    event.preventDefault();
-    alert("maaf Masih dalam perbaikan!!");
-  }
-  
-  // Menyimpan posisi scroll sebelum keluar halaman
-  window.addEventListener("beforeunload", () => {
-    sessionStorage.setItem("scrollPosition", window.scrollY);
-  });
-  
-  // Mengembalikan posisi scroll saat halaman dimuat ulang
-  window.addEventListener("load", () => {
-    const savedPosition = sessionStorage.getItem("scrollPosition");
-    if (savedPosition) {
-      window.scrollTo(0, parseInt(savedPosition, 10));
-    }
-  });
-  
-  document.querySelectorAll(".anime-item img").forEach((img) => {
-    img.addEventListener("touchstart", () => {
-      img.style.transform = "scale(1.4)";
-    });
-  
-    img.addEventListener("touchend", () => {
-      img.style.transform = "scale(1)";
-    });
-  });
-  
-  function handleCredentialResponse(response) {
-    console.log("Encoded JWT ID token: " + response.credential);
-    // Kirim token ke backend (opsional) untuk validasi
-  }
-  const CLIENT_ID =
-    "429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com";
-  const REDIRECT_URI = "https://ransyah21.github.io/MyAnimeStream/";
-  const menu = document.getElementById("menu");
-  
-  // Fungsi untuk login dengan Google
-  function handleLogin() {
-    const oauth2Url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
-    window.location.href = oauth2Url;
-  }
-  
-  // Fungsi untuk logout
-  function handleLogout() {
-    localStorage.removeItem("access_token");
-    window.location.reload();
-  }
-  
-  // Fungsi untuk mendapatkan informasi pengguna
-  async function getUserInfo(accessToken) {
-    try {
-      const response = await fetch(
-        "https://www.googleapis.com/oauth2/v2/userinfo",
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        }
-      );
-      if (!response.ok) throw new Error("Failed to fetch user info");
-      return await response.json();
-    } catch (error) {
-      console.error("Error fetching user info:", error);
-      return null;
-    }
-  }
-  
-  // Fungsi untuk memperbarui menu
-  async function updateMenu() {
-    console.log("Update menu dipanggil");
-    console.log(localStorage.getItem("access_token"));
-  
-    const menu = document.getElementById("menu"); // Ganti dengan ID yang sesuai
-    if (!menu) {
-      console.error("Elemen menu tidak ditemukan!");
-      return;
-    }
-  
-    // Hapus menu sebelumnya
-    menu.innerHTML = "";
-  
-    const accessToken = localStorage.getItem("access_token");
-    if (accessToken) {
-      const userInfo = await getUserInfo(accessToken);
-      if (!userInfo || !userInfo.picture) {
-        console.error("Gagal mengambil info pengguna");
-        localStorage.removeItem("access_token");
-        window.location.reload();
-        return;
-      }
-  
-      // Tambahkan menu untuk pengguna yang sudah login
-      menu.innerHTML = `
-
-        <li><a href="favorites.html">Favorites</a></li>
-        <li>
-          <a href="#" id="logout-btn" style="display: flex; align-items: center; text-decoration: none;">
-            <div style="width: 30px; height: 30px; background: white; border-radius: 50%; border: 2px solid orange; display: flex; justify-content: center; align-items: center;">
-              <img src="${userInfo.picture}" alt="Foto Profil" style="border-radius: 50%; width: 30px; height: 30px;">
-            </div>
-            <div style="margin-left: 10px;">
-              <span>${userInfo.name}</span>
-            </div>
-          </a>
-        </li>
-        <li><a href="Full.html">FindNime</a></li>
-      `;
-  
-      // Tambahkan event listener ke kedua tombol logout
-      document.querySelectorAll("#logout-btn").forEach((btn) => {
-        btn.addEventListener("click", handleLogout);
-      });
-    } else {
-      // Tambahkan menu untuk pengguna yang belum login
-      menu.innerHTML = `<li><a id="google-login-btn" href="#">Login</a></li>
-      <li><a href="Full.html">FindNime</a></li>`;
-      document
-        .getElementById("google-login-btn")
-        .addEventListener("click", handleLogin);
-        console.log(typeof handleLogin);
-    }
-  }
-  
-  // Ambil access token dari URL
-  function extractAccessToken() {
-    const hash = window.location.hash;
-    const params = new URLSearchParams(hash.substring(1));
-    const accessToken = params.get("access_token");
-    if (accessToken) {
-      localStorage.setItem("access_token", accessToken);
-      history.replaceState(null, "", window.location.pathname); // Hapus access token dari URL
-    }
-  }
-  
-  // Jalankan saat halaman dimuat
-  window.addEventListener("DOMContentLoaded", () => {
-    extractAccessToken();
-    updateMenu();
-  });
-  
-  // Uji coba
-  
-  async function addToFavorites(animeTitle, animeImage) {
-    // Cek apakah pengguna sudah login
-    const accessToken = localStorage.getItem("access_token");
-    if (!accessToken) {
-        showNotification("Silakan login terlebih dahulu untuk menambahkan ke favorit.", "error");
-        return; // Hentikan proses jika belum login
-    }
-
-    // Validasi token login dengan Google API (opsional)
-    try {
-        const response = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
-            headers: { Authorization: `Bearer ${accessToken}` },
-        });
-        if (!response.ok) {
-            throw new Error("Token login tidak valid atau telah kedaluwarsa.");
-        }
-    } catch (error) {
-        console.error("Validasi login gagal:", error);
-        showNotification("Silakan login ulang untuk melanjutkan.", "error");
-        return;
-    }
-
-    // Proses menambahkan ke favorit
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
-    // Cek biar tidak ada duplikasi
-    let isExist = favorites.some(anime => anime.title === animeTitle);
-    if (!isExist) {
-        favorites.push({ title: animeTitle, image: animeImage });
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        showNotification("Anime berhasil ditambahkan ke favorit!", "success");
-    } else {
-        showNotification("Anime sudah ada di daftar favorit!", "info");
-    }
 }
 
-function showNotification(message, type) {
-  const notification = document.getElementById("notification");
-  if (!notification) {
-      console.error("Elemen notifikasi tidak ditemukan.");
-      return;
-  }
+// Initialize splash screen
+document.addEventListener('DOMContentLoaded', initSplashScreen);
 
-  // Set pesan
-  notification.textContent = message;
+// Login Dan Logout
 
-  // Ubah warna berdasarkan tipe
-  if (type === "success") {
-      notification.style.backgroundColor = "#28a745";
-  } else if (type === "error") {
-      notification.style.backgroundColor = "#dc3545";
-  } else if (type === "info") {
-      notification.style.backgroundColor = "#007bff";
-  }
+// LOGIN & FAVORITES SYSTEM
+const CLIENT_ID = "429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com";
+const REDIRECT_URI = "http://127.0.0.1:5501/index.html";
 
-  notification.classList.add("visible");
-
-  // Sembunyikan notifikasi setelah 3 detik
-  setTimeout(() => {
-      notification.classList.remove("visible");
-  }, 3000);
-}
-
-// Theme management
-const themeButtons = document.querySelectorAll('.theme-btn');
-const body = document.documentElement;
-
-// Load saved theme
-const savedTheme = localStorage.getItem('theme') || 'default';
-body.setAttribute('data-theme', savedTheme);
-
-// Theme button click handler
-themeButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const theme = button.dataset.theme;
-    body.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  });
-});
-
-// Logout function
-document.getElementById('logout-btn').addEventListener('click', function(e) {
-  e.preventDefault();
-  // Logout logic here
+// Fungsi Login Google
+function handleLogin() {
   localStorage.removeItem('access_token');
-  window.location.href = '/login';
-});
-
-// COOKIE
-
-// Cookie Consent
-function setCookie(name, value, days) {
-    const d = new Date();
-    d.setTime(d.getTime() + (days*24*60*60*1000));
-    const expires = "expires="+ d.toUTCString();
-    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+  const oauth2Url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=email profile&prompt=select_account`;
+  window.location.href = oauth2Url;
 }
 
-function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for(let i=0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length);
-    }
-    return null;
-}
-
-function showCookieConsent() {
-    if (!getCookie('cookie_consent')) {
-        document.getElementById('cookie-consent').style.display = 'block';
-    }
-}
-
-document.getElementById('accept-cookies').addEventListener('click', function() {
-    setCookie('cookie_consent', 'accepted', 30);
-    document.getElementById('cookie-consent').style.display = 'none';
-});
-
-document.getElementById('customize-cookies').addEventListener('click', function() {
-    // Tambahkan logika kustomisasi cookie jika diperlukan
-    alert('Fitur kustomisasi cookie sedang dalam pengembangan');
-});
-
-// Panggil saat halaman dimuat
-window.addEventListener('load', showCookieConsent);
-
+// Fungsi Logout
 function handleLogout() {
   localStorage.removeItem('access_token');
-  localStorage.removeItem('user_id');
+  localStorage.removeItem('user_info');
   window.location.reload();
 }
 
-// Panggil initFavoriteButtons di halaman utama
-document.addEventListener('DOMContentLoaded', () => {
-  if (document.querySelector('.favorite-btn')) {
-      initFavoriteButtons();
+// Ambil info pengguna
+async function getUserInfo(accessToken) {
+  try {
+    const response = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    });
+    return await response.json();
+  } catch (error) {
+    console.error("Gagal mengambil info pengguna:", error);
+    return null;
   }
+}
+
+// Update menu navigasi
+async function updateMenu() {
+  const menu = document.getElementById('menu');
+  if (!menu) return;
+
+  const accessToken = localStorage.getItem('access_token');
+  const userInfo = JSON.parse(localStorage.getItem('user_info'));
+
+  menu.innerHTML = accessToken ? `
+    <li><a href="favorites.html">Favorites</a></li>
+    <li>
+      <a href="#" id="logout-btn" class="profile-btn">
+        <img src="${userInfo.picture}" alt="Profile" class="profile-img">
+        <span>${userInfo.name}</span>
+      </a>
+    </li>
+    <li><a href="Full.html">FindNime</a></li>
+  ` : `
+    <li><a href="#" id="google-login-btn">Login</a></li>
+    <li><a href="Full.html">FindNime</a></li>
+  `;
+
+  // Event delegation untuk login/logout
+  document.body.addEventListener('click', (e) => {
+    if (e.target.closest('#google-login-btn')) {
+      handleLogin();
+    }
+    if (e.target.closest('#logout-btn')) {
+      handleLogout();
+    }
+  });
+}
+
+
+
+// Panggil saat halaman dimuat
+document.addEventListener('DOMContentLoaded', () => {
+  initAuth();
+  updateMenu();
 });
 
+// PAGINATION SYSTEM YANG DIPERBAIKI
+let currentPage = 1;
+let itemsPerPage = 25;
+let totalPages = 1;
+let allAnimeData = [];
+let filteredData = [];
+
+// PERBAIKAN PATH JSON (gunakan forward slash)
+const JSON_PATH = '/anime-data.json'; // Sesuaikan dengan path sebenarnya
+
+async function loadAnimeData() {
+  try {
+    console.log("Memuat data dari:", JSON_PATH);
+    const response = await fetch(JSON_PATH);
+    
+    // Validasi response
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    console.log("Data diterima:", data);
+    
+    // Validasi struktur data
+    if (!data.data || !Array.isArray(data.data)) {
+      throw new Error("Struktur JSON tidak valid");
+    }
+    
+    return data.data;
+  } catch (error) {
+    console.error("Gagal memuat data:", error);
+    showNotification("Gagal memuat data anime", "error");
+    return [];
+  }
+}
+
+function renderAnimeItems(data) {
+  const animeList = document.querySelector('.anime-list');
+  if (!animeList) {
+    console.error("Container anime tidak ditemukan!");
+    return;
+  }
+  
+  // Hapus item statis yang ada di HTML
+  animeList.innerHTML = '';
+  
+  // Render item baru
+  animeList.innerHTML = data.map(anime => `
+    <div class="anime-item">
+      <a href="anime.html?slug=${anime.slug}">
+        <img src="${anime.image}" alt="${anime.title}">
+      </a>
+      <a href="anime.html?slug=${anime.slug}"><span>${anime.title}</span></a>
+      <button onclick="addToFavorites({
+    title: '${anime.title.replace(/'/g, "\\'")}', 
+    image: '${anime.image}', 
+    slug: '${anime.slug}'
+  })">Favorite</button>
+    </div>
+  `).join('');
+}
+
+// PERBAIKAN PAGINATION CONTROLS
+function renderPagination() {
+  const paginationContainer = document.querySelector('.pagination-container') || document.createElement('div');
+  paginationContainer.className = 'pagination-container';
+  
+  paginationContainer.innerHTML = `
+    <div class="pagination-controls">
+      <button class="pagination-btn" id="prev-btn" ${currentPage === 1 ? 'disabled' : ''}>
+        Previous
+      </button>
+      <span class="page-info">Halaman ${currentPage} dari ${totalPages}</span>
+      <button class="pagination-btn" id="next-btn" ${currentPage === totalPages ? 'disabled' : ''}>
+        Next
+      </button>
+    </div>
+  `;
+
+  // Tambahkan ke DOM jika belum ada
+  if (!document.querySelector('.pagination-container')) {
+    document.querySelector('main').appendChild(paginationContainer);
+  }
+}
+
+// INISIALISASI UTAMA YANG DIPERBAIKI
+document.addEventListener('DOMContentLoaded', async () => {
+  // Hapus item statis
+  document.querySelectorAll('.anime-item').forEach(item => item.remove());
+  
+  // Load data
+  allAnimeData = await loadAnimeData();
+  
+  if (allAnimeData.length === 0) {
+    showNotification("Tidak ada data anime yang ditemukan", "error");
+    return;
+  }
+  
+  filteredData = [...allAnimeData];
+  totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  
+  // Render awal
+  updateDisplay();
+  
+  // Event listener untuk pagination (menggunakan event delegation)
+  document.body.addEventListener('click', (e) => {
+    if (e.target.id === 'prev-btn') {
+      currentPage = Math.max(1, currentPage - 1);
+      updateDisplay();
+    }
+    
+    if (e.target.id === 'next-btn') {
+      currentPage = Math.min(totalPages, currentPage + 1);
+      updateDisplay();
+    }
+  });
+});
+
+function updateDisplay() {
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  
+  renderAnimeItems(filteredData.slice(start, end));
+  renderPagination();
+  window.scrollTo(0, 0);
+}
+
+// PERBAIKAN PENCARIAN
+document.getElementById('search-input').addEventListener('input', function(e) {
+  const searchValue = e.target.value.toLowerCase();
+  
+  filteredData = allAnimeData.filter(anime => 
+    anime.title.toLowerCase().includes(searchValue) ||
+    anime.desc.toLowerCase().includes(searchValue)
+  );
+  
+  currentPage = 1;
+  totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  updateDisplay();
+});
+// Faforites
+
+function addToFavorites(anime) {
+    let accessToken = localStorage.getItem('access_token');
+
+    if (!accessToken) {
+        showNotification("Silakan login terlebih dahulu!", "error");
+        return;
+    }
+
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    if (favorites.some(fav => fav.slug === anime.slug)) {
+        showNotification("Anime sudah ada di daftar favorit!", "info");
+        return;
+    }
+
+    favorites.push(anime);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+
+    showNotification("Anime berhasil ditambahkan ke favorit!", "success");
+}
+
+function addToFavorites(anime) {
+  let accessToken = localStorage.getItem('access_token');
+
+  if (!accessToken) {
+      showNotification("Silakan login terlebih dahulu!", "error");
+      return;
+  }
+
+  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+  if (favorites.some(fav => fav.slug === anime.slug)) {
+      showNotification("Anime sudah ada di daftar favorit!", "info");
+      return;
+  }
+
+  favorites.push(anime);
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+
+  showNotification("Anime berhasil ditambahkan ke favorit!", "success");
+}
+
+
+
+function showNotification(message, type = "info") {
+  const notification = document.createElement("div");
+  notification.className = `notification ${type}`;
+  notification.textContent = message;
+
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+      notification.style.opacity = "0";
+      setTimeout(() => notification.remove(), 500);
+  }, 3000);
+}
+
+
+// Inisialisasi Auth dengan Validasi Lebih Baik
+async function initAuth() {
+  const hash = window.location.hash.substring(1);
+  const params = new URLSearchParams(hash);
+  const accessToken = params.get('access_token');
+
+  if (accessToken) {
+    try {
+      // Ambil user info dulu sebelum menyimpan token
+      const userInfo = await getUserInfo(accessToken);
+      if (!userInfo || !userInfo.email) {
+        throw new Error("Gagal mendapatkan data user!");
+      }
+
+      // Simpan data hanya jika valid
+      localStorage.setItem('access_token', accessToken);
+      localStorage.setItem('user_info', JSON.stringify(userInfo));
+      history.replaceState(null, '', window.location.pathname);
+
+      updateMenu();
+    } catch (error) {
+      console.error("Login gagal:", error);
+      showNotification("Login gagal. Coba lagi!", "error");
+    }
+  }
+}

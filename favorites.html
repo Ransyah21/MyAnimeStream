@@ -7,45 +7,26 @@
     <link rel="stylesheet" href="F.css">
     <link rel="icon" href="Gambar/LogoMyanime (2).png" type="image/x-icon">
     <style>
-        /* Tambahan CSS sementara */
-        .anime-card {
-            border: 1px solid #ffa200;
-            padding: 10px;
-            margin: 10px;
-            border-radius: 8px;
-        }
-        button {
-            background: #ff4444;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        #notification {
+        .notification {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    padding: 15px;
-    border-radius: 5px;
+    padding: 15px 25px;
+    border-radius: 8px;
     color: white;
     z-index: 1000;
-    display: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#notification.visible {
-    display: block;
-}
-
-#notification.success {
+.notification.success {
     background: #28a745;
 }
 
-#notification.error {
+.notification.error {
     background: #dc3545;
 }
 
-#notification.info {
+.notification.info {
     background: #17a2b8;
 }
     </style>

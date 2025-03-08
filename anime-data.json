@@ -1,4 +1,5 @@
-[
+{
+    "data": [
     {
         "title": "Gamers",
         "slug": "gamers",
@@ -37,6 +38,63 @@
         ]
     },
     {
+        "title": "Nagasarete Airantou",
+        "slug": "nagasarete-airantou",
+        "image": "https://i.pinimg.com/736x/ae/ee/ee/aeeeee3c98eec4f91318a7958d295441.jpg",
+        "info": {
+          "type": "TV",
+          "episodes": 26,
+          "status": "Tayang Selesai",
+          "aired": "4 Apr 2007 hingga 26 Sep 2007",
+          "premiered": "Musim Semi 2007",
+          "broadcast": "Tidak Diketahui",
+          "producers": [
+            "TV Tokyo",
+            "Marvelous Entertainment",
+            "Lantis",
+            "HAL FILM MAKER",
+            "Studio Jack"
+          ],
+          "studios": ["Hal Film Maker"],
+          "source": "Manga",
+          "genres": ["Komedi", "Romansa", "Harem", "Fantasi"],
+          "themes": ["Survival", "Pulau Terpencil"],
+          "demographic": "Shounen",
+          "duration": "24 menit per ep.",
+          "rating": "PG-13 - Remaja 13 tahun ke atas"
+        },
+        "desc": "Ikuto Touhouin, seorang remaja yang kabur dari rumah, terdampar di pulau misterius yang dihuni hanya oleh perempuan. Terjebak dalam tradisi unik pulau itu, ia harus menghadapi situasi kocak dan romantis sambil berusaha menemukan cara kembali ke dunia luar.",
+        "download": "https://drive.google.com/uc?id=11b4Qgv1kI69zDZ1iCO4vru9T1818_Q4Z&export=download",
+        "streaming": [
+          "https://drive.google.com/file/d/1YTSOsqDggy4q2jYsz8rJgLJ7qVKpZFjz/preview",
+          "https://drive.google.com/file/d/1Eott6CKvhKB6onAVBcedVXqoeqAa5oDl/preview",
+          "https://drive.google.com/file/d/1TzyMvdYtxYgJdvfy9nv094KbMxC74Pj_/preview",
+          "https://drive.google.com/file/d/1wN3h5hSPCrTmZL9J-wGg6y1JXR7nfkoE/preview",
+          "https://drive.google.com/file/d/1DXxluw01MtumQ2SDN1bMxfpasD9omoTY/preview",
+          "https://drive.google.com/file/d/1PjMmBvSyuyNy6sHdMeG1qCgWwSc2Po1X/preview",
+          "https://drive.google.com/file/d/1ChC7GInHqk51gcQQR27Ru9vpDm7EuWRL/preview",
+          "https://drive.google.com/file/d/1XVmk5EM9m8rYPsk12C-Z03ljd4Kywl3n/preview",
+          "https://drive.google.com/file/d/1hzeUcKNbrd64is06d4Nluh3z0o5USX5y/preview",
+          "https://drive.google.com/file/d/167KZOk61MYJL4zwK76O4fYzLyfl6iUI6/preview",
+          "https://drive.google.com/file/d/1uY3teWtfVwGAxH0F8b1IPbvCPU48G5mK/preview",
+          "https://drive.google.com/file/d/1jM7SWmbOx-QS88vpuHs-fRBDd_Y00yrV/preview",
+          "https://drive.google.com/file/d/1cCu8dMB6Y7nYMMW20Q-vmIyOovEwxiqh/preview",
+          "https://drive.google.com/file/d/1NxEa4AtIMIeCQlZpt1iGfi80viCG2KmE/preview",
+          "https://drive.google.com/file/d/1e09CZIEr0CiHMTJW74fyTPtgII91AEek/preview",
+          "https://drive.google.com/file/d/1AATQTpTgjH015IegB8Fn3TAB8NBOFEM-/preview",
+          "https://drive.google.com/file/d/13F8M3X_1BWiQT7FOm14oKZHe6pvJi8r7/preview",
+          "https://drive.google.com/file/d/1OSazOxFWJ5JUqdxmjViUPzDEgFHYXXmM/preview",
+          "https://drive.google.com/file/d/1933SpYlS_cdfN7wEeiVmeWk6lTrgFPwO/preview",
+          "https://drive.google.com/file/d/19Clna9qpAgg_aOYfbWXTACMfae5HGFY7/preview",
+          "https://drive.google.com/file/d/1EE9u9GXx2s1FFBCJNPxVjq1qULA20TAW/preview",
+          "https://drive.google.com/file/d/1ANHR5PfCW-6jz-3Hb8plCRrxaoAhlB-b/preview",
+          "https://drive.google.com/file/d/1wSxuWNrARV9_-yEjYlUnikUCeeJ6GZqB/preview",
+          "https://drive.google.com/file/d/1WjxLU2Aar83msHx5c7soO5mohUKdO1Vx/preview",
+          "https://drive.google.com/file/d/1tLWuE4PgUd5daueFdvk3H7wqAFqSWl9u/preview",
+          "https://drive.google.com/file/d/1CnmDmpNxXy5AsACMmMgms15MyjKb1NtG/preview"
+        ]
+      },
+    {
         "title": "Aishen",
         "slug": "aishen",
         "image": "https://cdn.myanimelist.net/images/anime/6/78011.jpg",
@@ -60,14 +118,8 @@
         "seasons": [
             {
                 "name": "Season 1",
-                "download": "https://drive.usercontent.google.com/download?id=178ItMuNgvVv6dnzqkhEHNeJiNTC5QRI_&export=download&authuser=1"
-            },
-            {
-                "name": "Season 2",
-                "download": "https://drive.usercontent.google.com/download?id=1Hzz19KlSKuhRoMm9Vel-34kvulJ_XL-L&export=download&authuser=1"
-            }
-        ],
-        "streaming": [
+                "download": "https://drive.usercontent.google.com/download?id=178ItMuNgvVv6dnzqkhEHNeJiNTC5QRI_&export=download&authuser=1",
+                "streaming": [
             "https://drive.google.com/file/d/1Jpn9SjR9yFCChLW9iSc4eXOlxNwYyiPe/preview",
             "https://drive.google.com/file/d/1hJp-ZXKBYdm_C0sLcLA0NKDhSUxKuinT/preview",
             "https://drive.google.com/file/d/1uJ7xcksLWBc-BDfdSyJTJp23vZKA1YqU/preview",
@@ -83,7 +135,17 @@
             "https://drive.google.com/file/d/1Ooto4QnMQaxnFgqt_U5-hwJIcOQHPHTk/preview",
             "https://drive.google.com/file/d/1DcBSaw83bL_sglArcKXZ_fQCscvHnRjA/preview",
             "https://drive.google.com/file/d/16ngYbwqe3RJhIYuSF87-k0NONu1sWUcL/preview"
-            ]
+                ]
+              },
+              {
+                "name": "Season 2",
+                "download": "https://drive.usercontent.google.com/download?id=1Hzz19KlSKuhRoMm9Vel-34kvulJ_XL-L&export=download&authuser=1",
+                "streaming": [
+                  "https://drive.google.com/file/d/EPISODE1_S1/preview",
+                  "https://drive.google.com/file/d/EPISODE2_S1/preview"
+                ]
+              }
+        ]
     },
     {
         "title": "Seiken Gakuin no Makentsukai",
@@ -924,5 +986,116 @@
             "https://drive.google.com/file/d/1BHOUuDPjnGVdTD1DsIviwHirP8sBb8Br/preview",
             "https://drive.google.com/file/d/1BJ0rcJ8w9jJLo0eFLC-LkPv9XVwJ1gNo/preview"
         ]
-    }
-]
+    },
+    {
+        "title": "Bokutachi no Remake",
+        "slug": "bokutachi-no-remake",
+        "image": "https://cdn.myanimelist.net/images/anime/1871/118309.jpg",
+        "info": {
+            "type": "TV",
+            "episodes": 12,
+            "status": "Tayang Selesai",
+            "aired": "3 Jul 2021 hingga 25 Sep 2021",
+            "premiered": "Musim Panas 2021",
+            "broadcast": "Setiap Jumat pukul 23:30 (JST)",
+            "producers": [
+                "KADOKAWA",
+                "Magic Capsule",
+                "Sotsu",
+                "BS11",
+                "AT-X"
+            ],
+            "studios": ["feel."],
+            "source": "Light Novel",
+            "genres": ["Drama", "Romansa", "Slice of Life"],
+            "themes": ["Time Travel"],
+            "demographic": "Seinen",
+            "duration": "23 menit per ep.",
+            "rating": "PG-13 - Remaja 13 tahun ke atas"
+        },
+        "desc": "Kyouya Hashiba, seorang direktur game yang gagal, terbangun kembali di masa lalu saat masa kuliah. Ia mendapat kesempatan kedua untuk memperbaiki hidupnya dengan bergabung di sekolah seni bersama talenta-talenta masa depan, sambil menghadapi dilema cinta dan tantangan kreatif.",
+        "download": "https://drive.usercontent.google.com/download?id=1w5_UP0MaY-f5HJmLYBYQCmf5n49KP2rj&export=download&authuser=0",
+        "streaming": [
+            "https://drive.google.com/file/d/10NWN4lAzXxpShLpYt1enHEGvLgM4XOdN/preview",
+            "https://drive.google.com/file/d/10SSGlo9k036vkHyaRETNldc2J2lpjEbs/preview",
+            "https://drive.google.com/file/d/10Ss3YbBNStSJqVZ89mzHCYEcSX5L2-p5/preview",
+            "https://drive.google.com/file/d/10UcqJ-VO3xp7ENHXr7C_BEKRqA3T8Hmw/preview",
+            "https://drive.google.com/file/d/10Vs5sHkEwlzwRL0K-INH0bxSeL3QSr-s/preview",
+            "https://drive.google.com/file/d/10WSWXUFsKeFwaqxDwAfNhKFBYOtqWrXF/preview",
+            "https://drive.google.com/file/d/10_J40Xo9liy874WOc7-0zeY1kB8YBeTP/preview",
+            "https://drive.google.com/file/d/10bXwDLSsv8yaaK2Rh14Xp7RAlztF9Z-t/preview",
+            "https://drive.google.com/file/d/10m1gt6chxsJmiYftdQ0y69DTCk__6fuT/preview",
+            "https://drive.google.com/file/d/10mtfSPoP2ndh0iuuwKUrFBrtt84FuiR4/preview",
+            "https://drive.google.com/file/d/10nqSP4tcqSM08TkdNTSulBpbJ3NF3bLR/preview",
+            "https://drive.google.com/file/d/10qDPPY02xz-AWBVyZG2n6TzhY1rQIK5P/preview"
+        ]
+    },
+    {
+        "title": "ReLIFE",
+        "slug": "relife",
+        "image": "https://i.pinimg.com/736x/2f/51/5b/2f515b10f369c0ac7aa35aebb3a1627b.jpg",
+        "info": {
+          "type": "TV",
+          "episodes": "13 + 4 OVA",
+          "status": "Tayang Selesai",
+          "aired": "2 Jul 2016 hingga 24 Sep 2016",
+          "premiered": "Musim Panas 2016",
+          "broadcast": "Setiap Kamis pukul 00:55 (JST)",
+          "producers": [
+            "Toho Animation",
+            "Avex Pictures",
+            "MAGES.",
+            "KLab",
+            "Sotsu",
+            "TMS Entertainment"
+          ],
+          "studios": ["TMS Entertainment"],
+          "source": "Web Manga",
+          "genres": ["Drama", "Romansa", "Slice of Life"],
+          "themes": ["Adult Cast", "Time Travel"],
+          "demographic": "Seinen",
+          "duration": "24 menit per ep.",
+          "rating": "PG-13 - Remaja 13 tahun ke atas"
+        },
+        "desc": "Arata Kaizaki, seorang pengangguran berusia 27 tahun, mendapatkan kesempatan untuk mengulang masa SMA melalui eksperimen ReLIFE. Dengan tubuh yang diremajakan ke usia 17 tahun, ia harus menjalani kehidupan sekolah sambil menyembunyikan identitas aslinya, menghadapi penyesalan masa lalu, dan membangun hubungan baru.",
+        "seasons": [
+          {
+            "name": "Season 1",
+            "download": "https://drive.google.com/uc?id=1dkgrnZtVqPpnmgJVLzSm4ia6GLbHCHFs&export=download",
+            "streaming": [
+              "https://drive.google.com/file/d/15bqPMlt420NFFZoAMAoxAvuMyan0Blcm/preview",
+              "https://drive.google.com/file/d/1DYlEGNpnbEdf2uC2jCH4n6Qv9xwVN8gf/preview",
+              "https://drive.google.com/file/d/1OMbVSuXrEln2msEWbzcEz8UDZ55wBAbH/preview",
+              "https://drive.google.com/file/d/1J0P9-jPwLZFP4_X0m3igLdHUa2d9KiJA/preview",
+              "https://drive.google.com/file/d/1U7cWX8x14BC9z5CCLzlSUDP1WePOTC35/preview",
+              "https://drive.google.com/file/d/12lUCsc0SAWXJ7AsL3PQN1IJwDFf3Uotr/preview",
+              "https://drive.google.com/file/d/1KTjqpm_oJvo2jl1SXyxscvuIVqV02-DB/preview",
+              "https://drive.google.com/file/d/14O-zLL69JDPr-YTlhqr-Ye6Q8raPm-dv/preview",
+              "https://drive.google.com/file/d/1mCWokxnnZKl-BdX1vgObdqzvyR-M6mtn/preview",
+              "https://drive.google.com/file/d/1B2htauK03o_Kwf4lY0lHEBnNQ0PZZCdi/preview",
+              "https://drive.google.com/file/d/19fEcEzC3nCQMv7a3UxitoP5Vr57jD5UZ/preview",
+              "https://drive.google.com/file/d/1VP4G3h3rv2eLboAozxHH64vA6f1urhMs/preview",
+              "https://drive.google.com/file/d/1dKT2i8zeiQ8g_W0eqQh2VrncF_ljB5QV/preview"
+            ]
+          },
+          {
+            "name": "Season 2 (OVA)",
+            "download": "https://drive.google.com/uc?id=1m0ByuVPIQgSTG0-MjLMSdDkKXt2KGwLG&export=download",
+            "streaming": [
+              "https://drive.google.com/file/d/1-__lBsEroKOV6xqc2Zwo3IELTjD41-_a/preview",
+              "https://drive.google.com/file/d/1DY-hp5I6sVEAy1THZXLN0EmQ-8hyvC55/preview",
+              "https://drive.google.com/file/d/10kzCJa6q2Ay_jz-0mxpYZhV6-op6Nhbv/preview",
+              "https://drive.google.com/file/d/1kRWVh1QYg_R-YvM1rfaRKgIc1zhi1v9F/preview"
+            ]
+          }
+        ]
+      }
+    
+],
+"meta": {
+  "current_page": 1,
+  "per_page": 10,
+  "total_items": 2,
+  "total_pages": 1
+}
+}

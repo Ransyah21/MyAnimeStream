@@ -6,6 +6,14 @@
     <title>Streaming</title>
     <link rel="stylesheet" href="watch.css">
     <link rel="icon" href="Gambar/LogoMyanime (2).png" type="image/x-icon">
+    <style>
+        .loading {
+            text-align: center;
+            color: #fff;
+            font-size: 20px;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -16,23 +24,27 @@
             </div>
             <div id="episode-container" class="episode-list"></div>
         </div>
+        <div id="loading" class="loading">Memuat data...</div>
     </div>
 
     <script>
         // Ambil parameter dari URL
         const urlParams = new URLSearchParams(window.location.search);
-        const animeSlug = urlParams.get('slug');
+        const animeSlug = decodeURIComponent(urlParams.get('slug')); // Decode slug
+        const seasonIndex = parseInt(urlParams.get('season')) || 0;
         
         // Elemen DOM
         const player = document.getElementById('main-player');
         const episodeContainer = document.getElementById('episode-container');
+        const loading = document.getElementById('loading');
 
-        // Fungsi untuk convert Google Drive URL ke format embed
+        // Fungsi untuk convert Google Drive URL
         function convertToEmbedUrl(url) {
             try {
-                const match = url.match(/\/file\/d\/([^/]+)/);
-                if(match) {
-                    return `https://drive.google.com/file/d/${match[1]}/preview`;
+                // Handle berbagai format URL Google Drive
+                const fileIdMatch = url.match(/\/d\/([^\/]+)/) || url.match(/id=([^&]+)/);
+                if(fileIdMatch && fileIdMatch[1]) {
+                    return `https://drive.google.com/file/d/${fileIdMatch[1]}/preview`;
                 }
                 return url;
             } catch {
@@ -41,49 +53,56 @@
         }
 
         // Load data anime
-        fetch('anime-data.json')
-            .then(response => {
-                if(!response.ok) throw new Error('Gagal memuat data');
-                return response.json();
-            })
-            .then(data => {
-                const anime = data.find(a => a.slug === animeSlug);
+        async function loadStreamingData() {
+            try {
+                loading.style.display = 'block';
                 
-                if(!anime) {
-                    showError('Anime tidak ditemukan!');
-                    return;
-                }
+                const response = await fetch('anime-data.json');
+                if(!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                
+                const fullData = await response.json();
+                const animeList = fullData.data || fullData; // Handle struktur data berbeda
+                
+                if(!Array.isArray(animeList)) throw new Error('Format data tidak valid');
+                
+                // Cari anime dengan case-insensitive dan trim
+                const anime = animeList.find(a => 
+                    a.slug?.trim().toLowerCase() === animeSlug.trim().toLowerCase()
+                );
+                
+                if(!anime) throw new Error('Anime tidak ditemukan');
 
-                // Handle streaming data
+                // Handle episode
                 let episodes = [];
-                if(Array.isArray(anime.streaming)) {
-                    episodes = anime.streaming.map(convertToEmbedUrl);
-                } else if(anime.streaming) {
-                    episodes = [convertToEmbedUrl(anime.streaming)];
-                }
-
-                if(episodes.length === 0) {
-                    showError('Episode belum tersedia');
-                    return;
-                }
-
-                // Set video pertama
-                player.src = episodes[0];
                 
-                // Buat daftar episode
+                if(anime.seasons?.length > 0) {
+                    const season = anime.seasons[seasonIndex];
+                    if(!season) throw new Error('Season tidak tersedia');
+                    episodes = season.streaming?.map(convertToEmbedUrl) || [];
+                } 
+                else if(Array.isArray(anime.streaming)) { // Fallback untuk struktur lama
+                    episodes = anime.streaming.map(convertToEmbedUrl);
+                }
+                
+                if(episodes.length === 0) throw new Error('Episode belum tersedia');
+
+                // Update UI
+                loading.style.display = 'none';
+                player.src = episodes[0];
                 createEpisodeButtons(episodes);
-            })
-            .catch(error => {
+
+            } catch (error) {
                 console.error('Error:', error);
-                showError('Gagal memuat data anime');
-            });
+                showError(error.message);
+            }
+        }
 
         function createEpisodeButtons(episodes) {
             episodeContainer.innerHTML = '';
             
             episodes.forEach((episodeUrl, index) => {
                 const btn = document.createElement('button');
-                btn.className = 'episode-btn' + (index === 0 ? ' current-episode' : '');
+                btn.className = `episode-btn${index === 0 ? ' current-episode' : ''}`;
                 btn.textContent = `Episode ${index + 1}`;
                 
                 btn.onclick = () => {
@@ -106,6 +125,9 @@
                 </div>
             `;
         }
+
+        // Jalankan saat halaman dimuat
+        window.onload = loadStreamingData;
     </script>
 </body>
 </html>

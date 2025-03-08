@@ -31,12 +31,12 @@ h1 {
 }
 
 #favorites-container {
-    justify-content: center;
     display: flex;
     flex-wrap: wrap;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    justify-content: center;
     gap: 20px;
 }
+
 
 .anime-card {
     width: 150px;
@@ -46,10 +46,22 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     padding: 10px;
-    background-color: #282828;
-    border-radius: 15px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Biar tombol tetap di bawah */
+    height: 100%; /* Pastikan semua card punya tinggi sama */
 }
+.anime-card p {
+    font-size: 14px;
+    margin: 10px 0;
+    color: #ffcc00;
+    white-space: nowrap; /* Biar judul satu baris */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Potong judul yang kepanjangan */
+    width: 100%;
+    display: block;
+}
+
 
 img {
     width: 100%;
@@ -78,3 +90,26 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+.btn-streaming {
+    display: block;
+    background-color: #ffa200;
+    color: #181818;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 14px;
+    margin-top: auto; /* Biar tombol tetap di bawah */
+    border-radius: 5px;
+}
+
+.btn-streaming:hover {
+    background-color: #ffb733;
+    transform: translateY(-2px);
+}
+
+
