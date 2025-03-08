@@ -206,33 +206,6 @@ const JSON_PATH = './anime-data.json'; // Sesuaikan dengan path sebenarnya
 
 async function loadAnimeData() {
   try {
-    console.log("🔄 Memulai load data dari:", JSON_PATH);
-    const response = await fetch(JSON_PATH);
-    
-    console.log("🔍 Status response:", response.status);
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      throw new Error("Response bukan JSON!");
-    }
-    
-    const data = await response.json();
-    console.log("✅ Data diterima:", data);
-    
-    if (!data.data || !Array.isArray(data.data)) {
-      throw new Error("Struktur JSON tidak valid!");
-    }
-    
-    return data.data || [];
-  } catch (error) {
-    console.error("❌ Error kritikal:", error);
-    showNotification(`Gagal memuat data: ${error.message}`, "error");
-    return [];
-  }
-}
-async function loadAnimeData() {
-  try {
     console.log("Memuat data dari:", JSON_PATH);
     const response = await fetch(JSON_PATH);
     
