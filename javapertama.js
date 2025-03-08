@@ -231,31 +231,6 @@ async function loadAnimeData() {
     return [];
   }
 }
-async function loadAnimeData() {
-  try {
-    console.log("Memuat data dari:", JSON_PATH);
-    const response = await fetch(JSON_PATH);
-    
-    // Validasi response
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    console.log("Data diterima:", data);
-    
-    // Validasi struktur data
-    if (!data.data || !Array.isArray(data.data)) {
-      throw new Error("Struktur JSON tidak valid");
-    }
-    
-    return data.data;
-  } catch (error) {
-    console.error("Gagal memuat data:", error);
-    showNotification("Gagal memuat data anime", "error");
-    return [];
-  }
-}
 
 function renderAnimeItems(data) {
   const animeList = document.querySelector('.anime-list');
@@ -308,16 +283,25 @@ function renderPagination() {
 
 // INISIALISASI UTAMA YANG DIPERBAIKI
 document.addEventListener('DOMContentLoaded', async () => {
-  // Hapus item statis
-  document.querySelectorAll('.anime-item').forEach(item => item.remove());
+  // 1. Inisialisasi Auth dulu
+  await initAuth(); 
   
-  // Load data
+  // 2. Update menu berdasarkan status auth
+  updateMenu();
+  
+  // 3. Load data anime
   allAnimeData = await loadAnimeData();
   
-  if (allAnimeData.length === 0) {
-    showNotification("Tidak ada data anime yang ditemukan", "error");
-    return;
+  // 4. Update UI berdasarkan data
+  if (allAnimeData.length > 0) {
+    filteredData = [...allAnimeData];
+    totalPages = Math.ceil(filteredData.length / itemsPerPage);
+    updateDisplay();
+    renderGenreFilters();
+  } else {
+    showNotification("Tidak ada data anime", "error");
   }
+
   
   filteredData = [...allAnimeData];
   totalPages = Math.ceil(filteredData.length / itemsPerPage);
