@@ -224,7 +224,7 @@ async function loadAnimeData() {
       throw new Error("Struktur JSON tidak valid!");
     }
     
-    return data.data;
+    return data.data || [];
   } catch (error) {
     console.error("❌ Error kritikal:", error);
     showNotification(`Gagal memuat data: ${error.message}`, "error");
