@@ -673,3 +673,4 @@ function showNotification(message, type = "info") {
     setTimeout(() => notification.remove(), 500);
   }, 3000);
 }
+

@@ -1206,13 +1206,13 @@ body {
 
 
 /* Genre Filter Styles */
-.genre-filter {
-  margin: 20px 0;
-  padding: 15px;
-  background: rgba(0,0,0,0.7);
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
+.genre-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Biar di tengah */
+  max-width: 900px; /* Atur lebar maksimal */
+  margin: 0 auto; /* Biar tetap sejajar di tengah */
+  gap: 8px; /* Ngurangin jarak antar tombol */
 }
 
 .genre-list {
@@ -1290,12 +1290,14 @@ body {
 
 
 .genre-filter {
-  margin: 20px 0;
-  padding: 15px;
-  background: rgba(0,0,0,0.7);
-  border-radius: 10px;
+  margin: 20px auto; /* Biar lebih rapi */
+  padding: 10px ; /* Kurangi padding biar nggak melebar */
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 30px;
   position: relative;
+  max-width: 1000px; /* Batasin lebar biar nggak kepanjangan */
 }
+
 
 .genre-header {
   display: flex;
