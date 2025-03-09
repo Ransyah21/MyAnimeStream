@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // PAGINATION SYSTEM YANG DIPERBAIKI
 let currentPage = 1;
-let itemsPerPage = 30;
+let itemsPerPage = 27;
 let totalPages = 1;
 let allAnimeData = [];
 let filteredData = [];

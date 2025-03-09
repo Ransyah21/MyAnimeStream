@@ -1269,7 +1269,352 @@
               ]
           }
         ]
+      },
+      {
+        "title": "Kimi wa Meido-sama",
+        "slug": "he-is-my-master",
+        "image": "https://i.pinimg.com/736x/1e/ba/80/1eba801c82e1cdf80561bb15eaa054b1.jpg",
+        "info": {
+          "type": "TV",
+          "episodes": "12",
+          "status": "Tayang Selesai",
+          "aired": "7 Apr 2005 hingga 23 Jun 2005",
+          "premiered": "Musim Semi 2005",
+          "broadcast": "Setiap Kamis pukul 25:30 (JST)",
+          "producers": ["Shuffle Committee", "Studio Tulip"],
+          "studios": ["Studio Tulip"],
+          "source": "Manga",
+          "genres": ["Komedi", "Ecchi"],
+          "themes": ["Maid"],
+          "demographic": "Shounen",
+          "duration": "24 menit per ep.",
+          "rating": "PG-13 - Remaja 13 tahun ke atas"
+        },
+        "desc": "Dua saudari yatim piatu, Izumi dan Mitsuki, terpaksa menjadi pelayan untuk seorang bocah kaya raya bernama Takumi setelah orang tua mereka meninggal. Komedi chaos pun terjadi saat mereka berusaha memenuhi permintaan aneh sang 'tuan'.",
+        "seasons": [
+          {
+            "name": "Season 1",
+            "download": "https://drive.google.com/uc?id=1F0-Szkj0qm1KYRghYiTPQnDml0EaI-Au&export=download",
+            "streaming": [
+                "https://drive.google.com/file/d/1o4nSqp8ExVIqxfwKfnI9hRFSdk2AOX42/preview",
+                "https://drive.google.com/file/d/1tOEV7xNpFHZSG0FzBYQtJ_ERF2-GPAi_/preview",
+                "https://drive.google.com/file/d/1jX8YHNbX1GkluPlFYOPjBwiKnxE-nr88/preview",
+                "https://drive.google.com/file/d/1gKV4FgL5RPJEUnv0EbB2uxi6a302irfF/preview",
+                "https://drive.google.com/file/d/1AktrNBkiwjKaKy1g5hSi1uueYScHGjvm/preview",
+                "https://drive.google.com/file/d/1Z6lLVaoI0vqpvHMW3-SpoT8x6tDiXlyo/preview",
+                "https://drive.google.com/file/d/1IjjeE-jQcXNSp4-eaj4c-RmR-ak6qWmn/preview",
+                "https://drive.google.com/file/d/1NwJ6naao9JIqeMbU8CHTLje5T7O4MvN7/preview",
+                "https://drive.google.com/file/d/14RhEd4aoR847xWVeAhl0_k1M12FZV2K5/preview",
+                "https://drive.google.com/file/d/1QDjceQziVT9_-hHRd-zMNBp6WZaV4xdF/preview",
+                "https://drive.google.com/file/d/19-sxkMEVc_DWR4eMkcaqeUIAf4mVGbh0/preview",
+                "https://drive.google.com/file/d/1q96V92FzIdwn7nFzns85Cca2KJs1dzMX/preview"
+              ]
+          }
+        ]
+      },
+      {
+        "title": "Redo of Healer",
+        "slug": "redo-of-healer",
+        "image": "https://i.pinimg.com/736x/39/c3/6d/39c36dea3e794800a96b09648658b251.jpg",
+        "info": {
+          "type": "TV",
+          "episodes": "12",
+          "status": "Tayang Selesai",
+          "aired": "13 Jan 2021 hingga 31 Mar 2021",
+          "premiered": "Musim Dingin 2021",
+          "broadcast": "Setiap Rabu pukul 22:30 (JST)",
+          "producers": [
+            "TNk",
+            "Kadokawa",
+            "ABC Animation",
+            "AT-X",
+            "Cloud22"
+          ],
+          "studios": ["TNk"],
+          "source": "Light Novel",
+          "genres": [
+            "Dark Fantasy",
+            "Drama",
+            "Psychological"
+          ],
+          "themes": [
+            "Kekerasan Seksual",
+            "Balas Dendam",
+            "Eksplisit"
+          ],
+          "demographic": "Seinen",
+          "duration": "23 menit per ep.",
+          "rating": "R+ - Nudity & Violence (Konten Dewasa)"
+        },
+        "desc": "Keyaru, seorang 'Healer' yang dieksploitasi dan disiksa, menggunakan kekuatan time magic untuk kembali ke masa lalu dan membalaskan dendamnya. Sebuah cerita gelap tentang siklus kekerasan, manipulasi, dan rekonstruksi dunia.",
+        "seasons": [
+          {
+            "name": "Season 1",
+            "download": "https://drive.google.com/uc?id=1XBvPwpU4FQjyAT_mEcMk6Oxbo6JsMXsQ&export=download",
+            "streaming": [
+                "https://drive.google.com/file/d/1muc9K0gBmUYRcXP1jkFmFKRqobmoFYRC/preview",
+                "https://drive.google.com/file/d/1GQyjQNPQP0ulyVsZNqvg8e4vWVE-raH2/preview",
+                "https://drive.google.com/file/d/1mbrRNPSLRxomSCUkJrVQYg46EYbBahJx/preview",
+                "https://drive.google.com/file/d/1OPVN4zmc2gLhA1A7ldJjMS74q3daw2g5/preview",
+                "https://drive.google.com/file/d/15isfUc3qJr21RkpfED6V9zegGbWRgw3k/preview",
+                "https://drive.google.com/file/d/1tykjDDE9mwXA3u2aS9bIL6nFoVH7yETS/preview",
+                "https://drive.google.com/file/d/1mN3tUI5RGOwnp-t8DlZZCdH3CL6pkuNt/preview",
+                "https://drive.google.com/file/d/1CVLLHZHeTAe5Z4eYH8QTR-tHDDf1t0gl/preview",
+                "https://drive.google.com/file/d/1L3JKm97YyyExkfBhzfvVDz_VNqik53Lg/preview",
+                "https://drive.google.com/file/d/1hS49MLLCHzgN5wG1KRdrfmyUYblTEStV/preview",
+                "https://drive.google.com/file/d/1Z6TmgR1mNESzLWcoE1TqJ1ikm_lgpEkf/preview",
+                "https://drive.google.com/file/d/1nWJEUWSqZYRbLVpdrWUk4u8G88R8iSDm/preview"
+              ]
+          }
+        ]
+      },
+      {
+        "title": "Black Summoner",
+        "slug": "black-summoner",
+        "image": "https://i.pinimg.com/736x/b8/0a/03/b80a039d8840592a9ba6bcec107be4db.jpg",
+        "info": {
+          "type": "TV",
+          "episodes": "12",
+          "status": "Tayang Selesai",
+          "aired": "5 Jul 2022 hingga 20 Sep 2022",
+          "premiered": "Musim Panas 2022",
+          "broadcast": "Setiap Sabtu pukul 22:00 (JST)",
+          "producers": [
+            "EMT Squared",
+            "Crunchyroll",
+            "Nippon Columbia",
+            "Pony Canyon",
+            "KlockWorx",
+            "MAGES.",
+            "Movic",
+            "Bit Promotion"
+          ],
+          "studios": ["Satelight"],
+          "source": "Light Novel",
+          "genres": ["Aksi", "Fantasi", "Isekai"],
+          "themes": ["Reinkarnasi", "Permainan Video"],
+          "demographic": "Shounen",
+          "duration": "23 menit per ep.",
+          "rating": "PG-13 - Remaja 13 tahun ke atas"
+        },
+        "desc": "Kelvin, seorang penyihir pemanggil yang bereinkarnasi tanpa ingatan masa lalu, memulai petualangan barunya di dunia fantasi. Dengan kemampuan memanggil yang unik dan partner setianya, ia mencari lawan kuat sambil mengungkap misteri dirinya.",
+        "seasons": [
+          {
+            "name": "Season 1",
+            "download": "",
+            "streaming": [
+                "https://drive.google.com/file/d/11pxj7hfBmQkuoIM-sly3xiJn51RaDxWT/preview",
+                "https://drive.google.com/file/d/11q8fAWNjHzvXeBSr2BUqtO7l9xBHtoDp/preview",
+                "https://drive.google.com/file/d/11qymTTglFp4R8-Hqi1necEPyVDnzY8c_/preview",
+                "https://drive.google.com/file/d/11tww3sQRZMFSi2nkUbv0cdq-Sm88DOR6/preview",
+                "https://drive.google.com/file/d/129ldBcxiG5ueNGex9rjx3HQowx3BKcCb/preview",
+                "https://drive.google.com/file/d/12EMsxDTbJx7HS5zb7stt-2BwHFEV5saT/preview",
+                "https://drive.google.com/file/d/12OAdkkdCiy5d3I_GD7KtZ8rYrVIYvDfi/preview",
+                "https://drive.google.com/file/d/12hlBm_KEkanrcEo3rbCzhB0zShWVoz9G/preview",
+                "https://drive.google.com/file/d/12l8vNoC7liImIfgvxJx2XICadabY8lB9/preview",
+                "https://drive.google.com/file/d/12llsBxxPQkHvyYVB0192pSmRyR7h2CQQ/preview",
+                "https://drive.google.com/file/d/12sd_tADovq46wsEdOTI_kQljb7P7SnhA/preview",
+                "https://drive.google.com/file/d/133o9O0aRLCVba4VzF8xc3oj5ikBUnlB8/preview"
+              ]
+          }
+        ]
+      },
+      {
+        "title": "Oniichan no Koto",
+        "slug": "oniichan-no-koto",
+        "image": "https://i.pinimg.com/736x/60/fa/8f/60fa8f0df8cbd0cf0421871f35d637d7.jpg",
+        "info": {
+          "type": "TV",
+          "episodes": "12",
+          "status": "Tayang Selesai",
+          "aired": "4 Apr 2007 hingga 20 Jun 2007",
+          "premiered": "Musim Semi 2007",
+          "broadcast": "Setiap Rabu pukul 25:30 (JST)",
+          "producers": ["Daume", "Lantis", "Rondo Robe"],
+          "studios": ["Daume"],
+          "source": "Manga",
+          "genres": ["Komedi", "Ecchi", "Romance"],
+          "themes": ["Sibling Relationship", "Romantic Comedy"],
+          "demographic": "Shounen",
+          "duration": "12 menit per ep.",
+          "rating": "R+ - Nudity (Konten Dewasa)"
+        },
+        "desc": "Seorang gadis SMA bernama Nao yang terobsesi dengan kakak laki-lakinya, Shusuke. Komedi romantis absurd tercipta saat Nao berusaha 'memiliki' kakaknya, sementara Shusuke berusaha menjaga hubungan normal antar saudara.",
+        "seasons": [
+          {
+            "name": "Season 1",
+            "download": "https://drive.google.com/uc?id=1-vo0F7c38LISvJoEOqGt8RNb3Ej7_HBD&export=download",
+            "streaming": [
+              "https://drive.google.com/file/d/1ZuxEevqwY9crONpGIRZn-S-Dnq1JSJZ2/preview",
+              "https://drive.google.com/file/d/1sP_dY1fik66uJ7lDH5Aeph7422UU6UXM/preview",
+              "https://drive.google.com/file/d/1JfNa1vMDc4NSnBuduKiRKcitivHF2TVs/preview",
+              "https://drive.google.com/file/d/1ACaVc1i2xWaGeqBmxpScuAATPfdxJE6_/preview",
+              "https://drive.google.com/file/d/1bth4fqd8IbVVi1JOBp-DZ_m9l8Yz7Y7p/preview",
+              "https://drive.google.com/file/d/1UcpeeP3ZBLGb_1HNVcSxrbyUF4B4knLa/preview",
+              "https://drive.google.com/file/d/14nGDuE4bEJl-bT7Ak0OrWUNPQJY_P4cN/preview",
+              "https://drive.google.com/file/d/1i8i-UCL6fGotGXGxNOmkFjNmeLSs3yP1/preview",
+              "https://drive.google.com/file/d/1AozrmVqjjweVq3L3UEWiUN75vwx8pPKS/preview",
+              "https://drive.google.com/file/d/1l0EJfpsGuvN9TAkcpA4IsyuvkN7bVQgW/preview",
+              "https://drive.google.com/file/d/1CpYb1kIn8gAhcvETmERpZUNloAmctlZO/preview",
+              "https://drive.google.com/file/d/1Reu0NtNjGsNm0It4UU8H3Nu823AlB4uB/preview",
+              "https://drive.google.com/file/d/1Rbgu9K79EeVZ0ry3wKFmqZ-Dkks9FA7e/preview"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Isekai Shikkaku",
+        "slug": "isekai-shikkaku",
+        "image": "https://i.pinimg.com/736x/0c/15/2e/0c152ef0ef81d333fa04ebb05c89b100.jpg",
+        "info": {
+          "type": "TV",
+          "episodes": "12",
+          "status": "Tayang Selesai",
+          "aired": "5 Jul 2023 hingga 20 Sep 2023",
+          "premiered": "Musim Panas 2023",
+          "broadcast": "Setiap Rabu pukul 21:00 (JST)",
+          "producers": [
+            "Kadokawa",
+            "AtelierPontdarc",
+            "BS Fuji",
+            "Crunchyroll",
+            "Bandai Namco Music Live"
+          ],
+          "studios": ["AtelierPontdarc"],
+          "source": "Light Novel",
+          "genres": ["Komedi", "Fantasi", "Isekai"],
+          "themes": ["Reinkarnasi", "Parodi"],
+          "demographic": "Shounen",
+          "duration": "24 menit per ep.",
+          "rating": "PG-13 - Remaja 13 tahun ke atas"
+        },
+        "desc": "Seorang NEET yang mati konyol bereinkarnasi di dunia fantasi dengan kemampuan unik yang tak terduga. Petualangan absurd dimulai saat ia menggunakan pengetahuannya dari dunia sebelumnya untuk bertahan hidup dengan cara yang tak lazim.",
+        "seasons": [
+          {
+            "name": "Season 1",
+            "download": "https://drive.google.com/uc?id=1AvrygMfQWQNtlOBXuzHNn5VqoF7zeoBg&export=download",
+            "streaming": [
+              "https://drive.google.com/file/d/1-17Wc-_oabi9VwrkbbDL6B5vZ-HQU8Sp/preview",
+              "https://drive.google.com/file/d/1-3oOgYQs5R4uwB-vJ8PzED0bgsg0xBnH/preview",
+              "https://drive.google.com/file/d/1-68x7cGdzwyUJfBXFhh3e551u589Y4SN/preview",
+              "https://drive.google.com/file/d/1-LNMZA03ADccEn9HGyZSFOOYbkLhNBuC/preview",
+              "https://drive.google.com/file/d/1-MrCOWRwfW1rCxNvtFRG3NF_hVC3ZbR0/preview",
+              "https://drive.google.com/file/d/1-OSPjBNpLlSMxqIm8_8DKd38YVcWB3v8/preview",
+              "https://drive.google.com/file/d/1-PD12h0UBXJBUM3lgS9P_kT7Fodms3ul/preview",
+              "https://drive.google.com/file/d/1-PiD9iH_UWAYuntNLjLFRFt_Vwlc4zLU/preview",
+              "https://drive.google.com/file/d/1-So54gyo_mkNpth5RXTQoNXv9sTL8J-Z/preview",
+              "https://drive.google.com/file/d/1-WkOIbD4PpfGN8Fo2t_B9_Ni89LVv0cU/preview",
+              "https://drive.google.com/file/d/1-eZphTd7Yei_1q2NAVbkASTz6y2ISacO/preview",
+              "https://drive.google.com/file/d/1-iagqyfU_kdT9e_SNhAyZvMsoXefqYWs/preview"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Kekkon suru tte, Hontou desu ka",
+        "slug": "365-days-to-the-wedding",
+        "image": "https://cdn.myanimelist.net/images/anime/1572/145903.jpg",
+        "info": {
+          "type": "TV",
+          "episodes": "12",
+          "status": "Tayang Selesai",
+          "aired": "4 Jul 2024 hingga 19 Sep 2024",
+          "premiered": "Musim Panas 2024",
+          "broadcast": "Setiap Kamis pukul 22:30 (JST)",
+          "producers": [
+            "Shogakukan",
+            "TV Tokyo",
+            "SynergySP",
+            "Crunchyroll",
+            "Bandai Namco Music Live"
+          ],
+          "studios": ["SynergySP"],
+          "source": "Manga",
+          "genres": ["Romance", "Komedi", "Slice of Life"],
+          "themes": ["Pernikahan", "Kantor", "Hubungan Pura-pura"],
+          "demographic": "Josei",
+          "duration": "24 menit per ep.",
+          "rating": "PG-13 - Remaja 13 tahun ke atas"
+        },
+        "desc": "Dua karyawan kantor yang kesepian setuju untuk berpura-pura menikah demi menghindari tekanan sosial. Komedi romantis pun dimulai saat mereka belajar memahami satu sama lain, sambil menjaga 'pernikahan palsu' mereka dari rekan kerja.",
+        "seasons": [
+          {
+            "name": "Season 1",
+            "download": "https://drive.google.com/uc?id=1lD-IkkC-I962CWl7b5WcZFYwCN_Sh63e&export=download",
+            "streaming": [
+              "https://drive.google.com/file/d/1OO_EDlRVxHJy3xh5rgs2OWe2Fm7lam7t/preview",
+              "https://drive.google.com/file/d/1AiegkVZTiwbRI8Q_xBnCl6zrtTmtx0ov/preview",
+              "https://drive.google.com/file/d/1twfg_TgsqLZNprE11MsNHVCSDXnafASV/preview",
+              "https://drive.google.com/file/d/17jfRwo-uQP180TGSUGWtmPwA-zkuJJAu/preview",
+              "https://drive.google.com/file/d/1BuMkHX4sTq18nKdg_c_7cpZywCGyMz6v/preview",
+              "https://drive.google.com/file/d/1hOhniqUe5-Yj91Gug3Mucx7nhmWT2qSf/preview",
+              "https://drive.google.com/file/d/1KoRfemMilS95nBFGCuJ6h6Ac8GDbW10h/preview",
+              "https://drive.google.com/file/d/1x9H3nQTiJv5vV1gQWJ4AXZf0psv5qzNH/preview",
+              "https://drive.google.com/file/d/1LS7pSC55aMfCx7wvIyK1jcY4TROuFALE/preview",
+              "https://drive.google.com/file/d/1UW5vfqxaTWqq2RHOWZDqEdk7uwgM2eo7/preview",
+              "https://drive.google.com/file/d/1xMdg4tzM7jO7V4mreCG9rxKbHjmY12DS/preview",
+              "https://drive.google.com/file/d/1tr4JxcFvwuEelH3n_Zdcl4h3K8i5vOAl/preview"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Seitokai Yakuindomo",
+        "slug": "seitokai-yakuindomo",
+        "image": "https://cdn.myanimelist.net/images/anime/9/56941.jpg",
+        "info": {
+          "type": "TV",
+          "episodes": "12+8 OVA",
+          "status": "Tayang Selesai",
+          "aired": "3 Jul 2010 hingga 25 Des 2010",
+          "premiered": "Musim Panas 2010",
+          "broadcast": "Setiap Sabtu pukul 25:30 (JST)",
+          "producers": [
+            "Starchild Records",
+            "KlockWorx",
+            "Movic",
+            "Nihon Ad Systems"
+          ],
+          "studios": ["GoHands"],
+          "source": "Manga",
+          "genres": ["Komedi", "Sekolah", "Slice of Life"],
+          "themes": ["Parodi", "Keseharian Sekolah"],
+          "demographic": "Seinen",
+          "duration": "24 menit per ep.",
+          "rating": "PG-13 - Humor Dewasa"
+        },
+        "desc": "Tsuda Takatoshi yang pindah ke sekolah khusus perempuan, terpilih menjadi wakil ketua OSIS. Komedi absurd pun dimulai bersama para anggota OSIS eksentrik yang penuh dengan lelucon kotor dan situasi kocak sehari-hari.",
+        "seasons": [
+          {
+            "name": "Season 1",
+            "download": "https://drive.google.com/uc?id=1fdmeDz61uIRrxAJ5VfJbIqcMrZtPGgET&export=download",
+            "streaming": [
+              "https://drive.google.com/file/d/1tD0X44SviWlngyVZexYYniG84ZAjQh4E/preview",
+              "https://drive.google.com/file/d/1DLJXz7ZajCAQG8mNnCu3U6X7XkIs1slF/preview",
+              "https://drive.google.com/file/d/1FJeAkb2yyQV0m9zTwumBPxzvZZLS4mG8/preview",
+              "https://drive.google.com/file/d/1la2bEjbS2fBp_vP3IACHcVmzpHVuNsnt/preview",
+              "https://drive.google.com/file/d/1nQp0utOeZ1PbrWg4FYYSZKYimA-js2ck/preview",
+              "https://drive.google.com/file/d/1wz-5hS4mO7X-kM7VFvVg1phd0JwXHQW-/preview",
+              "https://drive.google.com/file/d/1LLCnl7zfAy_t3GjRiGTygx9ew0jo9Myi/preview",
+              "https://drive.google.com/file/d/1s96eXqtGqvSKjgE1DscBwPjbArRBMb3D/preview",
+              "https://drive.google.com/file/d/1C2suoI0unWUR4hLlkKiDxIq6Pk2L3rXk/preview",
+              "https://drive.google.com/file/d/1kpBYQPhgRRDvNIGtrl1C8KcBYw9I6UIS/preview",
+              "https://drive.google.com/file/d/1t86LkfHx42BkX2jD55j0vshppwYOXhtY/preview",
+              "https://drive.google.com/file/d/1Rq5fJ_5NoRhSGlioP6YJIP66s_Zl-AJL/preview",
+              "https://drive.google.com/file/d/1F6TD5B3-ivqoJxKo7vR8MMcP7Eo9V-pY/preview",
+              "https://drive.google.com/file/d/1ls3IsbWZyWwdUHfb_59P-lvk7NHxtvcl/preview",
+              "https://drive.google.com/file/d/10CCiBAM3OrfKNvaFg25mJ4vnPA1pmKhJ/preview",
+              "https://drive.google.com/file/d/1SqM3CP1bILBGixq7ECDaJRd7mnFajbvD/preview",
+              "https://drive.google.com/file/d/1LIDwm4kgA39SwBCx2zWgL3liyeNgwtEg/preview",
+              "https://drive.google.com/file/d/1Z1Zs6Q9SNI-Mo9wskp64sJg795420ruT/preview",
+              "https://drive.google.com/file/d/1wmv2J1dMSh3A-sZPvsZSWQSTesowjC0V/preview",
+              "https://drive.google.com/file/d/1RI-_WWjppccsK_g--Xq-nu0L2kV31_vr/preview",
+              "https://drive.google.com/file/d/1CAGoIV3sn3EjjI1SrVeBuaFWRsYVok6R/preview"
+            ]
+          }
+        ]
       }
+      
       
     
 ],
