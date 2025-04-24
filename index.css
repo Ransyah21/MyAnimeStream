@@ -1050,7 +1050,7 @@ body {
   }
 
 
-.favorite-btn { /* Tombol favorite di anime item */
+.fas fa-heart { /* Tombol favorite di anime item */
     margin-top: 5px;
     padding: 8px 12px;
     background-color: white; /* Warna default putih */
@@ -1061,7 +1061,7 @@ body {
     /* transition: all 0.2s ease; /* Ini ada duplikat di bawah */
 }
 
-.favorite-btn:hover {
+.fas fa-heart:hover {
     background-color: #181818;
     color: white;
 }

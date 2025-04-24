@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyAnime</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="Gambar/LogoMyanime (2).png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+   
+<!-- memulai -->
+ <div class="abt"><a href="About.html">ABOUT</a></div>
+ <div class="banner">
+    <video class="background-video desktop" autoplay loop muted preload="auto"><source src="Gambar/LiveWalpaper.mp4"></video>
+</div>
+      <!-- header -->
+    <header>
+        <div class="container">
+            <h1 class="title">
+                <span>M</span>
+                <span>y</span>
+                <span>A</span>
+                <span>n</span>
+                <span>i</span>
+                <span>m</span>
+                <span>e</span>
+            </h1>
+            <p>Support Saya Di </p>
+            <p><a href="https://www.instagram.com/ransyah_32/">Instagram</a></p>
+            <p><a href="https://trakteer.id/ransyah4">Trakteer!</a></p>
+            <nav>
+                <ul id="menu">
+                    <li><a href="#">HOME</a></li>
+                    <li><a id="google-login-btn" href="#" >LOGIN</a></li>
+                </ul>
+            </nav>
+            <br>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search.." name="keyword">
+                    <div class="sparkle" id="sparkle-container"></div>
+                </div>
+            
+        </div>
+    </header>
+<!-- main -->
+    <main>
+        <!-- Tambahkan di bawah .notice atau di lokasi yang diinginkan -->
+        <div class="genre-filter">
+            <div class="genre-header">
+                <h2 style="color: #ffa200;">Genre</h2>
+                <button class="genre-toggle">
+                    <svg class="arrow-down" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="#ffa200" d="M7 10l5 5 5-5z"/>
+                    </svg>
+                    <svg class="arrow-up" width="24" height="24" viewBox="0 0 24 24" style="display: none;">
+                        <path fill="#ffa200" d="M7 14l5-5 5 5z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="genre-list-container">
+                <div class="genre-list"></div>
+            </div>
+        </div>
+        <div id="notification" class="hidden"></div>
+        <div class="container">
+            <div class="notice">
+                <p>masih dalam tahap sharing,</p>
+                <p>Anime recommended dari saya,dan tidak semua genre ada !
+                    ajak temanmu dan rekomendasikan anime favorit tanpa ads!
+                </p>
+            </div>
+            <!-- List Anime -->
+             <div id="content">
+            <section class="nama">
+                <h2>Anime Terbaru</h2>
+    <div class="anime-list" ><!-- List Anime akan muncul oleh java script --></div>
+
+    </main>
+<!-- Cookie Consent -->
+<div id="cookie-consent" class="cookie-consent">
+    <div class="cookie-content">
+      <p>Kami menggunakan cookie untuk meningkatkan pengalaman Anda. Dengan menggunakan situs ini, Anda setuju dengan <a href="/privacy">Kebijakan Privasi</a> kami.</p>
+      <div class="cookie-buttons">
+        <button id="accept-cookies" class="stylebutton">Setuju</button>
+        <button id="cancel-cookies" class="stylebutton secondary">Batalkan</button>
+      </div>
+    </div>
+  </div>
+    <!--pagination-->
+    
+
+           <!-- Footer -->
+           <footer class="footer"> <!-- Mengganti class dari footer1 ke footer -->
+            <div class="footer-section"> <!-- Menggunakan class footer-section yang sudah ada di CSS kamu -->
+                <div class="footer-item"> <!-- Menggunakan class footer-item -->
+                    <h3>Hak Cipta</h3>
+                    <!-- Saran text hak cipta -->
+                    <p>Hak Cipta © 2024 MyAnime.</p>
+                    <p>Dibuat dengan oleh Ransyah.</p> <!-- Menambahkan nama pembuat -->
+                </div>
+                <div class="footer-item"> <!-- Menggunakan class footer-item -->
+                    <h3>Ikuti & Support</h3>
+                    <!-- Link Instagram dengan Icon -->
+                    <p>
+                        <i class="fab fa-instagram social-icon"></i> <!-- Tag ikon Font Awesome -->
+                        <a href="https://www.instagram.com/ransyah_32/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </p>
+                    <!-- Link Trakteer dengan Icon (menggunakan gambar) -->
+                    <p>
+                        <!-- Pastikan kamu punya file gambar logo trakteer, contoh: Gambar/trakteer_logo.png -->
+                        <!-- Ganti "Gambar/trakteer_logo.png" jika lokasi file gambarnya beda -->
+                        <img src="Gambar/trakteer_logo.png" alt=" " class="trakteer-icon social-icon"> <!-- Tag gambar ikon -->
+                        <a href="https://trakteer.id/ransyah4" target="_blank" rel="noopener noreferrer">Trakteer!</a>
+                    </p>
+                    <!-- Email juga bisa ditambahkan ikon -->
+                     <p>
+                         <i class="fas fa-envelope social-icon"></i> <!-- Ikon email dari Font Awesome -->
+                         <a href="mailto:rizky1234kb@gmail.com">Email</a> <!-- Ubah teks jadi Email lebih pendek -->
+                     </p>
+                <div class="footer-item"> <!-- Menggunakan class footer-item -->
+                    <h3>Hubungi Kami</h3>
+                    <!-- Menambahkan email -->
+                    <p><a href="mailto:rizky1234kb@gmail.com">rizky1234kb@gmail.com</a></p>
+                </div>
+            </div>
+            <!-- Kamu bisa tambahkan bagian bawah footer di sini kalau perlu -->
+            <!-- Contoh: <div class="footer-bottom">...</div> -->
+        </footer>
+
+                        <script  src="javapertama.js" defer></script>
+                        <script src="https://accounts.google.com/gsi/client" async defer></script>
+             
+                        
+</body>
+</html>
