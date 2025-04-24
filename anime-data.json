@@ -1,5 +1,55 @@
 {
     "data": [
+      {
+        "title": "Azumanga Daioh",
+        "slug": "azumanga-daioh",
+        "image": "https://i.pinimg.com/736x/f9/9d/43/f99d43a3ae904bc46272a3191530f9e1.jpg",
+        "info": {
+            "type": "TV",
+            "episodes": 26,
+            "status": "Finished Airing",
+            "aired": "Apr 9, 2002 to Oct 1, 2002",
+            "premiered": "Spring 2002",
+            "broadcast": "Tuesdays at 01:55 (JST)",
+            "producers": ["Genco", "TV Tokyo", "KlockWorx", "Memory-Tech"],
+            "studios": ["J.C.Staff"],
+            "source": "4-koma manga",
+            "genres": ["Comedy", "School", "Slice of Life"],
+            "demographic": "Shoujo",
+            "duration": "24 min. per ep.",
+            "rating": "PG-13 - Teens 13 or older"
+        },
+        "desc": "Komedi slice-of-life tentang sekelompok siswi SMA yang menjalani kehidupan sehari-hari dengan berbagai kejadian lucu. Menampilkan karakter unik seperti Chiyo-chan yang jenius namun kekanakan, dan guru muda Osaka yang eksentrik.",
+        "download": "https://drive.usercontent.google.com/download?id=1uj2MKx1UEOSI15DkP7kLBqVoc8ZDvqep&export=download&authuser=0",
+        "streaming": [
+          "https://drive.google.com/file/d/13EaYLN_VRNk0wiJnBI0p6jjgExFg93Qi/preview",
+          "https://drive.google.com/file/d/1Xoli7x7yknXMVhwub7KebOqGK1nkljp4/preview",
+          "https://drive.google.com/file/d/1MaUYw2WtL-vrrp14ZeJ5h-jUt16uTL50/preview",
+          "https://drive.google.com/file/d/1Nnp3bhJ6VpRLWeIkHbAOIL3CZAIqDnfW/preview",
+          "https://drive.google.com/file/d/1x-xX6pRoHlsdYNEPNW48dy39678i4wOD/preview",
+          "https://drive.google.com/file/d/1TvaRshm3SVovv86lFI0A7Q53_bT-RV7y/preview",
+          "https://drive.google.com/file/d/1S4_vJGx9lwDNfVTmwpICNHvsWFi5Ow54/preview",
+          "https://drive.google.com/file/d/1Joz4x5wahnJ-ubnDahFHh9JcuHCnxY-c/preview",
+          "https://drive.google.com/file/d/12qlY9jyo6hCj5Tp6uoGjXfIxNhqyAK4p/preview",
+          "https://drive.google.com/file/d/1_hWt5w_j_KjZnfNXQs4EggO0B4XeKbpL/preview",
+          "https://drive.google.com/file/d/1D8ZuvcFZLxN98RAjfltqTv-v7iU7t1eq/preview",
+          "https://drive.google.com/file/d/1WSRDdRIGJGSx4wGrbFWgdCukBzXPejkO/preview",
+          "https://drive.google.com/file/d/157xFv4FLBgZIzDbbtPZV8R_KnMTnpDXh/preview",
+          "https://drive.google.com/file/d/101M007DqG1hvzC0JCfx4atidzDX-f5Gr/preview",
+          "https://drive.google.com/file/d/1HNCPnOBkcj0jS4PxS_i3dNLlb-6X4LL-/preview",
+          "https://drive.google.com/file/d/1schm42J-4R2YZRDMI-Tcj_4bvHbH7Rw3/preview",
+          "https://drive.google.com/file/d/12L59o4daE-VCCithh0VslZMZRvSPKEiY/preview",
+          "https://drive.google.com/file/d/1rhfds746t6jy7LF3iayMEpVKRa0l4szE/preview",
+          "https://drive.google.com/file/d/1kKPYiEKcUv2GuHPA0fyqOLw9fP64bIUF/preview",
+          "https://drive.google.com/file/d/1zYKSkgYlmlcpAyZICKlf7LVaLZtPafIY/preview",
+          "https://drive.google.com/file/d/17hZOjPvmwKI2R_6IZwLMNR0tHlpJa4SD/preview",
+          "https://drive.google.com/file/d/1rJwRGc3Bnco3eDT0VZxhT86BXiprdt90/preview",
+          "https://drive.google.com/file/d/1t3elfkqVT1V00XBLnImVL_KZGgVnn9Gf/preview",
+          "https://drive.google.com/file/d/1iuiiXr7vsk8x5TisSyufWpbxnTHDz2il/preview",
+          "https://drive.google.com/file/d/1lu42H8YYf3bOz6LKXEuycdrEolJagscY/preview",
+          "https://drive.google.com/file/d/1SrXDmQ-_s_YSD6Nh_NZxbKdkBn39gi_z/preview"
+      ]
+    },
     {
         "title": "Gamers",
         "slug": "gamers",
@@ -1292,9 +1342,6 @@
           "rating": "PG-13 - Remaja 13 tahun ke atas"
         },
         "desc": "Dua saudari yatim piatu, Izumi dan Mitsuki, terpaksa menjadi pelayan untuk seorang bocah kaya raya bernama Takumi setelah orang tua mereka meninggal. Komedi chaos pun terjadi saat mereka berusaha memenuhi permintaan aneh sang 'tuan'.",
-        "seasons": [
-          {
-            "name": "Season 1",
             "download": "https://drive.google.com/uc?id=1F0-Szkj0qm1KYRghYiTPQnDml0EaI-Au&export=download",
             "streaming": [
                 "https://drive.google.com/file/d/1o4nSqp8ExVIqxfwKfnI9hRFSdk2AOX42/preview",
@@ -1310,8 +1357,6 @@
                 "https://drive.google.com/file/d/19-sxkMEVc_DWR4eMkcaqeUIAf4mVGbh0/preview",
                 "https://drive.google.com/file/d/1q96V92FzIdwn7nFzns85Cca2KJs1dzMX/preview"
               ]
-          }
-        ]
       },
       {
         "title": "Redo of Healer",
@@ -1348,9 +1393,6 @@
           "rating": "R+ - Nudity & Violence (Konten Dewasa)"
         },
         "desc": "Keyaru, seorang 'Healer' yang dieksploitasi dan disiksa, menggunakan kekuatan time magic untuk kembali ke masa lalu dan membalaskan dendamnya. Sebuah cerita gelap tentang siklus kekerasan, manipulasi, dan rekonstruksi dunia.",
-        "seasons": [
-          {
-            "name": "Season 1",
             "download": "https://drive.google.com/uc?id=1XBvPwpU4FQjyAT_mEcMk6Oxbo6JsMXsQ&export=download",
             "streaming": [
                 "https://drive.google.com/file/d/1muc9K0gBmUYRcXP1jkFmFKRqobmoFYRC/preview",
@@ -1366,8 +1408,6 @@
                 "https://drive.google.com/file/d/1Z6TmgR1mNESzLWcoE1TqJ1ikm_lgpEkf/preview",
                 "https://drive.google.com/file/d/1nWJEUWSqZYRbLVpdrWUk4u8G88R8iSDm/preview"
               ]
-          }
-        ]
       },
       {
         "title": "Black Summoner",
@@ -1399,10 +1439,7 @@
           "rating": "PG-13 - Remaja 13 tahun ke atas"
         },
         "desc": "Kelvin, seorang penyihir pemanggil yang bereinkarnasi tanpa ingatan masa lalu, memulai petualangan barunya di dunia fantasi. Dengan kemampuan memanggil yang unik dan partner setianya, ia mencari lawan kuat sambil mengungkap misteri dirinya.",
-        "seasons": [
-          {
-            "name": "Season 1",
-            "download": "",
+            "download": "-",
             "streaming": [
                 "https://drive.google.com/file/d/11pxj7hfBmQkuoIM-sly3xiJn51RaDxWT/preview",
                 "https://drive.google.com/file/d/11q8fAWNjHzvXeBSr2BUqtO7l9xBHtoDp/preview",
@@ -1417,8 +1454,6 @@
                 "https://drive.google.com/file/d/12sd_tADovq46wsEdOTI_kQljb7P7SnhA/preview",
                 "https://drive.google.com/file/d/133o9O0aRLCVba4VzF8xc3oj5ikBUnlB8/preview"
               ]
-          }
-        ]
       },
       {
         "title": "Oniichan no Koto",
@@ -1441,9 +1476,6 @@
           "rating": "R+ - Nudity (Konten Dewasa)"
         },
         "desc": "Seorang gadis SMA bernama Nao yang terobsesi dengan kakak laki-lakinya, Shusuke. Komedi romantis absurd tercipta saat Nao berusaha 'memiliki' kakaknya, sementara Shusuke berusaha menjaga hubungan normal antar saudara.",
-        "seasons": [
-          {
-            "name": "Season 1",
             "download": "https://drive.google.com/uc?id=1-vo0F7c38LISvJoEOqGt8RNb3Ej7_HBD&export=download",
             "streaming": [
               "https://drive.google.com/file/d/1ZuxEevqwY9crONpGIRZn-S-Dnq1JSJZ2/preview",
@@ -1460,8 +1492,6 @@
               "https://drive.google.com/file/d/1Reu0NtNjGsNm0It4UU8H3Nu823AlB4uB/preview",
               "https://drive.google.com/file/d/1Rbgu9K79EeVZ0ry3wKFmqZ-Dkks9FA7e/preview"
             ]
-          }
-        ]
       },
       {
         "title": "Isekai Shikkaku",
@@ -1490,9 +1520,6 @@
           "rating": "PG-13 - Remaja 13 tahun ke atas"
         },
         "desc": "Seorang NEET yang mati konyol bereinkarnasi di dunia fantasi dengan kemampuan unik yang tak terduga. Petualangan absurd dimulai saat ia menggunakan pengetahuannya dari dunia sebelumnya untuk bertahan hidup dengan cara yang tak lazim.",
-        "seasons": [
-          {
-            "name": "Season 1",
             "download": "https://drive.google.com/uc?id=1AvrygMfQWQNtlOBXuzHNn5VqoF7zeoBg&export=download",
             "streaming": [
               "https://drive.google.com/file/d/1-17Wc-_oabi9VwrkbbDL6B5vZ-HQU8Sp/preview",
@@ -1508,13 +1535,13 @@
               "https://drive.google.com/file/d/1-eZphTd7Yei_1q2NAVbkASTz6y2ISacO/preview",
               "https://drive.google.com/file/d/1-iagqyfU_kdT9e_SNhAyZvMsoXefqYWs/preview"
             ]
-          }
-        ]
+          
+        
       },
       {
         "title": "Kekkon suru tte, Hontou desu ka",
         "slug": "365-days-to-the-wedding",
-        "image": "https://cdn.myanimelist.net/images/anime/1572/145903.jpg",
+        "image": "https://cdn.myanimelist.net/images/anime/1969/145469.jpg",
         "info": {
           "type": "TV",
           "episodes": "12",
@@ -1585,9 +1612,6 @@
           "rating": "PG-13 - Humor Dewasa"
         },
         "desc": "Tsuda Takatoshi yang pindah ke sekolah khusus perempuan, terpilih menjadi wakil ketua OSIS. Komedi absurd pun dimulai bersama para anggota OSIS eksentrik yang penuh dengan lelucon kotor dan situasi kocak sehari-hari.",
-        "seasons": [
-          {
-            "name": "Season 1",
             "download": "https://drive.google.com/uc?id=1fdmeDz61uIRrxAJ5VfJbIqcMrZtPGgET&export=download",
             "streaming": [
               "https://drive.google.com/file/d/1tD0X44SviWlngyVZexYYniG84ZAjQh4E/preview",
@@ -1612,9 +1636,53 @@
               "https://drive.google.com/file/d/1RI-_WWjppccsK_g--Xq-nu0L2kV31_vr/preview",
               "https://drive.google.com/file/d/1CAGoIV3sn3EjjI1SrVeBuaFWRsYVok6R/preview"
             ]
-          }
-        ]
+      },
+      {
+        "title": "Dandadan",
+        "slug": "dandadan",
+        "image": "https://cdn.myanimelist.net/images/anime/1584/143719.jpg", 
+        "info": {
+          "type": "TV",
+          "episodes": "12",
+          "status": "Tayang Selesai",
+          "aired": "4 Okt 2024 hingga 20 Des 2024",
+          "premiered": "Musim Gugur 2024",
+          "broadcast": "Setiap Jumat pukul 00:26 (JST)",
+          "producers": [
+            "Aniplex",
+            "Dentsu",
+            "Shogakukan-Shueisha Productions",
+            "Mainichi Broadcasting System",
+            "Shueisha"
+          ],
+          "licensors": ["GKIDS"],
+          "studios": ["Science SARU"],
+          "source": "Manga",
+          "genres": ["Action", "Comedy", "Supernatural"],
+          "themes": ["Alien", "Hantu", "Komedi Absurd", "Pertarungan"],
+          "demographic": "Shounen",
+          "duration": "23 menit per ep.",
+          "rating": "R - 17+ (Kekerasan & Bahasa Kasar)"
+        },
+        "desc": "Momo Ayase dan Okarun terlibat dalam petualangan gila untuk merebut kembali 'harta karun tubuh' mereka dari makhluk supernatural, menghadapi alien seksual, hantu penasaran, dan yokai mengerikan - semua dengan komedi absurd khas Dandadan!",
+            "download": "https://drive.google.com/uc?id=1-3TFW85MkFCi7Ro_0trDITQjY_-KCMcb&export=download",
+            "streaming": [
+              "https://drive.google.com/file/d/17WNzR1_SPI_GCgRqDs2Dgvqmp6R9rlC_/preview",
+              "https://drive.google.com/file/d/16zU4KI8EBEHMrSk2Fp6pmU-aoAK19Q2W/preview",
+              "https://drive.google.com/file/d/11WaGxOUYwNpcc18dWAD23vcp_bU4S0mk/preview",
+              "https://drive.google.com/file/d/1ZZIJ5CmWTIFr7hIrVdO7emuxckfF89F2/preview",
+              "https://drive.google.com/file/d/16kXM1TM8EN8_1ubpzVM629lACc2F6CNT/preview",
+              "https://drive.google.com/file/d/1YMeF8yPWk33JSxcT8k_rR1RIMU8Zsdzy/preview",
+              "https://drive.google.com/file/d/1rsfCGwwmeYhB9OgdY9t8diUBKNUXyvfn/preview",
+              "https://drive.google.com/file/d/1vZpOc_XX8ob401uw-DGEWXBHPC4UNmdz/preview",
+              "https://drive.google.com/file/d/1j1iAVhZWeefdPRaoF95Yu6Vx8GA8yIha/preview",
+              "https://drive.google.com/file/d/1FHJiPulLf6pBz6teibXrz60q20ghqAAD/preview",
+              "https://drive.google.com/file/d/10I9KGz_3bYMO3JCltExE9d0S65qi8RuP/preview",
+              "https://drive.google.com/file/d/1JbewNyjayfGZh4XxG0IgXG0qp6ESJ5Em/preview"
+            ]
+        
       }
+      
       
       
     

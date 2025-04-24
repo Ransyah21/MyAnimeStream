@@ -4,35 +4,712 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Streaming</title>
-    <link rel="stylesheet" href="watch.css">
-    <link rel="icon" href="Gambar/LogoMyanime (2).png" type="image/x-icon">
+    <!-- Tambahkan Font Awesome untuk ikon like/dislike/edit/delete/email -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Library jwt-decode untuk membaca token Google -->
+    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+    <!-- Google Identity Services Script (diperlukan meskipun menggunakan metode redirect untuk fitur seperti auto-select dan disableAutoSelect) -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+
+    <!-- ================================================== -->
+    <!-- --- STYLE CSS (GABUNGAN watch.css & style footer dari index.css) --- -->
+    <!-- ================================================== -->
     <style>
+        /* Global Reset/Base */
+        /* hati-hati dengan style universal selector *, lebih baik spesifik ke body */
+        body {
+            margin: 0;
+            background-color: #181818;
+            color: #fff;
+            font-family: sans-serif;
+            font-weight: bold;
+            overflow-x: hidden; /* Mencegah overflow horizontal */
+            line-height: 1.6; /* Menambah jarak antar baris untuk keterbacaan */
+        }
+         body::-webkit-scrollbar {
+            display: none; /* Untuk Chrome, Edge, Safari */
+          }
+
+        /* Reset untuk elemen tertentu jika style * diterapkan */
+         h1, h2, h3, p, div, button, a, iframe, img, textarea {
+             background-color: transparent; /* Reset background agar tidak semua jadi #181818 */
+             color: inherit; /* Warisi warna teks dari parent */
+             font-weight: inherit; /* Warisi ketebalan font */
+             margin: 0; /* Reset margin */
+             padding: 0; /* Reset padding */
+         }
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Rasio 16:9 */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background-color: black; /* Background saat iframe belum load */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .episode-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+            padding: 10px; /* Tambah padding agar tidak menempel tepi kontainer */
+            background-color: #282828; /* Background untuk daftar episode */
+            border-radius: 8px;
+        }
+
+        .episode-btn {
+            padding: 10px;
+            background: #ffa200;
+            color: #181818;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .episode-btn:hover {
+            background: #f1ca47;
+        }
+
+        .current-episode {
+            background: white !important;
+            color: #181818 !important;
+            box-shadow: 0 0 8px rgba(255,162,0,0.5);
+        }
+
         .loading {
             text-align: center;
             color: #fff;
             font-size: 20px;
             padding: 20px;
+            display: none; /* Disembunyikan default, ditampilkan via JS */
         }
+
+        /* Style untuk tombol Kembali */
+        .back-btn {
+            color: black !important; /* Pastikan warna hitam */
+            text-decoration: none;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: inline-block; /* Menggunakan inline-block agar bisa di tengah jika perlu */
+            padding: 10px 15px; /* Sesuaikan padding */
+            width: auto; /* Lebar otomatis sesuai konten */
+            background-color: #ffa200;
+            transition: background-color 0.3s ease;
+             font-weight: bold;
+        }
+        .back-btn:hover {
+            background-color: #ff8c00;
+        }
+
+
+        /* --- Style untuk Rating (Like/Dislike) --- */
+        .rating-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #282828; /* Warna background gelap */
+            border-radius: 10px;
+            text-align: center; /* Pusatkan konten */
+            color: #fff;
+        }
+
+        .rating-section h2 {
+            color: #ffa200; /* Warna judul */
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .rating-buttons {
+            display: flex; /* Gunakan flexbox untuk tombol */
+            justify-content: center; /* Pusatkan tombol */
+            gap: 20px; /* Jarak antar tombol */
+            margin-bottom: 15px;
+        }
+
+        .rating-btn {
+            padding: 10px 20px;
+            background-color: #3a3a3a; /* Warna tombol default */
+            color: #fff; /* Warna teks/ikon default */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            display: flex; /* Agar ikon dan teks di dalam tombol sejajar */
+            align-items: center;
+            gap: 8px; /* Jarak antara ikon dan teks */
+            font-weight: bold;
+        }
+
+        .rating-btn:hover:not(:disabled) {
+            background-color: #555; /* Warna hover */
+        }
+
+        .rating-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Style saat tombol Like aktif (sudah dilike user) */
+        .rating-btn.liked {
+            background-color: #28a745; /* Warna hijau */
+        }
+
+        .rating-btn.liked:hover:not(:disabled) {
+             background-color: #218838;
+        }
+
+        /* Style saat tombol Dislike aktif (sudah didislike user) */
+        .rating-btn.disliked {
+            background-color: #dc3545; /* Warna merah */
+        }
+
+        .rating-btn.disliked:hover:not(:disabled) {
+             background-color: #c82333;
+        }
+
+        .rating-info {
+            color: #ccc;
+            font-size: 0.9em;
+        }
+
+
+        /* --- Style untuk Komentar --- */
+        .comment-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #282828; /* Warna background gelap */
+            border-radius: 10px;
+            color: #fff;
+        }
+
+        .comment-section h2 {
+            color: #ffa200; /* Warna judul */
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-align: center; /* Pusatkan judul */
+        }
+
+        .user-info {
+            display: flex; /* Gunakan flexbox */
+            align-items: center; /* Rata tengah vertikal */
+            gap: 15px; /* Jarak antar elemen */
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #3a3a3a; /* Garis pemisah */
+        }
+
+        .user-pic {
+            width: 40px; /* Ukuran foto profil */
+            height: 40px;
+            border-radius: 50%; /* Bentuk bulat */
+            border: 2px solid #ffa200; /* Border warna tema */
+        }
+
+        .user-name {
+            font-weight: bold;
+            flex-grow: 1; /* Ambil ruang sisa */
+            color: #eee;
+        }
+
+        .stylebutton { /* Ini stylebutton umum */
+             padding: 8px 15px;
+             background-color: #ffa200;
+             color: #181818;
+             border: none;
+             border-radius: 4px;
+             cursor: pointer;
+             transition: all 0.3s ease;
+             font-weight: bold;
+             text-align: center;
+             display: inline-block; /* Default inline-block */
+        }
+        .stylebutton:hover {
+             background-color: #ff8c00;
+             transform: translateY(-1px); /* Efek kecil saat hover */
+             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        #signout-btn {
+            font-size: 0.9em;
+        }
+
+
+        #comment-input-area {
+            margin-bottom: 20px;
+            background-color: transparent; /* Pastikan background transparan */
+        }
+
+        #comment-input-area textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #3a3a3a; /* Warna background textarea */
+            color: #fff; /* Warna teks textarea */
+            resize: vertical; /* Izinkan resize vertikal */
+            box-sizing: border-box; /* Padding tidak menambah lebar */
+            font-family: sans-serif; /* Gunakan font yang sama */
+             line-height: 1.5;
+        }
+
+        #comment-input-area textarea:focus {
+            outline: none;
+            border-color: #ffa200;
+            box-shadow: 0 0 5px rgba(255, 162, 0, 0.3);
+        }
+
+        #post-comment-btn {
+            padding: 10px 20px;
+            display: block; /* Buat tombol mengambil baris penuh jika perlu */
+            width: 100%; /* Ambil lebar penuh */
+            box-sizing: border-box;
+        }
+
+        #post-comment-btn:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        #comment-login-prompt {
+            text-align: center;
+            color: #ccc;
+            font-size: 0.9em;
+        }
+         #comment-login-prompt span {
+             text-decoration: underline;
+             cursor: pointer;
+         }
+          #comment-login-prompt span:hover {
+              color: white;
+          }
+
+
+        /* --- Style untuk Daftar Komentar --- */
+        #comments-list {
+            margin-top: 20px;
+        }
+
+        .comment-item {
+            background-color: #3a3a3a; /* Background per komentar */
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            word-wrap: break-word; /* Agar teks panjang tidak overflow */
+            overflow-wrap: break-word;
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #555; /* Garis bawah header komentar */
+        }
+
+        .comment-user-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #ffa200;
+             flex-shrink: 0; /* Jangan ciut */
+        }
+
+        .comment-user-name {
+            font-weight: bold;
+            color: #ffa200; /* Warna nama pengguna */
+            font-size: 1em;
+            word-break: break-word; /* Pastikan nama panjang tidak merusak layout */
+        }
+
+        .comment-timestamp {
+            font-size: 0.8em;
+            color: #ccc;
+            margin-left: auto; /* Dorong timestamp ke kanan */
+             flex-shrink: 0; /* Jangan ciut */
+        }
+
+        .comment-body {
+            margin-bottom: 10px;
+        }
+
+        .comment-text {
+            margin: 0;
+            color: #eee; /* Warna teks komentar */
+            line-height: 1.5;
+        }
+
+        .comment-edit-text { /* Textarea saat mode edit */
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ffa200;
+            border-radius: 5px;
+            background-color: #282828; /* Background edit area */
+            color: #fff;
+            resize: vertical;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            font-size: 1em;
+             line-height: 1.5;
+        }
+
+        .comment-actions {
+            text-align: right; /* Tombol aksi di kanan */
+        }
+
+        .comment-actions button {
+            padding: 5px 10px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+             font-weight: normal; /* Kurangi ketebalan font untuk tombol aksi */
+             background-color: #555; /* Warna default abu-abu */
+             color: white;
+        }
+
+        .comment-actions button:hover {
+             background-color: #777;
+        }
+
+
+        .edit-comment-btn {
+            background-color: #007bff; /* Warna biru */
+        }
+        .edit-comment-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-comment-btn {
+            background-color: #dc3545; /* Warna merah */
+        }
+        .delete-comment-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* --- Style untuk Footer (dari index.css) --- */
+         .footer {
+            background-color: #1f1f1f; /* Warna background footer */
+            color: #fff; /* Warna teks umum di footer */
+            padding: 20px 0; /* Padding atas bawah 20px, kiri kanan 0 */
+            font-size: 14px; /* Ukuran font default footer */
+             margin-top: 50px; /* Jarak dari konten di atasnya */
+         }
+
+         .footer-section {
+            display: flex; /* Gunakan Flexbox untuk menata item-item di footer */
+            justify-content: space-around; /* Distribusikan ruang antar item */
+            align-items: flex-start; /* Item rata atas */
+            flex-wrap: wrap; /* Izinkan item turun ke baris baru di layar kecil */
+            max-width: 1200px; /* Batasi lebar maksimal footer seperti container utama */
+            margin: 0 auto; /* Pusatkan footer */
+            padding: 0 20px; /* Padding kiri kanan agar konten tidak menempel tepi */
+         }
+
+         .footer-item {
+            width: 30%; /* Setiap item mengambil sekitar 30% lebar */
+            min-width: 200px; /* Pastikan item punya lebar minimum */
+            margin-bottom: 20px; /* Margin bawah untuk jarak antar item saat flex-wrap */
+            padding: 0 10px; /* Tambahkan padding horizontal antar kolom di desktop */
+            box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+            text-align: left; /* Default rata kiri */
+         }
+
+         .footer-item h3 {
+            display: block; /* Pastikan h3 mengambil baris penuh */
+            margin: 0 0 10px 0; /* Margin bawah judul */
+            font-size: 18px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 5px;
+            color: orange; /* Warna judul orange */
+            text-align: left; /* Default rata kiri */
+         }
+
+         /* Style untuk kontainer link sosial media dalam satu item (Ikuti & Support) */
+         .social-links-container {
+             display: flex; /* Gunakan flexbox */
+             flex-direction: column; /* Defaultnya tumpuk vertikal (untuk mobile) */
+             gap: 10px; /* Jarak antar setiap baris link sosial */
+             margin-top: 10px; /* Jarak dari judul "Ikuti & Support" */
+             align-items: flex-start; /* Rata kiri item link di desktop */
+         }
+
+         /* Style untuk setiap item link sosial (<p> tag) */
+         .footer-item p {
+             margin: 0; /* Reset margin default p */
+             display: flex; /* Agar ikon dan teks sejajar */
+             align-items: center; /* Rata tengah vertikal ikon dan teks */
+             font-size: 14px; /* Ukuran font untuk teks link sosial */
+         }
+
+
+         /* Style umum untuk semua ikon sosial */
+         .social-icon {
+           margin-right: 8px; /* Jarak antara ikon dan teks */
+           vertical-align: middle; /* Agar ikon rata tengah vertikal dengan teks */
+           width: 20px; /* Ukuran default ikon, sedikit lebih kecil dari 24 */
+           height: auto; /* Tinggi otomatis agar aspek rasio gambar tetap terjaga */
+           color: #fff; /* Warna default untuk ikon Font Awesome (putih) */
+           transition: all 0.3s ease; /* Tambahkan transisi untuk animasi hover */
+           flex-shrink: 0; /* Mencegah ikon menyusut */
+         }
+
+         /* Style khusus untuk ikon Trakteer (jika menggunakan gambar) */
+         .trakteer-icon {
+           width: 20px; /* Pastikan ukurannya konsisten */
+           height: auto;
+           /* filter: grayscale(100%) brightness(2); /* Contoh: buat gambar jadi putih keabu-abuan */
+         }
+
+         /* Style untuk teks link di footer-item */
+         .footer-item p a {
+           color: #ccc; /* Warna teks link */
+           text-decoration: none; /* Hilangkan garis bawah default */
+           transition: color 0.3s ease; /* Transisi untuk warna teks saat hover */
+         }
+
+         /* Hover efek untuk teks link */
+         .footer-item p a:hover {
+           color: #ffa200; /* Warna saat dihover */
+           text-decoration: underline; /* Munculkan garis bawah saat dihover */
+         }
+
+         /* Hover animasi untuk ikon */
+         .social-icon:hover {
+           transform: scale(1.2); /* Perbesar ikon saat dihover */
+           /* Efek warna untuk ikon Font Awesome */
+           color: #ffa200; /* Warna saat dihover */
+           /* Efek untuk gambar (ikon Trakteer) */
+           filter: brightness(1.5); /* Membuat gambar sedikit lebih cerah saat dihover */
+           /* Kamu juga bisa coba efek lain, contoh: box-shadow: 0 0 8px rgba(255, 162, 0, 0.5); */
+         }
+
+
+         /* --- Responsif untuk Footer --- */
+
+         /* Style untuk layar desktop (>= 769px) */
+         @media (min-width: 769px) {
+           .footer-section {
+               justify-content: space-between; /* Gunakan space-between untuk menyebar item lebih jauh */
+               gap: 20px; /* Jarak tambahan antar kolom jika perlu */
+           }
+
+           .footer-item {
+               width: 30%; /* Lebar tetap sekitar 30% */
+               margin-bottom: 0; /* Hilangkan margin bawah di desktop */
+               /* padding: 0 10px; /* Sudah di style umum, bisa disesuaikan */
+               text-align: left; /* Rata kiri konten di desktop */
+           }
+
+            /* Di layar lebar, buat link sosial menjadi horizontal */
+           .social-links-container {
+               flex-direction: row; /* Tampilkan item link secara horizontal */
+               flex-wrap: wrap; /* Izinkan wrap kalau barisnya panjang */
+               gap: 15px; /* Jarak horizontal antar setiap item link (ikon+teks) */
+               justify-content: flex-start; /* Rata kiri item link */
+           }
+
+           /* Di layar lebar, setiap item link sosial (ikon + teks) */
+           .footer-item p {
+                margin-right: 15px; /* Jarak antar setiap pasangan ikon+teks (alternatif gap di container) */
+                margin-bottom: 5px; /* Sedikit jarak bawah jika wrap */
+            }
+
+         }
+
+         /* Style untuk layar mobile (<= 768px) */
+         @media (max-width: 768px) {
+           .footer-section {
+               flex-direction: column; /* Item jadi vertikal */
+               align-items: center; /* Pusatkan item vertikal */
+               gap: 30px; /* Jarak antar blok footer di mobile */
+               padding: 0 10px; /* Padding kiri kanan di mobile */
+           }
+
+           .footer-item {
+               width: 95%; /* Ambil sebagian besar lebar di mobile */
+               min-width: auto; /* Hapus min-width di mobile */
+               margin-bottom: 0; /* Hilangkan margin bawah di sini, diganti gap di footer-section */
+               padding: 0; /* Hilangkan padding horizontal */
+               text-align: center; /* Pusatkan konten footer item */
+           }
+
+            .footer-item h3 {
+                text-align: center; /* Pastikan judul terpusat di mobile */
+                margin-bottom: 15px; /* Tambah jarak bawah judul di mobile */
+            }
+
+           /* Di mobile, link sosial tetap tumpuk vertikal */
+           .social-links-container {
+                flex-direction: column; /* Pastikan tumpuk vertikal di mobile */
+                align-items: center; /* Pusatkan item link di mobile */
+                gap: 10px; /* Jarak antar item link di mobile */
+                margin-top: 5px; /* Kurangi jarak atas di mobile */
+           }
+
+           /* Di mobile, setiap item link sosial (ikon + teks) */
+           .footer-item p {
+               justify-content: center; /* Pusatkan ikon + teks dalam satu link di mobile */
+               margin-right: 0; /* Hilangkan margin kanan di mobile */
+            }
+
+           /* Ukuran ikon di mobile */
+           .social-icon {
+               width: 18px; /* Sedikit lebih kecil lagi di mobile */
+           }
+         }
+        /* ================================================== */
+        /* --- AKHIR STYLE CSS --- */
+        /* ================================================== */
+
     </style>
 </head>
 <body>
+
+    <!-- Div untuk Google Sign-In, disembunyikan secara visual -->
+    <!-- Google Identity Services v2 tidak perlu callback jika pakai redirect flow -->
+    <!-- Tapi div ini perlu ada agar GSI script bisa mendeteksi state user -->
+    <div id="g_id_onload"
+         data-client_id="429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com" <!-- PASTIKAN INI CLIENT ID PUNYA KAMU -->
+         
+    </div>
+     <!-- Tombol bawaan Google, disembunyikan, GSI v2 akan handle proses login -->
+    <div class="g_id_signin"
+         data-type="standard" data-size="large" data-theme="filled_black"
+         data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left"
+         style="display: none;">
+    </div>
+    <!-- Akhir Google Sign-In Div -->
+
     <div class="container">
-        <a href="index.html" class="back-btn" style="color: black; text-decoration: none; border-radius: 15px; margin-bottom: 20px; display: block; padding: 15px; width: 100px; background-color: #ffa200 ;">← Kembali</a>
+        <!-- Tombol Kembali -->
+        <a href="index.html" class="back-btn">← Kembali</a>
+
+        <!-- Video Player dan Daftar Episode -->
         <div id="player-container">
             <div class="video-container">
-                <iframe id="main-player" allowfullscreen></iframe>
+                <!-- Tambahkan sandbox attribute untuk keamanan iframe dari pihak ketiga -->
+                <iframe id="main-player" allowfullscreen sandbox="allow-same-origin allow-scripts allow-forms allow-presentation"></iframe>
             </div>
-            <div id="episode-container" class="episode-list"></div>
+            <div id="episode-container" class="episode-list">
+                 <!-- Episode buttons will be loaded here by JavaScript -->
+            </div>
         </div>
         <div id="loading" class="loading">Memuat data...</div>
-    </div>
 
+        <!-- Bagian Rating (Like / Dislike) -->
+        <div class="rating-section">
+            <h2>Rating Anime Ini</h2>
+            <div class="rating-buttons">
+                <button id="like-btn" class="rating-btn" disabled><i class="far fa-thumbs-up"></i> Like (<span id="like-count">0</span>)</button>
+                <button id="dislike-btn" class="rating-btn" disabled><i class="far fa-thumbs-down"></i> Dislike (<span id="dislike-count">0</span>)</button>
+            </div>
+             <p class="rating-info" id="rating-info">Login untuk memberikan rating!</p>
+        </div>
+        <!-- Akhir Bagian Rating -->
+
+        <!-- Bagian Komentar -->
+        <div class="comment-section">
+            <h2>Komentar</h2>
+
+            <div id="user-info" class="user-info" style="display: none;">
+                <img id="user-pic" src="" alt="Profile Picture" class="user-pic">
+                <span id="user-name"></span>
+                <button id="signout-btn" class="stylebutton">Keluar</button>
+            </div>
+
+            <div id="comment-input-area">
+                <textarea id="comment-text" placeholder="Tulis komentar Anda..." rows="4" disabled></textarea> <!-- Non-aktifkan default -->
+                <button id="post-comment-btn" class="stylebutton" disabled>Kirim Komentar</button> <!-- Non-aktifkan default -->
+                 <p id="comment-login-prompt">Silakan <span id="signin-link">login</span> dengan Google untuk berkomentar.</p>
+            </div>
+
+            <div id="comments-list">
+                <!-- Komentar akan dimuat di sini oleh JavaScript -->
+                 <p style="text-align:center; color:#ccc;">Belum ada komentar. Jadilah yang pertama!</p>
+            </div>
+
+             <p style="text-align: center; margin-top: 20px; color: #ff8c00; font-size: 0.9em;">Catatan: Komentar dan Rating tersimpan hanya di browser Anda.</p> <!-- Peringatan penting -->
+
+        </div>
+        <!-- Akhir Bagian Komentar -->
+
+    </div> <!-- Akhir container -->
+
+    <!-- Footer -->
+     <footer class="footer">
+        <div class="footer-section">
+            <div class="footer-item">
+                <h3>Hak Cipta</h3>
+                <p>Hak Cipta © 2024 MyAnime.</p>
+                <p>Dibuat dengan ❤️ oleh Rizky.</p>
+            </div>
+            <div class="footer-item">
+                <h3>Ikuti & Support</h3>
+                <div class="social-links-container">
+                     <p>
+                        <i class="fab fa-instagram social-icon"></i>
+                        <a href="https://www.instagram.com/ransyah_32/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </p>
+                    <p>
+                        <img src="" alt="" class="trakteer-icon social-icon"> <!-- PASTIKAN PATH BENAR -->
+                        <a href="https://trakteer.id/ransyah4" target="_blank" rel="noopener noreferrer">Trakteer!</a>
+                    </p>
+                     <p>
+                         <i class="fas fa-envelope social-icon"></i>
+                         <a href="mailto:rizky1234kb@gmail.com">Email</a>
+                     </p>
+                 </div>
+            </div>
+            <div class="footer-item">
+                <h3>Hubungi Kami</h3>
+                <p><a href="mailto:rizky1234kb@gmail.com">rizky1234kb@gmail.com</a></p>
+            </div>
+        </div>
+    </footer>
+    <!-- Akhir Footer -->
+
+    <!-- ================================================== -->
+    <!-- --- KODE JAVASCRIPT (GABUNGAN watch.js & login dari index.js) --- -->
+    <!-- ================================================== -->
     <script>
+        // Kode JavaScript gabungan di sini
+
+        // ============== KODE JAVASCRIPT LAMA KAMU (VIDEO PLAYER & EPISODE) ==============
         // Ambil parameter dari URL
         const urlParams = new URLSearchParams(window.location.search);
         const animeSlug = decodeURIComponent(urlParams.get('slug')); // Decode slug
         const seasonIndex = parseInt(urlParams.get('season')) || 0;
-        
+
         // Elemen DOM
         const player = document.getElementById('main-player');
         const episodeContainer = document.getElementById('episode-container');
@@ -44,71 +721,97 @@
                 // Handle berbagai format URL Google Drive
                 const fileIdMatch = url.match(/\/d\/([^\/]+)/) || url.match(/id=([^&]+)/);
                 if(fileIdMatch && fileIdMatch[1]) {
+                    // Menggunakan /preview lebih aman dari /embed
                     return `https://drive.google.com/file/d/${fileIdMatch[1]}/preview`;
                 }
+                 // Jika URL bukan GDrive, kembalikan apa adanya
                 return url;
             } catch {
+                console.error("Error converting URL:", url, error);
                 return url;
             }
         }
 
-        // Load data anime
+        // Load data anime dari file JSON lokal
         async function loadStreamingData() {
             try {
                 loading.style.display = 'block';
-                
+
+                // Fetch data anime dari file JSON lokal
+                // PASTIKAN PATH KE anime-data.json BENAR RELATIF TERHADAP watch.html
                 const response = await fetch('anime-data.json');
-                if(!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-                
+                if(!response.ok) {
+                     throw new Error(`Gagal memuat data anime: Status ${response.status}`);
+                }
+
                 const fullData = await response.json();
                 const animeList = fullData.data || fullData; // Handle struktur data berbeda
-                
-                if(!Array.isArray(animeList)) throw new Error('Format data tidak valid');
-                
+
+                if(!Array.isArray(animeList)) {
+                    throw new Error('Format data anime tidak valid.');
+                }
+
                 // Cari anime dengan case-insensitive dan trim
-                const anime = animeList.find(a => 
+                const anime = animeList.find(a =>
                     a.slug?.trim().toLowerCase() === animeSlug.trim().toLowerCase()
                 );
-                
-                if(!anime) throw new Error('Anime tidak ditemukan');
+
+                if(!anime) {
+                     showError(`Anime dengan slug "${animeSlug}" tidak ditemukan.`);
+                     return;
+                }
 
                 // Handle episode
                 let episodes = [];
-                
+
                 if(anime.seasons?.length > 0) {
                     const season = anime.seasons[seasonIndex];
-                    if(!season) throw new Error('Season tidak tersedia');
-                    episodes = season.streaming?.map(convertToEmbedUrl) || [];
-                } 
-                else if(Array.isArray(anime.streaming)) { // Fallback untuk struktur lama
+                    if(!season) {
+                        showError(`Season ${seasonIndex + 1} untuk anime "${anime.title}" tidak tersedia.`);
+                        return;
+                    }
+                    // Pastikan streaming adalah array sebelum map
+                    episodes = Array.isArray(season.streaming) ? season.streaming.map(convertToEmbedUrl) : [];
+                }
+                else if(Array.isArray(anime.streaming)) { // Fallback untuk struktur lama (jika tidak pakai seasons)
                     episodes = anime.streaming.map(convertToEmbedUrl);
                 }
-                
-                if(episodes.length === 0) throw new Error('Episode belum tersedia');
+
+                if(episodes.length === 0) {
+                     showError(`Episode untuk anime "${anime.title}" (Season ${seasonIndex + 1}) belum tersedia.`);
+                     return;
+                }
 
                 // Update UI
                 loading.style.display = 'none';
-                player.src = episodes[0];
+                player.src = episodes[0]; // Set episode pertama
                 createEpisodeButtons(episodes);
 
+                // Setelah data anime termuat, load komentar dan rating untuk anime ini
+                loadComments();
+                loadRatings();
+
+
             } catch (error) {
-                console.error('Error:', error);
-                showError(error.message);
+                console.error('Error memuat data anime:', error);
+                showError(error.message || 'Terjadi kesalahan saat memuat data.');
             }
         }
 
         function createEpisodeButtons(episodes) {
             episodeContainer.innerHTML = '';
-            
+
             episodes.forEach((episodeUrl, index) => {
                 const btn = document.createElement('button');
                 btn.className = `episode-btn${index === 0 ? ' current-episode' : ''}`;
                 btn.textContent = `Episode ${index + 1}`;
-                
+
                 btn.onclick = () => {
                     player.src = episodeUrl;
-                    document.querySelectorAll('.episode-btn').forEach(b => 
+                    // Hapus class 'current-episode' dari semua tombol
+                    document.querySelectorAll('.episode-btn').forEach(b =>
                         b.classList.remove('current-episode'));
+                    // Tambahkan class 'current-episode' ke tombol yang diklik
                     btn.classList.add('current-episode');
                 };
 
@@ -116,18 +819,664 @@
             });
         }
 
+        // Fungsi untuk menampilkan pesan error di halaman
         function showError(message) {
-            document.body.innerHTML = `
-                <div class="container">
-                    <h1 style="color: #e74c3c">Error!</h1>
-                    <p>${message}</p>
-                    <a href="index.html" class="back-btn">Kembali ke beranda</a>
-                </div>
-            `;
+             loading.style.display = 'none'; // Sembunyikan loading jika tampil
+             const containerDiv = document.querySelector('.container');
+             if (containerDiv) {
+                 containerDiv.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <h1 style="color: #e74c3c; margin-bottom: 20px;">Terjadi Kesalahan!</h1>
+                        <p style="color: #ccc; font-size: 1.1em;">${message}</p>
+                        <a href="index.html" class="back-btn" style="margin-top: 30px;">← Kembali ke Beranda</a>
+                    </div>
+                 `;
+             } else {
+                 document.body.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <h1 style="color: #e74c3c; margin-bottom: 20px;">Terjadi Kesalahan!</h1>
+                        <p style="color: #ccc; font-size: 1.1em;">${message}</p>
+                        <a href="index.html" class="back-btn" style="margin-top: 30px;">← Kembali ke Beranda</a>
+                    </div>
+                 `;
+             }
         }
 
-        // Jalankan saat halaman dimuat
-        window.onload = loadStreamingData;
+
+        // ============== KODE JAVASCRIPT BARU (GOOGLE LOGIN, KOMENTAR, RATING) ==============
+        // Bagian ini diadaptasi dari watch.js dan index.js login
+
+        // --- Konfigurasi Google OAuth (Dari index.js) ---
+        // PASTIKAN CLIENT_ID DAN REDIRECT_URI SESUAI DENGAN YANG TERDAFTAR DI GOOGLE CONSOLE
+        // REDIRECT_URI HARUS MENGARAH KE watch.html INI JIKA ANDA MENGGUNAKAN REDIRECT FLOW DARI HALAMAN LAIN
+        // ATAU CUKUP PATH watch.html INI JIKA LOGIN DIMULAI DARI SINI.
+        // Untuk contoh ini, kita asumsikan login dimulai dari watch.html atau di-handle saat redirect kembali ke watch.html
+        const CLIENT_ID = "429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com";
+        // REDIRECT_URI perlu disesuaikan agar Google mengarahkan kembali ke halaman watch.html ini
+        // Jika file watch.html ada di root folder yang sama dengan index.html, path-nya mungkin sama dengan index.html
+        // Ganti URL ini dengan URL PUBLIK watch.html kamu
+        const REDIRECT_URI = window.location.origin + window.location.pathname; // Mengarah kembali ke halaman ini sendiri
+
+        let currentUser = null; // Variabel untuk menyimpan data pengguna yang login
+
+
+        // Ambil info pengguna dari Google API (Dari index.js)
+        async function getUserInfo(accessToken) {
+            try {
+                const response = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
+                    headers: { Authorization: `Bearer ${accessToken}` }
+                });
+                if (!response.ok) {
+                    // Jika token invalid atau expired, response status bisa 401
+                    throw new Error(`Gagal mengambil info pengguna: Status ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                console.error("Gagal mengambil info pengguna:", error);
+                // Hapus token lokal jika gagal
+                localStorage.removeItem('access_token');
+                localStorage.removeItem('user_info');
+                 sessionStorage.removeItem('currentUser'); // Hapus juga dari session
+                updateUIForLogout(); // Update UI ke logout state
+                return null;
+            }
+        }
+
+        // Fungsi untuk memulai alur login Google (Redirect Flow) (Dari index.js)
+        function handleLogin() {
+          // Bersihkan potential previous tokens before starting new flow
+          localStorage.removeItem('access_token');
+          localStorage.removeItem('user_info');
+          sessionStorage.removeItem('currentUser');
+
+          const oauth2Url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=email profile&prompt=select_account`;
+          window.location.href = oauth2Url; // Arahkan browser ke Google
+        }
+
+        // Fungsi Logout (Dari index.js, diadaptasi)
+        function handleLogout() {
+          localStorage.removeItem('access_token');
+          localStorage.removeItem('user_info');
+          sessionStorage.removeItem('currentUser');
+
+          // Menggunakan GSI untuk logout/clear session di sisi Google juga
+          if (google && google.accounts && google.accounts.id) {
+              google.accounts.id.disableAutoSelect(); // Mencegah auto-login berikutnya
+              console.log('Google auto-select disabled.');
+          }
+
+          currentUser = null; // Set user ke null
+          updateUIForLogout(); // Update UI
+
+          // Opsional: reload halaman untuk memastikan state bersih
+          // window.location.reload();
+        }
+
+
+        // Inisialisasi Auth saat halaman dimuat (Diadaptasi dari index.js initAuth)
+        async function initAuth() {
+            console.log("🔄 Memulai inisialisasi Auth...");
+            const hash = window.location.hash.substring(1); // Ambil hash dari URL
+            const params = new URLSearchParams(hash);
+            const accessToken = params.get('access_token'); // Cek apakah ada access_token di hash
+
+            // Cek apakah ada token baru dari redirect Google ATAU token yang sudah disimpan
+            if (accessToken) {
+                console.log("✅ Access token ditemukan di URL hash.");
+                // Baru saja redirect dari Google
+                try {
+                    const userInfo = await getUserInfo(accessToken);
+                    if (userInfo && userInfo.email) {
+                        console.log("✅ Info pengguna berhasil diambil:", userInfo);
+                        // Simpan token dan info user di localStorage (untuk persistensi antar sesi/tab)
+                        localStorage.setItem('access_token', accessToken);
+                        localStorage.setItem('user_info', JSON.stringify(userInfo));
+                        // Simpan juga di sessionStorage (untuk sesi saat ini)
+                         sessionStorage.setItem('currentUser', JSON.stringify({
+                            id: userInfo.id || userInfo.sub, // Gunakan id atau sub
+                            name: userInfo.name,
+                            picture: userInfo.picture,
+                            email: userInfo.email
+                         }));
+                        // Hapus hash dari URL agar tidak terlihat
+                        history.replaceState(null, '', window.location.pathname);
+
+                        // Set currentUser dan update UI
+                        currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+                        updateUIForLogin();
+                         console.log("✅ User berhasil login:", currentUser);
+
+                    } else {
+                        throw new Error("Gagal mendapatkan data user dari Google.");
+                    }
+                } catch (error) {
+                    console.error("❌ Login gagal setelah redirect:", error);
+                    alert('Login gagal. Silakan coba lagi!');
+                    handleLogout(); // Pastikan logout jika gagal
+                }
+            } else {
+                 console.log("🔍 Tidak ada access token di hash URL. Mengecek Local Storage/Session Storage.");
+                 // Tidak ada token baru di hash, cek apakah sudah login sebelumnya
+                 checkLoginStatus();
+            }
+        }
+
+        // Cek status login dari storage saat halaman dimuat (Diadaptasi dari watch.js checkLoginStatus)
+        function checkLoginStatus() {
+            const storedUser = sessionStorage.getItem('currentUser') || localStorage.getItem('user_info'); // Cek session dulu, fallback ke local
+            const storedToken = localStorage.getItem('access_token');
+
+            if (storedUser && storedToken) {
+                try {
+                     // Parse user info
+                     const userInfo = JSON.parse(storedUser);
+                     // Basic check if data looks valid
+                     if (userInfo && (userInfo.id || userInfo.sub) && userInfo.name && userInfo.picture) {
+                        // Set currentUser
+                        currentUser = {
+                            id: userInfo.id || userInfo.sub,
+                            name: userInfo.name,
+                            picture: userInfo.picture,
+                             email: userInfo.email // Mungkin ada email
+                        };
+                        console.log("✅ User ditemukan di storage:", currentUser);
+                        updateUIForLogin(); // Update UI ke login state
+
+                        // Opsional: Verifikasi token di background jika perlu (lebih kompleks)
+                        // Untuk simulasi Local Storage ini, kita asumsikan token valid jika ada
+                     } else {
+                         throw new Error('Invalid user data in storage.');
+                     }
+                } catch (error) {
+                    console.error('Error reading user from storage:', error);
+                    handleLogout(); // Bersihkan storage jika data rusak
+                }
+            } else {
+                 console.log("❌ User tidak ditemukan di storage.");
+                 updateUIForLogout(); // Update UI ke logout state
+            }
+        }
+
+
+        // Update UI berdasarkan status login (Diadaptasi dari watch.js updateUIForLogin/updateUIForLogout)
+        function updateUIForLogin() {
+            console.log("🛠️ Updating UI to Login state...");
+            document.getElementById('user-info').style.display = 'flex'; // Tampilkan info user
+            document.getElementById('user-pic').src = currentUser.picture;
+            document.getElementById('user-name').textContent = `Login sebagai ${currentUser.name}`;
+
+            document.getElementById('comment-text').disabled = false; // Aktifkan textarea
+            document.getElementById('post-comment-btn').disabled = false; // Aktifkan tombol kirim
+            document.getElementById('comment-login-prompt').style.display = 'none'; // Sembunyikan prompt login
+
+            // Aktifkan tombol rating
+            document.getElementById('like-btn').disabled = false;
+            document.getElementById('dislike-btn').disabled = false;
+            document.getElementById('rating-info').style.display = 'none'; // Sembunyikan info login untuk rating
+
+            document.getElementById('signout-btn').style.display = 'inline-block'; // Tampilkan tombol logout
+
+            // Refresh komentar dan rating setelah UI login diupdate
+            loadComments();
+            loadRatings();
+        }
+
+        function updateUIForLogout() {
+            console.log("🛠️ Updating UI to Logout state...");
+            currentUser = null; // Pastikan user null
+            document.getElementById('user-info').style.display = 'none'; // Sembunyikan info user
+
+            document.getElementById('comment-text').disabled = true; // Non-aktifkan textarea
+            document.getElementById('comment-text').value = ''; // Kosongkan textarea
+            document.getElementById('post-comment-btn').disabled = true; // Non-aktifkan tombol kirim
+            document.getElementById('comment-login-prompt').style.display = 'block'; // Tampilkan prompt login
+
+            // Non-aktifkan tombol rating
+            document.getElementById('like-btn').disabled = true;
+            document.getElementById('dislike-btn').disabled = true;
+            // Reset tampilan tombol like/dislike
+            likeBtn.classList.remove('liked');
+            dislikeBtn.classList.remove('disliked');
+            likeBtn.querySelector('i').className = 'far fa-thumbs-up'; // Ikon outline
+            dislikeBtn.querySelector('i').className = 'far fa-thumbs-down'; // Ikon outline
+
+            document.getElementById('rating-info').style.display = 'block'; // Tampilkan info login untuk rating
+
+
+            document.getElementById('signout-btn').style.display = 'none'; // Sembunyikan tombol logout
+
+             // Refresh komentar (hanya menampilkan yang "publik" jika ada)
+             loadComments();
+             // Reset tampilan count rating jika diperlukan (atau biarkan count global terakhir)
+             // loadRatings(); // Jika loadRatings di sini, akan menampilkan count global terakhir
+        }
+
+
+        // Handler tombol logout (Sudah ada di atas)
+        // document.getElementById('signout-btn').addEventListener('click', handleLogout);
+
+        // Handler klik link "login" di prompt komentar (Sudah ada di atas)
+        // document.getElementById('signin-link').addEventListener('click', handleLogin);
+
+
+        // --- Komentar (Simulasi dengan Local Storage) (Dari watch.js)---
+
+        const COMMENTS_STORAGE_KEY = 'myanime_comments'; // Key untuk Local Storage komentar
+        const commentsListElement = document.getElementById('comments-list');
+        const commentTextarea = document.getElementById('comment-text');
+        const postCommentBtn = document.getElementById('post-comment-btn');
+
+        // Load komentar dari Local Storage
+        function loadComments() {
+            const storedComments = localStorage.getItem(COMMENTS_STORAGE_KEY);
+            let allComments = storedComments ? JSON.parse(storedComments) : [];
+
+            // Filter komentar hanya untuk anime ini
+            // Pastikan comment.animeSlug ada sebelum trim/toLowerCase
+            const animeComments = allComments.filter(comment =>
+                 comment.animeSlug && comment.animeSlug.trim().toLowerCase() === animeSlug.trim().toLowerCase()
+            );
+
+            displayComments(animeComments);
+        }
+
+        // Simpan komentar ke Local Storage
+        // Fungsi ini sekarang hanya menerima array komentar UNTUK ANIME INI
+        function saveComments(currentAnimeComments) {
+            const storedComments = localStorage.getItem(COMMENTS_STORAGE_KEY);
+            let allComments = storedComments ? JSON.parse(storedComments) : [];
+
+            // Hapus komentar lama untuk anime ini dari daftar semua komentar
+            allComments = allComments.filter(comment =>
+                !(comment.animeSlug && comment.animeSlug.trim().toLowerCase() === animeSlug.trim().toLowerCase())
+            );
+
+            // Gabungkan komentar dari anime lain dengan komentar baru/terupdate untuk anime ini
+            const updatedAllComments = allComments.concat(currentAnimeComments);
+
+            localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(updatedAllComments));
+            console.log("Komentar disimpan:", updatedAllComments); // Debugging
+        }
+
+
+        // Tampilkan komentar di UI
+        function displayComments(comments) {
+            commentsListElement.innerHTML = ''; // Bersihkan daftar komentar lama
+
+            if (!comments || comments.length === 0) {
+                commentsListElement.innerHTML = '<p style="text-align:center; color:#ccc;">Belum ada komentar. Jadilah yang pertama!</p>';
+                return;
+            }
+
+            // Urutkan komentar terbaru di atas
+            comments.sort((a, b) => b.timestamp - a.timestamp);
+
+            comments.forEach(comment => {
+                const commentElement = document.createElement('div');
+                commentElement.className = 'comment-item'; // Class untuk style komentar
+                commentElement.dataset.id = comment.id; // Simpan ID komentar di elemen
+
+                const date = new Date(comment.timestamp);
+                // Format tanggal dan waktu yang lebih mudah dibaca
+                const formattedDate = date.toLocaleString('id-ID', {
+                    year: 'numeric', month: 'short', day: 'numeric',
+                    hour: '2-digit', minute: '2-digit'
+                });
+
+                 // Tentukan apakah user saat ini adalah pemilik komentar
+                 const isOwner = currentUser && currentUser.id === comment.userId;
+
+                commentElement.innerHTML = `
+                    <div class="comment-header">
+                        <img src="${comment.userPic || 'Gambar/default-profile.png'}" alt="${comment.userName}" class="comment-user-pic">
+                        <span class="comment-user-name">${comment.userName || 'Pengguna Anonim'}</span>
+                        <span class="comment-timestamp">${formattedDate}</span>
+                    </div>
+                    <div class="comment-body">
+                        <p class="comment-text">${comment.text}</p>
+                        <textarea class="comment-edit-text" style="display:none;">${comment.text}</textarea>
+                    </div>
+                    <div class="comment-actions">
+                        ${isOwner ? `
+                            <button class="edit-comment-btn"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="delete-comment-btn"><i class="fas fa-trash-alt"></i> Hapus</button>
+                        ` : ''}
+                    </div>
+                `;
+                 // Tambahkan event listener di sini saat elemen dibuat
+                 if (isOwner) {
+                     commentElement.querySelector('.edit-comment-btn').addEventListener('click', handleEditComment);
+                     commentElement.querySelector('.delete-comment-btn').addEventListener('click', handleDeleteComment);
+                 }
+
+                commentsListElement.appendChild(commentElement);
+            });
+        }
+
+        // Handler tombol kirim komentar
+        postCommentBtn.addEventListener('click', () => {
+            const text = commentTextarea.value.trim();
+
+            if (text === '' || !currentUser) {
+                alert('Silakan login dan tulis komentar sebelum mengirim.');
+                return; // Jangan kirim jika kosong atau belum login
+            }
+
+            const newComment = {
+                id: Date.now() + Math.random(), // ID lebih unik (timestamp + random)
+                animeSlug: animeSlug.trim().toLowerCase(), // Simpan slug anime dalam lowercase
+                userId: currentUser.id,
+                userName: currentUser.name,
+                userPic: currentUser.picture,
+                text: text,
+                timestamp: Date.now() // Waktu dibuat
+            };
+
+            const storedComments = localStorage.getItem(COMMENTS_STORAGE_KEY);
+            let allComments = storedComments ? JSON.parse(storedComments) : [];
+
+            // Filter komentar dari anime lain
+            const commentsFromOtherAnimes = allComments.filter(comment =>
+                 !(comment.animeSlug && comment.animeSlug.trim().toLowerCase() === animeSlug.trim().toLowerCase())
+            );
+
+             // Dapatkan komentar yang sudah ada untuk anime ini
+            const currentAnimeComments = allComments.filter(comment =>
+                 comment.animeSlug && comment.animeSlug.trim().toLowerCase() === animeSlug.trim().toLowerCase()
+            );
+
+             // Gabungkan komentar yang sudah ada + komentar baru untuk anime ini
+            const updatedCurrentAnimeComments = currentAnimeComments.concat([newComment]);
+
+            // Gabungkan kembali dengan komentar dari anime lain
+            const updatedAllComments = commentsFromOtherAnimes.concat(updatedCurrentAnimeComments);
+
+
+            localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(updatedAllComments));
+
+
+            commentTextarea.value = ''; // Kosongkan textarea
+            loadComments(); // Refresh daftar komentar
+        });
+
+        // Handler tombol edit komentar
+        function handleEditComment(event) {
+             const button = event.target.closest('.edit-comment-btn');
+             const commentElement = button.closest('.comment-item');
+             const commentId = parseFloat(commentElement.dataset.id); // ID sekarang float
+             const commentTextElement = commentElement.querySelector('.comment-text');
+             const commentEditTextarea = commentElement.querySelector('.comment-edit-text');
+
+             // Jika sedang dalam mode edit, simpan perubahan
+             if (commentElement.classList.contains('editing')) {
+                 const newText = commentEditTextarea.value.trim();
+                 if (newText === '') {
+                     alert('Komentar tidak boleh kosong!');
+                     return;
+                 }
+
+                 const storedComments = localStorage.getItem(COMMENTS_STORAGE_KEY);
+                 let allComments = storedComments ? JSON.parse(storedComments) : [];
+
+                 // Cari dan update komentar (pastikan ID dan slug cocok)
+                 const commentToEdit = allComments.find(comment =>
+                     comment.id === commentId && comment.animeSlug && comment.animeSlug.trim().toLowerCase() === animeSlug.trim().toLowerCase()
+                 );
+
+                 // Pastikan user yang login adalah pemilik komentar
+                 if (commentToEdit && currentUser && currentUser.id === commentToEdit.userId) {
+                     commentToEdit.text = newText;
+                     localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(allComments)); // Simpan semua komentar yang sudah diupdate
+
+                     // Update UI
+                     commentTextElement.textContent = newText;
+                     commentTextElement.style.display = 'block';
+                     commentEditTextarea.style.display = 'none';
+                     button.innerHTML = '<i class="fas fa-edit"></i> Edit'; // Kembalikan teks tombol
+                     commentElement.classList.remove('editing');
+                 } else {
+                     alert('Komentar tidak ditemukan atau Anda tidak memiliki izin untuk mengedit.');
+                     loadComments(); // Refresh jika state di storage beda
+                 }
+
+             } else { // Masuk mode edit
+                 commentTextElement.style.display = 'none';
+                 commentEditTextarea.style.display = 'block';
+                 button.innerHTML = '<i class="fas fa-save"></i> Simpan'; // Ubah teks tombol
+                 commentElement.classList.add('editing');
+                 commentEditTextarea.focus(); // Fokuskan ke textarea edit
+             }
+        }
+
+        // Handler tombol hapus komentar
+        function handleDeleteComment(event) {
+            // Pastikan user yang login adalah pemilik komentar sebelum menghapus
+             const button = event.target.closest('.delete-comment-btn');
+             const commentElement = button.closest('.comment-item');
+             const commentId = parseFloat(commentElement.dataset.id); // ID sekarang float
+
+            // Cek di storage apakah user yang login adalah pemilik komentar ini
+             const storedCommentsCheck = localStorage.getItem(COMMENTS_STORAGE_KEY);
+             const allCommentsCheck = storedCommentsCheck ? JSON.parse(storedCommentsCheck) : [];
+             const commentToDeleteCheck = allCommentsCheck.find(comment =>
+                 comment.id === commentId && comment.animeSlug && comment.animeSlug.trim().toLowerCase() === animeSlug.trim().toLowerCase()
+             );
+
+            // Pastikan komentar ada dan user yang login adalah pemiliknya
+            if (!commentToDeleteCheck || !currentUser || currentUser.id !== commentToDeleteCheck.userId) {
+                 alert('Anda tidak memiliki izin untuk menghapus komentar ini.');
+                 return; // Hentikan proses hapus
+            }
+
+
+            if (!confirm('Yakin ingin menghapus komentar ini?')) {
+                return; // Batal jika user tidak yakin
+            }
+
+
+            const storedComments = localStorage.getItem(COMMENTS_STORAGE_KEY);
+            let allComments = storedComments ? JSON.parse(storedComments) : [];
+
+            // Filter komentar yang akan dihapus (pastikan ID dan slug cocok)
+            const updatedComments = allComments.filter(comment =>
+                 !(comment.id === commentId && comment.animeSlug && comment.animeSlug.trim().toLowerCase() === animeSlug.trim().toLowerCase())
+            );
+
+            localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(updatedComments));
+            loadComments(); // Refresh daftar komentar
+        }
+
+
+        // --- Rating (Simulasi dengan Local Storage) (Dari watch.js) ---
+
+        const RATINGS_STORAGE_KEY = 'myanime_ratings'; // Key untuk Local Storage count rating per anime
+        const USER_RATINGS_STORAGE_KEY = 'myanime_user_ratings'; // Key untuk Local Storage rating per user
+
+        const likeBtn = document.getElementById('like-btn');
+        const dislikeBtn = document.getElementById('dislike-btn');
+        const likeCountSpan = document.getElementById('like-count');
+        const dislikeCountSpan = document.getElementById('dislike-count');
+        const ratingInfo = document.getElementById('rating-info');
+
+
+        // Load rating dari Local Storage
+        function loadRatings() {
+            const storedRatings = localStorage.getItem(RATINGS_STORAGE_KEY);
+            // { slug: { likes: N, dislikes: M }, ... }
+            const ratings = storedRatings ? JSON.parse(storedRatings) : {};
+
+            const storedUserRatings = localStorage.getItem(USER_RATINGS_STORAGE_KEY);
+            // { userId: { liked: ['slug1'], disliked: ['slug2'], ... }, ... }
+            const userRatings = storedUserRatings ? JSON.parse(storedUserRatings) : {};
+
+            // Pastikan entry untuk anime ini ada (menggunakan lowercase slug)
+            const currentAnimeSlug = animeSlug.trim().toLowerCase();
+            if (!ratings[currentAnimeSlug]) {
+                ratings[currentAnimeSlug] = { likes: 0, dislikes: 0 };
+            }
+
+            // Tampilkan count
+            likeCountSpan.textContent = ratings[currentAnimeSlug].likes;
+            dislikeCountSpan.textContent = ratings[currentAnimeSlug].dislikes;
+
+            // Reset button states
+            likeBtn.classList.remove('liked');
+            dislikeBtn.classList.remove('disliked');
+            likeBtn.querySelector('i').className = 'far fa-thumbs-up'; // Ikon outline
+            dislikeBtn.querySelector('i').className = 'far fa-thumbs-down'; // Ikon outline
+
+
+            // Cek apakah user sudah login dan sudah memberi rating
+            if (currentUser) {
+                // Pastikan entry user ada
+                if (!userRatings[currentUser.id]) {
+                    userRatings[currentUser.id] = { liked: [], disliked: [] };
+                }
+
+                // Cek apakah user sudah like anime ini
+                if (userRatings[currentUser.id].liked.includes(currentAnimeSlug)) {
+                    likeBtn.classList.add('liked');
+                     likeBtn.querySelector('i').className = 'fas fa-thumbs-up'; // Ikon solid
+                }
+                // Cek apakah user sudah dislike anime ini
+                if (userRatings[currentUser.id].disliked.includes(currentAnimeSlug)) {
+                    dislikeBtn.classList.add('disliked');
+                     dislikeBtn.querySelector('i').className = 'fas fa-thumbs-down'; // Ikon solid
+                }
+                // Update UI untuk login (sudah dipanggil di updateUIForLogin)
+                // likeBtn.disabled = false;
+                // dislikeBtn.disabled = false;
+                // ratingInfo.style.display = 'none';
+
+            } else {
+                // Update UI untuk logout (sudah dipanggil di updateUIForLogout)
+                 // likeBtn.disabled = true;
+                 // dislikeBtn.disabled = true;
+                 // ratingInfo.style.display = 'block';
+            }
+
+            // Simpan state ratings dan userRatings (meskipun hanya load, untuk memastikan struktur)
+            localStorage.setItem(RATINGS_STORAGE_KEY, JSON.stringify(ratings));
+            localStorage.setItem(USER_RATINGS_STORAGE_KEY, JSON.stringify(userRatings));
+
+            console.log("Rating dimuat untuk slug:", currentAnimeSlug, ratings[currentAnimeSlug]); // Debugging
+            console.log("Rating user dimuat untuk user:", currentUser?.id, userRatings[currentUser?.id]); // Debugging
+        }
+
+        // Handler tombol Like (Dari watch.js)
+        likeBtn.addEventListener('click', () => {
+            if (!currentUser) {
+                 alert('Silakan login untuk memberikan rating.');
+                 return; // Pastikan login
+            }
+
+            const storedRatings = localStorage.getItem(RATINGS_STORAGE_KEY);
+            const ratings = storedRatings ? JSON.parse(storedRatings) : {};
+            const storedUserRatings = localStorage.getItem(USER_RATINGS_STORAGE_KEY);
+            const userRatings = storedUserRatings ? JSON.parse(storedUserRatings) : {};
+
+             const currentAnimeSlug = animeSlug.trim().toLowerCase();
+
+             if (!ratings[currentAnimeSlug]) ratings[currentAnimeSlug] = { likes: 0, dislikes: 0 };
+             if (!userRatings[currentUser.id]) userRatings[currentUser.id] = { liked: [], disliked: [] };
+
+            const userLiked = userRatings[currentUser.id].liked.includes(currentAnimeSlug);
+            const userDisliked = userRatings[currentUser.id].disliked.includes(currentAnimeSlug);
+
+            // Logika Like:
+            if (userLiked) {
+                // Jika sudah pernah Like, batalkan Like
+                ratings[currentAnimeSlug].likes = Math.max(0, ratings[currentAnimeSlug].likes - 1); // Pastikan tidak kurang dari 0
+                userRatings[currentUser.id].liked = userRatings[currentUser.id].liked.filter(slug => slug !== currentAnimeSlug);
+            } else {
+                // Jika belum pernah Like
+                ratings[currentAnimeSlug].likes++;
+                userRatings[currentUser.id].liked.push(currentAnimeSlug);
+
+                // Jika sebelumnya Dislike, batalkan Dislike juga
+                if (userDisliked) {
+                    ratings[currentAnimeSlug].dislikes = Math.max(0, ratings[currentAnimeSlug].dislikes - 1); // Pastikan tidak kurang dari 0
+                    userRatings[currentUser.id].disliked = userRatings[currentUser.id].disliked.filter(slug => slug !== currentAnimeSlug);
+                }
+            }
+
+            // Simpan dan update UI
+            localStorage.setItem(RATINGS_STORAGE_KEY, JSON.stringify(ratings));
+            localStorage.setItem(USER_RATINGS_STORAGE_KEY, JSON.stringify(userRatings));
+            loadRatings(); // Refresh UI rating
+        });
+
+        // Handler tombol Dislike (Dari watch.js)
+        dislikeBtn.addEventListener('click', () => {
+            if (!currentUser) {
+                alert('Silakan login untuk memberikan rating.');
+                return; // Pastikan login
+            }
+
+            const storedRatings = localStorage.getItem(RATINGS_STORAGE_KEY);
+            const ratings = storedRatings ? JSON.parse(storedRatings) : {};
+            const storedUserRatings = localStorage.getItem(USER_RATINGS_STORAGE_KEY);
+            const userRatings = storedUserRatings ? JSON.parse(storedUserRatings) : {};
+
+            const currentAnimeSlug = animeSlug.trim().toLowerCase();
+
+             if (!ratings[currentAnimeSlug]) ratings[currentAnimeSlug] = { likes: 0, dislikes: 0 };
+             if (!userRatings[currentUser.id]) userRatings[currentUser.id] = { liked: [], disliked: [] };
+
+            const userLiked = userRatings[currentUser.id].liked.includes(currentAnimeSlug);
+            const userDisliked = userRatings[currentUser.id].disliked.includes(currentAnimeSlug);
+
+            // Logika Dislike:
+            if (userDisliked) {
+                // Jika sudah pernah Dislike, batalkan Dislike
+                ratings[currentAnimeSlug].dislikes = Math.max(0, ratings[currentAnimeSlug].dislikes - 1); // Pastikan tidak kurang dari 0
+                userRatings[currentUser.id].disliked = userRatings[currentUser.id].disliked.filter(slug => slug !== currentAnimeSlug);
+            } else {
+                // Jika belum pernah Dislike
+                ratings[currentAnimeSlug].dislikes++;
+                userRatings[currentUser.id].disliked.push(currentAnimeSlug);
+
+                // Jika sebelumnya Like, batalkan Like juga
+                if (userLiked) {
+                     ratings[currentAnimeSlug].likes = Math.max(0, ratings[currentAnimeSlug].likes - 1); // Pastikan tidak kurang dari 0
+                    userRatings[currentUser.id].liked = userRatings[currentUser.id].liked.filter(slug => slug !== currentAnimeSlug);
+                }
+            }
+
+            // Simpan dan update UI
+            localStorage.setItem(RATINGS_STORAGE_KEY, JSON.stringify(ratings));
+            localStorage.setItem(USER_RATINGS_STORAGE_KEY, JSON.stringify(userRatings));
+            loadRatings(); // Refresh UI rating
+        });
+
+
+        // --- Initial Load ---
+
+        // Gunakan DOMContentLoaded untuk memastikan DOM siap sebelum mengakses elemen
+        document.addEventListener('DOMContentLoaded', async () => {
+             console.log('DOM fully loaded. Starting initialization...');
+
+             // 1. Inisialisasi Auth (cek hash URL & storage)
+             // Ini akan set `currentUser` dan memanggil `updateUIForLogin/Logout`
+             await initAuth();
+
+             // 2. Load data streaming (episode)
+             // Fungsi loadStreamingData akan memanggil loadComments dan loadRatings
+             // setelah data anime berhasil dimuat. Ini penting agar komentar/rating
+             // diload SETELAH kita tahu `animeSlug` dan SETELAH status login
+             // (currentUser) diperbarui oleh initAuth.
+             loadStreamingData();
+
+             // Tambahkan event listener untuk tombol logout dan link signin setelah DOM siap
+             document.getElementById('signout-btn').addEventListener('click', handleLogout);
+             document.getElementById('signin-link').addEventListener('click', handleLogin);
+        });
+
+
     </script>
+    <!-- ================================================== -->
+    <!-- --- AKHIR KODE JAVASCRIPT --- -->
+    <!-- ================================================== -->
+
 </body>
 </html>

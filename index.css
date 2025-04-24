@@ -18,19 +18,19 @@
   /* Responsif search input */
   #search-input {
     width: 100%;
-    max-width: 600px;
+    max-width: 600px; /* Pastikan max-width ini tidak mengganggu di mobile kecil */
     padding: 12px 20px;
     border: 2px solid #ffa200;
     border-radius: 25px;
     background: rgba(255,255,255,0.1);
     color: white;
     transition: all 0.3s ease;
-}
+  }
 
-#search-input:focus {
-    outline: none;
-    box-shadow: 0 0 15px rgba(255,162,0,0.5);
-}
+  #search-input:focus {
+      outline: none;
+      box-shadow: 0 0 15px rgba(255,162,0,0.5);
+  }
   /* Responsif anime list */
   .anime-list {
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
@@ -38,8 +38,8 @@
   }
 
   .anime-item {
-    width: 100%;
-    padding: 10px;
+    width: 100%; /* Ini mungkin terlalu lebar, biarkan minmax di grid yang atur */
+    padding: 10px; /* Biarkan padding item 15px seperti style umum jika cocok */
   }
 
   .anime-item img {
@@ -56,22 +56,22 @@
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
-}
+  }
 
-.stylebutton:hover {
+  .stylebutton:hover {
     /* Efek hover */
     background-color: #ff8c00;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
+  }
 
-/* Untuk tampilan mobile */
-@media (max-width: 768px) {
-    .stylebutton {
-        padding: 6px 12px;
-        font-size: 0.9em;
-    }
-}
+  /* Untuk tampilan mobile */
+  @media (max-width: 768px) { /* Ini media query bersarang, sebaiknya di luar */
+      .stylebutton {
+          padding: 6px 12px;
+          font-size: 0.9em;
+      }
+  }
   /* Responsif main content */
   .main img {
     width: 80%;
@@ -89,15 +89,17 @@
     padding: 8px;
   }
 
-  /* Responsif footer */
+  /* HAPUS style responsif footer lama yang konflik di sini */
+  /*
   .footer-section {
-    flex-direction: column;
-  }
+      flex-direction: column;
+    }
 
-  .footer-item {
-    width: 100%;
-    margin-bottom: 20px;
-  }
+    .footer-item {
+      width: 100%;
+       margin-bottom: 20px;
+    }
+  */
 
   /* Responsif video player */
   .video {
@@ -106,7 +108,16 @@
     aspect-ratio: 16/9;
   }
 
+} /* Akhir dari media query @media (max-width: 768px) pertama */
+
+/* Style button responsive stylebutton - DIPINDAH KE LUAR MEDIA QUERY BERSARANG */
+@media (max-width: 768px) {
+    .stylebutton {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
 }
+
 
 @media (max-width: 480px) {
   /* Penyesuaian untuk mobile kecil */
@@ -149,7 +160,7 @@ img {
   .anime-item img:hover {
     transform: none;
   }
-  
+
   .main a:hover {
     background: initial;
     animation: none;
@@ -167,7 +178,7 @@ body {
   body::-webkit-scrollbar {
     display: none; /* Untuk Chrome, Edge, Safari */
   }
-  
+
   .banner {
     width: 100%;
     height: 100vh;
@@ -177,63 +188,63 @@ body {
     z-index: -1;
     overflow: hidden;
   }
-  
+
   .banner video {
     position: absolute;
     object-fit: cover;
     width: 100%;
-    height: 79%;
-    background: linear-gradient(to bottom, #181818);
+    height: 79%; /* Sesuaikan jika perlu */
+    background: linear-gradient(to bottom, #181818); /* Atau warna video */
   }
-  
+
   .desktop {
     display: block; /* Tampilkan video desktop */
   }
-  
+
   .mobile {
     display: none; /* Sembunyikan video mobile */
   }
-  
-  @media (max-width: 767px) {
+
+  @media (max-width: 767px) { /* Mirip 768px, pastikan tidak konflik */
     .banner {
       height: 95vh;
     }
   }
-  
+
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
   }
-  
+
   .container a {
     margin: none;
     text-decoration: none;
     color: #ccc;
   }
-  
+
   .container a:hover {
     text-decoration: underline;
     color: #ffa200;
   }
-  
+
   img {
-    margin: 0;
-    justify-content: center;
-    width: 200px;
+    /* margin: 0; /* Ini bisa konflik, sebaiknya atur di elemen spesifik */
+    /* justify-content: center; /* Ini bukan properti CSS */
+    /* width: 200px; /* Ini default gambar? Sebaiknya biarkan img { max-width: 100%; height: auto; } dan atur width di elemen spesifik */
     height: auto;
   }
-  
-  .logo-head {
+
+  .logo-head { /* Tidak ada di HTML? */
     justify-content: center;
     margin: auto;
   }
-  
-  .nav1 {
+
+  .nav1 { /* Tidak ada di HTML? */
     position: sticky;
     top: 0;
   }
-  
+
   @import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
 
 .title {
@@ -265,14 +276,14 @@ body {
 }
 
 @keyframes fire {
-    0% { 
-        text-shadow: 0 0 10px #ff6b00, 
-                     0 0 20px #ff6b00, 
+    0% {
+        text-shadow: 0 0 10px #ff6b00,
+                     0 0 20px #ff6b00,
                      0 0 30px #ff6b00;
     }
-    100% { 
-        text-shadow: 0 0 20px #ff6b00, 
-                     0 0 40px #ff6b00, 
+    100% {
+        text-shadow: 0 0 20px #ff6b00,
+                     0 0 40px #ff6b00,
                      0 0 50px #ff6b00;
     }
 }
@@ -285,16 +296,16 @@ body {
 .title span:nth-child(5) { animation-delay: 0.7s; }
 .title span:nth-child(6) { animation-delay: 0.8s; }
 .title span:nth-child(7) { animation-delay: 0.9s; }
-  
+
   header {
     text-align: center;
   }
-  
+
   header h1 {
     font-size: 3em;
     margin: 0;
   }
-  
+
   /* About Button */
 
   .abt a {
@@ -328,7 +339,7 @@ body {
     border-radius: 15px;
     opacity: 70%;
   }
-  
+
   nav ul {
     font-weight: bold;
     list-style: none;
@@ -338,36 +349,36 @@ body {
     justify-content: space-around;
     align-items: center;
   }
-  
+
   nav li {
     margin: 10px;
-    border-width: auto;
+    border-width: auto; /* Ini bukan properti CSS */
   }
-  
+
   nav a {
     color: #ffa200;
     text-decoration: none;
     border-radius: 10px;
     transition: background-color 0.3s ease;
   }
-  
+
   nav a:hover {
     text-decoration: underline;
-    color: blue;
+    color: blue; /* Warna biru mungkin kurang cocok dengan tema? Bisa ganti */
   }
-  
+
   .title {
     align-items: center;
     margin-top: 20px;
   }
 
-  
+
   /*  sugestion in index */
-  
+
   .suggestions {
     position: absolute;
-    top: 40px;
-    left: 50px;
+    top: 40px; /* Sesuaikan top agar di bawah search input */
+    left: 50px; /* Sesuaikan left/right agar sejajar search input */
     right: 50px;
     background-color: gray;
     border: 1px solid black;
@@ -377,87 +388,102 @@ body {
     z-index: 1000;
     display: none; /* Sembunyikan awalnya */
   }
-  
+
   .suggestion-item {
     color: white;
     padding: 10px;
     cursor: pointer;
-    font-display: auto;
+    /* font-display: auto; /* Ini properti @font-face */
   }
-  
+
   .suggestion-item:hover {
     background-color: #f0f0f0;
   }
-  
+
   .data {
     display: none;
   }
-  
+
   .nama h2 {
     color: #ffa200;
     font-size: 2em;
     margin-bottom: 10px;
   }
-  
+
   /* List anime */
-  
+
   .anime-list {
     justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    display: flex; /* Gunakan flexbox untuk tata letak utama */
+    flex-wrap: wrap; /* Izinkan item turun baris */
+    /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Ini properti Grid, konflik dengan display: flex */
     gap: 20px;
   }
-  
+
+  /* Perbaikan: Gunakan Grid untuk anime-list jika ingin tata letak kolom fleksibel */
+  /*
+  .anime-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Contoh minmax yang lebih lebar */
+      /* gap: 20px; */
+      /* justify-items: center; /* Pusatkan item di dalam cell grid */
+  /* } */
+
   .anime-list p {
     color: rgba(4, 235, 4, 0.452);
     transition: color 0.2s ease-in-out;
   }
-  
-  @media (max-width: 767px) {
+
+  @media (max-width: 767px) { /* Mirip 768px, pastikan tidak konflik */
     .anime-list {
       margin: 15px;
-      display: grid;
+      display: grid; /* Gunakan Grid di sini jika ingin, atau Flexbox konsisten */
       flex-wrap: wrap;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Contoh minmax mobile */
       gap: 17px;
+       justify-items: center; /* Pusatkan item di dalam cell grid mobile */
     }
   }
   .anime-item {
     background-color: #282828;
     border-radius: 15px;
     padding: 15px;
-    width: 85px;
+    width: 85px; /* Ini lebar tetap, mungkin perlu disesuaikan jika pakai Grid/Flexbox */
     height: auto;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
+    /* display: flex; /* Tambahkan display flex untuk menata konten di dalam item */
+    /* flex-direction: column; */
+    /* align-items: center; */
   }
-  
+
   .anime-item img {
-    justify-content: center;
-    width: 90px;
-    height: 120px;
+    justify-content: center; /* Ini bukan properti CSS */
+    width: 90px; /* Lebar tetap? Konflik dengan responsif di atas? */
+    height: 120px; /* Tinggi tetap? Konflik dengan responsif di atas? */
     border-radius: 8px;
     transition: transform 0.3s ease-in-out;
   }
-  
+
   .anime-item img:hover {
     transform: scale(1.4);
   }
-  
-  .anime-item h2 {
-    font-size: 20px;
+
+  .anime-item h2 { /* Ini untuk judul anime di dalam item */
+    font-size: 1em; /* Ukuran yang lebih wajar untuk judul di item kecil */
     margin: 10px 0;
+    word-break: break-word; /* Agar judul panjang tidak overflow */
+    overflow-wrap: break-word; /* Alternatif untuk word-break */
   }
-  
-  .anime-item span {
+
+  .anime-item span { /* Untuk teks status? */
     color: white;
     position: relative;
     font-size: small;
   }
-  
+
   /* button Home */
-  
+
   .home {
     font-size: 25px;
     background-color: rgb(48, 45, 45);
@@ -467,7 +493,7 @@ body {
     color: white;
     transition: text-decoration 0.3s;
   }
-  
+
   .home:hover {
     text-decoration: underline;
     color: blue;
@@ -482,78 +508,81 @@ body {
     transition: text-decoration 0.3s;
     margin-left: 20px;
   }
-  
+
   .back:hover {
     text-decoration: underline;
     color: blue;
   }
   .main {
     text-align: center;
-    margin-top: 5%;
-    justify-content: center;
+    margin-top: 5%; /* Mungkin perlu disesuaikan */
+    justify-content: center; /* Ini bukan properti CSS */
   }
-  
-  .main img {
+
+  .main img { /* Gambar di halaman detail? */
     margin-bottom: 50px;
-    width: 350px;
+    width: 350px; /* Lebar tetap? Konflik dengan responsif? */
     background-color: #383434;
     padding: 25px;
     border-radius: 30px;
   }
-  
-  @media only screen and (max-width: 767px) {
+
+  @media only screen and (max-width: 767px) { /* Mirip 768px */
     .main img {
       width: 200px;
       height: 250px;
     }
   }
-  
-  .main h2 {
+
+  .main h2 { /* Judul di halaman detail? */
     font-weight: bold;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Ini properti flexbox */
   }
-  
-  @media only screen and (max-width: 767px) {
+
+  @media only screen and (max-width: 767px) { /* Mirip 768px */
     .main h2 {
-      display: flexbox;
+      /* display: flexbox; /* Ini nilai display yang tidak valid */
     }
   }
-  .main h3 {
+  .main h3 { /* Sub judul di halaman detail? */
     margin-bottom: 15px;
-    margin-left: 50px;
+    margin-left: 50px; /* Margin tetap? Konflik responsif? */
     text-align: start;
     font-size: 20px;
     color: #ffa200;
   }
-  
-  @media only screen and (max-width: 767px) {
+
+  @media only screen and (max-width: 767px) { /* Mirip 768px */
     .main h3 {
-      text-align: start;
+      text-align: start; /* Tetap start? Di mobile center lebih umum */
+      margin-left: 0; /* Hilangkan margin kiri tetap di mobile */
+      text-align: center; /* Center di mobile */
     }
   }
-  
-  .main p {
-    margin: 25px;
+
+  .main p { /* Paragraf deskripsi di halaman detail? */
+    margin: 25px; /* Margin tetap? Konflik responsif? */
     letter-spacing: 1px;
     text-align: left;
-    align-content: center;
+    align-content: center; /* Ini properti grid/flex container */
     background-color: #383434;
     border-radius: 20px;
     padding: 10px;
   }
-  
-  @media only screen and (max-width: 767px) {
+
+  @media only screen and (max-width: 767px) { /* Mirip 768px */
     .main p {
       text-align: center;
+      margin: 15px; /* Sesuaikan margin di mobile */
     }
   }
-  
-  .batas {
+
+  .batas { /* Tidak ada di HTML? */
     margin: 20px;
     border-color: #ffa200;
   }
-  
-  .main a {
+
+  .main a { /* Link download di halaman detail? */
     text-align: center;
     padding: 20px;
     font-size: 15px;
@@ -564,16 +593,16 @@ body {
     background-color: #282828;
     border-radius: 10px;
   }
-  
+
   .main a:hover {
-    background-color: #ffa200;
+    background-color: #ffa200; /* Ini akan di-override oleh background linear gradient */
     background: linear-gradient(-45deg, #282828 40%, #fafafa 50%, #282828 60%);
     background-size: 300%;
     background-position-x: 100%;
     animation: shimmer 1.5s infinite linear;
   }
-  
-  @media only screen and (max-width: 767px) {
+
+  @media only screen and (max-width: 767px) { /* Mirip 768px */
     .main a:active {
       background-color: #ffa200;
       background: linear-gradient(-45deg, #282828 40%, #fafafa 50%, #282828 60%);
@@ -587,21 +616,21 @@ body {
       background-position-x: 0%;
     }
   }
-  
 
-  /* fotter di file index */
-  
+
+  /* HAPUS Style footer lama di file index */
+  /*
   .footer1 {
     justify-content: space-between;
     padding: 15px;
     background-color: #282828;
   }
-  
+
   .footer1 .footer-left {
     color: #ffa200;
     margin: 0;
   }
-  
+
   .footer1 .footer-dekripsi {
     word-spacing: auto;
     text-align: auto;
@@ -609,8 +638,9 @@ body {
     padding: 10px;
     margin: 0;
   }
-  
-  
+  */
+
+
   /* Video dari File Watch */
   .video {
     position: relative;
@@ -620,8 +650,8 @@ body {
     height: 460px; /* Tinggi untuk desktop (rasio 16:9) */
     margin: 0 auto; /* Untuk memusatkan kontainer */
   }
-  
-  @media (max-width: 767px) {
+
+  @media (max-width: 767px) { /* Mirip 768px */
     .video {
       position: relative;
       width: 100%; /* Lebar penuh sesuai layar */
@@ -631,57 +661,204 @@ body {
       margin: 0 auto; /* Tengah pada layar besar */
     }
   }
-  
-  .main h2 {
+
+  .main h2 { /* Judul di halaman detail? */
     color: #ffa200;
     font-size: 35px;
   }
-  
-  /* Footer Styles */
+
+  /* ================================================== */
+  /* --- FOOTER BARU (GANTI STYLE FOOTER LAMA DI SINI)--- */
+  /* ================================================== */
+
   .footer {
-    background-color: #1f1f1f;
-    color: #fff;
-    padding: 20px;
-    text-align: left;
+    background-color: #1f1f1f; /* Warna background footer */
+    color: #fff; /* Warna teks umum di footer */
+    padding: 20px 0; /* Padding atas bawah 20px, kiri kanan 0 */
+    font-size: 14px; /* Ukuran font default footer */
   }
-  
+
   .footer-section {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
+    display: flex; /* Gunakan Flexbox untuk menata item-item di footer */
+    justify-content: space-around; /* Distribusikan ruang antar item */
+    align-items: flex-start; /* Item rata atas */
+    flex-wrap: wrap; /* Izinkan item turun ke baris baru di layar kecil */
+    max-width: 1200px; /* Batasi lebar maksimal footer seperti container utama */
+    margin: 0 auto; /* Pusatkan footer */
+    padding: 0 20px; /* Padding kiri kanan agar konten tidak menempel tepi */
   }
-  
+
   .footer-item {
-    width: 30%;
-    padding: 5px;
+    width: 30%; /* Setiap item mengambil sekitar 30% lebar */
+    min-width: 200px; /* Pastikan item punya lebar minimum */
+    margin-bottom: 20px; /* Margin bawah untuk jarak antar item saat flex-wrap */
+    padding: 0 10px; /* Tambahkan padding horizontal antar kolom di desktop */
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+    text-align: left; /* Default rata kiri */
   }
-  
-  .footer-icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-  
+
   .footer-item h3 {
-    display: inline-block;
-    margin: 0;
+    display: block; /* Pastikan h3 mengambil baris penuh */
+    margin: 0 0 10px 0; /* Margin bawah judul */
     font-size: 18px;
     border-bottom: 1px solid #444;
     padding-bottom: 5px;
-    color: orange;
+    color: orange; /* Warna judul orange */
+    text-align: left; /* Default rata kiri */
   }
-  
+
+  /* Style untuk kontainer link sosial media dalam satu item (Ikuti & Support) */
+  .social-links-container {
+      display: flex; /* Gunakan flexbox */
+      flex-direction: column; /* Defaultnya tumpuk vertikal (untuk mobile) */
+      gap: 10px; /* Jarak antar setiap baris link sosial */
+      margin-top: 10px; /* Jarak dari judul "Ikuti & Support" */
+      align-items: flex-start; /* Rata kiri item link di desktop */
+  }
+
+  /* Style untuk setiap item link sosial (<p> tag) */
   .footer-item p {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #ccc;
+      margin: 0; /* Reset margin default p */
+      display: flex; /* Agar ikon dan teks sejajar */
+      align-items: center; /* Rata tengah vertikal ikon dan teks */
+      font-size: 14px; /* Ukuran font untuk teks link sosial */
   }
-  
+
+
+  /* Style umum untuk semua ikon sosial */
+  .social-icon {
+    margin-right: 8px; /* Jarak antara ikon dan teks */
+    vertical-align: middle; /* Agar ikon rata tengah vertikal dengan teks */
+    width: 20px; /* Ukuran default ikon, sedikit lebih kecil dari 24 */
+    height: auto; /* Tinggi otomatis agar aspek rasio gambar tetap terjaga */
+    color: #fff; /* Warna default untuk ikon Font Awesome (putih) */
+    transition: all 0.3s ease; /* Tambahkan transisi untuk animasi hover */
+    flex-shrink: 0; /* Mencegah ikon menyusut */
+  }
+
+  /* Style khusus untuk ikon Trakteer (jika menggunakan gambar) */
+  .trakteer-icon {
+    width: 20px; /* Pastikan ukurannya konsisten */
+    height: auto;
+    /* filter: grayscale(100%) brightness(2); /* Contoh: buat gambar jadi putih keabu-abuan */
+  }
+
+  /* Style untuk teks link di footer-item */
+  .footer-item p a {
+    color: #ccc; /* Warna teks link */
+    text-decoration: none; /* Hilangkan garis bawah default */
+    transition: color 0.3s ease; /* Transisi untuk warna teks saat hover */
+  }
+
+  /* Hover efek untuk teks link */
+  .footer-item p a:hover {
+    color: #ffa200; /* Warna saat dihover */
+    text-decoration: underline; /* Munculkan garis bawah saat dihover */
+  }
+
+  /* Hover animasi untuk ikon */
+  .social-icon:hover {
+    transform: scale(1.2); /* Perbesar ikon saat dihover */
+    /* Efek warna untuk ikon Font Awesome */
+    color: #ffa200; /* Warna saat dihover */
+    /* Efek untuk gambar (ikon Trakteer) */
+    filter: brightness(1.5); /* Membuat gambar sedikit lebih cerah saat dihover */
+    /* Kamu juga bisa coba efek lain, contoh: box-shadow: 0 0 8px rgba(255, 162, 0, 0.5); */
+  }
+
+
+  /* --- Responsif untuk Footer --- */
+
+  /* Style untuk layar desktop (>= 769px) */
+  @media (min-width: 769px) {
+    .footer-section {
+        justify-content: space-between; /* Gunakan space-between untuk menyebar item lebih jauh */
+        gap: 20px; /* Jarak tambahan antar kolom jika perlu */
+    }
+
+    .footer-item {
+        width: 30%; /* Lebar tetap sekitar 30% */
+        margin-bottom: 0; /* Hilangkan margin bawah di desktop */
+        /* padding: 0 10px; /* Sudah di style umum, bisa disesuaikan */
+        text-align: left; /* Rata kiri konten di desktop */
+    }
+
+    .footer-item:nth-child(2) { /* Kolom Ikuti & Support */
+        /* Jika ingin kolom ini lebih sempit atau lebar, sesuaikan width */
+        /* width: 20%; */
+    }
+     .footer-item:nth-child(3) { /* Kolom Hubungi Kami */
+         /* Jika ingin kolom ini lebih sempit atau lebar, sesuaikan width */
+         /* width: 20%; */
+     }
+
+    /* Di layar lebar, buat link sosial menjadi horizontal */
+    .social-links-container {
+        flex-direction: row; /* Tampilkan item link secara horizontal */
+        flex-wrap: wrap; /* Izinkan wrap kalau barisnya panjang */
+        gap: 15px; /* Jarak horizontal antar setiap item link (ikon+teks) */
+        justify-content: flex-start; /* Rata kiri item link */
+    }
+
+    /* Di layar lebar, setiap item link sosial (ikon + teks) */
+    .footer-item p {
+         margin-right: 15px; /* Jarak antar setiap pasangan ikon+teks (alternatif gap di container) */
+         margin-bottom: 5px; /* Sedikit jarak bawah jika wrap */
+     }
+
+  }
+
+  /* Style untuk layar mobile (<= 768px) */
+  @media (max-width: 768px) {
+    .footer-section {
+        flex-direction: column; /* Item jadi vertikal */
+        align-items: center; /* Pusatkan item vertikal */
+        gap: 30px; /* Jarak antar blok footer di mobile */
+        padding: 0 10px; /* Padding kiri kanan di mobile */
+    }
+
+    .footer-item {
+        width: 95%; /* Ambil sebagian besar lebar di mobile */
+        min-width: auto; /* Hapus min-width di mobile */
+        margin-bottom: 0; /* Hilangkan margin bawah di sini, diganti gap di footer-section */
+        padding: 0; /* Hilangkan padding horizontal */
+        text-align: center; /* Pusatkan konten footer item */
+    }
+
+     .footer-item h3 {
+         text-align: center; /* Pastikan judul terpusat di mobile */
+         margin-bottom: 15px; /* Tambah jarak bawah judul di mobile */
+     }
+
+    /* Di mobile, link sosial tetap tumpuk vertikal */
+    .social-links-container {
+         flex-direction: column; /* Pastikan tumpuk vertikal di mobile */
+         align-items: center; /* Pusatkan item link di mobile */
+         gap: 10px; /* Jarak antar item link di mobile */
+         margin-top: 5px; /* Kurangi jarak atas di mobile */
+    }
+
+    /* Di mobile, setiap item link sosial (ikon + teks) */
+    .footer-item p {
+        justify-content: center; /* Pusatkan ikon + teks dalam satu link di mobile */
+        margin-right: 0; /* Hilangkan margin kanan di mobile */
+     }
+
+    /* Ukuran ikon di mobile */
+    .social-icon {
+        width: 18px; /* Sedikit lebih kecil lagi di mobile */
+    }
+  }
+
+  /* ================================================== */
+  /* --- AKHIR FOOTER BARU --- */
+  /* ================================================== */
+
+
   /* uji coba pagination */
-  
+
   /* elemen loading */
-  
+
   /* Efek blur di input search */
   #search-input {
     position: relative;
@@ -695,13 +872,13 @@ body {
     color: white;
     transition: all 0.3s ease;
   }
-  
+
   #search-input:focus {
     outline: none;
     box-shadow: 0 0 15px rgba(255, 162, 0, 0.5);
     border-color: #ff6b00;
   }
-  
+
   #search-input:hover {
     transform: scale(1.02);
     background: rgba(255, 255, 255, 0.15);
@@ -714,17 +891,18 @@ body {
   z-index: 1000;
   padding: 15px 0;
   transition: all 0.3s ease;
+  text-align: center; /* Pusatkan search container */
 }
-  
+
 @media (max-width: 768px) {
   .search-container {
     padding: 10px 0;
   }
-  
+
   #search-input {
     font-size: 14px;
     padding: 10px 15px;
-    max-width: 90%;
+    max-width: 90%; /* Sesuaikan lebar di mobile */
   }
 }
 
@@ -737,7 +915,7 @@ body {
     left: 0;
     pointer-events: none;
   }
-  
+
   .sparkle span {
     position: absolute;
     display: block;
@@ -748,7 +926,7 @@ body {
     opacity: 0;
     animation: sparkle 1.5s infinite ease-in-out;
   }
-  
+
   @keyframes sparkle {
     0% {
       transform: scale(0.5);
@@ -763,12 +941,12 @@ body {
       opacity: 0;
     }
   }
-  .animated-text {
+  .animated-text { /* Tidak ada di HTML? */
     display: inline-block;
     padding-left: 100%; /* Mulai dari luar layar */
     animation: scrollText 10s linear infinite; /* 5 detik per loop */
   }
-  
+
   @keyframes scrollText {
     0% {
       transform: translateX(25%); /* Mulai di luar kanan */
@@ -777,8 +955,8 @@ body {
       transform: translateX(-100%); /* Bergerak ke luar kiri */
     }
   }
-  
-  .fire-effect {
+
+  .fire-effect { /* Tidak ada di HTML? */
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -794,22 +972,22 @@ body {
     transform: translateX(-50%);
     opacity: 0.8;
   }
-  
+
   .fire-effect:nth-child(1) {
     animation-delay: 0s;
     transform: translate(-50%, 0);
   }
-  
+
   .fire-effect:nth-child(2) {
     animation-delay: 0.2s;
     transform: translate(-50%, -10px);
   }
-  
+
   .fire-effect:nth-child(3) {
     animation-delay: 0.4s;
     transform: translate(-50%, -20px);
   }
-  
+
   @keyframes fire-animation {
     0% {
       transform: translate(-50%, 0) scale(1);
@@ -824,14 +1002,14 @@ body {
       opacity: 0.8;
     }
   }
-  
-  .graimg {
+
+  .graimg { /* Tidak ada di HTML? */
     position: absolute;
     width: 100%; /* Sesuaikan dengan ukuran yang diinginkan */
     overflow: hidden;
     z-index: -1;
-    justify-content: center;
-    margin-top: -10;
+    justify-content: center; /* Bukan properti flex/grid container */
+    margin-top: -10; /* Ini nilai tidak valid */
   }
   @media (max-width: 767px) {
     .graimg {
@@ -843,7 +1021,7 @@ body {
     height: 100vh;
     margin-top: 10; /* Memastikan gambar mengisi area */
   }
-  
+
   .gradient {
     position: absolute;
     bottom: 0;
@@ -852,48 +1030,49 @@ body {
     height: 300%; /* Tinggi gradien */
     background: linear-gradient(to top, #181818, transparent);
   }
-  
-  #commentSection {
+
+  #commentSection { /* Tidak ada di HTML? */
     margin-top: 20px;
     display: block; /* Sembunyikan komentar secara default */
   }
-  
-  #comments {
+
+  #comments { /* Tidak ada di HTML? */
     border: 1px solid #ccc;
     padding: 10px;
     margin-top: 10px;
     max-height: 200px;
     overflow-y: auto;
   }
-  
-  textarea {
+
+  textarea { /* Tidak ada di HTML? */
     width: 100%;
     height: 50px;
   }
-  
 
-.favorite-btn {
+
+.favorite-btn { /* Tombol favorite di anime item */
     margin-top: 5px;
     padding: 8px 12px;
-    background-color: white;
+    background-color: white; /* Warna default putih */
     border: none;
     border-radius: 5px;
-    color: #181818;
+    color: #181818; /* Warna teks default */
     cursor: pointer;
+    /* transition: all 0.2s ease; /* Ini ada duplikat di bawah */
 }
 
 .favorite-btn:hover {
     background-color: #181818;
     color: white;
 }
-  
+
 /* CSS khusus untuk tombol Add to Favorite */
-.anime-item button {
+.anime-item button { /* Tombol 'Favorite' */
   display: block;
   width: calc(100% - 20px); /* Sesuaikan dengan padding container */
   margin: 12px auto 0;
   padding: 5px;
-  background-color: #dc3545;
+  background-color: #dc3545; /* Warna merah default */
   color: white;
   border: none;
   border-radius: 6px;
@@ -903,14 +1082,14 @@ body {
   transition: all 0.3s ease;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  position: relative;
-  overflow: hidden;
+  position: relative; /* Untuk efek visual jika ada */
+  overflow: hidden; /* Untuk efek visual jika ada */
 }
 
 .anime-item button:hover {
-  background-color: #cc0000;
+  background-color: #cc0000; /* Warna merah lebih gelap saat hover */
   transform: translateY(-2px);
-  box-shadow: 0 5px 12px rgba(255, 140, 0, 0.3);
+  box-shadow: 0 5px 12px rgba(255, 140, 0, 0.3); /* Box shadow orange saat hover */
 }
 
 .anime-item button:active {
@@ -919,6 +1098,8 @@ body {
 }
 
 /* Efek tambahan untuk alignment yang lebih baik */
+/* Sudah ditambahkan di .anime-item itu sendiri di style umum */
+/*
 .anime-item {
   position: relative;
   display: flex;
@@ -928,10 +1109,11 @@ body {
 
 .anime-item button {
   margin-top: auto; /* Akan mendorong tombol ke bawah */
-}
+/* }
+*/
 
 /* Profile Button */
-.profile-btn {
+.profile-btn { /* Tidak ada di HTML? */
   display: flex;
   align-items: center;
   gap: 10px;
@@ -939,7 +1121,7 @@ body {
   color: white !important;
 }
 
-.profile-img {
+.profile-img { /* Tidak ada di HTML? */
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -978,13 +1160,14 @@ body {
   background: #17a2b8;
 }
 
-.favorite-btn {
+/* Tombol love di pojok kanan atas anime item */
+.favorite-btn { /* Duplikat style? Gabungkan! */
   width: 32px;
   height: 32px;
   padding: 5px 8px;
   border-radius: 50%;
-  background-color: #ffffff;
-  color: #ff0000;
+  background-color: #ffffff; /* Warna default putih */
+  color: #ff0000; /* Warna ikon merah */
   border: 1px solid #ff0000;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -995,6 +1178,7 @@ body {
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 5; /* Pastikan di atas gambar */
 }
 
 .favorite-btn:hover {
@@ -1151,6 +1335,8 @@ body {
   text-shadow: 0 0 10px #ff6b00;
 }
 
+/* Keyframes sudah ada, tidak perlu duplikat */
+/*
 @keyframes title-bounce {
   0%, 60%, 100% { transform: translateY(0) scale(1); }
   30% { transform: translateY(-25px) scale(1.15); }
@@ -1160,6 +1346,7 @@ body {
   0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00; }
   100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; }
 }
+*/
 
 .sk-cube-grid {
   display: grid;
@@ -1178,11 +1365,14 @@ body {
   background-color: #ffa200;
   animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
 }
-
+/* Keyframes sudah ada, tidak perlu duplikat */
+/*
 @keyframes sk-cubeGridScaleDelay {
   0%, 70%, 100% { transform: scale3D(1, 1, 1); }
   35% { transform: scale3D(0, 0, 1); }
 }
+*/
+
 
 .network-status {
   position: absolute;
@@ -1214,7 +1404,8 @@ body {
   margin: 0 auto; /* Biar tetap sejajar di tengah */
   gap: 8px; /* Ngurangin jarak antar tombol */
 }
-
+/* Duplikat? Gabungkan! */
+/*
 .genre-list {
   display: flex;
   flex-wrap: wrap;
@@ -1222,6 +1413,7 @@ body {
   margin-top: 10px;
   transition: all 0.3s ease;
 }
+*/
 
 .genre-btn {
   padding: 8px 20px;
@@ -1264,7 +1456,8 @@ body {
   box-shadow: 0 5px 20px rgba(255, 162, 0, 0.4);
   animation: genreSelect 0.4s ease forwards;
 }
-
+/* Keyframes sudah ada, tidak perlu duplikat */
+/*
 @keyframes genreSelect {
   0% {
       transform: translateY(0);
@@ -1276,11 +1469,13 @@ body {
       transform: translateY(-3px);
   }
 }
+*/
 
 /* Efek slide untuk konten */
-.anime-list {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+.anime-list { /* Duplikat? Gabungkan! */
+  /* transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Sudah ada di atas */
   transform: translateY(0);
+  /* display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; */ /* Gabungkan dengan style di atas */
 }
 
 .anime-list.slide-up {
@@ -1304,6 +1499,7 @@ body {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  padding: 0 10px; /* Padding di header agar sejajar konten di bawah */
 }
 
 .genre-toggle {
@@ -1323,7 +1519,7 @@ body {
 }
 
 .genre-list-container {
-  max-height: 500px;
+  max-height: 500px; /* Tinggi maksimum saat terbuka */
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1336,12 +1532,15 @@ body {
 .genre-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 10px; /* Jarak antar tombol genre */
   margin-top: 15px;
-  padding: 5px 0;
+  padding: 5px 10px; /* Padding agar tombol tidak menempel tepi kontainer */
+  justify-content: center; /* Pusatkan tombol genre */
 }
 
 /* Tambahan untuk animasi scroll */
+/* Keyframes sudah ada, tidak perlu duplikat */
+/*
 @keyframes slideIn {
   from {
       transform: translateY(-10px);
@@ -1352,6 +1551,7 @@ body {
       opacity: 1;
   }
 }
+*/
 
 .genre-list-container:not(.collapsed) .genre-list {
   animation: slideIn 0.3s ease-out;

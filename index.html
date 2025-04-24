@@ -7,6 +7,7 @@
     <title>MyAnime</title>
     <link rel="stylesheet" href="index.css">
     <link rel="icon" href="Gambar/LogoMyanime (2).png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
    
@@ -92,15 +93,41 @@
     
 
            <!-- Footer -->
-           <footer class="footer1">
-            <div class="footer-left"><h1>INFO MAZZEHH..</h1></div>
-            <div class="footer-dekripsi">
-                <p>Maaf kalo ada kesalahan, masih ada perbaikan! Follow saya di 
-                    <a href="https://www.instagram.com/ransyah_32/">Instagram</a> / 
-                    <a href="https://trakteer.id/ransyah4">Trakteer</a>
-                </p>
-                <h3 style="color: limegreen;">Maaf format download masih Gdrive</h3>
-            </div>                                
+           <footer class="footer"> <!-- Mengganti class dari footer1 ke footer -->
+            <div class="footer-section"> <!-- Menggunakan class footer-section yang sudah ada di CSS kamu -->
+                <div class="footer-item"> <!-- Menggunakan class footer-item -->
+                    <h3>Hak Cipta</h3>
+                    <!-- Saran text hak cipta -->
+                    <p>Hak Cipta © 2024 MyAnime.</p>
+                    <p>Dibuat dengan oleh Ransyah.</p> <!-- Menambahkan nama pembuat -->
+                </div>
+                <div class="footer-item"> <!-- Menggunakan class footer-item -->
+                    <h3>Ikuti & Support</h3>
+                    <!-- Link Instagram dengan Icon -->
+                    <p>
+                        <i class="fab fa-instagram social-icon"></i> <!-- Tag ikon Font Awesome -->
+                        <a href="https://www.instagram.com/ransyah_32/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </p>
+                    <!-- Link Trakteer dengan Icon (menggunakan gambar) -->
+                    <p>
+                        <!-- Pastikan kamu punya file gambar logo trakteer, contoh: Gambar/trakteer_logo.png -->
+                        <!-- Ganti "Gambar/trakteer_logo.png" jika lokasi file gambarnya beda -->
+                        <img src="Gambar/trakteer_logo.png" alt=" " class="trakteer-icon social-icon"> <!-- Tag gambar ikon -->
+                        <a href="https://trakteer.id/ransyah4" target="_blank" rel="noopener noreferrer">Trakteer!</a>
+                    </p>
+                    <!-- Email juga bisa ditambahkan ikon -->
+                     <p>
+                         <i class="fas fa-envelope social-icon"></i> <!-- Ikon email dari Font Awesome -->
+                         <a href="mailto:rizky1234kb@gmail.com">Email</a> <!-- Ubah teks jadi Email lebih pendek -->
+                     </p>
+                <div class="footer-item"> <!-- Menggunakan class footer-item -->
+                    <h3>Hubungi Kami</h3>
+                    <!-- Menambahkan email -->
+                    <p><a href="mailto:rizky1234kb@gmail.com">rizky1234kb@gmail.com</a></p>
+                </div>
+            </div>
+            <!-- Kamu bisa tambahkan bagian bawah footer di sini kalau perlu -->
+            <!-- Contoh: <div class="footer-bottom">...</div> -->
         </footer>
 
                         <script  src="javapertama.js" defer></script>

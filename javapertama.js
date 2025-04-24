@@ -169,10 +169,8 @@ async function updateMenu() {
         <span>${userInfo.name}</span>
       </a>
     </li>
-    <li><a href="Full.html">FindNime</a></li>
   ` : `
     <li><a href="#" id="google-login-btn">Login</a></li>
-    <li><a href="Full.html">FindNime</a></li>
   `;
 
   // Event delegation untuk login/logout
