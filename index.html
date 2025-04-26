@@ -24,36 +24,28 @@
       * {
         margin: 0;
         padding: 0;
-        box-sizing: border-box; /* Lebih baik menggunakan box-sizing border-box */
-        /* hati-hati dengan style universal selector *, bisa menimpa */
-        /* background-color: #181818; /* HAPUS atau pindahkan ke body */
-        /* color: #fff; /* HAPUS atau pindahkan ke body */
+        box-sizing: border-box;
       }
 
       html,
       body {
         width: 100%;
-        /* height: 100%; /* Ini bisa bermasalah jika konten melebihi viewport */
-        /* height: auto; /* Default auto lebih baik */
-        min-height: 100vh; /* Pastikan minimal setinggi viewport */
-        scroll-behavior: smooth; /* Scrolling lebih halus */
+        min-height: 100vh;
+        scroll-behavior: smooth;
       }
 
       body {
-        background-color: #181818; /* Pindahkan background gelap ke body */
-        color: #fff; /* Pindahkan warna teks default ke body */
+        background-color: #181818;
+        color: #fff;
         font-family: sans-serif;
         font-weight: bold;
-        overflow-x: hidden; /* Mencegah scroll horizontal */
-        background-image: radial-gradient(
-          #021027,
-          #000000
-        ); /* Background gradient partikel */
-        position: relative; /* Untuk stacking context */
-        z-index: 1; /* Biarkan body di atas background partikel */
+        overflow-x: hidden;
+        background-image: radial-gradient(#021027, #000000);
+        position: relative;
+        z-index: 1;
       }
       body::-webkit-scrollbar {
-        display: none; /* Untuk Chrome, Edge, Safari */
+        display: none;
       }
 
       /* ================================================== */
@@ -61,455 +53,144 @@
       /* ================================================== */
 
       #particles-background {
-        position: fixed; /* Menggunakan fixed agar menutupi viewport */
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh; /* Menutupi setinggi viewport */
-        z-index: -2; /* Pastikan di belakang konten utama dan body */
-        overflow: hidden; /* Sembunyikan partikel yang keluar area */
+        height: 100vh;
+        z-index: -2;
+        overflow: hidden;
       }
 
-      /* Kontainer untuk setiap partikel (mengatur posisi & animasi gerak) */
       .circle-container {
-        position: absolute; /* Posisi absolut di dalam #particles-background */
-        /* Ukuran awal partikel, akan divariasikan */
+        position: absolute;
         width: 5px;
         height: 5px;
-        transform: translateY(-10vh); /* Mulai sedikit di atas */
-        /* Animasi gerak (detail di keyframes) */
+        transform: translateY(-10vh);
         animation-iteration-count: infinite;
         animation-timing-function: linear;
-      }
-
-      /* Elemen visual partikel (bentuk, warna, animasi fade/scale) */
-      .circle {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        mix-blend-mode: screen; /* Efek blending */
-        background-image: radial-gradient(
-          hsl(180, 100%, 80%),
-          /* Warna cerah */ hsl(180, 100%, 80%) 10%,
-          hsla(180, 100%, 80%, 0) 56% /* Transparan di tepi */
-        );
-        /* Animasi fade dan scale */
-        animation: fade-frames 2s infinite ease-in-out alternate,
-          scale-frames 3s infinite ease-in-out; /* Sesuaikan durasi/timing */
-      }
-
-      /* Keyframes untuk animasi partikel */
-      @keyframes fade-frames {
-        0%,
-        100% {
-          opacity: 0.7; /* Mulai dan akhir agak transparan */
-        }
-        50% {
-          opacity: 1; /* Tengah animasi lebih solid */
-        }
-      }
-
-      @keyframes scale-frames {
-        0%,
-        100% {
-          transform: scale(0.5); /* Mulai dan akhir kecil */
-        }
-        50% {
-          transform: scale(1.5); /* Tengah animasi membesar */
-        }
-      }
-
-      /* Animasi gerak umum untuk partikel */
-      @keyframes move-frames {
-        from {
-          transform: translate3d(
-            -10vw,
-            /* Mulai dari kiri luar */ 110vh,
-            /* Mulai dari bawah luar viewport */ 0
-          );
-        }
-
-        to {
-          transform: translate3d(
-            110vw,
-            /* Bergerak ke kanan luar */ -10vh,
-            /* Bergerak ke atas luar viewport */ 0
-          );
-        }
-      }
-
-      /* Variasi untuk partikel menggunakan :nth-child */
-      /* Ini mensimulasikan randomness dari SASS @for loop */
-      /* Kita buat 100 aturan, masing-masing sedikit berbeda */
-      /* Anda bisa sesuaikan jumlahnya jika perlu */
-
-      /* Contoh variasi dasar */
-      .circle-container {
         animation-name: move-frames; /* Gunakan animasi gerak umum */
         animation-duration: 10s; /* Durasi default */
         animation-delay: 0s; /* Delay default */
       }
 
-      /* Variasi menggunakan :nth-child */
-      @for $i from 1 through 100 {
-        .circle-container:nth-child(#{$i}) {
-          $size: 3 + random(7) + px; /* Ukuran acak antara 3px dan 10px */
-          width: $size;
-          height: $size;
-
-          $duration: 8 + random(7) + s; /* Durasi acak antara 8s dan 15s */
-          $delay: random(10) + s; /* Delay acak antara 0s dan 10s */
-
-          animation-duration: $duration;
-          animation-delay: $delay;
-
-          /* Posisi awal acak (hanya bisa disimulasikan di CSS dengan banyak aturan atau butuh JS) */
-          /* Kita akan set posisi awal di keyframe move-frames */
-          /* Jika ingin posisi awal acak, butuh JavaScript */
-
-          .circle {
-            /* Variasi delay animasi fade/scale per partikel */
-            animation-delay: random(3) + s;
-          }
-        }
+      .circle {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        mix-blend-mode: screen;
+        background-image: radial-gradient(
+          hsl(180, 100%, 80%),
+          hsl(180, 100%, 80%) 10%,
+          hsla(180, 100%, 80%, 0) 56%
+        );
+        animation: fade-frames 2s infinite ease-in-out alternate,
+                   scale-frames 3s infinite ease-in-out;
       }
-      /* CATATAN: Sintaks @for dan random() di atas adalah SASS/SCSS. */
-      /* Untuk CSS murni, Anda harus menulis aturan :nth-child satu per satu */
-      /* atau menggunakan generator CSS/JS. Jika Anda tidak menggunakan SASS, */
-      /* hapus blok @for dan atur delay/durasi/ukuran secara manual */
-      /* untuk beberapa elemen pertama, atau gunakan JavaScript. */
-      /* Contoh manual (untuk CSS murni, ini hanya beberapa contoh): */
-      /*
-         .circle-container:nth-child(1) { width: 8px; height: 8px; animation-duration: 12s; animation-delay: 1s; }
-         .circle-container:nth-child(2) { width: 5px; height: 5px; animation-duration: 9s; animation-delay: 4s; }
-         .circle-container:nth-child(3) { width: 10px; height: 10px; animation-duration: 15s; animation-delay: 7s; }
-         ... dan seterusnya untuk 100 elemen ...
-         */
-      /* Atau gunakan JavaScript untuk membuatnya */
-      /* Karena Anda ingin CSS murni, saya akan memberikan contoh manual untuk beberapa saja */
-      /* Anda bisa tambahkan sendiri atau generate */
+
+      @keyframes fade-frames {
+        0%, 100% { opacity: 0.7; }
+        50% { opacity: 1; }
+      }
+
+      @keyframes scale-frames {
+        0%, 100% { transform: scale(0.5); }
+        50% { transform: scale(1.5); }
+      }
+
+      @keyframes move-frames {
+        from { transform: translate3d(-10vw, 110vh, 0); }
+        to { transform: translate3d(110vw, -10vh, 0); }
+      }
 
       /* Contoh manual beberapa partikel untuk CSS murni */
-      .circle-container:nth-child(1) {
-        width: 8px;
-        height: 8px;
-        animation-duration: 12s;
-        animation-delay: 1s;
-        left: 10%;
-      }
-      .circle-container:nth-child(2) {
-        width: 5px;
-        height: 5px;
-        animation-duration: 9s;
-        animation-delay: 4s;
-        left: 50%;
-      }
-      .circle-container:nth-child(3) {
-        width: 10px;
-        height: 10px;
-        animation-duration: 15s;
-        animation-delay: 7s;
-        left: 90%;
-      }
-      .circle-container:nth-child(4) {
-        width: 6px;
-        height: 6px;
-        animation-duration: 10s;
-        animation-delay: 2s;
-        left: 30%;
-      }
-      .circle-container:nth-child(5) {
-        width: 7px;
-        height: 7px;
-        animation-duration: 11s;
-        animation-delay: 5s;
-        left: 70%;
-      }
-      /* ... tambahkan untuk 100 elemen ... */
-      /* Anda bisa membuat generator online atau script sederhana untuk menghasilkan ini */
+      .circle-container:nth-child(1) { width: 8px; height: 8px; animation-duration: 12s; animation-delay: 1s; left: 10%; }
+      .circle-container:nth-child(2) { width: 5px; height: 5px; animation-duration: 9s; animation-delay: 4s; left: 50%; }
+      .circle-container:nth-child(3) { width: 10px; height: 10px; animation-duration: 15s; animation-delay: 7s; left: 90%; }
+      .circle-container:nth-child(4) { width: 6px; height: 6px; animation-duration: 10s; animation-delay: 2s; left: 30%; }
+      .circle-container:nth-child(5) { width: 7px; height: 7px; animation-duration: 11s; animation-delay: 5s; left: 70%; }
+      /* ... bisa tambahkan lebih banyak variasi jika perlu ... */
 
       /* ================================================== */
       /* --- STYLE DARI index.css KAMU --- */
       /* ================================================== */
 
-      /* Tambahkan semua style yang ada di index.css kamu di sini */
-      /* Saya akan gabungkan style index.css yang kamu berikan di awal pertanyaan */
+      @media (max-width: 768px) {
+        header h1 { font-size: 2em; }
+        nav ul { flex-wrap: wrap; gap: 10px; }
+        nav li { margin: 5px; }
+        #search-input { width: 100%; max-width: 600px; padding: 12px 20px; border: 2px solid #ffa200; border-radius: 25px; background: rgba(255, 255, 255, 0.1); color: white; transition: all 0.3s ease; }
+        #search-input:focus { outline: none; box-shadow: 0 0 15px rgba(255, 162, 0, 0.5); }
+        .anime-list { grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; }
+        .anime-item { width: 100%; padding: 10px; }
+        .anime-item img { width: 100%; height: auto; max-height: 120px; }
+        .stylebutton { padding: 8px 16px; background-color: #ffa200; color: #fff; border: none; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; }
+        .stylebutton:hover { background-color: #ff8c00; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
+        .main img { width: 80%; height: auto; padding: 15px; }
+        .main h3 { margin-left: 20px; font-size: 16px; }
+        .main p { margin: 15px; padding: 8px; }
+        .video { width: 95%; height: auto; aspect-ratio: 16/9; }
+      }
 
       @media (max-width: 768px) {
-        /* Responsif untuk header */
-        header h1 {
-          font-size: 2em;
-        }
-
-        /* Responsif navigasi */
-        nav ul {
-          flex-wrap: wrap;
-          gap: 10px;
-        }
-
-        nav li {
-          margin: 5px;
-        }
-
-        /* Responsif search input */
-        #search-input {
-          width: 100%;
-          max-width: 600px;
-          padding: 12px 20px;
-          border: 2px solid #ffa200;
-          border-radius: 25px;
-          background: rgba(255, 255, 255, 0.1);
-          color: white;
-          transition: all 0.3s ease;
-        }
-
-        #search-input:focus {
-          outline: none;
-          box-shadow: 0 0 15px rgba(255, 162, 0, 0.5);
-        }
-        /* Responsif anime list */
-        .anime-list {
-          grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-          gap: 10px;
-        }
-
-        .anime-item {
-          width: 100%;
-          padding: 10px;
-        }
-
-        .anime-item img {
-          width: 100%;
-          height: auto;
-          max-height: 120px;
-        }
-        .stylebutton {
-          /* Tambahkan style dasar */
-          padding: 8px 16px;
-          background-color: #ffa200;
-          color: #fff;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-
-        .stylebutton:hover {
-          /* Efek hover */
-          background-color: #ff8c00;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Untuk tampilan mobile */
-        /* Media query ini seharusnya di luar media query 768px pertama */
-        /* @media (max-width: 768px) { */
-        /* .stylebutton {
-                padding: 6px 12px;
-                font-size: 0.9em;
-            }
-        } */
-        /* Responsif main content */
-        .main img {
-          width: 80%;
-          height: auto;
-          padding: 15px;
-        }
-
-        .main h3 {
-          margin-left: 20px;
-          font-size: 16px;
-        }
-
-        .main p {
-          margin: 15px;
-          padding: 8px;
-        }
-
-        /* HAPUS style responsif footer lama yang konflik di sini */
-        /*
-          .footer-section {
-            flex-direction: column;
-          }
-
-          .footer-item {
-            width: 100%;
-             margin-bottom: 20px;
-          }
-          */
-
-        /* Responsif video player */
-        .video {
-          width: 95%;
-          height: auto;
-          aspect-ratio: 16/9;
-        }
-      } /* Akhir dari media query @media (max-width: 768px) pertama */
-
-      /* Style button responsive stylebutton - DIPINDAH KE LUAR MEDIA QUERY BERSARANG */
-      @media (max-width: 768px) {
-        .stylebutton {
-          padding: 6px 12px;
-          font-size: 0.9em;
-        }
+        .stylebutton { padding: 6px 12px; font-size: 0.9em; }
       }
 
       @media (max-width: 480px) {
-        /* Penyesuaian untuk mobile kecil */
-        .anime-list {
-          grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-        }
-
-        .anime-item img {
-          max-height: 100px;
-        }
-
-        .main h2 {
-          font-size: 1.5em;
-        }
-
-        .main a {
-          padding: 15px;
-          margin: 15px;
-        }
-
-        /* Navigasi mobile */
-        nav a {
-          font-size: 0.9em;
-        }
-
-        /* Video player mobile */
-        .video {
-          width: 100%;
-        }
+        .anime-list { grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); }
+        .anime-item img { max-height: 100px; }
+        .main h2 { font-size: 1.5em; }
+        .main a { padding: 15px; margin: 15px; }
+        nav a { font-size: 0.9em; }
+        .video { width: 100%; }
       }
 
-      /* === Style untuk Profile Image (Tambahkan ini!) === */
+      /* === Style untuk Profile Image (PERBAIKAN) === */
+      .profile-btn { /* Style untuk link container profile */
+          display: flex;
+          align-items: center;
+          gap: 10px; /* Jarak antara gambar dan nama */
+          text-decoration: none; /* Hapus underline dari link */
+          color: white !important; /* Pastikan warna teks putih */
+      }
       .profile-img {
-        width: 35px; /* Sedikit lebih besar agar lebih terlihat */
+        width: 35px; /* Ukuran gambar profil */
         height: 35px;
         border-radius: 50%; /* Membuat gambar menjadi bulat */
         border: 2px solid #ffa200; /* Border oranye */
         object-fit: cover; /* Memastikan gambar mengisi area tanpa distorsi */
         vertical-align: middle; /* Agar sejajar dengan teks nama */
-        /* Efek tambahan (opsional): shadow/glow */
-        box-shadow: 0 0 8px rgba(255, 162, 0, 0.5);
-        transition: transform 0.3s ease; /* Efek transisi saat hover (jika ada) */
+        box-shadow: 0 0 8px rgba(255, 162, 0, 0.5); /* Efek glow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi */
       }
-
-      /* Opsional: Efek hover pada gambar profil */
       .profile-btn:hover .profile-img {
         transform: scale(1.1); /* Sedikit membesar saat di-hover */
+        box-shadow: 0 0 12px rgba(255, 162, 0, 0.8); /* Glow lebih terang */
       }
       /* ================================================ */
 
-
-      /* Tambahkan ini untuk image responsif */
       img {
         max-width: 100%;
         height: auto;
       }
 
-      /* Perbaikan hover effect untuk mobile */
       @media (hover: none) {
-        .anime-item img:hover {
-          transform: none;
-        }
-
-        .main a:hover {
-          background: initial;
-          animation: none;
-        }
+        .anime-item img:hover { transform: none; }
+        .main a:hover { background: initial; animation: none; }
       }
-      /* Base body style sudah di atas */
-      /*
-        body {
-            overflow: auto;
-            margin: auto;
-            background-color: #181818;
-            color: #fff;
-            font-family: sans-serif;
-            font-weight: bold;
-        }
-        body::-webkit-scrollbar {
-            display: none; /* Untuk Chrome, Edge, Safari */
-      /* }
-        */
-
-      /* Hapus style .banner karena akan diganti */
-      /*
-        .banner {
-            width: 100%;
-            height: 100vh;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .banner video {
-            position: absolute;
-            object-fit: cover;
-            width: 100%;
-            height: 79%;
-            background: linear-gradient(to bottom, #181818);
-        }
-
-        .desktop {
-            display: block;
-        }
-
-        .mobile {
-            display: none;
-        }
-
-        @media (max-width: 767px) {
-            .banner {
-              height: 95vh;
-            }
-        }
-        */
 
       .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
-        position: relative; /* Untuk stacking context, di atas background partikel */
-        z-index: 2; /* Pastikan di atas body dan background partikel */
+        position: relative;
+        z-index: 2;
       }
+      .container a { text-decoration: none; color: #ccc; }
+      .container a:hover { text-decoration: underline; color: #ffa200; }
 
-      .container a {
-        /* margin: none; /* Ini bukan properti CSS */
-        text-decoration: none;
-        color: #ccc;
-      }
-
-      .container a:hover {
-        text-decoration: underline;
-        color: #ffa200;
-      }
-      /* Base img style sudah di atas */
-      /*
-        img {
-            margin: 0; /* Hati-hati, ini bisa menimpa style gambar lain */
-      /* justify-content: center; /* Bukan properti CSS */
-      /* width: 200px; /* Hati-hati, ini bisa menimpa style gambar lain */
-      /* height: auto; /* Sudah di base img style */
-      /* }
-        */
-
-      .logo-head {
-        /* Tidak ada di HTML? */
-        justify-content: center;
-        margin: auto;
-      }
-
-      .nav1 {
-        /* Tidak ada di HTML? */
-        position: sticky;
-        top: 0;
-      }
+      .logo-head { justify-content: center; margin: auto; }
+      .nav1 { position: sticky; top: 0; }
 
       @import url("https://fonts.googleapis.com/css2?family=Play&display=swap");
 
@@ -522,1086 +203,266 @@
         -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(0, 0, 0, 0.15));
         position: relative;
       }
-
       .title span {
         display: inline-flex;
         font-family: "Play", sans-serif;
-        animation: title-bounce 2.5s infinite,
-          fire 2s ease-in-out infinite alternate;
+        animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate;
         margin: 0 3px;
         color: #ffa200;
         text-shadow: 0 0 10px #ff6b00;
       }
+      @keyframes title-bounce { 0%, 60%, 100% { transform: translateY(0) scale(1); } 30% { transform: translateY(-25px) scale(1.15); } }
+      @keyframes fire { 0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00; } 100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; } }
+      .title span:nth-child(1) { animation-delay: 0.3s; }
+      .title span:nth-child(2) { animation-delay: 0.4s; }
+      .title span:nth-child(3) { animation-delay: 0.5s; }
+      .title span:nth-child(4) { animation-delay: 0.6s; }
+      .title span:nth-child(5) { animation-delay: 0.7s; }
+      .title span:nth-child(6) { animation-delay: 0.8s; }
+      .title span:nth-child(7) { animation-delay: 0.9s; }
 
-      @keyframes title-bounce {
-        0%,
-        60%,
-        100% {
-          transform: translateY(0) scale(1);
-        }
-        30% {
-          transform: translateY(-25px) scale(1.15);
-        }
-      }
+      header { text-align: center; position: relative; z-index: 2; }
+      header h1 { font-size: 3em; margin: 0; }
 
-      @keyframes fire {
-        0% {
-          text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00;
-        }
-        100% {
-          text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00;
-        }
-      }
+      .abt { background-color: rgba(24, 24, 24, 0.7); backdrop-filter: blur(5px); position: fixed; top: 0; left: 0; right: 0; padding: 10px 20px; z-index: 10; display: flex; justify-content: flex-start; align-items: center; }
+      .abt a { position: relative; text-decoration: none; color: gray; background-color: transparent; padding: 5px; border-radius: 6px; opacity: 1; }
+      .abt a:hover { color: #ffa200; }
+      .abt a:first-child { position: static; /* Hapus absolute agar normal */ }
 
-      /* Atur delay untuk efek wave yang lebih lambat */
-      .title span:nth-child(1) {
-        animation-delay: 0.3s;
-      }
-      .title span:nth-child(2) {
-        animation-delay: 0.4s;
-      }
-      .title span:nth-child(3) {
-        animation-delay: 0.5s;
-      }
-      .title span:nth-child(4) {
-        animation-delay: 0.6s;
-      }
-      .title span:nth-child(5) {
-        animation-delay: 0.7s;
-      }
-      .title span:nth-child(6) {
-        animation-delay: 0.8s;
-      }
-      .title span:nth-child(7) {
-        animation-delay: 0.9s;
-      }
+      nav { background-color: #181818; padding: 10px; border-radius: 15px; opacity: 0.7; }
+      nav ul { font-weight: bold; list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-around; align-items: center; }
+      nav li { margin: 10px; }
+      nav a { color: #ffa200; text-decoration: none; border-radius: 10px; transition: background-color 0.3s ease; }
+      nav a:hover { text-decoration: underline; color: #ff8c00; /* Ganti biru jadi orange lebih gelap */ }
 
-      header {
-        text-align: center;
-        position: relative; /* Untuk stacking context */
-        z-index: 2; /* Pastikan di atas background */
-      }
+      .title { align-items: center; margin-top: 20px; }
 
-      header h1 {
-        font-size: 3em;
-        margin: 0;
-      }
+      .suggestions { position: absolute; top: 100%; left: 0; right: 0; background-color: gray; border: 1px solid black; border-radius: 5px; max-height: 150px; overflow-y: auto; z-index: 1000; display: none; width: 100%; box-sizing: border-box; }
+      .suggestion-item { color: white; padding: 10px; cursor: pointer; background-color: transparent; }
+      .suggestion-item:hover { background-color: #f0f0f0; color: #181818; }
 
-      /* About Button */
+      .data { display: none; }
+      .nama h2 { color: #ffa200; font-size: 2em; margin-bottom: 10px; }
 
-      .abt a {
-        position: relative;
-        text-decoration: none;
-        color: gray;
-        background-color: #181818;
-        padding: 5px;
-        border-radius: 6px;
-        opacity: 40%;
-      }
-
-      .abt a:hover {
-        color: #ffa200;
-      }
-
-      .abt a:first-child {
-        position: absolute;
-        left: 20px;
-        top: 10px;
-      }
-
-      .abt {
-        background-color: rgba(
-          24,
-          24,
-          24,
-          0.7
-        ); /* Gunakan rgba untuk transparansi */
-        backdrop-filter: blur(5px); /* Tambahkan efek blur modern */
-        position: fixed; /* Menggunakan fixed agar tetap di atas */
-        top: 0;
-        left: 0;
-        right: 0;
-        padding: 10px 20px; /* Sesuaikan padding */
-        z-index: 10; /* Pastikan di atas elemen lain */
-        display: flex; /* Untuk menata About di kiri */
-        justify-content: flex-start;
-        align-items: center;
-      }
-      .abt a {
-        /* Style link di dalam abt */
-        opacity: 1; /* opacity penuh untuk link di dalam abt */
-        background-color: transparent; /* Hapus background di link */
-      }
-
-      nav {
-        background-color: #181818;
-        padding: 10px;
-        border-radius: 15px;
-        opacity: 70%;
-      }
-
-      nav ul {
-        font-weight: bold;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-      }
-
-      nav li {
-        margin: 10px;
-        /* border-width: auto; /* Ini bukan properti CSS */
-      }
-
-      nav a {
-        color: #ffa200;
-        text-decoration: none;
-        border-radius: 10px;
-        transition: background-color 0.3s ease;
-      }
-
-      nav a:hover {
-        text-decoration: underline;
-        color: blue; /* Warna biru mungkin kurang cocok dengan tema? Bisa ganti */
-      }
-
-      .title {
-        align-items: center;
-        margin-top: 20px;
-      }
-
-      /*  sugestion in index */
-
-      .suggestions {
-        position: absolute;
-        top: 100%; /* Atur posisi di bawah search input */
-        left: 0; /* Sejajarkan dengan tepi search input */
-        right: 0;
-        background-color: gray;
-        border: 1px solid black;
-        border-radius: 5px;
-        max-height: 150px;
-        overflow-y: auto;
-        z-index: 1000;
-        display: none; /* Sembunyikan awalnya */
-        width: 100%; /* Ambil lebar penuh search container */
-        box-sizing: border-box;
-      }
-
-      .suggestion-item {
-        color: white;
-        padding: 10px;
-        cursor: pointer;
-        /* font-display: auto; /* Ini properti @font-face */
-        background-color: transparent;
-      }
-
-      .suggestion-item:hover {
-        background-color: #f0f0f0;
-        color: #181818;
-      }
-
-      .data {
-        display: none;
-      }
-
-      .nama h2 {
-        color: #ffa200;
-        font-size: 2em;
-        margin-bottom: 10px;
-      }
-
-      /* List anime */
-
-      .anime-list {
-        justify-content: center;
-        display: flex; /* Gunakan flexbox untuk tata letak utama */
-        flex-wrap: wrap; /* Izinkan item turun baris */
-        gap: 20px;
-        margin-top: 20px;
-      }
-
-      .anime-list p {
-        color: rgba(4, 235, 4, 0.452);
-        transition: color 0.2s ease-in-out;
-      }
+      .anime-list { justify-content: center; display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
+      .anime-list p { color: rgba(4, 235, 4, 0.452); transition: color 0.2s ease-in-out; }
 
       @media (max-width: 767px) {
-        /* Mirip 768px, pastikan tidak konflik */
-        .anime-list {
-          margin: 15px;
-          display: grid; /* Gunakan Grid di sini jika ingin, atau Flexbox konsisten */
-          flex-wrap: wrap;
-          grid-template-columns: repeat(
-            auto-fit,
-            minmax(100px, 1fr)
-          ); /* Contoh minmax mobile */
-          gap: 17px;
-          justify-items: center; /* Pusatkan item di dalam cell grid mobile */
-        }
+        .anime-list { margin: 15px; display: grid; flex-wrap: wrap; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 17px; justify-items: center; }
       }
+
       .anime-item {
         background-color: #282828;
         border-radius: 15px;
         padding: 15px;
-        width: 120px; /* Ubah lebar item agar lebih responsif dan tidak terlalu kecil */
+        width: 130px; /* Sedikit lebar lagi */
         height: auto;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
         text-align: center;
-        display: flex; /* Gunakan flexbox untuk menata konten vertikal */
+        display: flex;
         flex-direction: column;
         align-items: center;
-        position: relative; /* Untuk tombol favorite */
+        position: relative;
+        transition: transform 0.2s ease; /* Transisi untuk hover item */
+      }
+      .anime-item:hover {
+        transform: translateY(-5px); /* Efek naik sedikit saat hover item */
       }
 
       .anime-item img {
-        justify-content: center; /* Ini bukan properti CSS */
-        width: 100%; /* Gambar ambil lebar penuh item */
-        height: 150px; /* Tinggi tetap agar konsisten */
-        object-fit: cover; /* Gambar tidak terdistorsi */
+        width: 100%;
+        height: 160px; /* Tinggi sedikit ditambah */
+        object-fit: cover;
         border-radius: 8px;
         transition: transform 0.3s ease-in-out;
+        margin-bottom: 10px; /* Jarak gambar ke judul */
+      }
+      .anime-item a:hover img {
+        transform: scale(1.05); /* Scale gambar saat link dihover */
       }
 
-      .anime-item img:hover {
-        transform: scale(1.05); /* Scale lebih kecil saat hover */
+      .anime-item .anime-title-link { /* Kontainer untuk link judul */
+          width: 100%;
+          margin-bottom: 8px; /* Jarak judul ke tombol favorit */
       }
-
-      .anime-item span {
-        /* Untuk judul anime di dalam item */
-        font-size: 0.9em; /* Ukuran yang lebih wajar untuk judul */
-        margin: 10px 0;
-        word-break: break-word; /* Agar judul panjang tidak overflow */
-        overflow-wrap: break-word; /* Alternatif untuk word-break */
-        font-weight: bold;
-        color: #eee;
+      .anime-item .anime-title-link a {
+          text-decoration: none;
       }
-      .anime-item span:hover {
-        text-decoration: underline;
-        color: #ffa200;
-      }
-
-      /* button Home */
-
-      .home {
-        /* Tidak ada di HTML? */
-        font-size: 25px;
-        background-color: rgb(48, 45, 45);
-        padding: 20px;
-        border-radius: 20px;
-        text-decoration: none;
-        color: white;
-        transition: text-decoration 0.3s;
-      }
-
-      .home:hover {
-        text-decoration: underline;
-        color: blue;
-      }
-      .back {
-        /* Tidak ada di HTML? */
-        font-size: 25px;
-        background-color: rgb(48, 45, 45);
-        padding: 20px;
-        border-radius: 20px;
-        text-decoration: none;
-        color: white;
-        transition: text-decoration 0.3s;
-        margin-left: 20px;
-      }
-
-      .back:hover {
-        text-decoration: underline;
-        color: blue;
-      }
-      .main {
-        /* Style untuk halaman detail? */
-        text-align: center;
-        margin-top: 5%; /* Mungkin perlu disesuaikan */
-        /* justify-content: center; /* Ini bukan properti CSS */
-      }
-
-      .main img {
-        /* Gambar di halaman detail? */
-        margin-bottom: 50px;
-        width: 350px; /* Lebar tetap? Konflik dengan responsif? */
-        background-color: #383434;
-        padding: 25px;
-        border-radius: 30px;
-      }
-
-      @media only screen and (max-width: 767px) {
-        /* Mirip 768px */
-        .main img {
-          width: 200px;
-          height: 250px;
-        }
-      }
-
-      .main h2 {
-        /* Judul di halaman detail? */
-        font-weight: bold;
-        flex-wrap: wrap; /* Ini properti flexbox */
-      }
-
-      @media only screen and (max-width: 767px) {
-        /* Mirip 768px */
-        .main h2 {
-          /* display: flexbox; /* Ini nilai display yang tidak valid */
-        }
-      }
-      .main h3 {
-        /* Sub judul di halaman detail? */
-        margin-bottom: 15px;
-        margin-left: 50px; /* Margin tetap? Konflik responsif? */
-        text-align: start;
-        font-size: 20px;
-        color: #ffa200;
-      }
-
-      @media only screen and (max-width: 767px) {
-        /* Mirip 768px */
-        .main h3 {
-          text-align: start; /* Tetap start? Di mobile center lebih umum */
-          margin-left: 0; /* Hilangkan margin kiri tetap di mobile */
-          text-align: center; /* Center di mobile */
-        }
-      }
-
-      .main p {
-        /* Paragraf deskripsi di halaman detail? */
-        margin: 25px; /* Margin tetap? Konflik responsif? */
-        letter-spacing: 1px;
-        text-align: left;
-        align-content: center; /* Ini properti grid/flex container */
-        background-color: #383434;
-        border-radius: 20px;
-        padding: 10px;
-      }
-
-      @media only screen and (max-width: 767px) {
-        /* Mirip 768px */
-        .main p {
-          text-align: center;
-          margin: 15px; /* Sesuaikan margin di mobile */
-        }
-      }
-
-      .batas {
-        /* Tidak ada di HTML? */
-        margin: 20px;
-        border-color: #ffa200;
-      }
-
-      .main a {
-        /* Link download di halaman detail? */
-        text-align: center;
-        padding: 20px;
-        font-size: 15px;
-        color: #ffa200;
-        text-decoration: none;
-        display: block;
-        margin: 25px;
-        background-color: #282828;
-        border-radius: 10px;
-      }
-
-      .main a:hover {
-        background-color: #ffa200; /* Ini akan di-override oleh background linear gradient */
-        background: linear-gradient(
-          -45deg,
-          #282828 40%,
-          #fafafa 50%,
-          #282828 60%
-        );
-        background-size: 300%;
-        background-position-x: 100%;
-        animation: shimmer 1.5s infinite linear;
-      }
-
-      @media only screen and (max-width: 767px) {
-        /* Mirip 768px */
-        .main a:active {
-          background-color: #ffa200;
-          background: linear-gradient(
-            -45deg,
-            #282828 40%,
-            #fafafa 50%,
-            #282828 60%
-          );
-          background-size: 300%;
-          background-position-x: 100%;
-          animation: shimmer 1.5s infinite linear;
-        }
-      }
-      @keyframes shimmer {
-        to {
-          background-position-x: 0%;
-        }
-      }
-
-      /* HAPUS Style footer lama di file index */
-      /*
-        .footer1 {
-            justify-content: space-between;
-            padding: 15px;
-            background-color: #282828;
-        }
-
-        .footer1 .footer-left {
-            color: #ffa200;
-            margin: 0;
-        }
-
-        .footer1 .footer-dekripsi {
-            word-spacing: auto;
-            text-align: auto;
-            text-transform: capitalize;
-            padding: 10px;
-            margin: 0;
-        }
-        */
-
-      /* Video dari File Watch */
-      .video {
-        /* Ini style untuk halaman watch, bukan index */
-        position: relative;
-        overflow: hidden;
-        /* Mengatur lebar default untuk desktop */
-        width: 48%; /* Lebar untuk desktop */
-        height: 460px; /* Tinggi untuk desktop (rasio 16:9) */
-        margin: 0 auto; /* Untuk memusatkan kontainer */
-      }
-
-      @media (max-width: 767px) {
-        /* Mirip 768px */
-        .video {
-          position: relative;
-          width: 100%; /* Lebar penuh sesuai layar */
-          height: calc(100vw * 9 / 16); /* Rasio 16:9 */
-          max-height: 100%; /* Agar tidak melebihi layar */
-          overflow: hidden;
-          margin: 0 auto; /* Tengah pada layar besar */
-        }
-      }
-
-      .main h2 {
-        /* Judul di halaman detail? */
-        color: #ffa200;
-        font-size: 35px;
-      }
-
-      /* ================================================== */
-      /* --- FOOTER BARU (GANTI STYLE FOOTER LAMA DI SINI)--- */
-      /* ================================================== */
-
-      .footer {
-        background-color: #1f1f1f; /* Warna background footer */
-        color: #fff; /* Warna teks umum di footer */
-        padding: 20px 0; /* Padding atas bawah 20px, kiri kanan 0 */
-        font-size: 14px; /* Ukuran font default footer */
-        position: relative; /* Penting: agar footer di atas background partikel */
-        z-index: 3; /* Z-index lebih tinggi dari container dan background */
-        margin-top: 50px; /* Beri jarak dari konten di atasnya */
-      }
-
-      .footer-section {
-        display: flex; /* Gunakan Flexbox untuk menata item-item di footer */
-        justify-content: space-around; /* Distribusikan ruang antar item */
-        align-items: flex-start; /* Item rata atas */
-        flex-wrap: wrap; /* Izinkan item turun ke baris baru di layar kecil */
-        max-width: 1200px; /* Batasi lebar maksimal footer seperti container utama */
-        margin: 0 auto; /* Pusatkan footer */
-        padding: 0 20px; /* Padding kiri kanan agar konten tidak menempel tepi */
-      }
-
-      .footer-item {
-        width: 30%; /* Setiap item mengambil sekitar 30% lebar */
-        min-width: 200px; /* Pastikan item punya lebar minimum */
-        margin-bottom: 20px; /* Margin bawah untuk jarak antar item saat flex-wrap */
-        padding: 0 10px; /* Tambahkan padding horizontal antar kolom di desktop */
-        box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
-        text-align: left; /* Default rata kiri */
-      }
-
-      .footer-item h3 {
-        display: block; /* Pastikan h3 mengambil baris penuh */
-        margin: 0 0 10px 0; /* Margin bawah judul */
-        font-size: 18px;
-        border-bottom: 1px solid #444;
-        padding-bottom: 5px;
-        color: orange; /* Warna judul orange */
-        text-align: left; /* Default rata kiri */
-      }
-
-      /* Style untuk kontainer link sosial media dalam satu item (Ikuti & Support) */
-      .social-links-container {
-        display: flex; /* Gunakan flexbox */
-        flex-direction: column; /* Defaultnya tumpuk vertikal (untuk mobile) */
-        gap: 10px; /* Jarak antar setiap baris link sosial */
-        margin-top: 10px; /* Jarak dari judul "Ikuti & Support" */
-        align-items: flex-start; /* Rata kiri item link di desktop */
-      }
-
-      /* Style untuk setiap item link sosial (<p> tag) */
-      .footer-item p {
-        margin: 0; /* Reset margin default p */
-        display: flex; /* Agar ikon dan teks sejajar */
-        align-items: center; /* Rata tengah vertikal ikon dan teks */
-        font-size: 14px; /* Ukuran font untuk teks link sosial */
-      }
-
-      /* Style umum untuk semua ikon sosial */
-      .social-icon {
-        margin-right: 8px; /* Jarak antara ikon dan teks */
-        vertical-align: middle; /* Agar ikon rata tengah vertikal dengan teks */
-        width: 20px; /* Ukuran default ikon, sedikit lebih kecil dari 24 */
-        height: auto; /* Tinggi otomatis agar aspek rasio gambar tetap terjaga */
-        color: #fff; /* Warna default untuk ikon Font Awesome (putih) */
-        transition: all 0.3s ease; /* Tambahkan transisi untuk animasi hover */
-        flex-shrink: 0; /* Mencegah ikon menyusut */
-      }
-
-      /* Style khusus untuk ikon Trakteer (jika menggunakan gambar) */
-      .trakteer-icon {
-        width: 20px; /* Pastikan ukurannya konsisten */
-        height: auto;
-        /* filter: grayscale(100%) brightness(2); /* Contoh: buat gambar jadi putih keabu-abuan */
-      }
-
-      /* Style untuk teks link di footer-item */
-      .footer-item p a {
-        color: #ccc; /* Warna teks link */
-        text-decoration: none; /* Hilangkan garis bawah default */
-        transition: color 0.3s ease; /* Transisi untuk warna teks saat hover */
-      }
-
-      /* Hover efek untuk teks link */
-      .footer-item p a:hover {
-        color: #ffa200; /* Warna saat dihover */
-        text-decoration: underline; /* Munculkan garis bawah saat dihover */
-      }
-
-      /* Hover animasi untuk ikon */
-      .social-icon:hover {
-        transform: scale(1.2); /* Perbesar ikon saat dihover */
-        /* Efek warna untuk ikon Font Awesome */
-        color: #ffa200; /* Warna saat dihover */
-        /* Efek untuk gambar (ikon Trakteer) */
-        filter: brightness(
-          1.5
-        ); /* Membuat gambar sedikit lebih cerah saat dihover */
-        /* Kamu juga bisa coba efek lain, contoh: box-shadow: 0 0 8px rgba(255, 162, 0, 0.5); */
-      }
-
-      /* --- Responsif untuk Footer --- */
-
-      /* Style untuk layar desktop (>= 769px) */
-      @media (min-width: 769px) {
-        .footer-section {
-          justify-content: space-between; /* Gunakan space-between untuk menyebar item lebih jauh */
-          gap: 20px; /* Jarak tambahan antar kolom jika perlu */
-        }
-
-        .footer-item {
-          width: 30%; /* Lebar tetap sekitar 30% */
-          margin-bottom: 0; /* Hilangkan margin bawah di desktop */
-          /* padding: 0 10px; /* Sudah di style umum, bisa disesuaikan */
-          text-align: left; /* Rata kiri konten di desktop */
-        }
-
-        /* Di layar lebar, buat link sosial menjadi horizontal */
-        .social-links-container {
-          flex-direction: row; /* Tampilkan item link secara horizontal */
-          flex-wrap: wrap; /* Izinkan wrap kalau barisnya panjang */
-          gap: 15px; /* Jarak horizontal antar setiap item link (ikon+teks) */
-          justify-content: flex-start; /* Rata kiri item link */
-        }
-
-        /* Di layar lebar, setiap item link sosial (ikon + teks) */
-        .footer-item p {
-          margin-right: 15px; /* Jarak antar setiap pasangan ikon+teks (alternatif gap di container) */
-          margin-bottom: 5px; /* Sedikit jarak bawah jika wrap */
-        }
-      }
-
-      /* Style untuk layar mobile (<= 768px) */
-      @media (max-width: 768px) {
-        .footer-section {
-          flex-direction: column; /* Item jadi vertikal */
-          align-items: center; /* Pusatkan item vertikal */
-          gap: 30px; /* Jarak antar blok footer di mobile */
-          padding: 0 10px; /* Padding kiri kanan di mobile */
-        }
-
-        .footer-item {
-          width: 95%; /* Ambil sebagian besar lebar di mobile */
-          min-width: auto; /* Hapus min-width di mobile */
-          margin-bottom: 0; /* Hilangkan margin bawah di sini, diganti gap di footer-section */
-          padding: 0; /* Hilangkan padding horizontal */
-          text-align: center; /* Pusatkan konten footer item */
-        }
-
-        .footer-item h3 {
-          text-align: center; /* Pastikan judul terpusat di mobile */
-          margin-bottom: 15px; /* Tambah jarak bawah judul di mobile */
-        }
-
-        /* Di mobile, link sosial tetap tumpuk vertikal */
-        .social-links-container {
-          flex-direction: column; /* Pastikan tumpuk vertikal di mobile */
-          align-items: center; /* Pusatkan item link di mobile */
-          gap: 10px; /* Jarak antar item link di mobile */
-          margin-top: 5px; /* Kurangi jarak atas di mobile */
-        }
-
-        /* Di mobile, setiap item link sosial (ikon + teks) */
-        .footer-item p {
-          justify-content: center; /* Pusatkan ikon + teks dalam satu link di mobile */
-          margin-right: 0; /* Hilangkan margin kanan di mobile */
-        }
-
-        /* Ukuran ikon di mobile */
-        .social-icon {
-          width: 18px; /* Sedikit lebih kecil lagi di mobile */
-        }
-      }
-
-      /* ================================================== */
-      /* --- AKHIR STYLE DARI index.css KAMU --- */
-      /* ================================================== */
-
-      /* Tambahan Style untuk elemen yang mungkin tidak ter-style sebelumnya */
-      main {
-        position: relative;
-        z-index: 2; /* Pastikan di atas background */
-      }
-
-      section.nama {
-        margin-top: 20px; /* Beri jarak dari elemen di atasnya */
-      }
-
-      .notice {
-        margin: 20px auto; /* Pusatkan dan beri jarak */
-        padding: 15px;
-        background-color: rgba(40, 40, 40, 0.8); /* Background notice */
-        border-radius: 8px;
-        max-width: 600px; /* Batasi lebar notice */
-        text-align: center;
-        color: #ccc;
-        position: relative;
-        z-index: 2;
-      }
-      .notice p {
-        margin-bottom: 10px;
-      }
-      .notice p:last-child {
-        margin-bottom: 0;
-      }
-
-      /* Style untuk notifikasi (sudah ada di index.css) */
-      #notification {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 15px 30px;
-        border-radius: 25px;
-        color: white;
-        font-weight: bold;
-        z-index: 10000;
-        opacity: 0;
-        transition: all 0.3s ease;
-        pointer-events: none; /* Agar tidak menghalangi klik */
-      }
-
-      #notification.visible {
-        opacity: 1;
-        bottom: 30px;
-      }
-
-      #notification.success {
-        background: #28a745;
-      }
-
-      #notification.error {
-        background: #dc3545;
-      }
-
-      #notification.info {
-        background: #17a2b8;
-      }
-
-      /* Cookie Consent (sudah ada di index.css) */
-      .cookie-consent {
-        position: fixed;
-        bottom: -100%;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.95);
-        color: white;
-        padding: 15px;
-        z-index: 9999;
-        transition: bottom 0.5s ease;
-        border-top: 2px solid #ffa200;
-      }
-
-      .cookie-consent.show {
-        bottom: 0;
-      }
-
-      .cookie-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .cookie-content p {
-        margin: 0;
-        flex: 1;
-        min-width: 300px;
+      .anime-item .anime-title-link span {
+        display: block; /* Agar span mengambil lebar penuh */
         font-size: 0.9em;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        font-weight: 600; /* Sedikit tebal */
+        color: #eee;
+        line-height: 1.3; /* Spasi baris */
+        min-height: 2.6em; /* Tinggi minimum untuk 2 baris */
+        transition: color 0.2s ease;
       }
-
-      .cookie-content a {
-        color: #ffa200;
+      .anime-item .anime-title-link a:hover span {
         text-decoration: underline;
-      }
-
-      .cookie-buttons {
-        display: flex;
-        gap: 10px;
-        flex-shrink: 0;
-      }
-
-      #cancel-cookies {
-        background-color: #444;
-        border: 1px solid #666;
-      }
-
-      #cancel-cookies:hover {
-        background-color: #666;
-      }
-
-      /* Pagination (sudah ada di index.css) */
-      .pagination-container {
-        margin: 20px 0;
-        display: flex;
-        justify-content: center;
-        position: relative; /* Pastikan di atas background */
-        z-index: 2;
-      }
-
-      .pagination-controls {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-        background-color: rgba(
-          40,
-          40,
-          40,
-          0.8
-        ); /* Background untuk kontrol pagination */
-        padding: 10px 20px;
-        border-radius: 20px;
-      }
-
-      .pagination-btn {
-        padding: 8px 16px;
-        background: #ffa200;
-        border: none;
-        border-radius: 4px;
-        color: #181818; /* Warna teks hitam */
-        cursor: pointer;
-        transition: all 0.3s;
-        font-weight: bold;
-      }
-
-      .pagination-btn:hover:not(:disabled) {
-        background: #ff8c00;
-        transform: translateY(-2px);
-      }
-
-      .pagination-btn:disabled {
-        background: #666;
-        cursor: not-allowed;
-        opacity: 0.7;
-      }
-
-      .page-info {
-        color: #fff;
-        font-size: 1em; /* Ukuran font */
-        font-weight: bold;
-      }
-
-      /* Splash Screen (sudah ada di index.css) */
-      #myDynamicSplash {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: #181818;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        z-index: 9999; /* Pastikan di paling depan */
-        transition: opacity 0.5s ease;
-      }
-
-      .splash-content {
-        position: relative;
-        z-index: 10000;
-      }
-
-      .splash-title {
-        font-size: 45px;
-        margin-bottom: 2rem;
-        display: flex;
-        justify-content: center;
-        position: relative;
-      }
-
-      .splash-title span {
-        display: inline-flex;
-        font-family: "Play", sans-serif;
-        animation: title-bounce 2.5s infinite,
-          fire 2s ease-in-out infinite alternate;
-        margin: 0 3px;
         color: #ffa200;
-        text-shadow: 0 0 10px #ff6b00;
       }
 
-      .sk-cube-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 5px;
-        width: 40px;
-        height: 40px;
-        justify-content: center;
+
+      /* === Style Baru untuk Tombol Favorit (PERBAIKAN) === */
+      .anime-item .add-favorite-button {
+        display: inline-flex; /* Agar ikon dan teks sejajar */
         align-items: center;
-        margin: auto;
+        justify-content: center;
+        gap: 6px; /* Jarak antara ikon dan teks */
+        width: auto; /* Lebar otomatis */
+        min-width: 95px; /* Lebar minimum */
+        margin: auto auto 5px; /* Atas:otomatis, Kiri/Kanan:otomatis (tengah), Bawah:5px */
+        padding: 6px 12px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #ccc; /* Default: abu-abu muda */
+        background-color: #3a3a3a; /* Default: abu-abu gelap */
+        border: 1px solid #555;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: none;
       }
 
-      .sk-cube {
-        width: 10px;
-        height: 10px;
+      .anime-item .add-favorite-button:hover {
         background-color: #ffa200;
-        animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
-      }
-
-      @keyframes sk-cubeGridScaleDelay {
-        0%,
-        70%,
-        100% {
-          transform: scale3D(1, 1, 1);
-        }
-        35% {
-          transform: scale3D(0, 0, 1);
-        }
-      }
-
-      .network-status {
-        position: absolute;
-        bottom: 20%;
-        left: 50%;
-        transform: translateX(-50%);
-        color: #ff5555;
-        font-size: 1.2em;
-        text-align: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        width: 80%;
-        max-width: 300px;
-      }
-
-      .network-status.show {
-        opacity: 1;
-      }
-
-      /* Genre Filter (sudah ada di index.css) */
-      .genre-filter {
-        margin: 20px auto;
-        padding: 10px;
-        background: rgba(0, 0, 0, 0.7);
-        border-radius: 30px;
-        position: relative;
-        max-width: 1000px;
-        z-index: 2;
-      }
-
-      .genre-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-        padding: 0 10px;
-      }
-
-      .genre-toggle {
-        background: none;
-        border: none;
-        padding: 5px;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-      }
-
-      .genre-toggle:hover {
-        transform: scale(1.2);
-      }
-
-      .genre-toggle:hover path {
-        fill: #ffd700;
-      }
-
-      .genre-list-container {
-        max-height: 500px;
-        overflow: hidden;
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .genre-list-container.collapsed {
-        max-height: 0;
-        opacity: 0;
-      }
-
-      .genre-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 15px;
-        padding: 5px 10px;
-        justify-content: center;
-      }
-
-      .genre-btn {
-        padding: 8px 20px;
-        background: #3a3a3a;
-        border: none;
-        border-radius: 25px;
-        color: white;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        font-weight: bold;
-      }
-
-      .genre-btn:hover {
-        background: #ffa200;
+        color: #181818; /* Warna teks/ikon jadi gelap */
+        border-color: #ffa200;
         transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(255, 162, 0, 0.3);
       }
 
-      .genre-btn::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(45deg, #ffa200, #ffd900);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        z-index: 1;
+      /* Style Saat Sudah Difavoritkan (via class 'favorited') */
+      .anime-item .add-favorite-button.favorited {
+        background-color: #ffa200;
+        color: #181818;
+        border-color: #ff8c00;
       }
 
-      .genre-btn:hover::before {
-        opacity: 0.2;
+      /* Ganti ikon menjadi solid saat difavoritkan */
+      .anime-item .add-favorite-button.favorited i {
+         font-weight: 900; /* Gunakan font-weight solid */
       }
+      /* Kita tidak perlu ::before jika sudah pakai far/fas di HTML */
 
-      .genre-btn.selected {
-        background: #ffa200;
-        transform: translateY(-3px);
-        box-shadow: 0 5px 20px rgba(255, 162, 0, 0.4);
-        animation: genreSelect 0.4s ease forwards;
-      }
+      /* HAPUS STYLE favorite-btn LAMA YANG MENGGUNAKAN POSITION ABSOLUTE */
+      /* .favorite-btn { ... } */
+      /* .favorite-btn:hover { ... } */
+      /* .favorite-btn.favorited { ... } */
+      /* .favorite-btn.favorited:hover { ... } */
+      /* ================================================ */
 
-      @keyframes genreSelect {
-        0% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-5px);
-        }
-        100% {
-          transform: translateY(-3px);
-        }
-      }
 
-      /* Efek slide untuk konten */
-      .anime-list.slide-up {
-        /* class ini digunakan di JS filter */
-        transform: translateY(-20px);
-        opacity: 0.8;
-      }
-
-      /* Tambahan untuk animasi scroll (keyframes sudah ada di atas) */
-      /* @keyframes slideIn { ... } */
-      .genre-list-container:not(.collapsed) .genre-list {
-        animation: slideIn 0.3s ease-out;
-      }
-
-      /* Search Container (sudah ada di index.css) */
-      /* Efek blur di input search */
-      #search-input {
-        position: relative;
-        width: 100%;
-        max-width: 600px;
-        padding: 12px 20px;
-        font-size: 16px;
-        border: 2px solid #ffa200;
-        border-radius: 25px;
-        background: rgba(255, 255, 255, 0.1);
+      .home, .back { /* Style untuk tombol lain jika ada */
+        font-size: 25px;
+        background-color: rgb(48, 45, 45);
+        padding: 20px;
+        border-radius: 20px;
+        text-decoration: none;
         color: white;
-        transition: all 0.3s ease;
+        transition: text-decoration 0.3s;
       }
+      .home:hover, .back:hover { text-decoration: underline; color: #ffa200; }
+      .back { margin-left: 20px; }
 
-      #search-input:focus {
-        outline: none;
-        box-shadow: 0 0 15px rgba(255, 162, 0, 0.5);
-        border-color: #ff6b00;
-      }
+      .main { text-align: center; margin-top: 5%; }
+      .main img { margin-bottom: 50px; width: 350px; background-color: #383434; padding: 25px; border-radius: 30px; }
+      @media only screen and (max-width: 767px) { .main img { width: 200px; height: 250px; } }
+      .main h2 { font-weight: bold; color: #ffa200; font-size: 35px; }
+      @media only screen and (max-width: 767px) { .main h2 { } }
+      .main h3 { margin-bottom: 15px; margin-left: 50px; text-align: start; font-size: 20px; color: #ffa200; }
+      @media only screen and (max-width: 767px) { .main h3 { margin-left: 0; text-align: center; } }
+      .main p { margin: 25px; letter-spacing: 1px; text-align: left; background-color: #383434; border-radius: 20px; padding: 10px; }
+      @media only screen and (max-width: 767px) { .main p { text-align: center; margin: 15px; } }
+      .main a { text-align: center; padding: 20px; font-size: 15px; color: #ffa200; text-decoration: none; display: block; margin: 25px; background-color: #282828; border-radius: 10px; }
+      .main a:hover { background: linear-gradient(-45deg, #282828 40%, #fafafa 50%, #282828 60%); background-size: 300%; background-position-x: 100%; animation: shimmer 1.5s infinite linear; }
+      @media only screen and (max-width: 767px) { .main a:active { background: linear-gradient(-45deg, #282828 40%, #fafafa 50%, #282828 60%); background-size: 300%; background-position-x: 100%; animation: shimmer 1.5s infinite linear; } }
+      @keyframes shimmer { to { background-position-x: 0%; } }
 
-      #search-input:hover {
-        transform: scale(1.02);
-        background: rgba(255, 255, 255, 0.15);
-      }
+      .batas { margin: 20px; border-color: #ffa200; }
 
-      /* Container efek kilau */
-      .search-container {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        padding: 15px 0;
-        transition: all 0.3s ease;
-        text-align: center; /* Pusatkan search container */
-      }
+      .video { position: relative; overflow: hidden; width: 48%; height: 460px; margin: 0 auto; }
+      @media (max-width: 767px) { .video { width: 100%; height: calc(100vw * 9 / 16); max-height: 100%; margin: 0 auto; } }
 
-      @media (max-width: 768px) {
-        .search-container {
-          padding: 10px 0;
-        }
+      /* Footer */
+      .footer { background-color: #1f1f1f; color: #fff; padding: 20px 0; font-size: 14px; position: relative; z-index: 3; margin-top: 50px; }
+      .footer-section { display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+      .footer-item { width: 30%; min-width: 200px; margin-bottom: 20px; padding: 0 10px; box-sizing: border-box; text-align: left; }
+      .footer-item h3 { display: block; margin: 0 0 10px 0; font-size: 18px; border-bottom: 1px solid #444; padding-bottom: 5px; color: orange; text-align: left; }
+      .social-links-container { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; align-items: flex-start; }
+      .footer-item p { margin: 0; display: flex; align-items: center; font-size: 14px; }
+      .social-icon { margin-right: 8px; vertical-align: middle; width: 20px; height: auto; color: #fff; transition: all 0.3s ease; flex-shrink: 0; }
+      .trakteer-icon { width: 20px; height: auto; }
+      .footer-item p a { color: #ccc; text-decoration: none; transition: color 0.3s ease; }
+      .footer-item p a:hover { color: #ffa200; text-decoration: underline; }
+      .social-icon:hover { transform: scale(1.2); color: #ffa200; filter: brightness(1.5); }
+      @media (min-width: 769px) { .footer-section { justify-content: space-between; gap: 20px; } .footer-item { width: 30%; margin-bottom: 0; text-align: left; } .social-links-container { flex-direction: row; flex-wrap: wrap; gap: 15px; justify-content: flex-start; } .footer-item p { margin-right: 15px; margin-bottom: 5px; } }
+      @media (max-width: 768px) { .footer-section { flex-direction: column; align-items: center; gap: 30px; padding: 0 10px; } .footer-item { width: 95%; min-width: auto; margin-bottom: 0; padding: 0; text-align: center; } .footer-item h3 { text-align: center; margin-bottom: 15px; } .social-links-container { flex-direction: column; align-items: center; gap: 10px; margin-top: 5px; } .footer-item p { justify-content: center; margin-right: 0; } .social-icon { width: 18px; } }
 
-        #search-input {
-          font-size: 14px;
-          padding: 10px 15px;
-          max-width: 90%;
-        }
-      }
+      main { position: relative; z-index: 2; }
+      section.nama { margin-top: 20px; }
+      .notice { margin: 20px auto; padding: 15px; background-color: rgba(40, 40, 40, 0.8); border-radius: 8px; max-width: 600px; text-align: center; color: #ccc; position: relative; z-index: 2; }
+      .notice p { margin-bottom: 10px; }
+      .notice p:last-child { margin-bottom: 0; }
 
-      /* Style notifikasi dan cookie consent sudah di atas */
+      #notification { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); padding: 15px 30px; border-radius: 25px; color: white; font-weight: bold; z-index: 10000; opacity: 0; transition: all 0.3s ease; pointer-events: none; }
+      #notification.visible { opacity: 1; bottom: 30px; }
+      #notification.success { background: #28a745; }
+      #notification.error { background: #dc3545; }
+      #notification.info { background: #17a2b8; }
 
-      /* Styles yang mungkin tidak terpakai atau perlu di cek */
-      /* .animated-text, .fire-effect, .graimg, .gradient, #commentSection, #comments, textarea */
-      /* Style ini sepertinya dari halaman lain atau sisa kode, sebaiknya dihapus jika tidak dipakai di index.html */
+      .cookie-consent { position: fixed; bottom: -100%; left: 0; right: 0; background: rgba(0, 0, 0, 0.95); color: white; padding: 15px; z-index: 9999; transition: bottom 0.5s ease; border-top: 2px solid #ffa200; }
+      .cookie-consent.show { bottom: 0; }
+      .cookie-content { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 15px; align-items: center; justify-content: space-between; }
+      .cookie-content p { margin: 0; flex: 1; min-width: 300px; font-size: 0.9em; }
+      .cookie-content a { color: #ffa200; text-decoration: underline; }
+      .cookie-buttons { display: flex; gap: 10px; flex-shrink: 0; }
+      #cancel-cookies { background-color: #444; border: 1px solid #666; }
+      #cancel-cookies:hover { background-color: #666; }
+
+      .pagination-container { margin: 20px 0; display: flex; justify-content: center; position: relative; z-index: 2; }
+      .pagination-controls { display: flex; gap: 15px; align-items: center; background-color: rgba(40, 40, 40, 0.8); padding: 10px 20px; border-radius: 20px; }
+      .pagination-btn { padding: 8px 16px; background: #ffa200; border: none; border-radius: 4px; color: #181818; cursor: pointer; transition: all 0.3s; font-weight: bold; }
+      .pagination-btn:hover:not(:disabled) { background: #ff8c00; transform: translateY(-2px); }
+      .pagination-btn:disabled { background: #666; cursor: not-allowed; opacity: 0.7; }
+      .page-info { color: #fff; font-size: 1em; font-weight: bold; }
+
+      #myDynamicSplash { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #181818; display: flex; align-items: center; justify-content: center; text-align: center; z-index: 9999; transition: opacity 0.5s ease; }
+      .splash-content { position: relative; z-index: 10000; }
+      .splash-title { font-size: 45px; margin-bottom: 2rem; display: flex; justify-content: center; position: relative; }
+      .splash-title span { display: inline-flex; font-family: "Play", sans-serif; animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate; margin: 0 3px; color: #ffa200; text-shadow: 0 0 10px #ff6b00; }
+      .sk-cube-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; width: 40px; height: 40px; justify-content: center; align-items: center; margin: auto; }
+      .sk-cube { width: 10px; height: 10px; background-color: #ffa200; animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; }
+      @keyframes sk-cubeGridScaleDelay { 0%, 70%, 100% { transform: scale3D(1, 1, 1); } 35% { transform: scale3D(0, 0, 1); } }
+      .network-status { position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); color: #ff5555; font-size: 1.2em; text-align: center; opacity: 0; transition: opacity 0.3s ease; width: 80%; max-width: 300px; }
+      .network-status.show { opacity: 1; }
+
+      .genre-filter { margin: 20px auto; padding: 10px; background: rgba(0, 0, 0, 0.7); border-radius: 30px; position: relative; max-width: 1000px; z-index: 2; }
+      .genre-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 0 10px; }
+      .genre-toggle { background: none; border: none; padding: 5px; cursor: pointer; transition: transform 0.3s ease; }
+      .genre-toggle:hover { transform: scale(1.2); }
+      .genre-toggle:hover path { fill: #ffd700; }
+      .genre-list-container { max-height: 500px; overflow: hidden; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+      .genre-list-container.collapsed { max-height: 0; opacity: 0; }
+      .genre-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; padding: 5px 10px; justify-content: center; }
+      .genre-btn { padding: 8px 20px; background: #3a3a3a; border: none; border-radius: 25px; color: white; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; font-weight: bold; }
+      .genre-btn:hover { background: #ffa200; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255, 162, 0, 0.3); }
+      .genre-btn::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, #ffa200, #ffd900); opacity: 0; transition: opacity 0.3s ease; z-index: 1; }
+      .genre-btn:hover::before { opacity: 0.2; }
+      .genre-btn.selected { background: #ffa200; transform: translateY(-3px); box-shadow: 0 5px 20px rgba(255, 162, 0, 0.4); animation: genreSelect 0.4s ease forwards; }
+      @keyframes genreSelect { 0% { transform: translateY(0); } 50% { transform: translateY(-5px); } 100% { transform: translateY(-3px); } }
+
+      .anime-list.slide-up { transform: translateY(-20px); opacity: 0.8; }
+      @keyframes slideIn { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+      .genre-list-container:not(.collapsed) .genre-list { animation: slideIn 0.3s ease-out; }
+
+      #search-input { position: relative; width: 100%; max-width: 600px; padding: 12px 20px; font-size: 16px; border: 2px solid #ffa200; border-radius: 25px; background: rgba(255, 255, 255, 0.1); color: white; transition: all 0.3s ease; }
+      #search-input:focus { outline: none; box-shadow: 0 0 15px rgba(255, 162, 0, 0.5); border-color: #ff6b00; }
+      #search-input:hover { transform: scale(1.02); background: rgba(255, 255, 255, 0.15); }
+      .search-container { position: sticky; top: 0; z-index: 1000; padding: 15px 0; transition: all 0.3s ease; text-align: center; }
+      @media (max-width: 768px) { .search-container { padding: 10px 0; } #search-input { font-size: 14px; padding: 10px 15px; max-width: 90%; } }
+
     </style>
     <!-- ================================================== -->
     <!-- --- AKHIR STYLE CSS --- -->
@@ -1612,8 +473,7 @@
     <!-- --- BACKGROUND PARTIKEL HTML --- -->
     <!-- ================================================== -->
     <div id="particles-background">
-      <!-- Sebanyak 100 div.circle-container, masing-masing punya div.circle -->
-      <!-- Saya akan tempelkan 100 elemen ini di sini -->
+      <!-- Sebanyak 100 div.circle-container -->
       <div class="circle-container"><div class="circle"></div></div>
       <div class="circle-container"><div class="circle"></div></div>
       <div class="circle-container"><div class="circle"></div></div>
@@ -1724,118 +584,70 @@
     <!-- --- AKHIR BACKGROUND PARTIKEL HTML --- -->
     <!-- ================================================== -->
 
-    <!-- memulai -->
-    <!-- Hapus div.banner yang berisi video -->
-    <!-- <div class="banner">
-        <video class="background-video desktop" autoplay loop muted preload="auto"><source src="Gambar/LiveWalpaper.mp4"></video>
-    </div> -->
-
     <div class="abt"><a href="About.html">ABOUT</a></div>
 
-    <!-- header -->
     <header>
       <div class="container">
         <h1 class="title">
-          <span>M</span>
-          <span>y</span>
-          <span>A</span>
-          <span>n</span>
-          <span>i</span>
-          <span>m</span>
-          <span>e</span>
+          <span>M</span><span>y</span><span>A</span><span>n</span><span>i</span><span>m</span><span>e</span>
         </h1>
         <p>Support Saya Di</p>
         <p><a href="https://www.instagram.com/ransyah_32/">Instagram</a></p>
         <p><a href="https://trakteer.id/ransyah4">Trakteer!</a></p>
         <nav>
           <ul id="menu">
+            <!-- Menu Awal (Akan Diupdate oleh JS) -->
             <li><a href="#">HOME</a></li>
-            <li><a id="google-login-btn" href="#">LOGIN</a></li>
+            <li><a href="#" id="google-login-btn">LOGIN</a></li>
           </ul>
         </nav>
         <br />
         <div class="search-container">
-          <input
-            type="text"
-            id="search-input"
-            placeholder="Search.."
-            name="keyword"
-          />
+          <input type="text" id="search-input" placeholder="Search.." name="keyword" />
           <div class="sparkle" id="sparkle-container"></div>
-          <!-- Tempat untuk suggestions, letakkan di dalam search-container atau di dekatnya -->
           <div class="suggestions"></div>
         </div>
       </div>
     </header>
 
-    <!-- main -->
     <main>
-      <!-- Tambahkan di bawah .notice atau di lokasi yang diinginkan -->
       <div class="genre-filter">
         <div class="genre-header">
           <h2 style="color: #ffa200">Genre</h2>
           <button class="genre-toggle">
-            <svg class="arrow-down" width="24" height="24" viewBox="0 0 24 24">
-              <path fill="#ffa200" d="M7 10l5 5 5-5z" />
-            </svg>
-            <svg
-              class="arrow-up"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              style="display: none"
-            >
-              <path fill="#ffa200" d="M7 14l5-5 5 5z" />
-            </svg>
+            <svg class="arrow-down" width="24" height="24" viewBox="0 0 24 24"><path fill="#ffa200" d="M7 10l5 5 5-5z" /></svg>
+            <svg class="arrow-up" width="24" height="24" viewBox="0 0 24 24" style="display: none"><path fill="#ffa200" d="M7 14l5-5 5 5z" /></svg>
           </button>
         </div>
         <div class="genre-list-container collapsed">
-          <!-- Default collapsed -->
           <div class="genre-list"></div>
         </div>
       </div>
-      <div id="notification" class="hidden"></div>
+      <div id="notification"></div> <!-- Notifikasi dipindah sedikit ke atas -->
       <div class="container">
-        <!-- Konten utama ada di dalam .container -->
         <div class="notice">
           <p>masih dalam tahap sharing,</p>
-          <p>
-            Anime recommended dari saya,dan tidak semua genre ada ! ajak temanmu
-            dan rekomendasikan anime favorit tanpa ads!
-          </p>
+          <p>Anime recommended dari saya,dan tidak semua genre ada ! ajak temanmu dan rekomendasikan anime favorit tanpa ads!</p>
         </div>
-        <!-- List Anime -->
         <div id="content">
           <section class="nama">
             <h2>Anime Terbaru</h2>
-            <!-- List Anime akan muncul oleh java script -->
             <div class="anime-list"></div>
           </section>
-          <!-- Pagination akan ditambahkan oleh JS -->
-          <!-- <div class="pagination-container"></div> -->
         </div>
       </div>
-      <!-- Akhir .container main -->
     </main>
 
-    <!-- Cookie Consent -->
     <div id="cookie-consent" class="cookie-consent">
       <div class="cookie-content">
-        <p>
-          Kami menggunakan cookie untuk meningkatkan pengalaman Anda. Dengan
-          menggunakan situs ini, Anda setuju dengan
-          <a href="/privacy">Kebijakan Privasi</a> kami.
-        </p>
+        <p>Kami menggunakan cookie untuk meningkatkan pengalaman Anda. Dengan menggunakan situs ini, Anda setuju dengan <a href="/privacy">Kebijakan Privasi</a> kami.</p>
         <div class="cookie-buttons">
           <button id="accept-cookies" class="stylebutton">Setuju</button>
-          <button id="cancel-cookies" class="stylebutton secondary">
-            Batalkan
-          </button>
+          <button id="cancel-cookies" class="stylebutton secondary">Batalkan</button>
         </div>
       </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
       <div class="footer-section">
         <div class="footer-item">
@@ -1846,78 +658,32 @@
         <div class="footer-item">
           <h3>Ikuti & Support</h3>
           <div class="social-links-container">
-            <p>
-              <i class="fab fa-instagram social-icon"></i>
-              <a
-                href="https://www.instagram.com/ransyah_32/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Instagram</a
-              >
-            </p>
-            <p>
-              <img
-                src="Gambar/trakteer_logo.png"
-                alt=""
-                class="trakteer-icon social-icon"
-              />
-              <a
-                href="https://trakteer.id/ransyah4"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Trakteer!</a
-              >
-            </p>
-            <p>
-              <i class="fas fa-envelope social-icon"></i>
-              <a href="mailto:rizky1234kb@gmail.com">Email</a>
-            </p>
+            <p><i class="fab fa-instagram social-icon"></i> <a href="https://www.instagram.com/ransyah_32/" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+            <p><img src="Gambar/trakteer_logo.png" alt="" class="trakteer-icon social-icon" /> <a href="https://trakteer.id/ransyah4" target="_blank" rel="noopener noreferrer">Trakteer!</a></p>
+            <p><i class="fas fa-envelope social-icon"></i> <a href="mailto:rizky1234kb@gmail.com">Email</a></p>
           </div>
         </div>
-        <!-- Perbaikan Struktur HTML Footer: Hubungi Kami ada di footer-item terpisah -->
         <div class="footer-item">
           <h3>Hubungi Kami</h3>
-          <p>
-            <a href="mailto:rizky1234kb@gmail.com">rizky1234kb@gmail.com</a>
-          </p>
+          <p><a href="mailto:rizky1234kb@gmail.com">rizky1234kb@gmail.com</a></p>
         </div>
       </div>
     </footer>
 
-    <!-- Google Sign-In Script -->
-    <!-- Ini diperlukan meskipun menggunakan redirect flow untuk fungsi GSI v2 lainnya -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <!-- Tambahkan jwt-decode jika login Google di-handle dengan token di hash -->
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
 
-    <!-- ================================================== -->
-    <!-- --- KODE JAVASCRIPT (SEBELUMNYA javapertama.js) --- -->
-    <!-- ================================================== -->
     <script>
-      // Kode JavaScript dari javapertama.js kamu dimasukkan di sini
-
-      // Splash Screen System (dari javapertama.js)
+      // --- SPLASH SCREEN ---
       function createSplashScreen() {
-        // Cek hanya di halaman utama
-        const isHomePage =
-          window.location.pathname.endsWith("index.html") ||
-          window.location.pathname === "/";
-
-        if (!isHomePage) return null; // Hanya aktif di index.html atau root
-
-        // Create container
+        const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+        if (!isHomePage) return null;
         const splashScreen = document.createElement("div");
         splashScreen.id = "myDynamicSplash";
-
-        // Create content
         const contentWrapper = document.createElement("div");
         contentWrapper.className = "splash-content";
-
-        // Create title
         const title = document.createElement("div");
         title.className = "splash-title";
-
-        // Create title letters
         const letters = ["M", "y", "A", "n", "i", "m", "e"];
         letters.forEach((letter, index) => {
           const span = document.createElement("span");
@@ -1925,8 +691,6 @@
           span.style.animationDelay = `${0.3 + index * 0.1}s`;
           title.appendChild(span);
         });
-
-        // Create loader
         const cubeGrid = document.createElement("div");
         cubeGrid.className = "sk-cube-grid";
         for (let i = 1; i <= 9; i++) {
@@ -1934,663 +698,499 @@
           cube.className = `sk-cube sk-cube${i}`;
           cubeGrid.appendChild(cube);
         }
-
-        // Create error message
         const errorMessage = document.createElement("div");
         errorMessage.className = "network-status";
-
-        // Assemble components
         contentWrapper.appendChild(title);
         contentWrapper.appendChild(cubeGrid);
         contentWrapper.appendChild(errorMessage);
         splashScreen.appendChild(contentWrapper);
-
-        // Add to DOM
         document.body.prepend(splashScreen);
-
         return { splashScreen, errorMessage };
       }
 
       function initSplashScreen() {
         const splashData = createSplashScreen();
         if (!splashData) return;
-
         const { splashScreen, errorMessage } = splashData;
         let isLoaded = false;
-
-        // Network error handler
         const showNetworkError = (message) => {
           errorMessage.textContent = message;
           errorMessage.classList.add("show");
         };
-
-        // Initial network check
         if (!navigator.onLine) showNetworkError("Koneksi internet offline");
-
-        // Network event listeners
-        window.addEventListener("offline", () =>
-          showNetworkError("Koneksi internet offline")
-        );
-        window.addEventListener("online", () =>
-          errorMessage.classList.remove("show")
-        );
-
-        // Connection quality check
-        const connection =
-          navigator.connection ||
-          navigator.mozConnection ||
-          navigator.webkitConnection;
+        window.addEventListener("offline", () => showNetworkError("Koneksi internet offline"));
+        window.addEventListener("online", () => errorMessage.classList.remove("show"));
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
         if (connection) {
           connection.addEventListener("change", () => {
-            if (
-              connection.effectiveType === "slow-2g" ||
-              connection.effectiveType === "2g"
-            ) {
+            if (connection.effectiveType === "slow-2g" || connection.effectiveType === "2g") {
               showNetworkError("Koneksi internet lemah terdeteksi");
             }
           });
         }
-
-        // Hide splash screen
         const hideSplash = () => {
           if (isLoaded) return;
           isLoaded = true;
-
           splashScreen.style.opacity = "0";
           splashScreen.addEventListener("transitionend", () => {
             splashScreen.remove();
           });
         };
-
-        // Timeout handler
         const loadTimeout = setTimeout(() => {
           if (!isLoaded) showNetworkError("Memuat lebih lama dari biasanya...");
-        }, 5000);
-
-        // Load event handler
+        }, 5000); // Meningkatkan timeout sedikit
         const handleLoad = () => {
           clearTimeout(loadTimeout);
           hideSplash();
         };
-
-        // Event listeners
-        // Gunakan DOMContentLoaded dan window.load
         if (document.readyState === "complete") {
           handleLoad();
-        } else {
-          // Lebih baik menggunakan satu listener untuk load utama
-          // window.addEventListener('load', handleLoad);
-          // Atau pastikan data anime sudah terload baru sembunyikan splash
-          // Kita akan panggil hideSplash setelah loadAnimeData di DOMContentLoaded
         }
-
-        // Return handleLoad agar bisa dipanggil dari initAuth atau loadData
+        // handleLoad akan dipanggil lagi setelah data load
         return handleLoad;
       }
 
-      // Login Dan Logout (dari javapertama.js)
+      // --- AUTH SYSTEM ---
+      const CLIENT_ID = "429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com";
+      const REDIRECT_URI = window.location.origin + window.location.pathname;
 
-      // LOGIN & FAVORITES SYSTEM
-      // PASTIKAN CLIENT_ID DAN REDIRECT_URI SESUAI DENGAN YANG TERDAFTAR DI GOOGLE CONSOLE
-      const CLIENT_ID =
-        "429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com";
-      // REDIRECT_URI untuk index.html
-      // Ganti URL ini dengan URL PUBLIK index.html kamu atau URL lokal jika pakai server
-      const REDIRECT_URI = window.location.origin + window.location.pathname; // Mengarah kembali ke halaman ini sendiri (index.html)
-
-      // Fungsi Login Google (menggunakan Redirect Flow)
       function handleLogin() {
         console.log("Attempting Google login...");
-        localStorage.removeItem("access_token"); // Bersihkan token lama
-        localStorage.removeItem("user_info"); // Bersihkan info user lama
-        sessionStorage.removeItem("currentUser"); // Bersihkan session user lama
-
-        // Parameter scope: 'email' dan 'profile'
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("user_info");
+        sessionStorage.removeItem("currentUser");
         const oauth2Url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=email profile&prompt=select_account`;
-
-        // Redirect ke URL Google OAuth
         window.location.href = oauth2Url;
       }
 
-      // Fungsi Logout
       function handleLogout() {
         console.log("Attempting Google logout...");
         localStorage.removeItem("access_token");
         localStorage.removeItem("user_info");
-        sessionStorage.removeItem("currentUser"); // Hapus juga dari session
-
-        // Menggunakan GSI untuk logout/clear session di sisi Google juga
+        sessionStorage.removeItem("currentUser");
         if (google && google.accounts && google.accounts.id) {
-          google.accounts.id.disableAutoSelect(); // Mencegah auto-login berikutnya
+          google.accounts.id.disableAutoSelect();
           console.log("Google auto-select disabled.");
         }
-
-        // Update UI
-        updateMenu();
-        // Opsional: reload halaman untuk memastikan state bersih
-        // window.location.reload();
+        updateMenu(); // Update UI setelah logout
         console.log("User logged out.");
       }
 
-      // Ambil info pengguna dari Google API
       async function getUserInfo(accessToken) {
         console.log("Fetching user info...");
         try {
-          const response = await fetch(
-            "https://www.googleapis.com/oauth2/v2/userinfo",
-            {
-              headers: { Authorization: `Bearer ${accessToken}` },
-            }
-          );
+          const response = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", { headers: { Authorization: `Bearer ${accessToken}` } });
           console.log("User info response status:", response.status);
           if (!response.ok) {
-            // Jika token invalid atau expired, response status bisa 401
-            throw new Error(
-              `Gagal mengambil info pengguna: Status ${response.status}`
-            );
+            throw new Error(`Gagal mengambil info pengguna: Status ${response.status}`);
           }
           const userInfo = await response.json();
           console.log("User info received:", userInfo);
           return userInfo;
         } catch (error) {
           console.error("Gagal mengambil info pengguna:", error);
-          // Hapus token lokal jika gagal
           localStorage.removeItem("access_token");
           localStorage.removeItem("user_info");
           sessionStorage.removeItem("currentUser");
-          // Tidak perlu updateMenu di sini, akan dihandle setelah initAuth gagal
           return null;
         }
       }
 
-      // Update menu navigasi berdasarkan status login
       async function updateMenu() {
-        console.log("Updating menu...");
-        const menu = document.getElementById("menu");
-        if (!menu) {
-          console.warn("Nav menu element not found!");
-          return;
-        }
-
-        const accessToken = localStorage.getItem("access_token");
-        const userInfo = JSON.parse(localStorage.getItem("user_info")); // Info dari localStorage
-
-        // Prioritaskan info dari Session Storage jika ada (dari GSI callback di halaman lain)
-        const sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
-        const currentUserInfo = sessionUser || userInfo;
-
-        if (accessToken && currentUserInfo) {
-          console.log("User is logged in:", currentUserInfo);
-          // User sudah login, tampilkan menu profile dan logout
-          menu.innerHTML = `
-               <li><a href="favorites.html">Favorites</a></li>
-               <li>
-                 <a href="#" id="logout-btn" class="profile-btn">
-                   <img src="${currentUserInfo.picture}" alt="Profile" class="profile-img">
-                   <span>${currentUserInfo.name}</span>
-                 </a>
-               </li>
-             `;
-          // Pastikan info user di localStorage juga terupdate jika login dari halaman lain
-          if (sessionUser && !userInfo) {
-            localStorage.setItem("user_info", JSON.stringify(sessionUser));
+          console.log("Updating menu...");
+          const menu = document.getElementById("menu");
+          if (!menu) {
+              console.warn("Nav menu element (#menu) not found!");
+              return;
           }
-        } else {
-          console.log("User is logged out.");
-          // User belum login, tampilkan tombol Login
-          menu.innerHTML = `
-               <li><a href="#" id="google-login-btn">LOGIN</a></li>
-             `;
-          // Pastikan storage bersih jika tidak ada token/user info
-          localStorage.removeItem("access_token");
-          localStorage.removeItem("user_info");
-          sessionStorage.removeItem("currentUser");
-        }
 
-        // Event delegation untuk login/logout (Penting: tambahkan ke body agar berfungsi setelah menu diupdate)
-        // Hapus listener lama jika ada untuk menghindari duplikasi
-        document.body.removeEventListener("click", handleMenuClick); // Hapus listener lama
-        document.body.addEventListener("click", handleMenuClick); // Tambahkan listener baru
-
-        function handleMenuClick(e) {
-          if (e.target.closest("#google-login-btn")) {
-            e.preventDefault(); // Mencegah default link behavior
-            handleLogin();
+          const accessToken = localStorage.getItem("access_token");
+          let userInfo = null;
+          try {
+              userInfo = JSON.parse(localStorage.getItem("user_info"));
+          } catch (e) {
+              console.warn("Could not parse user_info from localStorage", e);
+              localStorage.removeItem("user_info"); // Clear invalid data
           }
-          if (e.target.closest("#logout-btn")) {
-            e.preventDefault(); // Mencegah default link behavior
-            handleLogout();
-          }
-        }
 
-        console.log("Menu updated.");
+          let sessionUser = null;
+          try {
+              sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
+          } catch (e) {
+              console.warn("Could not parse currentUser from sessionStorage", e);
+              sessionStorage.removeItem("currentUser"); // Clear invalid data
+          }
+
+          const currentUserInfo = sessionUser || userInfo;
+
+          if (accessToken && currentUserInfo) {
+              console.log("User is logged in:", currentUserInfo);
+              menu.innerHTML = `
+                  <li><a href="favorites.html">Favorites</a></li>
+                  <li>
+                      <a href="#" id="logout-btn" class="profile-btn">
+                          <img src="${currentUserInfo.picture || 'Gambar/default-avatar.png'}" alt="Profile" class="profile-img"> {/* Fallback image */}
+                          <span>${currentUserInfo.name || 'User'}</span> {/* Fallback name */}
+                      </a>
+                  </li>`;
+              // Sync session storage to local storage if needed
+              if (sessionUser && !userInfo) {
+                  localStorage.setItem("user_info", JSON.stringify(sessionUser));
+              }
+          } else {
+              console.log("User is logged out.");
+              menu.innerHTML = `
+                  <li><a href="#">HOME</a></li>
+                  <li><a href="#" id="google-login-btn">LOGIN</a></li>`;
+              // Ensure storage is clean on logout state
+              localStorage.removeItem("access_token");
+              localStorage.removeItem("user_info");
+              sessionStorage.removeItem("currentUser");
+          }
+
+          // Re-attach event listeners using delegation on the body
+          document.body.removeEventListener("click", handleMenuClick); // Remove previous listener first
+          document.body.addEventListener("click", handleMenuClick);
+
+          console.log("Menu updated.");
       }
 
-      // Inisialisasi Auth dengan Validasi Lebih Baik (dari javapertama.js)
+      // Define handleMenuClick outside updateMenu so it's accessible
+      function handleMenuClick(e) {
+          if (e.target.closest("#google-login-btn")) {
+              e.preventDefault();
+              handleLogin();
+          }
+          if (e.target.closest("#logout-btn")) {
+              e.preventDefault();
+              handleLogout();
+          }
+      }
+
+
       async function initAuth() {
         console.log("Initializing Auth...");
-        const hash = window.location.hash.substring(1); // Ambil hash dari URL
+        const hash = window.location.hash.substring(1);
         const params = new URLSearchParams(hash);
-        const accessToken = params.get("access_token"); // Cek apakah ada access_token di hash
+        const accessToken = params.get("access_token");
 
         if (accessToken) {
           console.log("✅ Access token ditemukan di URL hash.");
-          // Baru saja redirect dari Google
           try {
-            // Ambil user info dulu sebelum menyimpan token
-            const userInfo = await getUserInfo(accessToken); // getUserInfo sekarang menangani hapus token/user jika gagal
-            if (userInfo && userInfo.email) {
-              // Pastikan userInfo valid
+            const userInfo = await getUserInfo(accessToken);
+            if (userInfo && (userInfo.email || userInfo.id)) { // Check for email or id
               console.log("✅ Info pengguna berhasil diambil:", userInfo);
-
-              // Simpan data hanya jika valid
               localStorage.setItem("access_token", accessToken);
               localStorage.setItem("user_info", JSON.stringify(userInfo));
-              // Simpan juga di sessionStorage untuk sesi saat ini (agar langsung terdeteksi di watch.html jika dibuka)
-              sessionStorage.setItem(
-                "currentUser",
-                JSON.stringify({
-                  id: userInfo.id || userInfo.sub, // Gunakan id atau sub
-                  name: userInfo.name,
-                  picture: userInfo.picture,
-                  email: userInfo.email, // Email penting untuk beberapa kasus
-                })
-              );
-
-              // Hapus hash dari URL agar tidak terlihat
-              history.replaceState(null, "", window.location.pathname);
-
+              sessionStorage.setItem("currentUser", JSON.stringify({
+                id: userInfo.id || userInfo.sub, // Use id or sub
+                name: userInfo.name,
+                picture: userInfo.picture,
+                email: userInfo.email
+              }));
+              history.replaceState(null, "", window.location.pathname); // Clean URL
               console.log("✅ Auth berhasil diinisialisasi dari redirect.");
             } else {
-              // getUserInfo sudah menghapus token/user info jika gagal
-              console.error(
-                "❌ Auth gagal: Tidak dapat mengambil info pengguna atau info tidak lengkap."
-              );
+               // getUserInfo already handled cleanup if info is invalid/incomplete
+              console.error("❌ Auth gagal: Info pengguna tidak lengkap atau tidak valid.");
+               // Optionally show user a message here
             }
           } catch (error) {
             console.error("❌ Auth gagal saat memproses token:", error);
             alert("Login gagal. Silakan coba lagi!");
-            // Error sudah dicatat di getUserInfo, tidak perlu handleLogout eksplisit di sini
           }
         } else {
-          console.log(
-            "🔍 Tidak ada access token di hash URL. Mengecek Local Storage."
-          );
-          // Tidak ada token baru di hash, cek apakah sudah login sebelumnya
-          // updateMenu akan memanggil checkStatus secara implisit melalui pembacaan storage
+          console.log("🔍 Tidak ada access token di hash URL. Mengecek Local Storage.");
+          // No new token, check existing login status from storage
+          // updateMenu will handle displaying the correct state
         }
-        // Setelah mencoba inisialisasi dari hash atau storage, update menu
-        updateMenu();
+        // Update menu regardless of whether a new token was processed
+        await updateMenu(); // Make sure menu is updated AFTER potential auth changes
       }
 
-      // PAGINATION SYSTEM YANG DIPERBAIKI (dari javapertama.js)
+      // --- PAGINATION & DATA LOADING ---
       let currentPage = 1;
-      let itemsPerPage = 27; // Jumlah item per halaman
+      let itemsPerPage = 27; // Jumlah item per halaman (pastikan sesuai keinginan)
       let totalPages = 1;
-      let allAnimeData = []; // Data lengkap semua anime
-      let filteredData = []; // Data setelah di-filter (search/genre)
+      let allAnimeData = [];
+      let filteredData = [];
+      const JSON_PATH = "./anime-data.json"; // Pastikan path ini benar!
 
-      // PERBAIKAN PATH JSON (gunakan forward slash)
-      // PASTIKAN PATH KE anime-data.json BENAR RELATIF TERHADAP index.html
-      const JSON_PATH = "./anime-data.json";
-
-      // Fungsi utama load data anime
       async function loadAnimeData() {
         console.log("🔄 Memulai load data dari:", JSON_PATH);
         try {
           const response = await fetch(JSON_PATH);
-
           console.log("🔍 Status response:", response.status);
           if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! Status: ${response.status}`);
           }
-
           const contentType = response.headers.get("content-type");
           if (!contentType || !contentType.includes("application/json")) {
-            throw new Error("Response bukan JSON!");
+             // Coba parsing teks jika header salah tapi konten mungkin JSON
+             console.warn("Header content-type bukan application/json, mencoba parsing teks...");
+             const text = await response.text();
+             try {
+                 const data = JSON.parse(text);
+                 console.log("✅ Data berhasil diparsing dari teks:", data);
+                 // Validasi struktur setelah parsing dari teks
+                  if (!data || !Array.isArray(data.data)) {
+                    if (Array.isArray(data)) {
+                      console.warn("Struktur JSON tidak memiliki properti 'data'. Menggunakan array langsung.");
+                      return data; // Langsung kembalikan jika data adalah array
+                    }
+                    throw new Error("Struktur JSON dari teks tidak valid.");
+                  }
+                 return data.data;
+             } catch (parseError) {
+                 console.error("❌ Gagal parsing teks sebagai JSON:", parseError, "Konten teks:", text);
+                 throw new Error("Response bukan JSON valid.");
+             }
           }
-
+          // Jika header benar application/json
           const data = await response.json();
-          console.log("✅ Data diterima:", data);
-
-          // Asumsikan struktur data adalah objek dengan properti 'data' berupa array
+          console.log("✅ Data diterima (application/json):", data);
+          // Validasi struktur
           if (!data || !Array.isArray(data.data)) {
-            // Jika struktur tidak sesuai, coba asumsikan data adalah array langsung
-            if (Array.isArray(data)) {
-              console.warn(
-                "Struktur JSON tidak memiliki properti 'data'. Menggunakan array langsung."
-              );
-              return data;
-            }
-            throw new Error(
-              "Struktur JSON tidak valid: tidak ditemukan array 'data' atau data bukan array."
-            );
+             if (Array.isArray(data)) {
+                 console.warn("Struktur JSON tidak memiliki properti 'data'. Menggunakan array langsung.");
+                 return data;
+             }
+            throw new Error("Struktur JSON tidak valid: properti 'data' tidak ditemukan atau bukan array.");
           }
-
-          return data.data; // Mengembalikan array anime
+          return data.data; // Kembalikan array anime
         } catch (error) {
           console.error("❌ Error kritikal saat memuat data anime:", error);
-          showNotification(
-            `Gagal memuat data anime: ${error.message}`,
-            "error"
-          );
-          // Mengembalikan array kosong agar aplikasi tidak crash
-          return [];
+          showNotification(`Gagal memuat data anime: ${error.message}. Cek path & file JSON.`, "error", 5000); // Tampilkan notif lebih lama
+          return []; // Kembalikan array kosong
         }
       }
 
-      // Render daftar item anime
+
+      // --- RENDERING ---
       function renderAnimeItems(data) {
         const animeList = document.querySelector(".anime-list");
-        if (!animeList) {
-          console.error("Container .anime-list tidak ditemukan!");
-          return;
-        }
+        if (!animeList) { console.error("Container .anime-list tidak ditemukan!"); return; }
+        animeList.innerHTML = ""; // Clear previous items
 
-        // Hapus item yang ada
-        animeList.innerHTML = "";
-
-        // Render item baru dari data slice
         if (data.length === 0) {
-          animeList.innerHTML =
-            '<p style="text-align: center; color: #ccc;">Tidak ada anime ditemukan sesuai kriteria.</p>';
+          animeList.innerHTML = '<p style="text-align: center; color: #ccc; width: 100%;">Tidak ada anime ditemukan.</p>'; // Style width 100%
           return;
         }
 
-        animeList.innerHTML = data
-          .map((anime) => {
-            // Pastikan properti yang dibutuhkan ada dan valid sebelum digunakan
-            const slug = anime.slug || "#"; // Defaultkan ke '#' jika slug tidak ada
-            const imageUrl = anime.image || "Gambar/default-thumbnail.png"; // Defaultkan ke gambar placeholder
-            const title = anime.title || "Judul Tidak Diketahui"; // Defaultkan judul
-            const genres = anime.info?.genres || []; // Ambil genre jika ada
+        const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        const favoriteSlugs = new Set(favorites.map(fav => fav.slug));
 
-            return `
-                <div class="anime-item">
+        animeList.innerHTML = data.map((anime) => {
+          const slug = anime.slug || "#" + Date.now(); // Fallback slug unik jika tidak ada
+          const imageUrl = anime.image || "Gambar/default-thumbnail.png";
+          const title = anime.title || "Judul Tidak Diketahui";
+          const isFavorited = favoriteSlugs.has(slug);
+          const escapedSlug = slug.replace(/'/g, "\\'").replace(/"/g, '"'); // Escape single and double quotes
+          const escapedTitle = title.replace(/'/g, "\\'").replace(/"/g, '"');
+          const escapedImageUrl = imageUrl.replace(/'/g, "\\'").replace(/"/g, '"');
+
+
+          return `
+              <div class="anime-item">
+                <a href="anime.html?slug=${encodeURIComponent(slug)}">
+                  <img src="${imageUrl}" alt="${escapedTitle}" loading="lazy">
+                </a>
+                <div class="anime-title-link">
                   <a href="anime.html?slug=${encodeURIComponent(slug)}">
-                    <img src="${imageUrl}" alt="${title}">
+                    <span>${title}</span>
                   </a>
-                  <!-- Gunakan div atau span untuk judul agar tidak mengganggu link gambar -->
-                  <div class="anime-title-link"><a href="anime.html?slug=${encodeURIComponent(
-                    slug
-                  )}"><span>${title}</span></a></div>
-                  <!-- Tombol Favorite -->
-                  <button class="favorite-btn" onclick="addToFavorites({
-                    slug: '${slug.replace(/'/g, "\\'")}',
-                    title: '${title.replace(/'/g, "\\'")}',
-                    image: '${imageUrl.replace(/'/g, "\\'")}'
-                  })"><i class="fas fa-heart"></i></button>
                 </div>
-             `;
-          })
-          .join("");
+                <button
+                  class="add-favorite-button ${isFavorited ? 'favorited' : ''}"
+                  onclick="addToFavorites({ slug: '${escapedSlug}', title: '${escapedTitle}', image: '${escapedImageUrl}' }, this)">
+                  <i class="far fa-bookmark"></i>
+                  <span>${isFavorited ? 'Disimpan' : 'Simpan'}</span>
+                </button>
+              </div>
+          `;
+        }).join("");
       }
 
-      // Render kontrol pagination
       function renderPagination() {
-        // Cek apakah pagination container sudah ada
-        let paginationContainer = document.querySelector(
-          ".pagination-container"
-        );
-
-        // Jika belum ada, buat dan tambahkan ke main
+        let paginationContainer = document.querySelector(".pagination-container");
         if (!paginationContainer) {
           paginationContainer = document.createElement("div");
           paginationContainer.className = "pagination-container";
-          const mainElement = document.querySelector("main");
+          const mainElement = document.querySelector("main #content"); // Target #content dalam main
           if (mainElement) {
-            mainElement.appendChild(paginationContainer);
+            mainElement.appendChild(paginationContainer); // Append ke #content
           } else {
-            document.body.appendChild(paginationContainer); // Fallback jika main tidak ada
+             console.warn("Element #content not found for pagination. Appending to main.");
+             document.querySelector("main")?.appendChild(paginationContainer); // Fallback ke main
           }
         }
 
-        // Update konten pagination
-        paginationContainer.innerHTML = `
-            <div class="pagination-controls">
-              <button class="pagination-btn" id="prev-btn" ${
-                currentPage === 1 ? "disabled" : ""
-              }>
-                Previous
-              </button>
-              <span class="page-info">Halaman ${currentPage} dari ${totalPages}</span>
-              <button class="pagination-btn" id="next-btn" ${
-                currentPage === totalPages ? "disabled" : ""
-              }>
-                Next
-              </button>
-            </div>
-          `;
+         // Jangan render jika hanya 1 halaman atau tidak ada data
+        if (totalPages <= 1) {
+            paginationContainer.innerHTML = '';
+            return;
+        }
 
-        // Pastikan event listeners terpasang SETELAH elemen ada di DOM
-        // Gunakan event delegation di body atau paginationContainer
+        paginationContainer.innerHTML = `
+          <div class="pagination-controls">
+            <button class="pagination-btn" id="prev-btn" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
+            <span class="page-info">Halaman ${currentPage} dari ${totalPages}</span>
+            <button class="pagination-btn" id="next-btn" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
+          </div>`;
       }
 
-      // INISIALISASI UTAMA YANG DIPERBAIKI (dari javapertama.js)
-      // Event listener DOMContentLoaded dipindah ke akhir script
-      // document.addEventListener('DOMContentLoaded', async () => { ... });
-
-      // Fungsi untuk mengupdate tampilan (list anime dan pagination)
       function updateDisplay() {
-        console.log(
-          `Updating display: Page ${currentPage}/${totalPages}, showing ${filteredData.length} items.`
-        );
+        console.log(`Updating display: Page ${currentPage}/${totalPages}, filtered items: ${filteredData.length}.`);
         const start = (currentPage - 1) * itemsPerPage;
         const end = start + itemsPerPage;
 
         const sectionTitle = document.querySelector(".nama h2");
         if (sectionTitle) {
-          // Pastikan elemen judul ada
-          if (selectedGenre) {
+          if (selectedGenre && selectedGenre !== 'All') { // Perbaiki kondisi genre
             sectionTitle.textContent = `Genre: ${selectedGenre}`;
           } else {
             sectionTitle.textContent = "Anime Terbaru";
           }
+        } else {
+            console.warn("Section title element (.nama h2) not found.");
         }
 
         renderAnimeItems(filteredData.slice(start, end));
-        renderPagination();
-        // Scroll ke atas halaman setelah ganti halaman, tapi beri offset
-        window.scrollTo({
-          top: 0, // Atau bisa offset sedikit di bawah header: document.querySelector('header').offsetHeight
-          behavior: "smooth",
-        });
+        renderPagination(); // Pagination di-render ulang
+
+        // Opsi: Scroll ke atas list anime, bukan top halaman
+        const animeListElement = document.querySelector('.anime-list');
+        if (animeListElement) {
+             // Beri sedikit timeout agar rendering selesai
+            setTimeout(() => {
+                animeListElement.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 100);
+        } else {
+            window.scrollTo({ top: 0, behavior: "smooth" }); // Fallback
+        }
+
         console.log("Display updated.");
       }
 
-      // PENCARIAN (dari javapertama.js)
-      // Event listener untuk search input
+      // --- SEARCH & FILTER ---
       const searchInput = document.getElementById("search-input");
-      const suggestionsBox = document.querySelector(".suggestions"); // Ambil elemen suggestions
-      const sparkleContainer = document.getElementById("sparkle-container"); // Ambil sparkle container
-
-      // Simpan timer untuk debounce search
+      const suggestionsBox = document.querySelector(".suggestions");
+      const sparkleContainer = document.getElementById("sparkle-container");
       let searchTimer;
+      let selectedGenre = null; // Default null
 
       if (searchInput) {
-        // Pastikan search input ada
         searchInput.addEventListener("input", function (e) {
-          const searchValue = e.target.value.toLowerCase();
-
-          // Clear previous timer
+          const searchValue = e.target.value.toLowerCase().trim(); // Trim spasi
           clearTimeout(searchTimer);
-
-          // Start new timer
           searchTimer = setTimeout(() => {
             console.log("Searching for:", searchValue);
-            filterAndDisplay(searchValue, selectedGenre); // Panggil fungsi filter terpusat
-            // Hapus atau update sparkle effect jika ada
-          }, 300); // Delay 300ms setelah user berhenti mengetik
-
-          // Trigger sparkle effect
-          triggerSparkle(e);
+            filterAndDisplay(searchValue, selectedGenre);
+          }, 300);
+          // triggerSparkle(e); // Sparkle bisa mengganggu, opsional
         });
-      } else {
-        console.warn("Search input not found!");
-      }
+      } else { console.warn("Search input not found!"); }
 
-      // Fungsi terpusat untuk filtering (digunakan oleh search dan genre)
       function filterAndDisplay(searchValue = "", genre = null) {
-        console.log(
-          `Filtering by search "${searchValue}" and genre "${genre}"`
-        );
-        // Mulai dari data lengkap jika tidak ada genre terpilih, atau dari subset genre jika ada
-        let baseData =
-          genre && genre !== "All"
-            ? allAnimeData.filter((anime) =>
-                anime.info?.genres?.includes(genre)
-              )
-            : [...allAnimeData]; // Gunakan spread untuk membuat salinan
+          console.log(`Filtering by search: "${searchValue}", genre: "${genre}"`);
+          // Selalu mulai dari data asli
+          let currentData = [...allAnimeData];
 
-        // Filter berdasarkan search value dari baseData
-        if (searchValue) {
-          filteredData = baseData.filter((anime) => {
-            const titleMatch = anime.title?.toLowerCase().includes(searchValue);
-            // Optional: cari di deskripsi atau genre juga
-            const descMatch = anime.desc?.toLowerCase().includes(searchValue);
-            const genreMatch = anime.info?.genres?.some((g) =>
-              g.toLowerCase().includes(searchValue)
-            );
-            return titleMatch || descMatch || genreMatch;
-          });
-        } else {
-          filteredData = baseData; // Jika search kosong, gunakan baseData utuh
-        }
+          // 1. Filter berdasarkan genre jika ada (dan bukan 'All')
+          if (genre && genre !== "All") {
+              currentData = currentData.filter(anime =>
+                  anime.info?.genres?.includes(genre)
+              );
+              console.log(`After genre filter (${genre}): ${currentData.length} items`);
+          }
 
-        currentPage = 1; // Reset ke halaman 1 setelah filter
-        totalPages = Math.ceil(filteredData.length / itemsPerPage);
+          // 2. Filter berdasarkan search dari hasil filter genre (atau data asli)
+          if (searchValue) {
+              currentData = currentData.filter(anime => {
+                  const titleMatch = anime.title?.toLowerCase().includes(searchValue);
+                  // Optional: Tambahkan pencarian lain jika perlu
+                  // const descMatch = anime.desc?.toLowerCase().includes(searchValue);
+                  return titleMatch; // || descMatch;
+              });
+              console.log(`After search filter ("${searchValue}"): ${currentData.length} items`);
+          }
 
-        updateDisplay(); // Update UI dengan data yang sudah di-filter
-        console.log("Filtering complete. Found", filteredData.length, "items.");
+          filteredData = currentData; // Simpan hasil akhir filter
 
-        // Sembunyikan suggestions setelah search/filter selesai (jika ada sistem suggestions)
-        if (suggestionsBox) suggestionsBox.style.display = "none";
+          currentPage = 1; // Reset ke halaman 1
+          totalPages = Math.ceil(filteredData.length / itemsPerPage);
+          if(totalPages < 1) totalPages = 1; // Pastikan minimal 1 halaman
+
+          updateDisplay(); // Update UI
+          console.log(`Filtering complete. Total pages: ${totalPages}`);
+
+          if (suggestionsBox) suggestionsBox.style.display = "none"; // Sembunyikan suggestions
       }
 
-      // Trigger sparkle effect pada search input (dari index.css sparkle)
+
       function triggerSparkle(event) {
         if (!sparkleContainer) return;
-
         const inputRect = searchInput.getBoundingClientRect();
-        const sparkleCount = 5; // Jumlah sparkle per event
-
+        const sparkleCount = 3; // Kurangi jumlah sparkle
         for (let i = 0; i < sparkleCount; i++) {
           const sparkle = document.createElement("span");
-
-          // Posisi acak di sekitar input
-          const x = event.clientX - inputRect.left + (Math.random() - 0.5) * 30;
-          const y = event.clientY - inputRect.top + (Math.random() - 0.5) * 30;
-
+          const x = Math.random() * inputRect.width; // Posisi X acak di dalam input
+          const y = Math.random() * inputRect.height; // Posisi Y acak di dalam input
           sparkle.style.left = `${x}px`;
           sparkle.style.top = `${y}px`;
+          // Variasi ukuran sparkle (opsional)
+          const size = Math.random() * 3 + 2; // Ukuran antara 2px - 5px
+          sparkle.style.width = `${size}px`;
+          sparkle.style.height = `${size}px`;
+          // Variasi durasi animasi (opsional)
+          sparkle.style.animationDuration = `${0.8 + Math.random() * 0.7}s`; // Durasi antara 0.8s - 1.5s
 
           sparkleContainer.appendChild(sparkle);
-
-          // Hapus sparkle setelah animasi selesai
           sparkle.addEventListener("animationend", () => {
             sparkle.remove();
           });
         }
       }
 
-      // Favorites System (dari javapertama.js)
-      function addToFavorites(anime) {
-        let accessToken = localStorage.getItem("access_token");
-        // Atau cek user info dari storage yang sudah diparse oleh Auth
-        let userInfo = JSON.parse(localStorage.getItem("user_info"));
-        let sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
-        let currentUserInfo = sessionUser || userInfo;
-
-        // Menggunakan currentUserInfo untuk cek login
-        if (!currentUserInfo || !currentUserInfo.id) {
-          // Cek user info dan user ID
-          showNotification(
-            "Silakan login terlebih dahulu untuk menambahkan favorit!",
-            "error"
-          );
-          return;
-        }
-
-        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-
-        if (favorites.some((fav) => fav.slug === anime.slug)) {
-          showNotification("Anime sudah ada di daftar favorit!", "info");
-          return;
-        }
-
-        favorites.push(anime);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        showNotification("Anime berhasil ditambahkan ke favorit!", "success");
-        console.log("Favorites:", favorites);
-      }
-
-      // Notification System (dari javapertama.js)
-      // Sudah ada style-nya di bagian <style>
-      function showNotification(message, type = "info") {
-        const notification = document.getElementById("notification");
-        if (!notification) {
-          console.warn("Notification element not found!");
-          alert(message); // Fallback ke alert
-          return;
-        }
-
-        // Hapus class dan konten lama
-        notification.className = "notification";
-        notification.textContent = message;
-        // Tambahkan tipe notifikasi
-        notification.classList.add(type);
-
-        // Paksa reflow agar transisi bekerja
-        void notification.offsetWidth;
-
-        // Tampilkan
-        notification.classList.add("visible");
-
-        // Sembunyikan setelah beberapa detik
-        setTimeout(() => {
-          notification.classList.remove("visible");
-          // Hapus class tipe setelah sembunyi
-          setTimeout(() => (notification.className = "notification"), 500); // Waktu transisi
-        }, 3000);
-      }
-
-      // Variabel global untuk genre
-      let selectedGenre = null; // Biarkan null defaultnya
-
-      // Fungsi untuk render genre filters (dari javapertama.js)
+      // --- GENRE FILTER ---
       function renderGenreFilters() {
         const genreContainer = document.querySelector(".genre-list");
-        if (!genreContainer) {
-          console.warn("Genre list container not found!");
-          return;
-        }
+        if (!genreContainer) { console.warn("Genre list container not found!"); return; }
         const allGenres = new Set();
-
-        // Kumpulkan semua genre unik dari data yang sudah dimuat
         allAnimeData.forEach((anime) => {
-          // Pastikan anime.info dan anime.info.genres ada
           if (anime.info && Array.isArray(anime.info.genres)) {
             anime.info.genres.forEach((genre) => {
               if (typeof genre === "string" && genre.trim() !== "") {
-                // Pastikan genre adalah string non-kosong
                 allGenres.add(genre.trim());
               }
             });
           }
         });
-
-        // Urutkan genre secara alfabetis (opsional)
         const sortedGenres = Array.from(allGenres).sort();
+        genreContainer.innerHTML = ""; // Clear existing buttons
 
-        // Kosongkan container
-        genreContainer.innerHTML = "";
+        // Tombol "All"
+        const allButton = document.createElement("button");
+        allButton.className = "genre-btn";
+        allButton.textContent = "All";
+        // Set selected jika belum ada genre yang dipilih
+        if (selectedGenre === null || selectedGenre === "All") {
+            allButton.classList.add("selected");
+        }
+        allButton.addEventListener("click", () => {
+          console.log("'All' genre button clicked.");
+          filterByGenre("All"); // Gunakan "All" sebagai penanda
+        });
+        genreContainer.appendChild(allButton); // Tambahkan "All" dulu
 
-        // Buat tombol untuk setiap genre
+        // Tombol genre spesifik
         sortedGenres.forEach((genre) => {
           const button = document.createElement("button");
           button.className = "genre-btn";
           button.textContent = genre;
-          // Gunakan event listener
+          if (selectedGenre === genre) { // Set selected jika cocok
+              button.classList.add("selected");
+          }
           button.addEventListener("click", () => {
             console.log("Genre button clicked:", genre);
             filterByGenre(genre);
@@ -2598,250 +1198,188 @@
           genreContainer.appendChild(button);
         });
 
-        // Tambahkan tombol All
-        const allButton = document.createElement("button");
-        allButton.className = "genre-btn"; // Class dasar
-        allButton.textContent = "All";
-        // Set class selected jika selectedGenre null (default)
-        if (selectedGenre === null) {
-          allButton.classList.add("selected");
-        }
-        // Gunakan event listener
-        allButton.addEventListener("click", () => {
-          console.log("'All' genre button clicked.");
-          filterByGenre(null);
-        });
-        genreContainer.prepend(allButton); // Tambahkan di awal
-
         console.log("Genre filters rendered.");
       }
 
-      // Fungsi filter genre dengan animasi (dari javapertama.js)
       function filterByGenre(genre) {
-        const container = document.querySelector(".genre-list-container");
-        const animeList = document.querySelector(".anime-list");
-        const genreButtons = document.querySelectorAll(".genre-btn");
-
-        // Pastikan elemen ada
-        if (!container || !animeList || genreButtons.length === 0) {
-          console.warn("Missing elements for genre filtering.");
-          return;
-        }
-
-        // Update tombol aktif
-        genreButtons.forEach((btn) => {
-          const isSelected =
-            (genre === null && btn.textContent === "All") ||
-            (genre !== null && btn.textContent === genre);
-          btn.classList.toggle("selected", isSelected);
-        });
-
-        // Jika genre yang diklik sama dengan yang sudah terpilih, jangan lakukan filter lagi
-        if (selectedGenre === genre) {
-          console.log("Genre already selected:", genre);
-          return;
-        }
-
-        selectedGenre = genre; // Update genre terpilih
-
-        // Animasi slide up (opsional, bisa dihapus jika tidak suka)
-        animeList.classList.add("slide-up");
-        // animeList.style.opacity = '0.5'; // Bisa diatasi dengan class slide-up
-        // animeList.style.transform = 'translateY(20px)';
-
-        // Gunakan setTimeout untuk memberi waktu animasi sebelum memfilter
-        setTimeout(() => {
-          filterAndDisplay(
-            searchInput ? searchInput.value.toLowerCase() : "",
-            selectedGenre
-          );
-
-          // Reset animasi slide up setelah display diupdate
-          animeList.classList.remove("slide-up");
-          // animeList.style.opacity = '1';
-          // animeList.style.transform = 'translateY(0)';
-        }, 300); // Durasi timeout sedikit lebih pendek dari durasi transisi CSS
-        console.log("Filtering initiated by genre:", genre);
-
-        // Tutup daftar genre setelah memilih di mobile
-        if (window.innerWidth <= 768) {
-          container.classList.add("collapsed");
-          const arrowDown = document.querySelector(".arrow-down");
-          const arrowUp = document.querySelector(".arrow-up");
-          if (arrowDown && arrowUp) {
-            arrowDown.style.display = "none";
-            arrowUp.style.display = "block";
-          }
-        }
-      }
-
-      // Toggle genre list (dipindahkan ke luar fungsi renderGenreFilters)
-      const genreHeader = document.querySelector(".genre-header");
-      if (genreHeader) {
-        // Pastikan genre header ada
-        genreHeader.addEventListener("click", function () {
           const container = document.querySelector(".genre-list-container");
-          const arrowDown = document.querySelector(".arrow-down");
-          const arrowUp = document.querySelector(".arrow-up");
+          const animeList = document.querySelector(".anime-list");
+          const genreButtons = document.querySelectorAll(".genre-btn");
 
-          if (!container || !arrowDown || !arrowUp) {
-            console.warn("Missing elements for genre toggle.");
-            return;
-          }
+          if (!container || !animeList || genreButtons.length === 0) { console.warn("Missing elements for genre filtering."); return; }
 
-          container.classList.toggle("collapsed");
-          arrowDown.style.display = container.classList.contains("collapsed")
-            ? "block"
-            : "none"; // Panah bawah tampil saat collapsed
-          arrowUp.style.display = container.classList.contains("collapsed")
-            ? "none"
-            : "block"; // Panah atas tampil saat tidak collapsed
-          console.log(
-            "Genre list toggled. Collapsed:",
-            container.classList.contains("collapsed")
-          );
-        });
-      } else {
-        console.warn("Genre header not found!");
-      }
+          // Update tombol aktif
+          genreButtons.forEach((btn) => {
+              btn.classList.toggle("selected", btn.textContent === genre);
+          });
 
-      // Event Listeners Utama (dari javapertama.js, digabung)
-      // document.addEventListener('DOMContentLoaded', async () => { ... });
+          // Hanya filter jika genre berubah
+          if (selectedGenre === genre) { console.log("Genre already selected:", genre); return; }
 
-      // Event listener untuk pagination buttons (menggunakan event delegation pada body)
-      // Dipisah dari DOMContentLoaded agar selalu aktif
-      document.body.addEventListener("click", (e) => {
-        if (e.target.id === "prev-btn") {
-          e.preventDefault(); // Prevent default jika tombol ada di form
-          if (currentPage > 1) {
-            currentPage = currentPage - 1;
-            updateDisplay();
-            console.log("Pagination: Previous page");
-          }
-        }
+          selectedGenre = genre; // Update genre terpilih
 
-        if (e.target.id === "next-btn") {
-          e.preventDefault(); // Prevent default
-          if (currentPage < totalPages) {
-            currentPage = currentPage + 1;
-            updateDisplay();
-            console.log("Pagination: Next page");
-          }
-        }
-      });
-
-      // Favorites System - Duplikat di javapertama.js, hapus salah satu
-      /*
-        function addToFavorites(anime) {
-          let accessToken = localStorage.getItem('access_token');
-          if (!accessToken) {
-            showNotification("Silakan login terlebih dahulu!", "error");
-            return;
-          }
-
-          let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-          if (favorites.some(fav => fav.slug === anime.slug)) {
-            showNotification("Anime sudah ada di daftar favorit!", "info");
-            return;
-          }
-
-          favorites.push(anime);
-          localStorage.setItem('favorites', JSON.stringify(favorites));
-          showNotification("Anime berhasil ditambahkan ke favorit!", "success");
-        }
-        */
-
-      // Notification System - Duplikat di javapertama.js, hapus salah satu
-      /*
-        function showNotification(message, type = "info") {
-          const notification = document.createElement("div");
-          notification.className = `notification ${type}`;
-          notification.textContent = message;
-
-          document.body.appendChild(notification);
+          animeList.classList.add("slide-up"); // Animasi fade/slide (opsional)
 
           setTimeout(() => {
-              notification.style.opacity = "0";
-              setTimeout(() => notification.remove(), 500);
-          }, 3000);
-        }
-        */
+              // Panggil filter terpusat
+              filterAndDisplay(searchInput ? searchInput.value.toLowerCase().trim() : "", selectedGenre);
+              animeList.classList.remove("slide-up"); // Hapus class animasi
+          }, 150); // Kurangi delay agar lebih responsif
 
-      // Event listener untuk Cookie Consent
+          console.log("Filtering initiated by genre:", genre);
+
+          // Tutup dropdown di mobile setelah memilih
+          if (window.innerWidth <= 768 && !container.classList.contains('collapsed')) {
+              container.classList.add("collapsed");
+              const arrowDown = genreHeader?.querySelector(".arrow-down");
+              const arrowUp = genreHeader?.querySelector(".arrow-up");
+              if (arrowDown && arrowUp) {
+                  arrowDown.style.display = "block";
+                  arrowUp.style.display = "none";
+              }
+          }
+      }
+
+
+      const genreHeader = document.querySelector(".genre-header");
+      if (genreHeader) {
+        genreHeader.addEventListener("click", function () {
+          const container = document.querySelector(".genre-list-container");
+          const arrowDown = genreHeader.querySelector(".arrow-down");
+          const arrowUp = genreHeader.querySelector(".arrow-up");
+          if (!container || !arrowDown || !arrowUp) { console.warn("Missing elements for genre toggle."); return; }
+          const isCollapsed = container.classList.toggle("collapsed");
+          arrowDown.style.display = isCollapsed ? "block" : "none";
+          arrowUp.style.display = isCollapsed ? "none" : "block";
+          console.log("Genre list toggled. Collapsed:", isCollapsed);
+        });
+      } else { console.warn("Genre header not found!"); }
+
+
+      // --- FAVORITES SYSTEM (PERBAIKAN) ---
+      function addToFavorites(anime, buttonElement) {
+        // Ambil user info terbaru dari storage
+        let currentUserInfo = JSON.parse(sessionStorage.getItem("currentUser")) || JSON.parse(localStorage.getItem("user_info"));
+
+        if (!currentUserInfo || !currentUserInfo.id) {
+          showNotification("Silakan login terlebih dahulu untuk menambahkan favorit!", "error");
+          return;
+        }
+
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        const favoriteIndex = favorites.findIndex((fav) => fav.slug === anime.slug);
+        const buttonTextSpan = buttonElement ? buttonElement.querySelector('span') : null;
+        const buttonIcon = buttonElement ? buttonElement.querySelector('i') : null;
+
+        if (favoriteIndex > -1) { // Jika SUDAH ADA -> Hapus
+          favorites.splice(favoriteIndex, 1);
+          localStorage.setItem("favorites", JSON.stringify(favorites));
+          showNotification("Anime dihapus dari favorit!", "info");
+          if (buttonElement) {
+            buttonElement.classList.remove('favorited');
+            if(buttonTextSpan) buttonTextSpan.textContent = 'Simpan';
+            if(buttonIcon) buttonIcon.className = 'far fa-bookmark'; // Kembali ke outline
+          }
+          console.log("Removed from Favorites:", anime.slug);
+        } else { // Jika BELUM ADA -> Tambah
+          favorites.push(anime);
+          localStorage.setItem("favorites", JSON.stringify(favorites));
+          showNotification("Anime berhasil ditambahkan ke favorit!", "success");
+          if (buttonElement) {
+            buttonElement.classList.add('favorited');
+            if(buttonTextSpan) buttonTextSpan.textContent = 'Disimpan';
+            if(buttonIcon) buttonIcon.className = 'fas fa-bookmark'; // Ubah ke solid
+          }
+          console.log("Added to Favorites:", anime.slug);
+        }
+        console.log("Current Favorites count:", favorites.length);
+      }
+
+      // --- NOTIFICATION SYSTEM ---
+      function showNotification(message, type = "info", duration = 3000) {
+        const notification = document.getElementById("notification");
+        if (!notification) { console.warn("Notification element not found!"); alert(message); return; }
+
+        // Hapus timeout yang mungkin sedang berjalan untuk notifikasi sebelumnya
+        if (notification.timer) {
+            clearTimeout(notification.timer);
+        }
+
+        notification.className = "notification"; // Reset class
+        notification.textContent = message;
+        notification.classList.add(type);
+        void notification.offsetWidth; // Reflow needed for transition
+        notification.classList.add("visible");
+
+        // Set timeout baru
+        notification.timer = setTimeout(() => {
+          notification.classList.remove("visible");
+          notification.timer = null; // Hapus referensi timer
+        }, duration);
+      }
+
+      // --- EVENT LISTENERS ---
+      document.body.addEventListener("click", (e) => {
+        // Pagination
+        if (e.target.id === "prev-btn" && !e.target.disabled) {
+             e.preventDefault();
+             if (currentPage > 1) { currentPage--; updateDisplay(); console.log("Pagination: Previous page"); }
+        }
+        if (e.target.id === "next-btn" && !e.target.disabled) {
+             e.preventDefault();
+             if (currentPage < totalPages) { currentPage++; updateDisplay(); console.log("Pagination: Next page"); }
+        }
+         // Login/logout sudah dihandle di handleMenuClick
+      });
+
+      // Cookie Consent
       const cookieConsent = document.getElementById("cookie-consent");
       const acceptCookiesBtn = document.getElementById("accept-cookies");
       const cancelCookiesBtn = document.getElementById("cancel-cookies");
-
       if (cookieConsent && acceptCookiesBtn && cancelCookiesBtn) {
-        // Cek status cookie saat halaman dimuat
         const consentGiven = localStorage.getItem("cookie_consent");
         if (!consentGiven) {
-          cookieConsent.classList.add("show"); // Tampilkan jika belum ada consent
+          // Tampilkan setelah delay sedikit agar tidak terlalu intrusif saat load awal
+          setTimeout(() => { cookieConsent.classList.add("show"); }, 1500);
         }
+        acceptCookiesBtn.addEventListener("click", () => { localStorage.setItem("cookie_consent", "given"); cookieConsent.classList.remove("show"); console.log("Cookie consent given."); });
+        cancelCookiesBtn.addEventListener("click", () => { localStorage.setItem("cookie_consent", "denied"); cookieConsent.classList.remove("show"); console.log("Cookie consent denied."); });
+      } else { console.warn("Cookie consent elements not found."); }
 
-        acceptCookiesBtn.addEventListener("click", () => {
-          localStorage.setItem("cookie_consent", "given");
-          cookieConsent.classList.remove("show");
-          console.log("Cookie consent given.");
-        });
-
-        cancelCookiesBtn.addEventListener("click", () => {
-          localStorage.setItem("cookie_consent", "denied"); // Bisa simpan denied juga
-          cookieConsent.classList.remove("show");
-          console.log("Cookie consent denied.");
-          // Opsional: non-aktifkan fitur yang butuh cookie
-        });
-      } else {
-        console.warn("Cookie consent elements not found.");
-      }
-
-      // Panggil fungsi inisialisasi utama setelah DOM siap
+      // --- INITIALIZATION ---
       document.addEventListener("DOMContentLoaded", async () => {
-        console.log("DOM fully loaded. Starting index.html initialization...");
+        console.log("DOM fully loaded. Starting initialization...");
+        const hideSplash = initSplashScreen(); // Jalankan splash screen
 
-        // 1. Inisialisasi Splash Screen (jika ada)
-        const hideSplash = initSplashScreen(); // initSplashScreen sekarang mengembalikan fungsi hide
+        try {
+            await initAuth(); // Inisialisasi otentikasi & update menu
+            allAnimeData = await loadAnimeData(); // Muat data anime
 
-        // 2. Inisialisasi Auth (cek hash URL & storage)
-        // Ini akan set `currentUser` dan memanggil `updateMenu`
-        await initAuth(); // Pastikan auth selesai sebelum update menu dan load data jika perlu
-
-        // 3. Update menu berdasarkan status auth (dipanggil di dalam initAuth)
-        // updateMenu();
-
-        // 4. Load data anime
-        allAnimeData = await loadAnimeData();
-
-        // 5. Update UI berdasarkan data
-        if (allAnimeData.length > 0) {
-          // Jika ada data, filter dan tampilkan
-          filterAndDisplay("", null); // Tampilkan semua data secara default (kosong search, null genre)
-          // Render genre filters setelah data dimuat
-          renderGenreFilters();
-
-          // Sembunyikan splash screen setelah data dimuat dan ditampilkan
-          if (hideSplash) {
-            setTimeout(hideSplash, 500); // Beri sedikit delay setelah display updated
-          }
-        } else {
-          // Jika tidak ada data, tampilkan pesan error dan sembunyikan splash
-          showNotification("Tidak ada data anime yang ditemukan.", "error");
-          if (hideSplash) {
-            setTimeout(hideSplash, 500);
-          }
-          // Sembunyikan loader cube di splash jika masih terlihat
-          const splashCubeGrid = document.querySelector(".sk-cube-grid");
-          if (splashCubeGrid) splashCubeGrid.style.display = "none";
+            if (allAnimeData.length > 0) {
+                console.log(`✅ Data anime berhasil dimuat: ${allAnimeData.length} items.`);
+                filterAndDisplay("", null); // Tampilkan semua data awal
+                renderGenreFilters(); // Render filter genre
+            } else {
+                console.warn("⚠️ Tidak ada data anime yang dimuat atau array kosong.");
+                // Tampilkan pesan di area list jika kosong
+                 const animeList = document.querySelector(".anime-list");
+                 if(animeList) animeList.innerHTML = '<p style="text-align: center; color: #ccc; width: 100%;">Gagal memuat anime atau tidak ada data.</p>';
+                 renderPagination(); // Pastikan pagination kosong jika tidak ada data
+            }
+        } catch (error) {
+             console.error("❌ Terjadi error saat inisialisasi:", error);
+             showNotification("Terjadi kesalahan saat memuat halaman.", "error");
+             // Tampilkan pesan error di area list
+             const animeList = document.querySelector(".anime-list");
+             if(animeList) animeList.innerHTML = '<p style="text-align: center; color: red; width: 100%;">Error memuat data. Coba refresh halaman.</p>';
+             renderPagination();
+        } finally {
+            // Sembunyikan splash screen setelah semua proses selesai (atau gagal)
+            if (hideSplash) setTimeout(hideSplash, 500); // Beri sedikit delay
+            console.log("Initialization complete.");
         }
-
-        // Event listeners untuk search input, genre toggle sudah diatur di luar ini
-
-        console.log("Index.html initialization complete.");
       });
     </script>
-    <!-- Hapus script javapertama.js -->
-    <!-- <script  src="javapertama.js" defer></script> -->
-    <!-- Hapus script GSI karena sudah di <head> -->
-    <!-- <script src="https://accounts.google.com/gsi/client" async defer></script> -->
+
   </body>
 </html>
