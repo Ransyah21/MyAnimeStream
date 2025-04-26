@@ -194,83 +194,6 @@
 
       @import url("https://fonts.googleapis.com/css2?family=Play&display=swap");
 
-    /* === Perbaikan Responsiveness Header/Nav === */
-    @media (max-width: 768px) {
-        /* Perkecil judul utama di mobile */
-        .title {
-            font-size: 35px; /* Ukuran lebih kecil */
-            margin: 1.5rem auto; /* Sesuaikan margin */
-        }
-
-        /* Atur navigasi */
-        nav ul {
-            flex-direction: column; /* Susun item vertikal */
-            gap: 15px; /* Jarak antar item menu */
-            align-items: center; /* Tengahkan item */
-            margin-top: 15px; /* Jarak dari elemen di atasnya */
-        }
-
-        nav li {
-            margin: 0; /* Hapus margin default li */
-        }
-
-        nav a {
-            padding: 8px 20px; /* Beri padding agar mudah diklik */
-            border: 1px solid #ffa200; /* Tambah border tipis */
-            border-radius: 20px; /* Buat lebih rounded */
-            display: inline-block; /* Agar padding bekerja */
-        }
-         nav a:hover {
-             background-color: rgba(255, 162, 0, 0.2); /* Background samar saat hover */
-             text-decoration: none; /* Hapus underline hover di mobile */
-         }
-
-        /* Atur tombol profile di mobile */
-        .profile-btn {
-            justify-content: center; /* Tengahkan gambar & nama */
-        }
-        .profile-img {
-            width: 30px; /* Sedikit perkecil gambar profil */
-            height: 30px;
-        }
-        .profile-btn span {
-            font-size: 0.9em; /* Perkecil font nama */
-        }
-
-        /* Pusatkan link support */
-        header .container > p { /* Target <p> langsung di dalam header container */
-            text-align: center;
-            margin-bottom: 5px;
-        }
-         header .container > p a {
-             display: inline-block; /* Agar bisa diberi style lebih */
-             padding: 2px 8px;
-         }
-
-        /* Sesuaikan Search Container */
-        .search-container {
-            padding: 10px 0;
-        }
-        #search-input {
-            max-width: 90%; /* Pastikan lebar maks 90% */
-        }
-    }
-
-     @media (max-width: 480px) {
-         .title {
-             font-size: 28px; /* Lebih kecil lagi di layar sangat kecil */
-         }
-         nav a {
-             padding: 6px 15px;
-             font-size: 0.9em;
-         }
-          .profile-btn span {
-            font-size: 0.8em; /* Lebih kecil lagi */
-        }
-     }
-    /* ================================================ */
-
-
       .title {
         font-size: 45px;
         width: 100%;
@@ -901,17 +824,15 @@
           const currentUserInfo = sessionUser || userInfo;
 
           if (accessToken && currentUserInfo) {
-          console.log("User is logged in:", currentUserInfo);
-          // User sudah login, tampilkan menu profile dan logout
-          menu.innerHTML = `
-               <li><a href="favorites.html">Favorites</a></li>
-               <li>
-                 <a href="#" id="logout-btn" class="profile-btn">
-                   <img src="${currentUserInfo.picture || 'Gambar/default-avatar.png'}" alt="Profile" class="profile-img"> {/* Gambar default jika tidak ada */}
-                   <span>${currentUserInfo.name || 'User'}</span> {/* Nama default jika tidak ada */}
-                 </a>
-               </li>
-             `;
+              console.log("User is logged in:", currentUserInfo);
+              menu.innerHTML = `
+                  <li><a href="favorites.html">Favorites</a></li>
+                  <li>
+                      <a href="#" id="logout-btn" class="profile-btn">
+                          <img src="${currentUserInfo.picture || 'Gambar/default-avatar.png'}" alt="Profile" class="profile-img"> 
+                          <span>${currentUserInfo.name || 'User'}</span> 
+                      </a>
+                  </li>`;
               // Sync session storage to local storage if needed
               if (sessionUser && !userInfo) {
                   localStorage.setItem("user_info", JSON.stringify(sessionUser));
@@ -1335,64 +1256,43 @@
       } else { console.warn("Genre header not found!"); }
 
 
-      // --- RENDERING FAVORITE (MODIFIKASI CEK FAVORIT AWAL) ---
-      function renderAnimeItems(data) {
-          const animeList = document.querySelector(".anime-list");
-          if (!animeList) { console.error("Container .anime-list tidak ditemukan!"); return; }
-          animeList.innerHTML = ""; // Clear previous items
+      // --- FAVORITES SYSTEM (PERBAIKAN) ---
+      function addToFavorites(anime, buttonElement) {
+        // Ambil user info terbaru dari storage
+        let currentUserInfo = JSON.parse(sessionStorage.getItem("currentUser")) || JSON.parse(localStorage.getItem("user_info"));
 
-          if (data.length === 0) {
-              animeList.innerHTML = '<p style="text-align: center; color: #ccc; width: 100%;">Tidak ada anime ditemukan.</p>';
-              return;
+        if (!currentUserInfo || !currentUserInfo.id) {
+          showNotification("Silakan login terlebih dahulu untuk menambahkan favorit!", "error");
+          return;
+        }
+
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        const favoriteIndex = favorites.findIndex((fav) => fav.slug === anime.slug);
+        const buttonTextSpan = buttonElement ? buttonElement.querySelector('span') : null;
+        const buttonIcon = buttonElement ? buttonElement.querySelector('i') : null;
+
+        if (favoriteIndex > -1) { // Jika SUDAH ADA -> Hapus
+          favorites.splice(favoriteIndex, 1);
+          localStorage.setItem("favorites", JSON.stringify(favorites));
+          showNotification("Anime dihapus dari favorit!", "info");
+          if (buttonElement) {
+            buttonElement.classList.remove('favorited');
+            if(buttonTextSpan) buttonTextSpan.textContent = 'Simpan';
+            if(buttonIcon) buttonIcon.className = 'far fa-bookmark'; // Kembali ke outline
           }
-
-          // ---- Cek User dan Ambil Favorit Spesifik User ----
-          let currentUserInfo = JSON.parse(sessionStorage.getItem("currentUser")) || JSON.parse(localStorage.getItem("user_info"));
-          let userFavoritesKey = null;
-          let favoriteSlugs = new Set(); // Default Set kosong
-
-          if (currentUserInfo && currentUserInfo.id) {
-              userFavoritesKey = `favorites_${currentUserInfo.id}`;
-              const userFavorites = JSON.parse(localStorage.getItem(userFavoritesKey)) || [];
-              favoriteSlugs = new Set(userFavorites.map(fav => fav.slug));
-              console.log(`Checking favorites for user: ${currentUserInfo.id}, found: ${favoriteSlugs.size}`);
-          } else {
-               console.log("No user logged in, favorites check skipped for initial render.");
+          console.log("Removed from Favorites:", anime.slug);
+        } else { // Jika BELUM ADA -> Tambah
+          favorites.push(anime);
+          localStorage.setItem("favorites", JSON.stringify(favorites));
+          showNotification("Anime berhasil ditambahkan ke favorit!", "success");
+          if (buttonElement) {
+            buttonElement.classList.add('favorited');
+            if(buttonTextSpan) buttonTextSpan.textContent = 'Disimpan';
+            if(buttonIcon) buttonIcon.className = 'fas fa-bookmark'; // Ubah ke solid
           }
-          // ---- Akhir Cek User ----
-
-
-          animeList.innerHTML = data.map((anime) => {
-              const slug = anime.slug || "#" + Date.now();
-              const imageUrl = anime.image || "Gambar/default-thumbnail.png";
-              const title = anime.title || "Judul Tidak Diketahui";
-              // Cek status favorit berdasarkan favoriteSlugs yang sudah diambil
-              const isFavorited = favoriteSlugs.has(slug);
-              const escapedSlug = slug.replace(/'/g, "\\'").replace(/"/g, '"');
-              const escapedTitle = title.replace(/'/g, "\\'").replace(/"/g, '"');
-              const escapedImageUrl = imageUrl.replace(/'/g, "\\'").replace(/"/g, '"');
-
-
-              return `
-                  <div class="anime-item">
-                    <a href="anime.html?slug=${encodeURIComponent(slug)}">
-                      <img src="${imageUrl}" alt="${escapedTitle}" loading="lazy">
-                    </a>
-                    <div class="anime-title-link">
-                      <a href="anime.html?slug=${encodeURIComponent(slug)}">
-                        <span>${title}</span>
-                      </a>
-                    </div>
-                    <button
-                      class="add-favorite-button ${isFavorited ? 'favorited' : ''}"
-                      onclick="addToFavorites({ slug: '${escapedSlug}', title: '${escapedTitle}', image: '${escapedImageUrl}' }, this)">
-                      {/* Ganti ikon berdasarkan isFavorited */}
-                      <i class="${isFavorited ? 'fas' : 'far'} fa-bookmark"></i>
-                      <span>${isFavorited ? 'Disimpan' : 'Simpan'}</span>
-                    </button>
-                  </div>
-              `;
-          }).join("");
+          console.log("Added to Favorites:", anime.slug);
+        }
+        console.log("Current Favorites count:", favorites.length);
       }
 
       // --- NOTIFICATION SYSTEM ---
