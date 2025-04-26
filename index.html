@@ -384,6 +384,26 @@
         }
       }
 
+      /* === Style untuk Profile Image (Tambahkan ini!) === */
+      .profile-img {
+        width: 35px; /* Sedikit lebih besar agar lebih terlihat */
+        height: 35px;
+        border-radius: 50%; /* Membuat gambar menjadi bulat */
+        border: 2px solid #ffa200; /* Border oranye */
+        object-fit: cover; /* Memastikan gambar mengisi area tanpa distorsi */
+        vertical-align: middle; /* Agar sejajar dengan teks nama */
+        /* Efek tambahan (opsional): shadow/glow */
+        box-shadow: 0 0 8px rgba(255, 162, 0, 0.5);
+        transition: transform 0.3s ease; /* Efek transisi saat hover (jika ada) */
+      }
+
+      /* Opsional: Efek hover pada gambar profil */
+      .profile-btn:hover .profile-img {
+        transform: scale(1.1); /* Sedikit membesar saat di-hover */
+      }
+      /* ================================================ */
+
+
       /* Tambahkan ini untuk image responsif */
       img {
         max-width: 100%;
