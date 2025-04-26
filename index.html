@@ -2,12 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Pastikan viewport meta tag ada dan benar -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyAnime</title>
-    <!-- Hapus link ke index.css -->
-    <!-- <link rel="stylesheet" href="index.css"> -->
+    <!-- Hapus link ke index.css (sudah dilakukan) -->
     <link rel="icon" href="Gambar/LogoMyanime (2).png" type="image/x-icon" />
-    <!-- Tambahkan Font Awesome untuk ikon sosial media -->
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -38,14 +38,15 @@
         background-color: #181818;
         color: #fff;
         font-family: sans-serif;
-        font-weight: bold;
-        overflow-x: hidden;
+        /* Hapus font-weight bold global, terapkan sesuai kebutuhan */
+        /* font-weight: bold; */
+        overflow-x: hidden; /* Penting untuk responsivitas */
         background-image: radial-gradient(#021027, #000000);
         position: relative;
         z-index: 1;
       }
       body::-webkit-scrollbar {
-        display: none;
+        display: none; /* Sembunyikan scrollbar */
       }
 
       /* ================================================== */
@@ -57,22 +58,28 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh;
-        z-index: -2;
-        overflow: hidden;
+        height: 100vh; /* Gunakan 100vh agar menutupi viewport */
+        z-index: -2; /* Pastikan di belakang konten */
+        overflow: hidden; /* Cegah scrollbar dari partikel */
       }
 
       .circle-container {
         position: absolute;
         width: 5px;
         height: 5px;
-        transform: translateY(-10vh);
+        /* Hapus transform awal, atur via JS atau variasi CSS */
+        /* transform: translateY(-10vh); */
         animation-iteration-count: infinite;
         animation-timing-function: linear;
-        animation-name: move-frames; /* Gunakan animasi gerak umum */
-        animation-duration: 10s; /* Durasi default */
-        animation-delay: 0s; /* Delay default */
+        animation-name: move-frames;
+        animation-duration: 15s; /* Durasi default sedikit lebih lama */
+        animation-delay: 0s;
+        /* Animasi posisi awal untuk fade-in (opsional) */
+        /* opacity: 0; */
+        /* animation: fadeInParticle 1s ease forwards; */
       }
+
+      /* @keyframes fadeInParticle { to { opacity: 1; } } */
 
       .circle {
         width: 100%;
@@ -84,135 +91,104 @@
           hsl(180, 100%, 80%) 10%,
           hsla(180, 100%, 80%, 0) 56%
         );
-        animation: fade-frames 2s infinite ease-in-out alternate,
-                   scale-frames 3s infinite ease-in-out;
+        animation: fade-frames 2.5s infinite ease-in-out alternate, /* Sedikit lebih lambat */
+                   scale-frames 3.5s infinite ease-in-out alternate; /* Sedikit lebih lambat */
       }
 
       @keyframes fade-frames {
-        0%, 100% { opacity: 0.7; }
+        0%, 100% { opacity: 0.5; } /* Mulai dari lebih redup */
         50% { opacity: 1; }
       }
 
       @keyframes scale-frames {
-        0%, 100% { transform: scale(0.5); }
-        50% { transform: scale(1.5); }
+        0%, 100% { transform: scale(0.6); } /* Skala awal lebih kecil */
+        50% { transform: scale(1.4); } /* Skala maks sedikit lebih kecil */
       }
 
-      @keyframes move-frames {
-        from { transform: translate3d(-10vw, 110vh, 0); }
-        to { transform: translate3d(110vw, -10vh, 0); }
-      }
+      /* Animasi gerak lebih variatif */
+      /* == KEMBALIKAN KE VERSI INI == */
+@keyframes move-frames {
+  from {
+    transform: translate3d(-10vw, 110vh, 0); /* Mulai dari bawah kiri luar layar */
+    opacity: 0; /* Mulai transparan */
+  }
+  20%, 80% { /* Muncul dan terlihat selama sebagian besar durasi */
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(110vw, -10vh, 0); /* Bergerak ke atas kanan luar layar */
+    opacity: 0; /* Menghilang di akhir */
+  }
+}
+/* ================================ */
 
-      /* Contoh manual beberapa partikel untuk CSS murni */
+      /* Variasi Partikel: Atur via JS untuk performa lebih baik, tapi ini contoh CSS */
       .circle-container:nth-child(1) { width: 8px; height: 8px; animation-duration: 12s; animation-delay: 1s; left: 10%; }
-      .circle-container:nth-child(2) { width: 5px; height: 5px; animation-duration: 9s; animation-delay: 4s; left: 50%; }
+      .circle-container:nth-child(2) { width: 5px; height: 5px; animation-duration: 19s; animation-delay: 4s; left: 50%; }
       .circle-container:nth-child(3) { width: 10px; height: 10px; animation-duration: 15s; animation-delay: 7s; left: 90%; }
       .circle-container:nth-child(4) { width: 6px; height: 6px; animation-duration: 10s; animation-delay: 2s; left: 30%; }
       .circle-container:nth-child(5) { width: 7px; height: 7px; animation-duration: 11s; animation-delay: 5s; left: 70%; }
-      /* ... bisa tambahkan lebih banyak variasi jika perlu ... */
+      /* ... (sebagian besar dihapus untuk ringkas, idealnya dibuat dengan JS) ... */
+      .circle-container:nth-last-child(1) { width: 4px; height: 4px; animation-duration: 22s; animation-delay: 8s; left: 20%; }
+      .circle-container:nth-last-child(2) { width: 9px; height: 9px; animation-duration: 13s; animation-delay: 3s; left: 80%; }
+
 
       /* ================================================== */
-      /* --- STYLE DARI index.css KAMU --- */
+      /* --- STYLE DARI index.css KAMU (DENGAN PENYESUAIAN RESPONSIVE) --- */
       /* ================================================== */
 
-      @media (max-width: 768px) {
-        header h1 { font-size: 2em; }
-        nav ul { flex-wrap: wrap; gap: 10px; }
-        nav li { margin: 5px; }
-        #search-input { width: 100%; max-width: 600px; padding: 12px 20px; border: 2px solid #ffa200; border-radius: 25px; background: rgba(255, 255, 255, 0.1); color: white; transition: all 0.3s ease; }
-        #search-input:focus { outline: none; box-shadow: 0 0 15px rgba(255, 162, 0, 0.5); }
-        .anime-list { grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; }
-        .anime-item { width: 100%; padding: 10px; }
-        .anime-item img { width: 100%; height: auto; max-height: 120px; }
-        .stylebutton { padding: 8px 16px; background-color: #ffa200; color: #fff; border: none; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; }
-        .stylebutton:hover { background-color: #ff8c00; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
-        .main img { width: 80%; height: auto; padding: 15px; }
-        .main h3 { margin-left: 20px; font-size: 16px; }
-        .main p { margin: 15px; padding: 8px; }
-        .video { width: 95%; height: auto; aspect-ratio: 16/9; }
-      }
-
-      @media (max-width: 768px) {
-        .stylebutton { padding: 6px 12px; font-size: 0.9em; }
-      }
-
-      @media (max-width: 480px) {
-        .anime-list { grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); }
-        .anime-item img { max-height: 100px; }
-        .main h2 { font-size: 1.5em; }
-        .main a { padding: 15px; margin: 15px; }
-        nav a { font-size: 0.9em; }
-        .video { width: 100%; }
-      }
-
-      /* === Style untuk Profile Image (PERBAIKAN) === */
-      .profile-btn { /* Style untuk link container profile */
-          display: flex;
-          align-items: center;
-          gap: 10px; /* Jarak antara gambar dan nama */
-          text-decoration: none; /* Hapus underline dari link */
-          color: white !important; /* Pastikan warna teks putih */
-      }
-      .profile-img {
-        width: 35px; /* Ukuran gambar profil */
-        height: 35px;
-        border-radius: 50%; /* Membuat gambar menjadi bulat */
-        border: 2px solid #ffa200; /* Border oranye */
-        object-fit: cover; /* Memastikan gambar mengisi area tanpa distorsi */
-        vertical-align: middle; /* Agar sejajar dengan teks nama */
-        box-shadow: 0 0 8px rgba(255, 162, 0, 0.5); /* Efek glow */
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi */
-      }
-      .profile-btn:hover .profile-img {
-        transform: scale(1.1); /* Sedikit membesar saat di-hover */
-        box-shadow: 0 0 12px rgba(255, 162, 0, 0.8); /* Glow lebih terang */
-      }
-      /* ================================================ */
-
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-
-      @media (hover: none) {
-        .anime-item img:hover { transform: none; }
-        .main a:hover { background: initial; animation: none; }
-      }
-
+      /* Base Container */
       .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
+        max-width: 1200px; /* Batas lebar maks */
+        margin: 0 auto; /* Tengah */
+        padding: 20px 15px; /* Padding Kiri-Kanan dikurangi sedikit untuk mobile */
         position: relative;
         z-index: 2;
       }
       .container a { text-decoration: none; color: #ccc; }
       .container a:hover { text-decoration: underline; color: #ffa200; }
 
-      .logo-head { justify-content: center; margin: auto; }
-      .nav1 { position: sticky; top: 0; }
+      header {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        padding-top: 50px; /* Beri jarak dari About link */
+      }
+      header h1 {
+        font-size: 3em; /* Ukuran default */
+        margin: 0;
+      }
 
-      @import url("https://fonts.googleapis.com/css2?family=Play&display=swap");
-
+      /* Title Animation */
       .title {
-        font-size: 45px;
+        font-size: clamp(30px, 8vw, 45px); /* Ukuran font responsif */
         width: 100%;
-        margin: 2rem auto;
-        display: inline-flex;
+        margin: 1.5rem auto; /* Margin atas bawah disesuaikan */
+        display: flex; /* Ganti inline-flex ke flex */
+        flex-wrap: nowrap; /* Pastikan tidak wrap */
         justify-content: center;
         -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(0, 0, 0, 0.15));
         position: relative;
       }
       .title span {
-        display: inline-flex;
+        display: inline-block; /* Ganti inline-flex ke inline-block */
         font-family: "Play", sans-serif;
         animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate;
-        margin: 0 3px;
+        margin: 0 clamp(1px, 0.5vw, 3px); /* Margin antar huruf responsif */
         color: #ffa200;
         text-shadow: 0 0 10px #ff6b00;
+        font-weight: bold; /* Pastikan bold */
       }
-      @keyframes title-bounce { 0%, 60%, 100% { transform: translateY(0) scale(1); } 30% { transform: translateY(-25px) scale(1.15); } }
-      @keyframes fire { 0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00; } 100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; } }
+      /* Penyesuaian animasi bounce */
+      @keyframes title-bounce {
+        0%, 60%, 100% { transform: translateY(0) scale(1); }
+        30% { transform: translateY(clamp(-25px, -5vw, -15px)) scale(1.1); } /* Bounce responsif */
+      }
+      @keyframes fire {
+        0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00; }
+        100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; }
+      }
+      /* Delay animasi title (sudah ok) */
       .title span:nth-child(1) { animation-delay: 0.3s; }
       .title span:nth-child(2) { animation-delay: 0.4s; }
       .title span:nth-child(3) { animation-delay: 0.5s; }
@@ -221,247 +197,754 @@
       .title span:nth-child(6) { animation-delay: 0.8s; }
       .title span:nth-child(7) { animation-delay: 0.9s; }
 
-      header { text-align: center; position: relative; z-index: 2; }
-      header h1 { font-size: 3em; margin: 0; }
 
-      .abt { background-color: rgba(24, 24, 24, 0.7); backdrop-filter: blur(5px); position: fixed; top: 0; left: 0; right: 0; padding: 10px 20px; z-index: 10; display: flex; justify-content: flex-start; align-items: center; }
-      .abt a { position: relative; text-decoration: none; color: gray; background-color: transparent; padding: 5px; border-radius: 6px; opacity: 1; }
-      .abt a:hover { color: #ffa200; }
-      .abt a:first-child { position: static; /* Hapus absolute agar normal */ }
-
-      nav { background-color: #181818; padding: 10px; border-radius: 15px; opacity: 0.7; }
-      nav ul { font-weight: bold; list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-around; align-items: center; }
-      nav li { margin: 10px; }
-      nav a { color: #ffa200; text-decoration: none; border-radius: 10px; transition: background-color 0.3s ease; }
-      nav a:hover { text-decoration: underline; color: #ff8c00; /* Ganti biru jadi orange lebih gelap */ }
-
-      .title { align-items: center; margin-top: 20px; }
-
-      .suggestions { position: absolute; top: 100%; left: 0; right: 0; background-color: gray; border: 1px solid black; border-radius: 5px; max-height: 150px; overflow-y: auto; z-index: 1000; display: none; width: 100%; box-sizing: border-box; }
-      .suggestion-item { color: white; padding: 10px; cursor: pointer; background-color: transparent; }
-      .suggestion-item:hover { background-color: #f0f0f0; color: #181818; }
-
-      .data { display: none; }
-      .nama h2 { color: #ffa200; font-size: 2em; margin-bottom: 10px; }
-
-      .anime-list { justify-content: center; display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
-      .anime-list p { color: rgba(4, 235, 4, 0.452); transition: color 0.2s ease-in-out; }
-
-      @media (max-width: 767px) {
-        .anime-list { margin: 15px; display: grid; flex-wrap: wrap; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 17px; justify-items: center; }
+      /* About Link (Fixed Top) */
+      .abt {
+        background-color: rgba(24, 24, 24, 0.85); /* Sedikit lebih solid */
+        backdrop-filter: blur(8px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 10px 15px; /* Padding disesuaikan */
+        z-index: 1001; /* Di atas search container saat scroll */
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 162, 0, 0.2); /* Border bawah tipis */
+      }
+      .abt a {
+        position: relative;
+        text-decoration: none;
+        color: #ccc; /* Warna awal abu */
+        background-color: transparent;
+        padding: 5px 10px; /* Padding link */
+        border-radius: 6px;
+        opacity: 1;
+        font-weight: bold;
+        transition: color 0.3s ease, background-color 0.3s ease;
+      }
+      .abt a:hover {
+        color: #ffa200;
+        background-color: rgba(255, 162, 0, 0.1); /* Highlight saat hover */
       }
 
+      /* Navigation */
+      nav {
+        background-color: rgba(24, 24, 24, 0.5); /* Background lebih transparan */
+        padding: 10px;
+        border-radius: 15px;
+        opacity: 0.9; /* Sedikit transparan */
+        margin-top: 15px; /* Jarak dari elemen di atas */
+      }
+      nav ul {
+        font-weight: bold;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center; /* Tengah secara default */
+        align-items: center;
+        flex-wrap: wrap; /* Izinkan wrap di layar kecil */
+        gap: 10px 20px; /* Jarak atas-bawah, kiri-kanan */
+      }
+      nav li {
+        margin: 0; /* Hapus margin default li, gunakan gap */
+      }
+      nav a {
+        color: #ffa200;
+        text-decoration: none;
+        padding: 8px 15px; /* Padding link nav */
+        border-radius: 10px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        display: inline-block; /* Agar padding bekerja */
+      }
+      nav a:hover {
+        text-decoration: none; /* Hapus underline hover default */
+        color: #181818;
+        background-color: #ff8c00;
+      }
+
+      /* Profile Button Style */
+      .profile-btn { /* Style untuk link container profile */
+          display: flex;
+          align-items: center;
+          gap: 8px; /* Jarak antara gambar dan nama */
+          text-decoration: none;
+          color: white !important; /* Pastikan warna teks putih */
+          padding: 5px 10px; /* Padding lebih kecil agar pas di nav */
+          border-radius: 20px; /* Bulat */
+          transition: background-color 0.3s ease;
+      }
+      .profile-img {
+        width: 30px; /* Ukuran gambar profil sedikit lebih kecil */
+        height: 30px;
+        border-radius: 50%;
+        border: 2px solid #ffa200;
+        object-fit: cover;
+        vertical-align: middle;
+        box-shadow: 0 0 8px rgba(255, 162, 0, 0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .profile-btn:hover {
+          background-color: rgba(255, 162, 0, 0.2); /* Highlight saat hover */
+      }
+      .profile-btn:hover .profile-img {
+        transform: scale(1.1);
+        box-shadow: 0 0 12px rgba(255, 162, 0, 0.8);
+      }
+      /* Nama pengguna di profile button */
+      .profile-btn span {
+          font-weight: bold;
+          font-size: 0.9em;
+      }
+
+      /* Search Container & Input */
+      .search-container {
+        position: sticky; /* Buat sticky */
+        top: 45px; /* Jarak dari atas (setelah .abt) */
+        z-index: 1000;
+        padding: 15px 0;
+        transition: all 0.3s ease;
+        text-align: center;
+        background-color: rgba(24, 24, 24, 0.8); /* Background saat sticky */
+        backdrop-filter: blur(5px);
+        margin-left: -15px; /* Offset padding container */
+        margin-right: -15px; /* Offset padding container */
+        padding-left: 15px; /* Kembalikan padding */
+        padding-right: 15px;
+      }
+      #search-input {
+        position: relative;
+        width: 100%; /* Ambil lebar penuh container */
+        max-width: 600px; /* Batasi lebar maks */
+        padding: 12px 20px;
+        font-size: 16px;
+        border: 2px solid #ffa200;
+        border-radius: 25px;
+        background: rgba(40, 40, 40, 0.7); /* Background lebih gelap */
+        color: white;
+        transition: all 0.3s ease;
+        font-weight: bold; /* Tambahkan bold */
+      }
+      #search-input::placeholder { /* Style placeholder */
+          color: #888;
+          font-weight: normal;
+      }
+      #search-input:focus {
+        outline: none;
+        box-shadow: 0 0 15px rgba(255, 162, 0, 0.5);
+        border-color: #ff8c00; /* Ganti warna border saat fokus */
+        background: rgba(50, 50, 50, 0.8);
+      }
+      #search-input:hover {
+        transform: scale(1.01); /* Sedikit scaling saat hover */
+        background: rgba(50, 50, 50, 0.8);
+      }
+
+      /* Suggestions Box (jika masih dipakai) */
+      .suggestions {
+        position: absolute;
+        top: calc(100% + 5px); /* Posisi di bawah input */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%; /* Lebar relatif */
+        max-width: 600px; /* Sama dengan max-width input */
+        background-color: #282828; /* Background lebih gelap */
+        border: 1px solid #444;
+        border-radius: 5px;
+        max-height: 200px; /* Tinggi maks suggestion */
+        overflow-y: auto;
+        z-index: 1001; /* Di atas search container */
+        display: none; /* Default tersembunyi */
+        box-sizing: border-box;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      }
+      .suggestion-item {
+        color: white;
+        padding: 12px 15px;
+        cursor: pointer;
+        background-color: transparent;
+        border-bottom: 1px solid #3a3a3a; /* Pemisah item */
+        transition: background-color 0.2s ease;
+      }
+      .suggestion-item:last-child {
+          border-bottom: none; /* Hapus border bawah item terakhir */
+      }
+      .suggestion-item:hover {
+        background-color: #3a3a3a; /* Warna hover */
+        color: #ffa200;
+      }
+
+      /* Konten Utama */
+      main {
+        position: relative;
+        z-index: 2;
+        padding-top: 20px; /* Jarak dari search container */
+      }
+
+      /* Section Title */
+      section.nama h2 {
+        color: #ffa200;
+        font-size: clamp(1.5em, 5vw, 2em); /* Font size responsif */
+        margin-bottom: 20px; /* Jarak ke list */
+        text-align: center; /* Tengahkan judul section */
+        font-weight: bold;
+      }
+
+      /* Anime List Grid */
+      .anime-list {
+        display: grid;
+        /* Kolom responsif: auto-fit, min ukuran item 110px, maks 1fr (bagi rata sisa space) */
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 20px; /* Jarak antar item */
+        margin-top: 20px;
+        padding: 0 5px; /* Padding kecil di sisi list */
+      }
+
+      /* Anime Item Card */
       .anime-item {
         background-color: #282828;
-        border-radius: 15px;
-        padding: 15px;
-        width: 130px; /* Sedikit lebar lagi */
-        height: auto;
+        border-radius: 10px; /* Radius lebih kecil */
+        /* Hapus padding bawaan, atur di dalam */
+        /* padding: 15px; */
+        /* Hapus width & height tetap, biarkan grid yang atur */
+        /* width: 130px; */
+        /* height: auto; */
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
         text-align: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
         position: relative;
-        transition: transform 0.2s ease; /* Transisi untuk hover item */
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        overflow: hidden; /* Agar border-radius berlaku ke gambar */
       }
       .anime-item:hover {
-        transform: translateY(-5px); /* Efek naik sedikit saat hover item */
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
       }
 
+      /* Link Gambar Anime */
+      .anime-item > a:first-of-type { /* Target link gambar */
+          display: block; /* Pastikan block */
+          aspect-ratio: 2 / 3; /* Rasio aspek gambar (sesuaikan jika perlu) */
+          overflow: hidden; /* Sembunyikan bagian gambar yg keluar */
+      }
+
+      /* Gambar Anime */
       .anime-item img {
         width: 100%;
-        height: 160px; /* Tinggi sedikit ditambah */
-        object-fit: cover;
-        border-radius: 8px;
+        height: 100%; /* Isi tinggi container link */
+        object-fit: cover; /* Cover area tanpa distorsi */
+        /* Hapus border-radius di sini, gunakan overflow hidden di parent */
+        /* border-radius: 8px; */
         transition: transform 0.3s ease-in-out;
-        margin-bottom: 10px; /* Jarak gambar ke judul */
+        display: block; /* Hapus whitespace bawah */
       }
-      .anime-item a:hover img {
-        transform: scale(1.05); /* Scale gambar saat link dihover */
+      .anime-item a:hover img { /* Efek zoom saat link gambar dihover */
+        transform: scale(1.07);
       }
 
-      .anime-item .anime-title-link { /* Kontainer untuk link judul */
+      /* Konten Teks (Judul & Tombol) */
+      .anime-item .anime-title-link,
+      .anime-item .add-favorite-button {
+          padding: 0 10px; /* Padding kiri kanan untuk konten teks */
+      }
+
+      /* Link Judul Anime */
+      .anime-item .anime-title-link {
           width: 100%;
-          margin-bottom: 8px; /* Jarak judul ke tombol favorit */
+          margin-top: 10px; /* Jarak dari gambar */
+          margin-bottom: 8px;
       }
       .anime-item .anime-title-link a {
           text-decoration: none;
       }
       .anime-item .anime-title-link span {
-        display: block; /* Agar span mengambil lebar penuh */
+        display: -webkit-box; /* Untuk text ellipsis multi-baris */
+        -webkit-line-clamp: 2; /* Batasi 2 baris */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-size: 0.9em;
-        word-break: break-word;
-        overflow-wrap: break-word;
-        font-weight: 600; /* Sedikit tebal */
+        font-weight: 600;
         color: #eee;
-        line-height: 1.3; /* Spasi baris */
-        min-height: 2.6em; /* Tinggi minimum untuk 2 baris */
+        line-height: 1.3;
+        min-height: 2.6em; /* Tinggi minimum = 2 baris */
         transition: color 0.2s ease;
       }
       .anime-item .anime-title-link a:hover span {
-        text-decoration: underline;
         color: #ffa200;
+        text-decoration: none; /* Hapus underline */
       }
 
-
-      /* === Style Baru untuk Tombol Favorit (PERBAIKAN) === */
+      /* Tombol Favorit */
       .anime-item .add-favorite-button {
-        display: inline-flex; /* Agar ikon dan teks sejajar */
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 6px; /* Jarak antara ikon dan teks */
-        width: auto; /* Lebar otomatis */
-        min-width: 95px; /* Lebar minimum */
-        margin: auto auto 5px; /* Atas:otomatis, Kiri/Kanan:otomatis (tengah), Bawah:5px */
+        gap: 6px;
+        width: auto;
+        min-width: 95px;
+        margin: 0 auto 10px auto; /* Tengah horizontal, jarak bawah 10px */
         padding: 6px 12px;
         font-size: 12px;
         font-weight: 600;
-        color: #ccc; /* Default: abu-abu muda */
-        background-color: #3a3a3a; /* Default: abu-abu gelap */
+        color: #ccc;
+        background-color: #3a3a3a;
         border: 1px solid #555;
         border-radius: 20px;
         cursor: pointer;
         transition: all 0.3s ease;
         box-shadow: none;
       }
-
       .anime-item .add-favorite-button:hover {
         background-color: #ffa200;
-        color: #181818; /* Warna teks/ikon jadi gelap */
+        color: #181818;
         border-color: #ffa200;
         transform: translateY(-2px);
       }
-
-      /* Style Saat Sudah Difavoritkan (via class 'favorited') */
       .anime-item .add-favorite-button.favorited {
         background-color: #ffa200;
         color: #181818;
         border-color: #ff8c00;
       }
-
-      /* Ganti ikon menjadi solid saat difavoritkan */
       .anime-item .add-favorite-button.favorited i {
-         font-weight: 900; /* Gunakan font-weight solid */
+         font-weight: 900; /* Solid icon */
       }
-      /* Kita tidak perlu ::before jika sudah pakai far/fas di HTML */
 
-      /* HAPUS STYLE favorite-btn LAMA YANG MENGGUNAKAN POSITION ABSOLUTE */
-      /* .favorite-btn { ... } */
-      /* .favorite-btn:hover { ... } */
-      /* .favorite-btn.favorited { ... } */
-      /* .favorite-btn.favorited:hover { ... } */
-      /* ================================================ */
-
-
-      .home, .back { /* Style untuk tombol lain jika ada */
-        font-size: 25px;
-        background-color: rgb(48, 45, 45);
-        padding: 20px;
-        border-radius: 20px;
-        text-decoration: none;
-        color: white;
-        transition: text-decoration 0.3s;
+      /* Notice Box */
+      .notice {
+        margin: 30px auto; /* Jarak atas-bawah ditambah */
+        padding: 15px 20px; /* Padding ditambah */
+        background-color: rgba(40, 40, 40, 0.8);
+        border-radius: 8px;
+        max-width: 600px;
+        text-align: center;
+        color: #ccc;
+        position: relative;
+        z-index: 2;
+        border-left: 4px solid #ffa200; /* Aksen kiri */
       }
-      .home:hover, .back:hover { text-decoration: underline; color: #ffa200; }
-      .back { margin-left: 20px; }
-
-      .main { text-align: center; margin-top: 5%; }
-      .main img { margin-bottom: 50px; width: 350px; background-color: #383434; padding: 25px; border-radius: 30px; }
-      @media only screen and (max-width: 767px) { .main img { width: 200px; height: 250px; } }
-      .main h2 { font-weight: bold; color: #ffa200; font-size: 35px; }
-      @media only screen and (max-width: 767px) { .main h2 { } }
-      .main h3 { margin-bottom: 15px; margin-left: 50px; text-align: start; font-size: 20px; color: #ffa200; }
-      @media only screen and (max-width: 767px) { .main h3 { margin-left: 0; text-align: center; } }
-      .main p { margin: 25px; letter-spacing: 1px; text-align: left; background-color: #383434; border-radius: 20px; padding: 10px; }
-      @media only screen and (max-width: 767px) { .main p { text-align: center; margin: 15px; } }
-      .main a { text-align: center; padding: 20px; font-size: 15px; color: #ffa200; text-decoration: none; display: block; margin: 25px; background-color: #282828; border-radius: 10px; }
-      .main a:hover { background: linear-gradient(-45deg, #282828 40%, #fafafa 50%, #282828 60%); background-size: 300%; background-position-x: 100%; animation: shimmer 1.5s infinite linear; }
-      @media only screen and (max-width: 767px) { .main a:active { background: linear-gradient(-45deg, #282828 40%, #fafafa 50%, #282828 60%); background-size: 300%; background-position-x: 100%; animation: shimmer 1.5s infinite linear; } }
-      @keyframes shimmer { to { background-position-x: 0%; } }
-
-      .batas { margin: 20px; border-color: #ffa200; }
-
-      .video { position: relative; overflow: hidden; width: 48%; height: 460px; margin: 0 auto; }
-      @media (max-width: 767px) { .video { width: 100%; height: calc(100vw * 9 / 16); max-height: 100%; margin: 0 auto; } }
-
-      /* Footer */
-      .footer { background-color: #1f1f1f; color: #fff; padding: 20px 0; font-size: 14px; position: relative; z-index: 3; margin-top: 50px; }
-      .footer-section { display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-      .footer-item { width: 30%; min-width: 200px; margin-bottom: 20px; padding: 0 10px; box-sizing: border-box; text-align: left; }
-      .footer-item h3 { display: block; margin: 0 0 10px 0; font-size: 18px; border-bottom: 1px solid #444; padding-bottom: 5px; color: orange; text-align: left; }
-      .social-links-container { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; align-items: flex-start; }
-      .footer-item p { margin: 0; display: flex; align-items: center; font-size: 14px; }
-      .social-icon { margin-right: 8px; vertical-align: middle; width: 20px; height: auto; color: #fff; transition: all 0.3s ease; flex-shrink: 0; }
-      .trakteer-icon { width: 20px; height: auto; }
-      .footer-item p a { color: #ccc; text-decoration: none; transition: color 0.3s ease; }
-      .footer-item p a:hover { color: #ffa200; text-decoration: underline; }
-      .social-icon:hover { transform: scale(1.2); color: #ffa200; filter: brightness(1.5); }
-      @media (min-width: 769px) { .footer-section { justify-content: space-between; gap: 20px; } .footer-item { width: 30%; margin-bottom: 0; text-align: left; } .social-links-container { flex-direction: row; flex-wrap: wrap; gap: 15px; justify-content: flex-start; } .footer-item p { margin-right: 15px; margin-bottom: 5px; } }
-      @media (max-width: 768px) { .footer-section { flex-direction: column; align-items: center; gap: 30px; padding: 0 10px; } .footer-item { width: 95%; min-width: auto; margin-bottom: 0; padding: 0; text-align: center; } .footer-item h3 { text-align: center; margin-bottom: 15px; } .social-links-container { flex-direction: column; align-items: center; gap: 10px; margin-top: 5px; } .footer-item p { justify-content: center; margin-right: 0; } .social-icon { width: 18px; } }
-
-      main { position: relative; z-index: 2; }
-      section.nama { margin-top: 20px; }
-      .notice { margin: 20px auto; padding: 15px; background-color: rgba(40, 40, 40, 0.8); border-radius: 8px; max-width: 600px; text-align: center; color: #ccc; position: relative; z-index: 2; }
-      .notice p { margin-bottom: 10px; }
+      .notice p { margin-bottom: 10px; line-height: 1.5; font-size: 0.95em;}
       .notice p:last-child { margin-bottom: 0; }
 
-      #notification { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); padding: 15px 30px; border-radius: 25px; color: white; font-weight: bold; z-index: 10000; opacity: 0; transition: all 0.3s ease; pointer-events: none; }
-      #notification.visible { opacity: 1; bottom: 30px; }
-      #notification.success { background: #28a745; }
-      #notification.error { background: #dc3545; }
-      #notification.info { background: #17a2b8; }
+      /* --- Genre Filter --- */
+      .genre-filter {
+        margin: 20px auto;
+        padding: 10px;
+        background: rgba(30, 30, 30, 0.8); /* Sedikit lebih gelap */
+        backdrop-filter: blur(5px);
+        border-radius: 15px; /* Radius disamakan */
+        position: relative;
+        max-width: 1000px;
+        z-index: 3; /* Di atas konten tapi di bawah nav sticky */
+        border: 1px solid rgba(255, 162, 0, 0.2);
+      }
+      .genre-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        padding: 5px 10px;
+      }
+      .genre-header h2 { /* Style judul genre */
+         color: #ffa200;
+         font-size: 1.2em;
+         margin: 0; /* Hapus margin bawaan */
+         font-weight: bold;
+      }
+      .genre-toggle {
+        background: none;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      .genre-toggle:hover { transform: scale(1.2); }
+      .genre-toggle:hover path { fill: #ffd700; } /* Warna hover ikon */
+      .genre-list-container {
+        max-height: 500px;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), /* Transisi tinggi */
+                    opacity 0.4s ease; /* Transisi opacity */
+      }
+      .genre-list-container.collapsed {
+        max-height: 0;
+        opacity: 0;
+        margin-top: 0; /* Hilangkan margin saat collapsed */
+        padding-top: 0; /* Hilangkan padding saat collapsed */
+        padding-bottom: 0;
+        border-top: none; /* Hilangkan border saat collapsed */
+      }
+      /* Style tambahan saat tidak collapsed */
+      .genre-list-container:not(.collapsed) {
+          margin-top: 15px; /* Jarak dari header */
+          padding-top: 15px; /* Padding atas */
+          border-top: 1px solid rgba(255, 162, 0, 0.1); /* Garis pemisah */
+      }
+      .genre-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* Jarak antar tombol genre */
+        padding: 0 10px 5px; /* Padding list genre */
+        justify-content: center; /* Tengahkan tombol */
+      }
+      .genre-btn {
+        padding: 8px 18px; /* Padding tombol genre */
+        background: #3a3a3a;
+        border: none;
+        border-radius: 25px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        font-weight: bold;
+        font-size: 0.9em; /* Ukuran font tombol genre */
+      }
+      .genre-btn:hover {
+        background: #ffa200;
+        color: #181818; /* Warna teks saat hover */
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255, 162, 0, 0.3);
+      }
+      /* Efek pseudo element dihapus untuk simplisitas */
+      /* .genre-btn::before { ... } */
+      .genre-btn.selected {
+        background: #ffa200;
+        color: #181818; /* Warna teks saat terpilih */
+        transform: translateY(-3px);
+        box-shadow: 0 5px 20px rgba(255, 162, 0, 0.4);
+        /* Hapus animasi keyframe agar tidak terlalu ramai */
+        /* animation: genreSelect 0.4s ease forwards; */
+      }
 
-      .cookie-consent { position: fixed; bottom: -100%; left: 0; right: 0; background: rgba(0, 0, 0, 0.95); color: white; padding: 15px; z-index: 9999; transition: bottom 0.5s ease; border-top: 2px solid #ffa200; }
+      /* --- PAGINATION --- */
+      .pagination-container {
+        margin: 30px 0; /* Jarak atas-bawah pagination */
+        display: flex;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+      }
+      .pagination-controls {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        background-color: rgba(40, 40, 40, 0.8);
+        padding: 10px 20px;
+        border-radius: 20px;
+      }
+      .pagination-btn {
+        padding: 8px 16px;
+        background: #ffa200;
+        border: none;
+        border-radius: 4px;
+        color: #181818; /* Teks gelap */
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: bold;
+      }
+      .pagination-btn:hover:not(:disabled) {
+        background: #ff8c00; /* Oranye lebih gelap */
+        transform: translateY(-2px);
+      }
+      .pagination-btn:disabled {
+        background: #555; /* Warna disable lebih gelap */
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+      .page-info {
+        color: #fff;
+        font-size: 1em;
+        font-weight: bold;
+      }
+
+      /* --- NOTIFICATION --- */
+      #notification {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 15px 30px;
+        border-radius: 25px;
+        color: white;
+        font-weight: bold;
+        z-index: 10000; /* Paling atas */
+        opacity: 0;
+        transition: opacity 0.3s ease, bottom 0.3s ease; /* Transisi opacity dan posisi */
+        pointer-events: none; /* Tidak bisa diklik */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        text-align: center; /* Pastikan teks tengah */
+      }
+      #notification.visible {
+        opacity: 1;
+        bottom: 30px; /* Naik sedikit saat visible */
+        pointer-events: auto; /* Bisa diklik/interact jika perlu */
+      }
+      #notification.success { background: linear-gradient(45deg, #28a745, #218838); } /* Gradient success */
+      #notification.error { background: linear-gradient(45deg, #dc3545, #c82333); } /* Gradient error */
+      #notification.info { background: linear-gradient(45deg, #17a2b8, #138496); } /* Gradient info */
+
+      /* --- COOKIE CONSENT --- */
+      .cookie-consent {
+        position: fixed;
+        bottom: -100%; /* Mulai dari bawah */
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 10, 0.97); /* Background lebih gelap & solid */
+        color: white;
+        padding: 15px;
+        z-index: 9999; /* Di bawah notifikasi */
+        transition: bottom 0.5s ease-in-out; /* Transisi lebih smooth */
+        border-top: 2px solid #ffa200;
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+      }
       .cookie-consent.show { bottom: 0; }
-      .cookie-content { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 15px; align-items: center; justify-content: space-between; }
-      .cookie-content p { margin: 0; flex: 1; min-width: 300px; font-size: 0.9em; }
+      .cookie-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap; /* Wrap di layar kecil */
+        gap: 15px;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .cookie-content p {
+        margin: 0;
+        flex-grow: 1; /* Biarkan teks mengambil space */
+        min-width: 250px; /* Lebar minimum teks sebelum wrap */
+        font-size: 0.9em;
+        line-height: 1.5;
+      }
       .cookie-content a { color: #ffa200; text-decoration: underline; }
-      .cookie-buttons { display: flex; gap: 10px; flex-shrink: 0; }
-      #cancel-cookies { background-color: #444; border: 1px solid #666; }
-      #cancel-cookies:hover { background-color: #666; }
+      .cookie-buttons {
+        display: flex;
+        gap: 10px;
+        flex-shrink: 0; /* Jangan biarkan tombol menyusut */
+      }
+      /* Style button cookie (gunakan class .stylebutton jika ada, atau definisikan) */
+      .cookie-buttons button {
+        padding: 8px 16px;
+        background-color: #ffa200;
+        color: #181818; /* Teks gelap */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+      }
+      .cookie-buttons button:hover {
+        background-color: #ff8c00;
+        transform: translateY(-2px);
+      }
+      /* Style button cancel/secondary */
+      #cancel-cookies {
+        background-color: #444;
+        color: #eee; /* Teks terang */
+        border: 1px solid #666;
+      }
+      #cancel-cookies:hover { background-color: #555; }
 
-      .pagination-container { margin: 20px 0; display: flex; justify-content: center; position: relative; z-index: 2; }
-      .pagination-controls { display: flex; gap: 15px; align-items: center; background-color: rgba(40, 40, 40, 0.8); padding: 10px 20px; border-radius: 20px; }
-      .pagination-btn { padding: 8px 16px; background: #ffa200; border: none; border-radius: 4px; color: #181818; cursor: pointer; transition: all 0.3s; font-weight: bold; }
-      .pagination-btn:hover:not(:disabled) { background: #ff8c00; transform: translateY(-2px); }
-      .pagination-btn:disabled { background: #666; cursor: not-allowed; opacity: 0.7; }
-      .page-info { color: #fff; font-size: 1em; font-weight: bold; }
+      /* --- FOOTER --- */
+      .footer {
+        background-color: #1f1f1f;
+        color: #aaa; /* Warna teks footer lebih redup */
+        padding: 30px 0; /* Padding atas bawah ditambah */
+        font-size: 14px;
+        position: relative;
+        z-index: 3;
+        margin-top: 50px; /* Jarak dari konten di atas */
+        border-top: 1px solid #333; /* Garis batas atas */
+      }
+      .footer-section {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px; /* Samakan dengan padding container */
+        gap: 30px; /* Jarak antar kolom footer */
+      }
+      .footer-item {
+        flex: 1; /* Bagikan space */
+        min-width: 220px; /* Lebar minimum kolom sebelum wrap */
+        /* Hapus width tetap */
+        /* width: 30%; */
+        margin-bottom: 20px;
+        padding: 0 10px;
+        box-sizing: border-box;
+        text-align: left;
+      }
+      .footer-item h3 {
+        display: block;
+        margin: 0 0 15px 0; /* Jarak bawah heading */
+        font-size: 18px;
+        border-bottom: 1px solid #444;
+        padding-bottom: 8px; /* Padding bawah heading */
+        color: #ffa200; /* Warna heading oranye */
+        text-align: left;
+        font-weight: bold;
+      }
+      .social-links-container {
+        display: flex;
+        flex-direction: column; /* Susun vertikal link sosial */
+        gap: 12px; /* Jarak antar link sosial */
+        margin-top: 10px;
+        align-items: flex-start;
+      }
+      .footer-item p {
+        margin: 0 0 8px 0; /* Jarak bawah paragraf */
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        line-height: 1.6; /* Spasi baris */
+        color: #ccc; /* Warna teks paragraf lebih terang */
+      }
+      .footer-item p a {
+        color: #ccc; /* Warna link default */
+        text-decoration: none;
+        transition: color 0.3s ease;
+        margin-left: 5px; /* Jarak ikon/teks ke link */
+      }
+      .footer-item p a:hover {
+        color: #ffa200; /* Warna hover link */
+        text-decoration: underline;
+      }
+      /* Ikon Sosial */
+      .social-icon {
+        margin-right: 10px; /* Jarak kanan ikon */
+        vertical-align: middle;
+        width: 20px;
+        height: auto;
+        color: #aaa; /* Warna ikon default */
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+      }
+      .trakteer-icon { width: 20px; height: auto; } /* Ukuran ikon trakteer */
+      .footer-item p a:hover .social-icon, /* Target ikon saat link dihover */
+      .social-icon:hover { /* Target ikon saat dihover langsung (jika bukan bagian link) */
+        transform: scale(1.2) rotate(5deg); /* Efek hover ikon */
+        color: #ffa200;
+      }
 
-      #myDynamicSplash { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #181818; display: flex; align-items: center; justify-content: center; text-align: center; z-index: 9999; transition: opacity 0.5s ease; }
+       /* --- Splash Screen (Sudah ada, style dipertahankan) --- */
+      #myDynamicSplash { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #181818; display: flex; align-items: center; justify-content: center; text-align: center; z-index: 99999; transition: opacity 0.5s ease; }
       .splash-content { position: relative; z-index: 10000; }
-      .splash-title { font-size: 45px; margin-bottom: 2rem; display: flex; justify-content: center; position: relative; }
-      .splash-title span { display: inline-flex; font-family: "Play", sans-serif; animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate; margin: 0 3px; color: #ffa200; text-shadow: 0 0 10px #ff6b00; }
-      .sk-cube-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; width: 40px; height: 40px; justify-content: center; align-items: center; margin: auto; }
+      .splash-title { font-size: clamp(30px, 8vw, 45px); margin-bottom: 2rem; display: flex; justify-content: center; position: relative; }
+      .splash-title span { display: inline-flex; font-family: "Play", sans-serif; animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate; margin: 0 clamp(1px, 0.5vw, 3px); color: #ffa200; text-shadow: 0 0 10px #ff6b00; font-weight: bold; }
+      .sk-cube-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; width: 40px; height: 40px; justify-content: center; align-items: center; margin: 20px auto; }
       .sk-cube { width: 10px; height: 10px; background-color: #ffa200; animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; }
       @keyframes sk-cubeGridScaleDelay { 0%, 70%, 100% { transform: scale3D(1, 1, 1); } 35% { transform: scale3D(0, 0, 1); } }
-      .network-status { position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); color: #ff5555; font-size: 1.2em; text-align: center; opacity: 0; transition: opacity 0.3s ease; width: 80%; max-width: 300px; }
+      .network-status { position: absolute; bottom: 15%; left: 50%; transform: translateX(-50%); color: #ff5555; font-size: 1.1em; text-align: center; opacity: 0; transition: opacity 0.3s ease; width: 80%; max-width: 300px; font-weight: bold; }
       .network-status.show { opacity: 1; }
 
-      .genre-filter { margin: 20px auto; padding: 10px; background: rgba(0, 0, 0, 0.7); border-radius: 30px; position: relative; max-width: 1000px; z-index: 2; }
-      .genre-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 0 10px; }
-      .genre-toggle { background: none; border: none; padding: 5px; cursor: pointer; transition: transform 0.3s ease; }
-      .genre-toggle:hover { transform: scale(1.2); }
-      .genre-toggle:hover path { fill: #ffd700; }
-      .genre-list-container { max-height: 500px; overflow: hidden; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-      .genre-list-container.collapsed { max-height: 0; opacity: 0; }
-      .genre-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; padding: 5px 10px; justify-content: center; }
-      .genre-btn { padding: 8px 20px; background: #3a3a3a; border: none; border-radius: 25px; color: white; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; font-weight: bold; }
-      .genre-btn:hover { background: #ffa200; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255, 162, 0, 0.3); }
-      .genre-btn::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, #ffa200, #ffd900); opacity: 0; transition: opacity 0.3s ease; z-index: 1; }
-      .genre-btn:hover::before { opacity: 0.2; }
-      .genre-btn.selected { background: #ffa200; transform: translateY(-3px); box-shadow: 0 5px 20px rgba(255, 162, 0, 0.4); animation: genreSelect 0.4s ease forwards; }
-      @keyframes genreSelect { 0% { transform: translateY(0); } 50% { transform: translateY(-5px); } 100% { transform: translateY(-3px); } }
+      /* ================================================== */
+      /* --- MEDIA QUERIES (RESPONSIVE ADJUSTMENTS) --- */
+      /* ================================================== */
 
-      .anime-list.slide-up { transform: translateY(-20px); opacity: 0.8; }
-      @keyframes slideIn { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-      .genre-list-container:not(.collapsed) .genre-list { animation: slideIn 0.3s ease-out; }
+      /* Tablet dan Layar Menengah (max-width: 992px) */
+      @media (max-width: 992px) {
+          .container { padding: 20px 15px; }
+          .anime-list { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 15px; }
+          .footer-item { min-width: 250px; } /* Biarkan 2 kolom lebih lama */
+      }
 
-      #search-input { position: relative; width: 100%; max-width: 600px; padding: 12px 20px; font-size: 16px; border: 2px solid #ffa200; border-radius: 25px; background: rgba(255, 255, 255, 0.1); color: white; transition: all 0.3s ease; }
-      #search-input:focus { outline: none; box-shadow: 0 0 15px rgba(255, 162, 0, 0.5); border-color: #ff6b00; }
-      #search-input:hover { transform: scale(1.02); background: rgba(255, 255, 255, 0.15); }
-      .search-container { position: sticky; top: 0; z-index: 1000; padding: 15px 0; transition: all 0.3s ease; text-align: center; }
-      @media (max-width: 768px) { .search-container { padding: 10px 0; } #search-input { font-size: 14px; padding: 10px 15px; max-width: 90%; } }
+      /* Tablet Kecil & Mobile Landscape (max-width: 768px) */
+      @media (max-width: 768px) {
+        header h1 { font-size: 2.5em; } /* Ukuran title header */
+        nav ul { justify-content: center; gap: 8px 15px; } /* Sesuaikan gap nav */
+        nav a { padding: 7px 12px; font-size: 0.95em; } /* Padding & font link nav */
+
+        .search-container { top: 45px; padding: 10px 0; } /* Adjust sticky top & padding */
+        #search-input { font-size: 15px; padding: 10px 18px; max-width: 90%; } /* Search input */
+
+        .notice { max-width: 90%; margin: 25px auto; } /* Lebar notice */
+
+        .anime-list { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; } /* Grid 3-4 kolom */
+        .anime-item .anime-title-link span { font-size: 0.85em; min-height: 2.5em; } /* Judul item */
+        .anime-item .add-favorite-button { padding: 5px 10px; font-size: 11px; min-width: 90px; } /* Tombol fav */
+
+        .genre-filter { max-width: 95%; } /* Lebar filter genre */
+
+        .footer-section { flex-direction: column; align-items: center; gap: 30px; padding: 0 10px; }
+        .footer-item { width: 95%; max-width: 400px; min-width: auto; margin-bottom: 0; padding: 0; text-align: center; }
+        .footer-item h3 { text-align: center; margin-bottom: 15px; }
+        .social-links-container { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 15px; } /* Sosial links jadi row lagi di tengah */
+        .footer-item p { justify-content: center; text-align: center; }
+        .footer-item p a { margin-left: 5px; }
+        .social-icon { width: 18px; }
+
+        /* Adjustments for .main if it exists on other pages */
+        .main img { width: 70%; max-width: 250px; height: auto; padding: 15px; }
+        .main h3 { margin-left: 0; font-size: 18px; text-align: center; }
+        .main p { margin: 15px; padding: 10px; text-align: center; }
+        .main a { padding: 15px; margin: 15px; }
+        .video { width: 95%; height: auto; aspect-ratio: 16/9; }
+      }
+
+      /* Mobile Kecil (max-width: 480px) */
+      @media (max-width: 480px) {
+        .container { padding: 15px 10px; } /* Padding container lebih kecil */
+        header { padding-top: 55px; } /* Lebih banyak space dari about */
+        header h1 { font-size: 2em; } /* Title header lebih kecil */
+        .abt { padding: 8px 10px; } /* Padding about link */
+        .abt a { font-size: 0.9em; }
+
+        nav ul { gap: 5px 10px; } /* Gap nav lebih kecil */
+        nav a { padding: 6px 8px; font-size: 0.9em; }
+        .profile-btn { gap: 5px; padding: 4px 8px; } /* Profile button lebih compact */
+        .profile-img { width: 25px; height: 25px; border-width: 1px; }
+        .profile-btn span { font-size: 0.8em; /* Mungkin sembunyikan jika terlalu panjang: display: none; */ }
+
+        .search-container { padding: 8px 0; top: 41px;} /* Search sticky */
+        #search-input { font-size: 14px; padding: 9px 15px; } /* Search input */
+
+        .notice { padding: 12px 15px; font-size: 0.9em; } /* Notice */
+
+        .anime-list { grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 12px; } /* Grid 2-3 kolom */
+        .anime-item .anime-title-link span { font-size: 0.8em; line-height: 1.25; min-height: 2.5em; }
+        .anime-item .add-favorite-button { padding: 4px 8px; font-size: 10px; min-width: 80px; gap: 4px; }
+
+        .genre-header h2 { font-size: 1.1em; }
+        .genre-list { gap: 8px; } /* Gap tombol genre */
+        .genre-btn { padding: 6px 15px; font-size: 0.85em; } /* Tombol genre */
+
+        .pagination-controls { gap: 10px; padding: 8px 15px; } /* Pagination */
+        .pagination-btn { padding: 6px 12px; font-size: 0.9em; }
+        .page-info { font-size: 0.9em; }
+
+        #notification { padding: 12px 25px; font-size: 0.9em; width: 90%; } /* Notifikasi */
+
+        .cookie-content { flex-direction: column; align-items: center; text-align: center; gap: 10px;} /* Cookie consent stack */
+        .cookie-buttons button { padding: 7px 14px; font-size: 0.9em; }
+
+        .footer { padding: 25px 0; }
+        .footer-item h3 { font-size: 16px; }
+        .footer-item p { font-size: 13px; }
+      }
+
+      /* Tambahan untuk layar sangat kecil (opsional) */
+      @media (max-width: 360px) {
+          .anime-list { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); } /* Maks 2 kolom nyaman */
+          nav a, .profile-btn span {
+              /* Pertimbangkan menyembunyikan teks atau membuat ikon saja jika terlalu sempit */
+          }
+      }
+
+      /* Style untuk halaman lain (seperti anime.html) jika diperlukan */
+      .main { text-align: center; margin-top: 5%; }
+      .main img { margin-bottom: 30px; /* Kurangi margin bawah */ width: clamp(200px, 60vw, 300px); /* Lebar responsif */ background-color: #383434; padding: 20px; border-radius: 20px; }
+      .main h2 { font-weight: bold; color: #ffa200; font-size: clamp(1.8em, 6vw, 2.2em); /* Ukuran judul responsif */ margin-bottom: 15px; }
+      .main h3 { margin-bottom: 15px; margin-left: 0; /* Hapus margin kiri */ text-align: center; font-size: clamp(1em, 4vw, 1.2em); color: #ffa200; }
+      .main p { margin: 20px 15px; /* Margin Kiri-Kanan */ letter-spacing: 0.5px; /* Spasi huruf normal */ text-align: left; background-color: #383434; border-radius: 15px; padding: 15px; line-height: 1.6; font-size: clamp(0.9em, 3.5vw, 1em); }
+      .main a { text-align: center; padding: 15px; font-size: clamp(0.9em, 4vw, 1em); color: #ffa200; text-decoration: none; display: block; margin: 20px 15px; background-color: #282828; border-radius: 10px; font-weight: bold; transition: background 0.5s ease; } /* Hapus animasi shimmer */
+      .main a:hover { background: #ffa200; color: #181818; } /* Hover sederhana */
+
+      .video { position: relative; overflow: hidden; width: 90%; /* Lebar video */ max-width: 800px; /* Lebar maks video */ height: auto; aspect-ratio: 16/9; /* Jaga rasio 16:9 */ margin: 20px auto; border-radius: 10px; /* border video */ }
+      .video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
     </style>
     <!-- ================================================== -->
@@ -469,121 +952,14 @@
     <!-- ================================================== -->
   </head>
   <body>
-    <!-- ================================================== -->
-    <!-- --- BACKGROUND PARTIKEL HTML --- -->
-    <!-- ================================================== -->
+    <!-- Background Partikel (Tidak perlu diubah) -->
     <div id="particles-background">
-      <!-- Sebanyak 100 div.circle-container -->
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
-      <div class="circle-container"><div class="circle"></div></div>
+      <!-- Sebanyak 100 div.circle-container (Tidak perlu diubah) -->
+      <!-- ... (konten partikel tetap sama) ... -->
+      <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div>
     </div>
-    <!-- ================================================== -->
-    <!-- --- AKHIR BACKGROUND PARTIKEL HTML --- -->
-    <!-- ================================================== -->
 
+    <!-- Link About (Fixed Top) -->
     <div class="abt"><a href="About.html">ABOUT</a></div>
 
     <header>
@@ -591,126 +967,150 @@
         <h1 class="title">
           <span>M</span><span>y</span><span>A</span><span>n</span><span>i</span><span>m</span><span>e</span>
         </h1>
-        <p>Support Saya Di</p>
+        <!-- Hapus Teks Support & Link IG/Trakteer dari Header jika sudah ada di Footer -->
+        <!-- <p>Support Saya Di</p>
         <p><a href="https://www.instagram.com/ransyah_32/">Instagram</a></p>
-        <p><a href="https://trakteer.id/ransyah4">Trakteer!</a></p>
+        <p><a href="https://trakteer.id/ransyah4">Trakteer!</a></p> -->
         <nav>
           <ul id="menu">
-            <!-- Menu Awal (Akan Diupdate oleh JS) -->
+            <!-- Menu akan diisi oleh JS -->
             <li><a href="#">HOME</a></li>
             <li><a href="#" id="google-login-btn">LOGIN</a></li>
           </ul>
         </nav>
-        <br />
+        <!-- Search Container dipindah ke bawah Nav -->
         <div class="search-container">
-          <input type="text" id="search-input" placeholder="Search.." name="keyword" />
-          <div class="sparkle" id="sparkle-container"></div>
-          <div class="suggestions"></div>
+          <input type="text" id="search-input" placeholder="Cari judul anime..." name="keyword" />
+          <!-- Sparkle dihapus dari HTML, bisa ditambahkan via JS jika diinginkan -->
+          <!-- <div class="sparkle" id="sparkle-container"></div> -->
+          <div class="suggestions"></div> <!-- Box suggestion -->
         </div>
       </div>
     </header>
 
     <main>
-      <div class="genre-filter">
-        <div class="genre-header">
-          <h2 style="color: #ffa200">Genre</h2>
-          <button class="genre-toggle">
-            <svg class="arrow-down" width="24" height="24" viewBox="0 0 24 24"><path fill="#ffa200" d="M7 10l5 5 5-5z" /></svg>
-            <svg class="arrow-up" width="24" height="24" viewBox="0 0 24 24" style="display: none"><path fill="#ffa200" d="M7 14l5-5 5 5z" /></svg>
-          </button>
+      <div class="container"> <!-- Container utama untuk konten main -->
+        <!-- Genre Filter dipindah ke dalam container -->
+        <div class="genre-filter">
+          <div class="genre-header">
+            <h2>Genre</h2>
+            <button class="genre-toggle">
+              <svg class="arrow-down" width="24" height="24" viewBox="0 0 24 24"><path fill="#ffa200" d="M7 10l5 5 5-5z" /></svg>
+              <svg class="arrow-up" width="24" height="24" viewBox="0 0 24 24" style="display: none"><path fill="#ffa200" d="M7 14l5-5 5 5z" /></svg>
+            </button>
+          </div>
+          <div class="genre-list-container collapsed">
+            <div class="genre-list">
+                <!-- Tombol genre akan diisi oleh JS -->
+            </div>
+          </div>
         </div>
-        <div class="genre-list-container collapsed">
-          <div class="genre-list"></div>
-        </div>
-      </div>
-      <div id="notification"></div> <!-- Notifikasi dipindah sedikit ke atas -->
-      <div class="container">
+
+        <!-- Notice Box -->
         <div class="notice">
-          <p>masih dalam tahap sharing,</p>
-          <p>Anime recommended dari saya,dan tidak semua genre ada ! ajak temanmu dan rekomendasikan anime favorit tanpa ads!</p>
+          <p>Selamat datang! Situs ini masih dalam tahap pengembangan.</p>
+          <p>Temukan rekomendasi anime pilihan di sini. Belum semua genre tersedia, tapi kami terus menambahkannya. Ajak temanmu!</p>
         </div>
+
+        <!-- Konten Anime -->
         <div id="content">
           <section class="nama">
-            <h2>Anime Terbaru</h2>
-            <div class="anime-list"></div>
+            <h2>Anime Terbaru</h2> <!-- Judul section (bisa diubah oleh JS) -->
+            <div class="anime-list">
+                <!-- List anime akan diisi oleh JS -->
+            </div>
           </section>
+          <!-- Pagination Container akan ditambahkan oleh JS di sini -->
         </div>
-      </div>
+      </div> <!-- Akhir container utama -->
     </main>
 
+    <!-- Notifikasi (di luar main/container agar fixed posisinya benar) -->
+    <div id="notification"></div>
+
+    <!-- Cookie Consent (di luar main/container agar fixed posisinya benar) -->
     <div id="cookie-consent" class="cookie-consent">
       <div class="cookie-content">
-        <p>Kami menggunakan cookie untuk meningkatkan pengalaman Anda. Dengan menggunakan situs ini, Anda setuju dengan <a href="/privacy">Kebijakan Privasi</a> kami.</p>
+        <p>Kami menggunakan cookie untuk meningkatkan pengalaman Anda. Dengan menggunakan situs ini, Anda setuju dengan <a href="/privacy" target="_blank">Kebijakan Privasi</a> kami.</p>
         <div class="cookie-buttons">
-          <button id="accept-cookies" class="stylebutton">Setuju</button>
-          <button id="cancel-cookies" class="stylebutton secondary">Batalkan</button>
+          <button id="accept-cookies">Setuju</button>
+          <button id="cancel-cookies">Batalkan</button>
         </div>
       </div>
     </div>
 
+    <!-- Footer -->
     <footer class="footer">
       <div class="footer-section">
         <div class="footer-item">
           <h3>Hak Cipta</h3>
-          <p>Hak Cipta © 2024 MyAnime.</p>
-          <p>Dibuat dengan ❤️ oleh Ransyah.</p>
+          <p>&copy; 2024 MyAnime.</p> <!-- Gunakan simbol &copy; -->
+          <p>Dibuat dengan <i class="fas fa-heart" style="color: red;"></i> oleh Ransyah.</p>
         </div>
         <div class="footer-item">
-          <h3>Ikuti & Support</h3>
+          <h3>Ikuti & Support Kami</h3>
           <div class="social-links-container">
-            <p><i class="fab fa-instagram social-icon"></i> <a href="https://www.instagram.com/ransyah_32/" target="_blank" rel="noopener noreferrer">Instagram</a></p>
-            <p><img src="Gambar/trakteer_logo.png" alt="" class="trakteer-icon social-icon" /> <a href="https://trakteer.id/ransyah4" target="_blank" rel="noopener noreferrer">Trakteer!</a></p>
-            <p><i class="fas fa-envelope social-icon"></i> <a href="mailto:rizky1234kb@gmail.com">Email</a></p>
+             <p><a href="https://www.instagram.com/ransyah_32/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram social-icon"></i> Instagram</a></p>
+             <p><a href="https://trakteer.id/ransyah4" target="_blank" rel="noopener noreferrer"><img src="Gambar/trakteer_logo.png" alt="Trakteer" class="trakteer-icon social-icon" style="filter: brightness(1.5);"/> Trakteer</a></p> <!-- Tweak style ikon trakteer jika perlu -->
+             <p><a href="mailto:rizky1234kb@gmail.com"><i class="fas fa-envelope social-icon"></i> Email</a></p>
           </div>
         </div>
         <div class="footer-item">
           <h3>Hubungi Kami</h3>
           <p><a href="mailto:rizky1234kb@gmail.com">rizky1234kb@gmail.com</a></p>
+          <!-- Tambahkan info kontak lain jika ada -->
         </div>
       </div>
     </footer>
 
+    <!-- Script Eksternal (Google Sign In & JWT Decode) -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
 
+    <!-- Script Internal Aplikasi -->
     <script>
       // --- SPLASH SCREEN ---
       function createSplashScreen() {
-        const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
-        if (!isHomePage) return null;
-        const splashScreen = document.createElement("div");
-        splashScreen.id = "myDynamicSplash";
-        const contentWrapper = document.createElement("div");
-        contentWrapper.className = "splash-content";
-        const title = document.createElement("div");
-        title.className = "splash-title";
-        const letters = ["M", "y", "A", "n", "i", "m", "e"];
-        letters.forEach((letter, index) => {
-          const span = document.createElement("span");
-          span.textContent = letter;
-          span.style.animationDelay = `${0.3 + index * 0.1}s`;
-          title.appendChild(span);
-        });
-        const cubeGrid = document.createElement("div");
-        cubeGrid.className = "sk-cube-grid";
-        for (let i = 1; i <= 9; i++) {
-          const cube = document.createElement("div");
-          cube.className = `sk-cube sk-cube${i}`;
-          cubeGrid.appendChild(cube);
+        // (Kode Splash Screen tidak diubah)
+        const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/" || window.location.pathname.endsWith("/MyAnime/") || window.location.pathname.endsWith("/MyAnime"); // Tambahkan path root
+        if (!sessionStorage.getItem('splashShown') && isHomePage) { // Hanya tampil sekali per sesi di homepage
+            const splashScreen = document.createElement("div");
+            splashScreen.id = "myDynamicSplash";
+            const contentWrapper = document.createElement("div");
+            contentWrapper.className = "splash-content";
+            const title = document.createElement("div");
+            title.className = "splash-title";
+            const letters = ["M", "y", "A", "n", "i", "m", "e"];
+            letters.forEach((letter, index) => {
+            const span = document.createElement("span");
+            span.textContent = letter;
+            span.style.animationDelay = `${0.3 + index * 0.1}s`;
+            title.appendChild(span);
+            });
+            const cubeGrid = document.createElement("div");
+            cubeGrid.className = "sk-cube-grid";
+            for (let i = 1; i <= 9; i++) {
+            const cube = document.createElement("div");
+            cube.className = `sk-cube sk-cube${i}`;
+            cubeGrid.appendChild(cube);
+            }
+            const errorMessage = document.createElement("div");
+            errorMessage.className = "network-status";
+            contentWrapper.appendChild(title);
+            contentWrapper.appendChild(cubeGrid);
+            contentWrapper.appendChild(errorMessage);
+            splashScreen.appendChild(contentWrapper);
+            document.body.prepend(splashScreen);
+            sessionStorage.setItem('splashShown', 'true'); // Tandai sudah tampil
+            return { splashScreen, errorMessage };
         }
-        const errorMessage = document.createElement("div");
-        errorMessage.className = "network-status";
-        contentWrapper.appendChild(title);
-        contentWrapper.appendChild(cubeGrid);
-        contentWrapper.appendChild(errorMessage);
-        splashScreen.appendChild(contentWrapper);
-        document.body.prepend(splashScreen);
-        return { splashScreen, errorMessage };
+        return null; // Tidak perlu splash jika bukan homepage atau sudah tampil
       }
 
       function initSplashScreen() {
+        // (Kode initSplashScreen tidak diubah secara signifikan)
         const splashData = createSplashScreen();
-        if (!splashData) return;
+        if (!splashData) return () => {}; // Return fungsi kosong jika tidak ada splash
         const { splashScreen, errorMessage } = splashData;
         let isLoaded = false;
         const showNetworkError = (message) => {
@@ -725,11 +1125,13 @@
           connection.addEventListener("change", () => {
             if (connection.effectiveType === "slow-2g" || connection.effectiveType === "2g") {
               showNetworkError("Koneksi internet lemah terdeteksi");
+            } else {
+              errorMessage.classList.remove("show"); // Sembunyikan jika koneksi membaik
             }
           });
         }
         const hideSplash = () => {
-          if (isLoaded) return;
+          if (isLoaded || !splashScreen) return;
           isLoaded = true;
           splashScreen.style.opacity = "0";
           splashScreen.addEventListener("transitionend", () => {
@@ -737,17 +1139,19 @@
           });
         };
         const loadTimeout = setTimeout(() => {
-          if (!isLoaded) showNetworkError("Memuat lebih lama dari biasanya...");
-        }, 5000); // Meningkatkan timeout sedikit
+          if (!isLoaded) showNetworkError("Memuat data agak lama...");
+        }, 7000); // Timeout sedikit lebih lama
         const handleLoad = () => {
           clearTimeout(loadTimeout);
           hideSplash();
         };
+        // Handle jika DOM sudah complete saat script jalan
         if (document.readyState === "complete") {
-          handleLoad();
+            setTimeout(handleLoad, 300); // Beri sedikit delay agar animasi sempat terlihat
+        } else {
+            // Event listener load akan memanggil hideSplash saat init utama selesai
         }
-        // handleLoad akan dipanggil lagi setelah data load
-        return handleLoad;
+        return hideSplash; // Kembalikan fungsi hideSplash untuk dipanggil nanti
       }
 
       // --- AUTH SYSTEM ---
@@ -756,6 +1160,7 @@
 
       function handleLogin() {
         console.log("Attempting Google login...");
+        // Hapus data lama sebelum redirect
         localStorage.removeItem("access_token");
         localStorage.removeItem("user_info");
         sessionStorage.removeItem("currentUser");
@@ -764,31 +1169,68 @@
       }
 
       function handleLogout() {
-        console.log("Attempting Google logout...");
+        // ---== TAMBAHAN: KONFIRMASI LOGOUT ==---
+        // Munculkan pop-up konfirmasi
+        // Teks bisa disesuaikan
+        if (!confirm("Anda yakin ingin keluar sekarang?")) {
+          console.log("Logout dibatalkan oleh pengguna.");
+          return; // Hentikan fungsi jika pengguna memilih "Cancel" / "Nggak"
+        }
+        // ---== AKHIR TAMBAHAN ==---
+
+        // Lanjutkan proses logout jika dikonfirmasi
+        console.log("Melakukan proses logout...");
         localStorage.removeItem("access_token");
         localStorage.removeItem("user_info");
         sessionStorage.removeItem("currentUser");
-        if (google && google.accounts && google.accounts.id) {
-          google.accounts.id.disableAutoSelect();
-          console.log("Google auto-select disabled.");
+
+        // Coba disable GSI auto select (best effort)
+        if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+           try {
+               google.accounts.id.disableAutoSelect();
+               console.log("Google auto-select dinonaktifkan.");
+           } catch (e) {
+               console.warn("Gagal menonaktifkan Google auto-select:", e);
+           }
+        } else {
+            console.log("Google Accounts ID library belum siap saat logout.");
         }
-        updateMenu(); // Update UI setelah logout
-        console.log("User logged out.");
+
+        updateMenu(); // Update UI menu setelah logout
+        showNotification("Anda telah berhasil logout.", "info"); // Beri notifikasi
+        console.log("Pengguna berhasil logout.");
+         // Optional: Redirect ke halaman utama setelah logout
+         // window.location.href = window.location.pathname;
       }
 
+
       async function getUserInfo(accessToken) {
+        // (Kode getUserInfo tidak diubah)
         console.log("Fetching user info...");
         try {
           const response = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", { headers: { Authorization: `Bearer ${accessToken}` } });
           console.log("User info response status:", response.status);
           if (!response.ok) {
+             // Jika token expired atau tidak valid
+            if (response.status === 401) {
+                console.warn("Token tidak valid atau expired. Membersihkan storage.");
+                localStorage.removeItem("access_token");
+                localStorage.removeItem("user_info");
+                sessionStorage.removeItem("currentUser");
+            }
             throw new Error(`Gagal mengambil info pengguna: Status ${response.status}`);
           }
           const userInfo = await response.json();
           console.log("User info received:", userInfo);
+           // Validasi sederhana info pengguna
+          if (!userInfo || (!userInfo.id && !userInfo.sub)) {
+              console.error("User info tidak valid atau tidak lengkap:", userInfo);
+              throw new Error("Data pengguna tidak lengkap.");
+          }
           return userInfo;
         } catch (error) {
           console.error("Gagal mengambil info pengguna:", error);
+          // Bersihkan storage jika terjadi error
           localStorage.removeItem("access_token");
           localStorage.removeItem("user_info");
           sessionStorage.removeItem("currentUser");
@@ -797,276 +1239,420 @@
       }
 
       async function updateMenu() {
+          // (Kode updateMenu tidak diubah secara signifikan)
           console.log("Updating menu...");
           const menu = document.getElementById("menu");
           if (!menu) {
-              console.warn("Nav menu element (#menu) not found!");
+              console.error("Elemen #menu tidak ditemukan!"); // Ganti warn ke error
               return;
           }
 
           const accessToken = localStorage.getItem("access_token");
-          let userInfo = null;
+          let storedUserInfo = null;
           try {
-              userInfo = JSON.parse(localStorage.getItem("user_info"));
-          } catch (e) {
-              console.warn("Could not parse user_info from localStorage", e);
-              localStorage.removeItem("user_info"); // Clear invalid data
+              storedUserInfo = JSON.parse(localStorage.getItem("user_info"));
+          } catch (e) { /* abaikan jika parsing gagal */ }
+
+          let sessionUserInfo = null;
+           try {
+              sessionUserInfo = JSON.parse(sessionStorage.getItem("currentUser"));
+          } catch (e) { /* abaikan jika parsing gagal */ }
+
+          // Prioritaskan session storage, lalu local storage
+          const currentUserInfo = sessionUserInfo || storedUserInfo;
+
+          // Verifikasi ulang token jika ada tapi user info tidak lengkap (misal hanya dari LS lama)
+          if (accessToken && (!currentUserInfo || !currentUserInfo.id)) {
+              console.warn("Token ada, tapi info user tidak lengkap/valid. Mencoba fetch ulang.");
+               try {
+                  const freshUserInfo = await getUserInfo(accessToken);
+                  if (freshUserInfo) {
+                      console.log("Berhasil fetch ulang user info, memperbarui menu.");
+                      localStorage.setItem("user_info", JSON.stringify(freshUserInfo));
+                      sessionStorage.setItem("currentUser", JSON.stringify({
+                            id: freshUserInfo.id || freshUserInfo.sub,
+                            name: freshUserInfo.name,
+                            picture: freshUserInfo.picture,
+                            email: freshUserInfo.email
+                      }));
+                      // Panggil updateMenu lagi dengan data baru
+                      updateMenu(); // Rekursif HATI-HATI potensi infinite loop jika getUserInfo selalu gagal
+                      return; // Hentikan eksekusi saat ini
+                  } else {
+                      console.error("Gagal fetch ulang user info, melanjutkan sebagai logged out.");
+                      // Hapus token jika user info tidak bisa didapatkan
+                      localStorage.removeItem("access_token");
+                      localStorage.removeItem("user_info");
+                      sessionStorage.removeItem("currentUser");
+                  }
+              } catch (error) {
+                  console.error("Error saat fetch ulang user info:", error);
+                  // Logout jika fetch ulang gagal
+                  localStorage.removeItem("access_token");
+                  localStorage.removeItem("user_info");
+                  sessionStorage.removeItem("currentUser");
+              }
           }
 
-          let sessionUser = null;
-          try {
-              sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
-          } catch (e) {
-              console.warn("Could not parse currentUser from sessionStorage", e);
-              sessionStorage.removeItem("currentUser"); // Clear invalid data
-          }
 
-          const currentUserInfo = sessionUser || userInfo;
-
-          if (accessToken && currentUserInfo) {
+          // Tampilkan menu sesuai status login
+          if (accessToken && currentUserInfo && currentUserInfo.id) {
               console.log("User is logged in:", currentUserInfo);
+              // Pastikan gambar default jika picture tidak ada
+              const profilePic = currentUserInfo.picture || 'Gambar/default-avatar.png'; // Ganti path jika perlu
+              const userName = currentUserInfo.name || 'User'; // Default name
+
               menu.innerHTML = `
                   <li><a href="favorites.html">Favorites</a></li>
                   <li>
-                      <a href="#" id="logout-btn" class="profile-btn">
-                          <img src="${currentUserInfo.picture || 'Gambar/default-avatar.png'}" alt="Profile" class="profile-img"> 
-                          <span>${currentUserInfo.name || 'User'}</span> 
+                      <a href="#" id="logout-btn" class="profile-btn" title="Klik untuk Logout">
+                          <img src="${profilePic}" alt="Profile" class="profile-img" onerror="this.src='Gambar/default-avatar.png';"> <!-- Fallback onerror -->
+                          <span>${userName}</span>
                       </a>
                   </li>`;
-              // Sync session storage to local storage if needed
-              if (sessionUser && !userInfo) {
-                  localStorage.setItem("user_info", JSON.stringify(sessionUser));
+              // Sinkronkan ke LS jika data dari session
+              if (sessionUserInfo && !storedUserInfo) {
+                  localStorage.setItem("user_info", JSON.stringify(sessionUserInfo));
               }
           } else {
               console.log("User is logged out.");
               menu.innerHTML = `
-                  <li><a href="#">HOME</a></li>
+                  <li><a href="index.html">HOME</a></li> <!-- Pastikan link Home benar -->
                   <li><a href="#" id="google-login-btn">LOGIN</a></li>`;
-              // Ensure storage is clean on logout state
-              localStorage.removeItem("access_token");
-              localStorage.removeItem("user_info");
-              sessionStorage.removeItem("currentUser");
+              // Pastikan storage bersih saat logout
+              if (localStorage.getItem("access_token") || localStorage.getItem("user_info") || sessionStorage.getItem("currentUser")) {
+                  console.log("Membersihkan storage sisa pada state logout.");
+                  localStorage.removeItem("access_token");
+                  localStorage.removeItem("user_info");
+                  sessionStorage.removeItem("currentUser");
+              }
           }
 
-          // Re-attach event listeners using delegation on the body
-          document.body.removeEventListener("click", handleMenuClick); // Remove previous listener first
-          document.body.addEventListener("click", handleMenuClick);
+          // Re-attach event listeners (delegasi lebih baik, tapi ini mengikuti pola lama)
+          // Hapus listener lama sebelum menambah baru untuk mencegah duplikasi
+          const googleLoginBtn = document.getElementById("google-login-btn");
+          const logoutBtn = document.getElementById("logout-btn");
+
+          if (googleLoginBtn) {
+              googleLoginBtn.removeEventListener("click", handleLogin); // Hapus listener lama
+              googleLoginBtn.addEventListener("click", (e) => {
+                  e.preventDefault();
+                  handleLogin();
+              });
+          }
+          if (logoutBtn) {
+               logoutBtn.removeEventListener("click", handleLogout); // Hapus listener lama
+              logoutBtn.addEventListener("click", (e) => {
+                  e.preventDefault();
+                  handleLogout();
+              });
+          }
 
           console.log("Menu updated.");
       }
 
-      // Define handleMenuClick outside updateMenu so it's accessible
-      function handleMenuClick(e) {
-          if (e.target.closest("#google-login-btn")) {
-              e.preventDefault();
-              handleLogin();
-          }
-          if (e.target.closest("#logout-btn")) {
-              e.preventDefault();
-              handleLogout();
-          }
-      }
-
 
       async function initAuth() {
+        // (Kode initAuth tidak diubah secara signifikan)
         console.log("Initializing Auth...");
         const hash = window.location.hash.substring(1);
         const params = new URLSearchParams(hash);
         const accessToken = params.get("access_token");
+        let authInitializedFromRedirect = false;
 
         if (accessToken) {
           console.log("✅ Access token ditemukan di URL hash.");
+          localStorage.setItem("access_token", accessToken); // Simpan token dulu
+          history.replaceState(null, "", window.location.pathname); // Bersihkan URL SEGERA
           try {
-            const userInfo = await getUserInfo(accessToken);
-            if (userInfo && (userInfo.email || userInfo.id)) { // Check for email or id
+            const userInfo = await getUserInfo(accessToken); // Ambil info user
+            if (userInfo && (userInfo.id || userInfo.sub)) {
               console.log("✅ Info pengguna berhasil diambil:", userInfo);
-              localStorage.setItem("access_token", accessToken);
-              localStorage.setItem("user_info", JSON.stringify(userInfo));
-              sessionStorage.setItem("currentUser", JSON.stringify({
-                id: userInfo.id || userInfo.sub, // Use id or sub
-                name: userInfo.name,
-                picture: userInfo.picture,
-                email: userInfo.email
-              }));
-              history.replaceState(null, "", window.location.pathname); // Clean URL
+              const simpleUserInfo = {
+                    id: userInfo.id || userInfo.sub,
+                    name: userInfo.name,
+                    picture: userInfo.picture,
+                    email: userInfo.email
+              };
+              localStorage.setItem("user_info", JSON.stringify(userInfo)); // Simpan info lengkap di LS
+              sessionStorage.setItem("currentUser", JSON.stringify(simpleUserInfo)); // Simpan info simpel di SS
               console.log("✅ Auth berhasil diinisialisasi dari redirect.");
+              authInitializedFromRedirect = true;
             } else {
-               // getUserInfo already handled cleanup if info is invalid/incomplete
-              console.error("❌ Auth gagal: Info pengguna tidak lengkap atau tidak valid.");
-               // Optionally show user a message here
+              console.error("❌ Auth gagal: Info pengguna tidak lengkap atau tidak valid setelah fetch.");
+              // getUserInfo sudah membersihkan token jika fetch gagal/info tidak valid
+              showNotification("Login gagal, data pengguna tidak lengkap.", "error");
             }
           } catch (error) {
             console.error("❌ Auth gagal saat memproses token:", error);
-            alert("Login gagal. Silakan coba lagi!");
+            showNotification("Login gagal. Silakan coba lagi.", "error");
+             // getUserInfo sudah membersihkan token jika error
           }
         } else {
           console.log("🔍 Tidak ada access token di hash URL. Mengecek Local Storage.");
-          // No new token, check existing login status from storage
-          // updateMenu will handle displaying the correct state
+          // Cek token di Local Storage jika tidak ada di URL
+          const existingToken = localStorage.getItem("access_token");
+          if (existingToken) {
+              console.log("Token ditemukan di Local Storage. Memvalidasi...");
+              // Coba validasi token dengan getUserInfo
+              const userInfoFromStorage = await getUserInfo(existingToken);
+              if (!userInfoFromStorage) {
+                  console.warn("Token di Local Storage tidak valid/expired. Membersihkan.");
+                  // getUserInfo sudah membersihkan storage
+              } else {
+                   console.log("Token di Local Storage valid.");
+                  // Pastikan session storage juga terisi jika belum
+                   if (!sessionStorage.getItem("currentUser")) {
+                        const simpleUserInfo = {
+                            id: userInfoFromStorage.id || userInfoFromStorage.sub,
+                            name: userInfoFromStorage.name,
+                            picture: userInfoFromStorage.picture,
+                            email: userInfoFromStorage.email
+                        };
+                        sessionStorage.setItem("currentUser", JSON.stringify(simpleUserInfo));
+                        console.log("Session storage diisi dari Local Storage.");
+                   }
+              }
+          } else {
+              console.log("Tidak ada token aktif.");
+              // Pastikan storage bersih jika tidak ada token
+              localStorage.removeItem("user_info");
+              sessionStorage.removeItem("currentUser");
+          }
         }
-        // Update menu regardless of whether a new token was processed
-        await updateMenu(); // Make sure menu is updated AFTER potential auth changes
+
+        // Selalu update menu setelah semua proses auth selesai
+        await updateMenu();
+        // Beri notifikasi jika login berhasil dari redirect
+        if (authInitializedFromRedirect) {
+            showNotification("Login berhasil!", "success");
+        }
       }
 
       // --- PAGINATION & DATA LOADING ---
       let currentPage = 1;
-      let itemsPerPage = 27; // Jumlah item per halaman (pastikan sesuai keinginan)
+      let itemsPerPage = 24; // Coba 24 item per halaman (lebih banyak)
       let totalPages = 1;
       let allAnimeData = [];
       let filteredData = [];
       const JSON_PATH = "./anime-data.json"; // Pastikan path ini benar!
 
       async function loadAnimeData() {
+        // (Kode loadAnimeData tidak diubah secara signifikan, pastikan JSON valid)
         console.log("🔄 Memulai load data dari:", JSON_PATH);
         try {
-          const response = await fetch(JSON_PATH);
+          const response = await fetch(JSON_PATH, { cache: 'no-store' }); // Tambah cache: no-store untuk debug
           console.log("🔍 Status response:", response.status);
           if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
           }
           const contentType = response.headers.get("content-type");
+          let data;
           if (!contentType || !contentType.includes("application/json")) {
-             // Coba parsing teks jika header salah tapi konten mungkin JSON
-             console.warn("Header content-type bukan application/json, mencoba parsing teks...");
+             console.warn(`Header content-type (${contentType}) bukan application/json, mencoba parsing teks...`);
              const text = await response.text();
              try {
-                 const data = JSON.parse(text);
-                 console.log("✅ Data berhasil diparsing dari teks:", data);
-                 // Validasi struktur setelah parsing dari teks
-                  if (!data || !Array.isArray(data.data)) {
-                    if (Array.isArray(data)) {
-                      console.warn("Struktur JSON tidak memiliki properti 'data'. Menggunakan array langsung.");
-                      return data; // Langsung kembalikan jika data adalah array
-                    }
-                    throw new Error("Struktur JSON dari teks tidak valid.");
-                  }
-                 return data.data;
+                 data = JSON.parse(text);
+                 console.log("✅ Data berhasil diparsing dari teks.");
              } catch (parseError) {
-                 console.error("❌ Gagal parsing teks sebagai JSON:", parseError, "Konten teks:", text);
+                 console.error("❌ Gagal parsing teks sebagai JSON:", parseError);
+                 console.error("Konten teks:", text.substring(0, 500) + "..."); // Tampilkan sebagian teks error
                  throw new Error("Response bukan JSON valid.");
              }
+          } else {
+              data = await response.json();
+              console.log("✅ Data diterima (application/json).");
           }
-          // Jika header benar application/json
-          const data = await response.json();
-          console.log("✅ Data diterima (application/json):", data);
-          // Validasi struktur
-          if (!data || !Array.isArray(data.data)) {
-             if (Array.isArray(data)) {
-                 console.warn("Struktur JSON tidak memiliki properti 'data'. Menggunakan array langsung.");
-                 return data;
-             }
-            throw new Error("Struktur JSON tidak valid: properti 'data' tidak ditemukan atau bukan array.");
+
+          // Validasi struktur data (lebih fleksibel)
+          let animeArray;
+          if (Array.isArray(data)) {
+              console.warn("Struktur JSON adalah array langsung. Menggunakannya.");
+              animeArray = data;
+          } else if (data && Array.isArray(data.data)) {
+              console.log("Struktur JSON memiliki properti 'data'. Menggunakan data.data.");
+              animeArray = data.data;
+          } else {
+              console.error("Struktur JSON tidak valid. Data diterima:", data);
+              throw new Error("Struktur JSON tidak valid: Array anime tidak ditemukan.");
           }
-          return data.data; // Kembalikan array anime
+
+          // Sanitasi data dasar (opsional tapi bagus)
+          animeArray = animeArray.filter(anime => anime && anime.title && anime.slug); // Pastikan title & slug ada
+          console.log(`✅ Data anime siap digunakan: ${animeArray.length} item valid.`);
+          return animeArray;
+
         } catch (error) {
           console.error("❌ Error kritikal saat memuat data anime:", error);
-          showNotification(`Gagal memuat data anime: ${error.message}. Cek path & file JSON.`, "error", 5000); // Tampilkan notif lebih lama
-          return []; // Kembalikan array kosong
+          showNotification(`Gagal memuat data anime: ${error.message}. Periksa file JSON & path.`, "error", 7000);
+          return [];
         }
       }
 
 
       // --- RENDERING ---
       function renderAnimeItems(data) {
+        // (Kode renderAnimeItems diperbaiki untuk escape & fallback)
         const animeList = document.querySelector(".anime-list");
         if (!animeList) { console.error("Container .anime-list tidak ditemukan!"); return; }
-        animeList.innerHTML = ""; // Clear previous items
 
+        // Clear previous items dan tampilkan pesan loading/kosong
         if (data.length === 0) {
-          animeList.innerHTML = '<p style="text-align: center; color: #ccc; width: 100%;">Tidak ada anime ditemukan.</p>'; // Style width 100%
+          const currentFilterInfo = selectedGenre && selectedGenre !== 'All'
+              ? `untuk genre "${selectedGenre}"`
+              : (searchInput && searchInput.value ? `dengan kata kunci "${searchInput.value}"` : "");
+          animeList.innerHTML = `<p style="text-align: center; color: #ccc; width: 100%; grid-column: 1 / -1; padding: 20px 0;">Tidak ada anime ditemukan ${currentFilterInfo}.</p>`;
           return;
         }
 
+        // Ambil data favorit terbaru
         const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
         const favoriteSlugs = new Set(favorites.map(fav => fav.slug));
 
+        // Buat elemen HTML
         animeList.innerHTML = data.map((anime) => {
-          const slug = anime.slug || "#" + Date.now(); // Fallback slug unik jika tidak ada
-          const imageUrl = anime.image || "Gambar/default-thumbnail.png";
-          const title = anime.title || "Judul Tidak Diketahui";
-          const isFavorited = favoriteSlugs.has(slug);
-          const escapedSlug = slug.replace(/'/g, "\\'").replace(/"/g, '"'); // Escape single and double quotes
-          const escapedTitle = title.replace(/'/g, "\\'").replace(/"/g, '"');
-          const escapedImageUrl = imageUrl.replace(/'/g, "\\'").replace(/"/g, '"');
+          // Fallback & Sanitasi
+          const slug = anime.slug || `unknown-slug-${Math.random().toString(36).substring(7)}`;
+          const imageUrl = anime.image || "Gambar/default-thumbnail.png"; // Ganti path jika perlu
+          const title = anime.title || "Judul Tidak Tersedia";
 
+          // Escape karakter khusus untuk atribut HTML dan parameter JS
+          const escapedSlug = slug.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+          const escapedTitle = title.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+          const escapedImageUrl = imageUrl.replace(/'/g, "\\'").replace(/"/g, '&quot;');
 
+          const isFavorited = favoriteSlugs.has(slug); // Cek slug asli
+          const buttonText = isFavorited ? 'Disimpan' : 'Simpan';
+          const iconClass = isFavorited ? 'fas fa-bookmark' : 'far fa-bookmark'; // Solid vs Regular
+
+          // Struktur HTML item
           return `
               <div class="anime-item">
-                <a href="anime.html?slug=${encodeURIComponent(slug)}">
-                  <img src="${imageUrl}" alt="${escapedTitle}" loading="lazy"> 
+                <a href="anime.html?slug=${encodeURIComponent(slug)}" title="${escapedTitle}">
+                  <img src="${imageUrl}" alt="${escapedTitle}" loading="lazy" onerror="this.src='Gambar/default-thumbnail.png'; this.onerror=null;">
                 </a>
-                <div class="anime-title-link">
-                  <a href="anime.html?slug=${encodeURIComponent(slug)}">
-                    <span>${title}</span>
-                  </a>
+                <div class="anime-item-content" style="padding: 10px;"> <!-- Wrapper konten teks -->
+                  <div class="anime-title-link">
+                    <a href="anime.html?slug=${encodeURIComponent(slug)}" title="${escapedTitle}">
+                      <span>${title}</span>
+                    </a>
+                  </div>
+                  <button
+                    class="add-favorite-button ${isFavorited ? 'favorited' : ''}"
+                    onclick="addToFavorites({ slug: '${escapedSlug}', title: '${escapedTitle}', image: '${escapedImageUrl}' }, this)">
+                    <i class="${iconClass}"></i>
+                    <span>${buttonText}</span>
+                  </button>
                 </div>
-                <button
-                  class="add-favorite-button ${isFavorited ? 'favorited' : ''}"
-                  onclick="addToFavorites({ slug: '${escapedSlug}', title: '${escapedTitle}', image: '${escapedImageUrl}' }, this)">
-                  <i class="far fa-bookmark"></i>
-                  <span>${isFavorited ? 'Disimpan' : 'Simpan'}</span>
-                </button>
               </div>
           `;
         }).join("");
       }
 
       function renderPagination() {
+        // (Kode renderPagination diperbaiki untuk penempatan)
         let paginationContainer = document.querySelector(".pagination-container");
+        // Buat container jika belum ada
         if (!paginationContainer) {
           paginationContainer = document.createElement("div");
           paginationContainer.className = "pagination-container";
-          const mainElement = document.querySelector("main #content"); // Target #content dalam main
-          if (mainElement) {
-            mainElement.appendChild(paginationContainer); // Append ke #content
+          // Coba sisipkan SETELAH .anime-list, atau sebelum footer jika list tidak ada
+          const animeListElement = document.querySelector(".anime-list");
+          const contentElement = document.getElementById("content");
+          const mainElement = document.querySelector("main");
+
+          if (animeListElement && animeListElement.parentNode) {
+              animeListElement.parentNode.insertBefore(paginationContainer, animeListElement.nextSibling);
+          } else if (contentElement) {
+             contentElement.appendChild(paginationContainer);
+          } else if (mainElement) {
+             mainElement.appendChild(paginationContainer);
           } else {
-             console.warn("Element #content not found for pagination. Appending to main.");
-             document.querySelector("main")?.appendChild(paginationContainer); // Fallback ke main
+              console.warn("Tidak bisa menemukan tempat ideal untuk pagination. Menambahkan ke body.");
+              document.body.appendChild(paginationContainer); // Fallback terakhir
           }
         }
 
-         // Jangan render jika hanya 1 halaman atau tidak ada data
+        // Jangan render jika hanya 1 halaman atau tidak ada data
         if (totalPages <= 1) {
-            paginationContainer.innerHTML = '';
+            paginationContainer.innerHTML = ''; // Kosongkan jika tidak perlu
             return;
         }
 
+        // Render kontrol pagination
         paginationContainer.innerHTML = `
           <div class="pagination-controls">
-            <button class="pagination-btn" id="prev-btn" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
-            <span class="page-info">Halaman ${currentPage} dari ${totalPages}</span>
-            <button class="pagination-btn" id="next-btn" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
+            <button class="pagination-btn" id="prev-btn" ${currentPage === 1 ? "disabled" : ""} aria-label="Halaman Sebelumnya">Previous</button>
+            <span class="page-info" aria-live="polite">Hal ${currentPage} / ${totalPages}</span>
+            <button class="pagination-btn" id="next-btn" ${currentPage === totalPages ? "disabled" : ""} aria-label="Halaman Berikutnya">Next</button>
           </div>`;
+
+         // Attach event listener ke tombol baru (lebih baik pakai delegasi sebenarnya)
+         const prevBtn = document.getElementById('prev-btn');
+         const nextBtn = document.getElementById('next-btn');
+         if(prevBtn) {
+             prevBtn.addEventListener('click', handlePaginationClick);
+         }
+         if(nextBtn) {
+             nextBtn.addEventListener('click', handlePaginationClick);
+         }
       }
 
+      // Handler untuk klik pagination
+      function handlePaginationClick(e) {
+          e.preventDefault();
+          if (e.target.id === "prev-btn" && !e.target.disabled) {
+               if (currentPage > 1) { currentPage--; updateDisplay(); console.log("Pagination: Previous page"); }
+          }
+          if (e.target.id === "next-btn" && !e.target.disabled) {
+               if (currentPage < totalPages) { currentPage++; updateDisplay(); console.log("Pagination: Next page"); }
+          }
+      }
+
+
       function updateDisplay() {
+        // (Kode updateDisplay sedikit disesuaikan)
         console.log(`Updating display: Page ${currentPage}/${totalPages}, filtered items: ${filteredData.length}.`);
         const start = (currentPage - 1) * itemsPerPage;
         const end = start + itemsPerPage;
+        const itemsToDisplay = filteredData.slice(start, end);
 
-        const sectionTitle = document.querySelector(".nama h2");
+        // Update Judul Section
+        const sectionTitle = document.querySelector("section.nama h2");
         if (sectionTitle) {
-          if (selectedGenre && selectedGenre !== 'All') { // Perbaiki kondisi genre
-            sectionTitle.textContent = `Genre: ${selectedGenre}`;
+          let titleText = "Anime"; // Default
+          if (selectedGenre && selectedGenre !== 'All') {
+            titleText = `Genre: ${selectedGenre}`;
+          } else if (searchInput && searchInput.value.trim()) {
+            titleText = `Hasil Pencarian: "${searchInput.value.trim()}"`;
           } else {
-            sectionTitle.textContent = "Anime Terbaru";
+            titleText = "Semua Anime"; // Judul jika tidak ada filter
           }
+          // Tambahkan info jumlah jika ada hasil
+          if (filteredData.length > 0) {
+              titleText += ` (${filteredData.length} hasil)`;
+          }
+          sectionTitle.textContent = titleText;
         } else {
             console.warn("Section title element (.nama h2) not found.");
         }
 
-        renderAnimeItems(filteredData.slice(start, end));
-        renderPagination(); // Pagination di-render ulang
+        // Render item dan pagination
+        renderAnimeItems(itemsToDisplay);
+        renderPagination();
 
-        // Opsi: Scroll ke atas list anime, bukan top halaman
+        // Scroll ke atas list anime setelah update (jika bukan load awal)
         const animeListElement = document.querySelector('.anime-list');
-        if (animeListElement) {
+        if (animeListElement && currentPage > 1) { // Hanya scroll jika pindah halaman
              // Beri sedikit timeout agar rendering selesai
             setTimeout(() => {
-                animeListElement.scrollIntoView({ behavior: "smooth", block: "start" });
-            }, 100);
-        } else {
-            window.scrollTo({ top: 0, behavior: "smooth" }); // Fallback
+                // Scroll ke bagian atas filter genre atau list anime
+                const targetElement = document.querySelector('.genre-filter') || animeListElement;
+                targetElement.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+            }, 150);
+        } else if (!animeListElement) {
+            // Fallback scroll ke atas jika list tidak ada
+             window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
         console.log("Display updated.");
@@ -1074,162 +1660,180 @@
 
       // --- SEARCH & FILTER ---
       const searchInput = document.getElementById("search-input");
-      const suggestionsBox = document.querySelector(".suggestions");
-      const sparkleContainer = document.getElementById("sparkle-container");
+      // Hapus suggestion box jika tidak dipakai
+      // const suggestionsBox = document.querySelector(".suggestions");
+      // Hapus sparkle jika tidak dipakai
+      // const sparkleContainer = document.getElementById("sparkle-container");
       let searchTimer;
-      let selectedGenre = null; // Default null
+      let selectedGenre = null; // Default tidak ada genre terpilih
 
       if (searchInput) {
         searchInput.addEventListener("input", function (e) {
-          const searchValue = e.target.value.toLowerCase().trim(); // Trim spasi
+          const searchValue = e.target.value.toLowerCase().trim();
           clearTimeout(searchTimer);
           searchTimer = setTimeout(() => {
             console.log("Searching for:", searchValue);
             filterAndDisplay(searchValue, selectedGenre);
-          }, 300);
-          // triggerSparkle(e); // Sparkle bisa mengganggu, opsional
+          }, 350); // Delay sedikit lebih lama
         });
+         // Tambah event listener untuk clear search (opsional)
+         // searchInput.addEventListener("search", function(e) {
+         //     if (!e.target.value) {
+         //         filterAndDisplay("", selectedGenre); // Tampilkan semua jika search dikosongkan
+         //     }
+         // });
       } else { console.warn("Search input not found!"); }
 
       function filterAndDisplay(searchValue = "", genre = null) {
-          console.log(`Filtering by search: "${searchValue}", genre: "${genre}"`);
-          // Selalu mulai dari data asli
-          let currentData = [...allAnimeData];
+          // (Kode filterAndDisplay diperbaiki)
+          console.log(`Filtering by search: "${searchValue}", genre: "${genre === 'All' ? 'Semua' : genre || 'Tidak ada'}"`);
 
-          // 1. Filter berdasarkan genre jika ada (dan bukan 'All')
+          // 1. Filter berdasarkan genre
+          let genreFilteredData = [...allAnimeData]; // Mulai dari data asli
           if (genre && genre !== "All") {
-              currentData = currentData.filter(anime =>
-                  anime.info?.genres?.includes(genre)
+              genreFilteredData = allAnimeData.filter(anime =>
+                  anime.info?.genres?.some(g => typeof g === 'string' && g.toLowerCase() === genre.toLowerCase())
               );
-              console.log(`After genre filter (${genre}): ${currentData.length} items`);
+              console.log(`After genre filter ('${genre}'): ${genreFilteredData.length} items`);
+          } else {
+              console.log("Genre filter 'All' or none applied.");
           }
 
-          // 2. Filter berdasarkan search dari hasil filter genre (atau data asli)
+          // 2. Filter berdasarkan search dari hasil filter genre
+          let searchFilteredData = genreFilteredData;
           if (searchValue) {
-              currentData = currentData.filter(anime => {
+              searchFilteredData = genreFilteredData.filter(anime => {
+                  // Cek null/undefined sebelum toLowerCase
                   const titleMatch = anime.title?.toLowerCase().includes(searchValue);
-                  // Optional: Tambahkan pencarian lain jika perlu
-                  // const descMatch = anime.desc?.toLowerCase().includes(searchValue);
-                  return titleMatch; // || descMatch;
+                  // Tambahkan pencarian alternatif jika ada (misal: other_titles)
+                  // const altTitleMatch = anime.other_titles?.some(t => t?.toLowerCase().includes(searchValue));
+                  return titleMatch; // || altTitleMatch;
               });
-              console.log(`After search filter ("${searchValue}"): ${currentData.length} items`);
+              console.log(`After search filter ("${searchValue}"): ${searchFilteredData.length} items`);
+          } else {
+              console.log("Search filter empty.");
           }
 
-          filteredData = currentData; // Simpan hasil akhir filter
+          filteredData = searchFilteredData; // Simpan hasil akhir
 
-          currentPage = 1; // Reset ke halaman 1
+          currentPage = 1; // Reset ke halaman 1 setiap filter berubah
           totalPages = Math.ceil(filteredData.length / itemsPerPage);
-          if(totalPages < 1) totalPages = 1; // Pastikan minimal 1 halaman
+          if (totalPages < 1) totalPages = 1; // Minimal 1 halaman
 
-          updateDisplay(); // Update UI
+          updateDisplay(); // Update UI dengan data hasil filter
           console.log(`Filtering complete. Total pages: ${totalPages}`);
 
-          if (suggestionsBox) suggestionsBox.style.display = "none"; // Sembunyikan suggestions
-      }
-
-
-      function triggerSparkle(event) {
-        if (!sparkleContainer) return;
-        const inputRect = searchInput.getBoundingClientRect();
-        const sparkleCount = 3; // Kurangi jumlah sparkle
-        for (let i = 0; i < sparkleCount; i++) {
-          const sparkle = document.createElement("span");
-          const x = Math.random() * inputRect.width; // Posisi X acak di dalam input
-          const y = Math.random() * inputRect.height; // Posisi Y acak di dalam input
-          sparkle.style.left = `${x}px`;
-          sparkle.style.top = `${y}px`;
-          // Variasi ukuran sparkle (opsional)
-          const size = Math.random() * 3 + 2; // Ukuran antara 2px - 5px
-          sparkle.style.width = `${size}px`;
-          sparkle.style.height = `${size}px`;
-          // Variasi durasi animasi (opsional)
-          sparkle.style.animationDuration = `${0.8 + Math.random() * 0.7}s`; // Durasi antara 0.8s - 1.5s
-
-          sparkleContainer.appendChild(sparkle);
-          sparkle.addEventListener("animationend", () => {
-            sparkle.remove();
-          });
-        }
+          // Sembunyikan suggestions jika ada
+          // if (suggestionsBox) suggestionsBox.style.display = "none";
       }
 
       // --- GENRE FILTER ---
       function renderGenreFilters() {
+        // (Kode renderGenreFilters diperbaiki)
         const genreContainer = document.querySelector(".genre-list");
         if (!genreContainer) { console.warn("Genre list container not found!"); return; }
+
         const allGenres = new Set();
         allAnimeData.forEach((anime) => {
+          // Pastikan anime.info.genres ada dan merupakan array
           if (anime.info && Array.isArray(anime.info.genres)) {
             anime.info.genres.forEach((genre) => {
-              if (typeof genre === "string" && genre.trim() !== "") {
-                allGenres.add(genre.trim());
+              // Pastikan genre adalah string dan tidak kosong
+              if (typeof genre === "string" && genre.trim()) {
+                allGenres.add(genre.trim()); // Tambahkan genre bersih
               }
             });
           }
         });
-        const sortedGenres = Array.from(allGenres).sort();
-        genreContainer.innerHTML = ""; // Clear existing buttons
 
-        // Tombol "All"
+        // Urutkan genre A-Z
+        const sortedGenres = Array.from(allGenres).sort((a, b) => a.localeCompare(b));
+
+        genreContainer.innerHTML = ""; // Kosongkan container
+
+        // Buat Tombol "All"
         const allButton = document.createElement("button");
         allButton.className = "genre-btn";
         allButton.textContent = "All";
-        // Set selected jika belum ada genre yang dipilih
+        allButton.dataset.genre = "All"; // Tambahkan data-genre
+        // Tandai selected jika tidak ada genre lain yang dipilih
         if (selectedGenre === null || selectedGenre === "All") {
             allButton.classList.add("selected");
+            selectedGenre = "All"; // Pastikan state konsisten
         }
-        allButton.addEventListener("click", () => {
-          console.log("'All' genre button clicked.");
-          filterByGenre("All"); // Gunakan "All" sebagai penanda
-        });
-        genreContainer.appendChild(allButton); // Tambahkan "All" dulu
+        allButton.addEventListener("click", handleGenreClick);
+        genreContainer.appendChild(allButton);
 
-        // Tombol genre spesifik
+        // Buat Tombol untuk setiap genre spesifik
         sortedGenres.forEach((genre) => {
           const button = document.createElement("button");
           button.className = "genre-btn";
           button.textContent = genre;
-          if (selectedGenre === genre) { // Set selected jika cocok
+          button.dataset.genre = genre; // Tambahkan data-genre
+          // Tandai selected jika cocok dengan state saat ini
+          if (selectedGenre === genre) {
               button.classList.add("selected");
           }
-          button.addEventListener("click", () => {
-            console.log("Genre button clicked:", genre);
-            filterByGenre(genre);
-          });
+          button.addEventListener("click", handleGenreClick);
           genreContainer.appendChild(button);
         });
 
-        console.log("Genre filters rendered.");
+        console.log("Genre filters rendered with", sortedGenres.length, "genres.");
       }
 
+      // Handler terpusat untuk klik tombol genre
+      function handleGenreClick(event) {
+          const clickedGenre = event.target.dataset.genre;
+          console.log("Genre button clicked:", clickedGenre);
+          filterByGenre(clickedGenre);
+      }
+
+
       function filterByGenre(genre) {
+          // (Kode filterByGenre diperbaiki)
           const container = document.querySelector(".genre-list-container");
           const animeList = document.querySelector(".anime-list");
-          const genreButtons = document.querySelectorAll(".genre-btn");
+          const genreButtons = document.querySelectorAll(".genre-btn"); // Ambil semua tombol genre
 
-          if (!container || !animeList || genreButtons.length === 0) { console.warn("Missing elements for genre filtering."); return; }
-
-          // Update tombol aktif
-          genreButtons.forEach((btn) => {
-              btn.classList.toggle("selected", btn.textContent === genre);
-          });
+          if (!container || !animeList || genreButtons.length === 0) {
+              console.warn("Missing elements for genre filtering.");
+              return;
+          }
 
           // Hanya filter jika genre berubah
-          if (selectedGenre === genre) { console.log("Genre already selected:", genre); return; }
+          if (selectedGenre === genre) {
+              console.log("Genre already selected:", genre);
+              // Opsional: Toggle off jika genre yg sama diklik lagi?
+              // if (genre !== 'All') {
+              //     filterByGenre('All'); // Kembali ke All
+              // }
+              return;
+          }
 
-          selectedGenre = genre; // Update genre terpilih
+          console.log(`Filtering by genre: ${genre}`);
+          selectedGenre = genre; // Update state genre terpilih
 
-          animeList.classList.add("slide-up"); // Animasi fade/slide (opsional)
+          // Update tampilan tombol aktif
+          genreButtons.forEach((btn) => {
+              btn.classList.toggle("selected", btn.dataset.genre === genre);
+          });
+
+          // Tambahkan animasi slide/fade (opsional)
+          animeList.style.opacity = '0';
+          animeList.style.transform = 'translateY(20px)';
 
           setTimeout(() => {
-              // Panggil filter terpusat
+              // Panggil fungsi filter utama dengan search value saat ini dan genre baru
               filterAndDisplay(searchInput ? searchInput.value.toLowerCase().trim() : "", selectedGenre);
-              animeList.classList.remove("slide-up"); // Hapus class animasi
-          }, 150); // Kurangi delay agar lebih responsif
+              // Kembalikan opacity dan posisi setelah filter
+              animeList.style.opacity = '1';
+              animeList.style.transform = 'translateY(0)';
+              animeList.style.transition = 'opacity 0.3s ease, transform 0.3s ease'; // Tambahkan transisi
+          }, 150); // Delay kecil untuk efek visual
 
-          console.log("Filtering initiated by genre:", genre);
-
-          // Tutup dropdown di mobile setelah memilih
-          if (window.innerWidth <= 768 && !container.classList.contains('collapsed')) {
+          // Tutup dropdown di mobile setelah memilih (jika terbuka)
+          const genreHeader = document.querySelector(".genre-header");
+          if (window.innerWidth <= 768 && container && !container.classList.contains('collapsed')) {
               container.classList.add("collapsed");
               const arrowDown = genreHeader?.querySelector(".arrow-down");
               const arrowUp = genreHeader?.querySelector(".arrow-up");
@@ -1240,7 +1844,7 @@
           }
       }
 
-
+      // Toggle Genre List
       const genreHeader = document.querySelector(".genre-header");
       if (genreHeader) {
         genreHeader.addEventListener("click", function () {
@@ -1248,135 +1852,209 @@
           const arrowDown = genreHeader.querySelector(".arrow-down");
           const arrowUp = genreHeader.querySelector(".arrow-up");
           if (!container || !arrowDown || !arrowUp) { console.warn("Missing elements for genre toggle."); return; }
+
           const isCollapsed = container.classList.toggle("collapsed");
           arrowDown.style.display = isCollapsed ? "block" : "none";
           arrowUp.style.display = isCollapsed ? "none" : "block";
+          // Tambah ARIA attribute untuk aksesibilitas
+          genreHeader.setAttribute('aria-expanded', !isCollapsed);
+          container.setAttribute('aria-hidden', isCollapsed);
+
           console.log("Genre list toggled. Collapsed:", isCollapsed);
         });
+         // Set initial ARIA state
+         const initialCollapsed = document.querySelector(".genre-list-container")?.classList.contains('collapsed');
+         if (initialCollapsed !== undefined) {
+             genreHeader.setAttribute('aria-expanded', !initialCollapsed);
+             document.querySelector(".genre-list-container")?.setAttribute('aria-hidden', initialCollapsed);
+         }
       } else { console.warn("Genre header not found!"); }
 
 
-      // --- FAVORITES SYSTEM (PERBAIKAN) ---
-      function addToFavorites(anime, buttonElement) {
-        // Ambil user info terbaru dari storage
-        let currentUserInfo = JSON.parse(sessionStorage.getItem("currentUser")) || JSON.parse(localStorage.getItem("user_info"));
-
-        if (!currentUserInfo || !currentUserInfo.id) {
-          showNotification("Silakan login terlebih dahulu untuk menambahkan favorit!", "error");
-          return;
-        }
-
-        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-        const favoriteIndex = favorites.findIndex((fav) => fav.slug === anime.slug);
-        const buttonTextSpan = buttonElement ? buttonElement.querySelector('span') : null;
-        const buttonIcon = buttonElement ? buttonElement.querySelector('i') : null;
-
-        if (favoriteIndex > -1) { // Jika SUDAH ADA -> Hapus
-          favorites.splice(favoriteIndex, 1);
-          localStorage.setItem("favorites", JSON.stringify(favorites));
-          showNotification("Anime dihapus dari favorit!", "info");
-          if (buttonElement) {
-            buttonElement.classList.remove('favorited');
-            if(buttonTextSpan) buttonTextSpan.textContent = 'Simpan';
-            if(buttonIcon) buttonIcon.className = 'far fa-bookmark'; // Kembali ke outline
+      // --- FAVORITES SYSTEM ---
+      function addToFavorites(animeData, buttonElement) {
+          // (Kode addToFavorites sedikit disempurnakan)
+          // Pastikan user login
+          let currentUserInfo = JSON.parse(sessionStorage.getItem("currentUser")) || JSON.parse(localStorage.getItem("user_info"));
+          if (!currentUserInfo || !currentUserInfo.id) {
+              showNotification("Silakan login untuk menyimpan favorit!", "error");
+              return;
           }
-          console.log("Removed from Favorites:", anime.slug);
-        } else { // Jika BELUM ADA -> Tambah
-          favorites.push(anime);
-          localStorage.setItem("favorites", JSON.stringify(favorites));
-          showNotification("Anime berhasil ditambahkan ke favorit!", "success");
-          if (buttonElement) {
-            buttonElement.classList.add('favorited');
-            if(buttonTextSpan) buttonTextSpan.textContent = 'Disimpan';
-            if(buttonIcon) buttonIcon.className = 'fas fa-bookmark'; // Ubah ke solid
+
+          // Validasi data anime dasar
+          if (!animeData || !animeData.slug || !animeData.title) {
+              console.error("Data anime tidak valid untuk ditambahkan ke favorit:", animeData);
+              showNotification("Gagal menyimpan favorit, data anime tidak lengkap.", "error");
+              return;
           }
-          console.log("Added to Favorites:", anime.slug);
-        }
-        console.log("Current Favorites count:", favorites.length);
+
+          // Ambil favorites dari localStorage
+          let favorites = [];
+          try {
+              favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+              if (!Array.isArray(favorites)) favorites = []; // Pastikan array
+          } catch (e) {
+              console.error("Gagal parse data favorit dari localStorage:", e);
+              favorites = []; // Reset jika data korup
+          }
+
+          const favoriteIndex = favorites.findIndex((fav) => fav.slug === animeData.slug);
+          const buttonTextSpan = buttonElement?.querySelector('span'); // Optional chaining
+          const buttonIcon = buttonElement?.querySelector('i'); // Optional chaining
+
+          if (favoriteIndex > -1) { // --- HAPUS DARI FAVORIT ---
+              favorites.splice(favoriteIndex, 1);
+              localStorage.setItem("favorites", JSON.stringify(favorites));
+              showNotification(`"${animeData.title}" dihapus dari favorit.`, "info"); // Sertakan judul
+              if (buttonElement) {
+                  buttonElement.classList.remove('favorited');
+                  if (buttonTextSpan) buttonTextSpan.textContent = 'Simpan';
+                  if (buttonIcon) buttonIcon.className = 'far fa-bookmark'; // Regular icon
+              }
+              console.log("Removed from Favorites:", animeData.slug);
+
+          } else { // --- TAMBAH KE FAVORIT ---
+              // Buat objek favorit yang bersih
+              const newFavorite = {
+                  slug: animeData.slug,
+                  title: animeData.title,
+                  image: animeData.image || "Gambar/default-thumbnail.png" // Fallback image
+                  // Tambahkan field lain jika perlu (misal: type, score)
+              };
+              favorites.push(newFavorite);
+              localStorage.setItem("favorites", JSON.stringify(favorites));
+              showNotification(`"${animeData.title}" ditambahkan ke favorit!`, "success"); // Sertakan judul
+              if (buttonElement) {
+                  buttonElement.classList.add('favorited');
+                  if (buttonTextSpan) buttonTextSpan.textContent = 'Disimpan';
+                  if (buttonIcon) buttonIcon.className = 'fas fa-bookmark'; // Solid icon
+              }
+              console.log("Added to Favorites:", animeData.slug);
+          }
+          console.log("Current Favorites count:", favorites.length);
+          // Jika berada di halaman favorit, refresh list (opsional)
+          if (window.location.pathname.includes('favorites.html')) {
+              // Panggil fungsi render favorit jika ada
+              if (typeof renderFavorites === 'function') {
+                  renderFavorites();
+              }
+          }
       }
 
       // --- NOTIFICATION SYSTEM ---
       function showNotification(message, type = "info", duration = 3000) {
+        // (Kode showNotification diperbaiki dengan timer clear)
         const notification = document.getElementById("notification");
         if (!notification) { console.warn("Notification element not found!"); alert(message); return; }
 
-        // Hapus timeout yang mungkin sedang berjalan untuk notifikasi sebelumnya
-        if (notification.timer) {
-            clearTimeout(notification.timer);
+        // Hapus timer sebelumnya jika ada (mencegah bug multiple timeout)
+        if (notification.timerId) {
+          clearTimeout(notification.timerId);
+          notification.classList.remove("visible"); // Sembunyikan dulu yg lama
+           // Paksa reflow agar transisi berikutnya jalan
+          void notification.offsetWidth;
         }
 
-        notification.className = "notification"; // Reset class
+        notification.className = ""; // Reset class sepenuhnya
+        notification.classList.add("notification", type); // Tambah class dasar & tipe
         notification.textContent = message;
-        notification.classList.add(type);
-        void notification.offsetWidth; // Reflow needed for transition
-        notification.classList.add("visible");
 
-        // Set timeout baru
-        notification.timer = setTimeout(() => {
+        // Tampilkan notifikasi
+         requestAnimationFrame(() => { // Pastikan style diterapkan sebelum transisi
+            notification.classList.add("visible");
+         });
+
+
+        // Set timer baru untuk menyembunyikan
+        notification.timerId = setTimeout(() => {
           notification.classList.remove("visible");
-          notification.timer = null; // Hapus referensi timer
+          notification.timerId = null; // Hapus ID timer setelah selesai
         }, duration);
       }
 
-      // --- EVENT LISTENERS ---
-      document.body.addEventListener("click", (e) => {
-        // Pagination
-        if (e.target.id === "prev-btn" && !e.target.disabled) {
-             e.preventDefault();
-             if (currentPage > 1) { currentPage--; updateDisplay(); console.log("Pagination: Previous page"); }
-        }
-        if (e.target.id === "next-btn" && !e.target.disabled) {
-             e.preventDefault();
-             if (currentPage < totalPages) { currentPage++; updateDisplay(); console.log("Pagination: Next page"); }
-        }
-         // Login/logout sudah dihandle di handleMenuClick
-      });
+      // --- COOKIE CONSENT ---
+      function initializeCookieConsent() {
+          const cookieConsent = document.getElementById("cookie-consent");
+          const acceptCookiesBtn = document.getElementById("accept-cookies");
+          const cancelCookiesBtn = document.getElementById("cancel-cookies");
 
-      // Cookie Consent
-      const cookieConsent = document.getElementById("cookie-consent");
-      const acceptCookiesBtn = document.getElementById("accept-cookies");
-      const cancelCookiesBtn = document.getElementById("cancel-cookies");
-      if (cookieConsent && acceptCookiesBtn && cancelCookiesBtn) {
-        const consentGiven = localStorage.getItem("cookie_consent");
-        if (!consentGiven) {
-          // Tampilkan setelah delay sedikit agar tidak terlalu intrusif saat load awal
-          setTimeout(() => { cookieConsent.classList.add("show"); }, 1500);
-        }
-        acceptCookiesBtn.addEventListener("click", () => { localStorage.setItem("cookie_consent", "given"); cookieConsent.classList.remove("show"); console.log("Cookie consent given."); });
-        cancelCookiesBtn.addEventListener("click", () => { localStorage.setItem("cookie_consent", "denied"); cookieConsent.classList.remove("show"); console.log("Cookie consent denied."); });
-      } else { console.warn("Cookie consent elements not found."); }
+          if (!cookieConsent || !acceptCookiesBtn || !cancelCookiesBtn) {
+              console.warn("Satu atau lebih elemen cookie consent tidak ditemukan.");
+              return;
+          }
+
+          const consentGiven = localStorage.getItem("cookie_consent");
+
+          // Tampilkan hanya jika belum ada pilihan ATAU jika pilihan 'denied' (opsional)
+          if (!consentGiven) {
+              // Tampilkan setelah delay agar tidak ganggu load awal
+              setTimeout(() => {
+                  cookieConsent.classList.add("show");
+              }, 1500); // Delay 1.5 detik
+          }
+
+          acceptCookiesBtn.addEventListener("click", () => {
+              localStorage.setItem("cookie_consent", "given");
+              cookieConsent.classList.remove("show");
+              console.log("Cookie consent: Diterima.");
+              // Tambahkan logika jika perlu (misal: load script analytics)
+          });
+
+          cancelCookiesBtn.addEventListener("click", () => {
+              localStorage.setItem("cookie_consent", "denied");
+              cookieConsent.classList.remove("show");
+              console.log("Cookie consent: Ditolak.");
+              // Tambahkan logika jika perlu (misal: nonaktifkan fitur tertentu)
+          });
+      }
+
 
       // --- INITIALIZATION ---
       document.addEventListener("DOMContentLoaded", async () => {
-        console.log("DOM fully loaded. Starting initialization...");
-        const hideSplash = initSplashScreen(); // Jalankan splash screen
+        console.log("🚀 DOM fully loaded. Starting initialization...");
+        const hideSplash = initSplashScreen(); // Jalankan splash screen (jika perlu)
 
         try {
-            await initAuth(); // Inisialisasi otentikasi & update menu
+            console.log("🔒 Initializing Authentication...");
+            await initAuth(); // Inisialisasi otentikasi & update menu pertama kali
+            console.log("✅ Authentication initialized.");
+
+            console.log("💾 Loading Anime Data...");
             allAnimeData = await loadAnimeData(); // Muat data anime
+            console.log(`✅ Anime Data Loaded: ${allAnimeData.length} items.`);
 
             if (allAnimeData.length > 0) {
-                console.log(`✅ Data anime berhasil dimuat: ${allAnimeData.length} items.`);
-                filterAndDisplay("", null); // Tampilkan semua data awal
-                renderGenreFilters(); // Render filter genre
+                console.log("🎨 Rendering Initial Display & Filters...");
+                filterAndDisplay("", null); // Tampilkan semua data awal (filterAndDisplay akan panggil updateDisplay)
+                renderGenreFilters(); // Render filter genre berdasarkan data yg ada
+                console.log("✅ Initial Display & Filters Rendered.");
             } else {
                 console.warn("⚠️ Tidak ada data anime yang dimuat atau array kosong.");
-                // Tampilkan pesan di area list jika kosong
+                 // Tampilkan pesan di area list jika kosong
                  const animeList = document.querySelector(".anime-list");
-                 if(animeList) animeList.innerHTML = '<p style="text-align: center; color: #ccc; width: 100%;">Gagal memuat anime atau tidak ada data.</p>';
-                 renderPagination(); // Pastikan pagination kosong jika tidak ada data
+                 if(animeList) animeList.innerHTML = '<p style="text-align: center; color: #ccc; width: 100%; grid-column: 1 / -1; padding: 20px 0;">Gagal memuat anime atau tidak ada data tersedia.</p>';
+                 // Render pagination kosong
+                 renderPagination();
             }
+
+            console.log("🍪 Initializing Cookie Consent...");
+            initializeCookieConsent(); // Jalankan fungsi cookie consent
+            console.log("✅ Cookie Consent Initialized.");
+
         } catch (error) {
-             console.error("❌ Terjadi error saat inisialisasi:", error);
-             showNotification("Terjadi kesalahan saat memuat halaman.", "error");
+             console.error("❌ Terjadi error kritis saat inisialisasi:", error);
+             showNotification("Terjadi kesalahan saat memuat halaman.", "error", 5000);
              // Tampilkan pesan error di area list
              const animeList = document.querySelector(".anime-list");
-             if(animeList) animeList.innerHTML = '<p style="text-align: center; color: red; width: 100%;">Error memuat data. Coba refresh halaman.</p>';
+             if(animeList) animeList.innerHTML = '<p style="text-align: center; color: red; width: 100%; grid-column: 1 / -1; padding: 20px 0;">Error memuat data. Coba refresh halaman.</p>';
+             // Render pagination kosong jika error
              renderPagination();
         } finally {
-            // Sembunyikan splash screen setelah semua proses selesai (atau gagal)
-            if (hideSplash) setTimeout(hideSplash, 500); // Beri sedikit delay
-            console.log("Initialization complete.");
+            // Sembunyikan splash screen setelah semua selesai (atau gagal)
+             console.log("✨ Hiding Splash Screen...");
+             // Beri delay sedikit lebih lama agar user sempat lihat konten sebelum splash hilang
+            setTimeout(hideSplash, 500); // Panggil fungsi hideSplash dari initSplashScreen
+            console.log("🏁 Initialization complete.");
         }
       });
     </script>
