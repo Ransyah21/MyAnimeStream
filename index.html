@@ -397,13 +397,14 @@
         display: grid;
         /* Kolom responsif: auto-fit, min ukuran item 110px, maks 1fr (bagi rata sisa space) */
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 20px; /* Jarak antar item */
+        gap: 15px; /* Jarak antar item */
         margin-top: 20px;
         padding: 0 5px; /* Padding kecil di sisi list */
       }
 
       /* Anime Item Card */
       .anime-item {
+        max-width: 150px;
         background-color: #282828;
         border-radius: 10px; /* Radius lebih kecil */
         /* Hapus padding bawaan, atur di dalam */
@@ -1045,13 +1046,12 @@
         <div class="footer-item">
           <h3>Hak Cipta</h3>
           <p>&copy; 2024 MyAnime.</p> <!-- Gunakan simbol &copy; -->
-          <p>Dibuat dengan <i class="fas fa-heart" style="color: red;"></i> oleh Ransyah.</p>
+          <p>Dikelola dan dikembangkan oleh Ransyah<p>
         </div>
         <div class="footer-item">
           <h3>Ikuti & Support Kami</h3>
           <div class="social-links-container">
              <p><a href="https://www.instagram.com/ransyah_32/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram social-icon"></i> Instagram</a></p>
-             <p><a href="https://trakteer.id/ransyah4" target="_blank" rel="noopener noreferrer"><img src="Gambar/trakteer_logo.png" alt="Trakteer" class="trakteer-icon social-icon" style="filter: brightness(1.5);"/> Trakteer</a></p> <!-- Tweak style ikon trakteer jika perlu -->
              <p><a href="mailto:rizky1234kb@gmail.com"><i class="fas fa-envelope social-icon"></i> Email</a></p>
           </div>
         </div>
