@@ -437,7 +437,7 @@
             "genres": ["Comedy", "Fantasy", "Ecchi"],
             "themes": ["Adult Cast", "Fan Service"],
             "demographic": "Seinen",
-            "duration": "23 min. per ep.",
+            "duration": "4 min. per ep.",
             "rating": "R+ - Mild Nudity"
         },
         "desc": "Kautz sedang mencari pekerjaan dan tiba-tiba dia diterima di sebuah toko baju besi. Namun, itu bukan toko baju besi biasa, melainkan toko baju besi dewasa. Sebuah komedi ecchi yang menunjukkan sisi penjual baju besi perang yang seksi.",
@@ -1665,7 +1665,7 @@
           "rating": "R - 17+ (Kekerasan & Bahasa Kasar)"
         },
         "desc": "Momo Ayase dan Okarun terlibat dalam petualangan gila untuk merebut kembali 'harta karun tubuh' mereka dari makhluk supernatural, menghadapi alien seksual, hantu penasaran, dan yokai mengerikan - semua dengan komedi absurd khas Dandadan!",
-            "download": "https://drive.google.com/uc?id=1-3TFW85MkFCi7Ro_0trDITQjY_-KCMcb&export=download",
+            "download": "https://drive.usercontent.google.com/download?id=1-3TFW85MkFCi7Ro_0trDITQjY_-KCMcb&export=download&authuser=0",
             "streaming": [
               "https://drive.google.com/file/d/17WNzR1_SPI_GCgRqDs2Dgvqmp6R9rlC_/preview",
               "https://drive.google.com/file/d/16zU4KI8EBEHMrSk2Fp6pmU-aoAK19Q2W/preview",
@@ -2033,6 +2033,42 @@
       "https://drive.google.com/file/d/1F9LsIIab0fZ8bs7JbIXqjylWoTjHeisn/preview",
       "https://drive.google.com/file/d/12nML8YRJ7Ed33CaFkeC_d8QBxYDbfAgf/preview"
     ]
+},
+{
+  "title": "Mecha-ude",
+  "slug": "mecha-ude",
+  "image": "https://cdn.myanimelist.net/images/anime/1625/92925.jpg",
+  "info": {
+      "type": "TV",
+      "episodes": null,
+      "status": "Currently Airing",
+      "aired": "Oct 4, 2024 to ?",
+      "premiered": "Fall 2024",
+      "broadcast": "Fridays at 22:30 (JST)",
+      "producers": ["Pony Canyon", "CyberAgent", "TriF Studio", "Bandai Namco Music Live", "BS NTV", "BookLive"],
+      "studios": ["TriF Studio"],
+      "source": "Original",
+      "genres": ["Action", "Sci-Fi"],
+      "themes": ["Mecha"],
+      "duration": "23 min. per ep.",
+      "rating": "PG-13 - Teens 13 or older"
+  },
+  "desc": "Hikaru Amatsuga, seorang siswa SMP biasa, menemukan Mecha-ude bernama Alma, sebuah lengan mekanis cerdas dan kuat. Keduanya secara tidak sengaja terikat, memaksa Hikaru untuk bertarung melawan pengguna Mecha-ude lain dan organisasi yang memburu mereka.",
+  "download": "https://drive.usercontent.google.com/download?id=1ls2FUv0PC-7L2fYOU4w4wMJ92WcPoPAs&export=download&authuser=0",
+  "streaming": [
+      "https://drive.google.com/file/d/1ReFPlbSKLJaX61HpqPEDv8WfAK4FAnO9/preview",
+      "https://drive.google.com/file/d/1tUHAIq2yOVNxO5RhOklNvqRW5tMNlZbW/preview",
+      "https://drive.google.com/file/d/1jNs35kDaFJEezNsgKjTHTzDpqEiRL7_U/preview",
+      "https://drive.google.com/file/d/1Qq_194bb3ysxBdC-0B8wM70WVV0iOEAC/preview",
+      "https://drive.google.com/file/d/1KuIayex4dQV5JykYpq0nFAfttVIyImjA/preview",
+      "https://drive.google.com/file/d/1YcUYu7dcDqNsQ-LpStZXn92ajI3w_Jj_/preview",
+      "https://drive.google.com/file/d/1FRhA2W_RqEV14VYRwEty1Q9ZHg-4J7g5/preview",
+      "https://drive.google.com/file/d/1mhvIqVaTYEFBS-rI2sp3UG6eiPsabFtI/preview",
+      "https://drive.google.com/file/d/1iYsBbbYWYqL_lBGjPGP3KH7X2yUYnjIi/preview",
+      "https://drive.google.com/file/d/17wYQhJv1343CpC_P_oReK9fjpQ5DzC2O/preview",
+      "https://drive.google.com/file/d/1tSunHpKpsaaeHHd08bOQ5Q0A2QPBwBUU/preview",
+      "https://drive.google.com/file/d/1gLpzg1_e4UWYeZnC_dlSnOW4cECZId5H/preview"
+  ]
 }
 
       
