@@ -91,47 +91,109 @@
           hsl(180, 100%, 80%) 10%,
           hsla(180, 100%, 80%, 0) 56%
         );
-        animation: fade-frames 2.5s infinite ease-in-out alternate, /* Sedikit lebih lambat */
-                   scale-frames 3.5s infinite ease-in-out alternate; /* Sedikit lebih lambat */
+        animation: fade-frames 2.5s infinite ease-in-out alternate,
+          /* Sedikit lebih lambat */ scale-frames 3.5s infinite ease-in-out
+            alternate; /* Sedikit lebih lambat */
       }
 
       @keyframes fade-frames {
-        0%, 100% { opacity: 0.5; } /* Mulai dari lebih redup */
-        50% { opacity: 1; }
+        0%,
+        100% {
+          opacity: 0.5;
+        } /* Mulai dari lebih redup */
+        50% {
+          opacity: 1;
+        }
       }
 
       @keyframes scale-frames {
-        0%, 100% { transform: scale(0.6); } /* Skala awal lebih kecil */
-        50% { transform: scale(1.4); } /* Skala maks sedikit lebih kecil */
+        0%,
+        100% {
+          transform: scale(0.6);
+        } /* Skala awal lebih kecil */
+        50% {
+          transform: scale(1.4);
+        } /* Skala maks sedikit lebih kecil */
       }
 
       /* Animasi gerak lebih variatif */
       /* == KEMBALIKAN KE VERSI INI == */
-@keyframes move-frames {
-  from {
-    transform: translate3d(-10vw, 110vh, 0); /* Mulai dari bawah kiri luar layar */
-    opacity: 0; /* Mulai transparan */
-  }
-  20%, 80% { /* Muncul dan terlihat selama sebagian besar durasi */
-    opacity: 1;
-  }
-  to {
-    transform: translate3d(110vw, -10vh, 0); /* Bergerak ke atas kanan luar layar */
-    opacity: 0; /* Menghilang di akhir */
-  }
-}
-/* ================================ */
+      @keyframes move-frames {
+        from {
+          transform: translate3d(
+            -10vw,
+            110vh,
+            0
+          ); /* Mulai dari bawah kiri luar layar */
+          opacity: 0; /* Mulai transparan */
+        }
+        20%,
+        80% {
+          /* Muncul dan terlihat selama sebagian besar durasi */
+          opacity: 1;
+        }
+        to {
+          transform: translate3d(
+            110vw,
+            -10vh,
+            0
+          ); /* Bergerak ke atas kanan luar layar */
+          opacity: 0; /* Menghilang di akhir */
+        }
+      }
+      /* ================================ */
 
       /* Variasi Partikel: Atur via JS untuk performa lebih baik, tapi ini contoh CSS */
-      .circle-container:nth-child(1) { width: 8px; height: 8px; animation-duration: 12s; animation-delay: 1s; left: 10%; }
-      .circle-container:nth-child(2) { width: 5px; height: 5px; animation-duration: 19s; animation-delay: 4s; left: 50%; }
-      .circle-container:nth-child(3) { width: 10px; height: 10px; animation-duration: 15s; animation-delay: 7s; left: 90%; }
-      .circle-container:nth-child(4) { width: 6px; height: 6px; animation-duration: 10s; animation-delay: 2s; left: 30%; }
-      .circle-container:nth-child(5) { width: 7px; height: 7px; animation-duration: 11s; animation-delay: 5s; left: 70%; }
+      .circle-container:nth-child(1) {
+        width: 8px;
+        height: 8px;
+        animation-duration: 12s;
+        animation-delay: 1s;
+        left: 10%;
+      }
+      .circle-container:nth-child(2) {
+        width: 5px;
+        height: 5px;
+        animation-duration: 19s;
+        animation-delay: 4s;
+        left: 50%;
+      }
+      .circle-container:nth-child(3) {
+        width: 10px;
+        height: 10px;
+        animation-duration: 15s;
+        animation-delay: 7s;
+        left: 90%;
+      }
+      .circle-container:nth-child(4) {
+        width: 6px;
+        height: 6px;
+        animation-duration: 10s;
+        animation-delay: 2s;
+        left: 30%;
+      }
+      .circle-container:nth-child(5) {
+        width: 7px;
+        height: 7px;
+        animation-duration: 11s;
+        animation-delay: 5s;
+        left: 70%;
+      }
       /* ... (sebagian besar dihapus untuk ringkas, idealnya dibuat dengan JS) ... */
-      .circle-container:nth-last-child(1) { width: 4px; height: 4px; animation-duration: 22s; animation-delay: 8s; left: 20%; }
-      .circle-container:nth-last-child(2) { width: 9px; height: 9px; animation-duration: 13s; animation-delay: 3s; left: 80%; }
-
+      .circle-container:nth-last-child(1) {
+        width: 4px;
+        height: 4px;
+        animation-duration: 22s;
+        animation-delay: 8s;
+        left: 20%;
+      }
+      .circle-container:nth-last-child(2) {
+        width: 9px;
+        height: 9px;
+        animation-duration: 13s;
+        animation-delay: 3s;
+        left: 80%;
+      }
 
       /* ================================================== */
       /* --- STYLE DARI index.css KAMU (DENGAN PENYESUAIAN RESPONSIVE) --- */
@@ -145,8 +207,14 @@
         position: relative;
         z-index: 2;
       }
-      .container a { text-decoration: none; color: #ccc; }
-      .container a:hover { text-decoration: underline; color: #ffa200; }
+      .container a {
+        text-decoration: none;
+        color: #ccc;
+      }
+      .container a:hover {
+        text-decoration: underline;
+        color: #ffa200;
+      }
 
       header {
         text-align: center;
@@ -173,7 +241,8 @@
       .title span {
         display: inline-block; /* Ganti inline-flex ke inline-block */
         font-family: "Play", sans-serif;
-        animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate;
+        animation: title-bounce 2.5s infinite,
+          fire 2s ease-in-out infinite alternate;
         margin: 0 clamp(1px, 0.5vw, 3px); /* Margin antar huruf responsif */
         color: #ffa200;
         text-shadow: 0 0 10px #ff6b00;
@@ -181,22 +250,45 @@
       }
       /* Penyesuaian animasi bounce */
       @keyframes title-bounce {
-        0%, 60%, 100% { transform: translateY(0) scale(1); }
-        30% { transform: translateY(clamp(-25px, -5vw, -15px)) scale(1.1); } /* Bounce responsif */
+        0%,
+        60%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+        30% {
+          transform: translateY(clamp(-25px, -5vw, -15px)) scale(1.1);
+        } /* Bounce responsif */
       }
       @keyframes fire {
-        0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00; }
-        100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; }
+        0% {
+          text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00;
+        }
+        100% {
+          text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00;
+        }
       }
       /* Delay animasi title (sudah ok) */
-      .title span:nth-child(1) { animation-delay: 0.3s; }
-      .title span:nth-child(2) { animation-delay: 0.4s; }
-      .title span:nth-child(3) { animation-delay: 0.5s; }
-      .title span:nth-child(4) { animation-delay: 0.6s; }
-      .title span:nth-child(5) { animation-delay: 0.7s; }
-      .title span:nth-child(6) { animation-delay: 0.8s; }
-      .title span:nth-child(7) { animation-delay: 0.9s; }
-
+      .title span:nth-child(1) {
+        animation-delay: 0.3s;
+      }
+      .title span:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      .title span:nth-child(3) {
+        animation-delay: 0.5s;
+      }
+      .title span:nth-child(4) {
+        animation-delay: 0.6s;
+      }
+      .title span:nth-child(5) {
+        animation-delay: 0.7s;
+      }
+      .title span:nth-child(6) {
+        animation-delay: 0.8s;
+      }
+      .title span:nth-child(7) {
+        animation-delay: 0.9s;
+      }
 
       /* About Link (Fixed Top) */
       .abt {
@@ -231,7 +323,12 @@
 
       /* Navigation */
       nav {
-        background-color: rgba(24, 24, 24, 0.5); /* Background lebih transparan */
+        background-color: rgba(
+          24,
+          24,
+          24,
+          0.5
+        ); /* Background lebih transparan */
         padding: 10px;
         border-radius: 15px;
         opacity: 0.9; /* Sedikit transparan */
@@ -266,15 +363,16 @@
       }
 
       /* Profile Button Style */
-      .profile-btn { /* Style untuk link container profile */
-          display: flex;
-          align-items: center;
-          gap: 8px; /* Jarak antara gambar dan nama */
-          text-decoration: none;
-          color: white !important; /* Pastikan warna teks putih */
-          padding: 5px 10px; /* Padding lebih kecil agar pas di nav */
-          border-radius: 20px; /* Bulat */
-          transition: background-color 0.3s ease;
+      .profile-btn {
+        /* Style untuk link container profile */
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Jarak antara gambar dan nama */
+        text-decoration: none;
+        color: white !important; /* Pastikan warna teks putih */
+        padding: 5px 10px; /* Padding lebih kecil agar pas di nav */
+        border-radius: 20px; /* Bulat */
+        transition: background-color 0.3s ease;
       }
       .profile-img {
         width: 30px; /* Ukuran gambar profil sedikit lebih kecil */
@@ -287,7 +385,7 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
       .profile-btn:hover {
-          background-color: rgba(255, 162, 0, 0.2); /* Highlight saat hover */
+        background-color: rgba(255, 162, 0, 0.2); /* Highlight saat hover */
       }
       .profile-btn:hover .profile-img {
         transform: scale(1.1);
@@ -295,8 +393,8 @@
       }
       /* Nama pengguna di profile button */
       .profile-btn span {
-          font-weight: bold;
-          font-size: 0.9em;
+        font-weight: bold;
+        font-size: 0.9em;
       }
 
       /* Search Container & Input */
@@ -307,7 +405,6 @@
         padding: 15px 0;
         transition: all 0.3s ease;
         text-align: center;
-        background-color: rgba(24, 24, 24, 0.8); /* Background saat sticky */
         backdrop-filter: blur(5px);
         margin-left: -15px; /* Offset padding container */
         margin-right: -15px; /* Offset padding container */
@@ -327,9 +424,10 @@
         transition: all 0.3s ease;
         font-weight: bold; /* Tambahkan bold */
       }
-      #search-input::placeholder { /* Style placeholder */
-          color: #888;
-          font-weight: normal;
+      #search-input::placeholder {
+        /* Style placeholder */
+        color: #888;
+        font-weight: normal;
       }
       #search-input:focus {
         outline: none;
@@ -358,7 +456,7 @@
         z-index: 1001; /* Di atas search container */
         display: none; /* Default tersembunyi */
         box-sizing: border-box;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       }
       .suggestion-item {
         color: white;
@@ -369,7 +467,7 @@
         transition: background-color 0.2s ease;
       }
       .suggestion-item:last-child {
-          border-bottom: none; /* Hapus border bawah item terakhir */
+        border-bottom: none; /* Hapus border bawah item terakhir */
       }
       .suggestion-item:hover {
         background-color: #3a3a3a; /* Warna hover */
@@ -393,101 +491,180 @@
       }
 
       /* Anime List Grid */
+      /* --- CSS ANIME LIST & ITEM (DENGAN KONDISI LAYOUT) --- */
+
+      /* Anime List - DEFAULT (Grid Layout) */
       .anime-list {
         display: grid;
-        /* Kolom responsif: auto-fit, min ukuran item 110px, maks 1fr (bagi rata sisa space) */
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 15px; /* Jarak antar item */
+        /* Kolom responsif: auto-fit, min ukuran item 110px, maks 1fr */
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(130px, 1fr)
+        ); /* Sedikit lebih lebar untuk kartu */
+        gap: 20px; /* Jarak antar item */
         margin-top: 20px;
         padding: 0 5px; /* Padding kecil di sisi list */
+        /* Hapus align-items center dari sini */
       }
 
-      /* Anime Item Card */
+      /* Anime List - KETIKA ADA CLASS .list-layout (List Layout) */
+      .anime-list.list-layout {
+        display: flex; /* Override grid menjadi flex */
+        flex-direction: column; /* Susun item secara vertikal */
+        align-items: center; /* Pusatkan item list */
+        gap: 25px; /* Jarak antar item list */
+        grid-template-columns: none; /* Hapus template grid */
+      }
+
+      /* Anime Item - DEFAULT (Card Layout Vertikal) */
       .anime-item {
-        max-width: 150px;
         background-color: #282828;
-        border-radius: 10px; /* Radius lebih kecil */
-        /* Hapus padding bawaan, atur di dalam */
-        /* padding: 15px; */
-        /* Hapus width & height tetap, biarkan grid yang atur */
-        /* width: 130px; */
-        /* height: auto; */
+        border-radius: 10px;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
         text-align: center;
         display: flex;
-        flex-direction: column;
+        flex-direction: column; /* Kartu vertikal */
         position: relative;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
-        overflow: hidden; /* Agar border-radius berlaku ke gambar */
+        overflow: hidden;
+        width: 100%; /* Coba isi kolom grid */
+        max-width: 180px; /* Batasi lebar kartu */
+        justify-self: center; /* Tengahkan kartu di kolom grid */
+        padding: 0; /* Hapus padding default item, atur per bagian */
       }
+
+      /* Anime Item - KETIKA PARENT PUNYA .list-layout (List Layout Horizontal) */
+      .anime-list.list-layout .anime-item {
+        flex-direction: row; /* Override menjadi horizontal */
+        max-width: 800px; /* Lebar maks item list */
+        text-align: left; /* Teks rata kiri di mode list */
+        padding: 15px; /* Padding untuk mode list */
+        gap: 15px; /* Jarak gambar & detail di mode list */
+        justify-self: initial; /* Hapus penengah grid */
+      }
+
       .anime-item:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
       }
 
-      /* Link Gambar Anime */
-      .anime-item > a:first-of-type { /* Target link gambar */
-          display: block; /* Pastikan block */
-          aspect-ratio: 2 / 3; /* Rasio aspek gambar (sesuaikan jika perlu) */
-          overflow: hidden; /* Sembunyikan bagian gambar yg keluar */
+      /* --- Bagian Dalam Item --- */
+
+      /* Wadah Link Gambar */
+      .anime-item .anime-image-link {
+        display: block;
+        overflow: hidden;
+        /* Default (Card): Gambar di atas */
+        width: 100%;
+        aspect-ratio: 2 / 3;
+        border-radius: 0; /* Hilangkan radius khusus di sini jika item sudah punya */
+      }
+      /* Mode List: Gambar di kiri */
+      .anime-list.list-layout .anime-item .anime-image-link {
+        width: 150px; /* Lebar tetap di mode list */
+        height: auto; /* Tinggi otomatis */
+        aspect-ratio: 2 / 3; /* Tetapkan rasio */
+        flex-shrink: 0; /* Jangan menyusut */
+        border-radius: 6px; /* Radius di mode list */
       }
 
       /* Gambar Anime */
       .anime-item img {
+        display: block;
         width: 100%;
-        height: 100%; /* Isi tinggi container link */
-        object-fit: cover; /* Cover area tanpa distorsi */
-        /* Hapus border-radius di sini, gunakan overflow hidden di parent */
-        /* border-radius: 8px; */
+        height: 100%; /* Mengisi wadah link */
+        object-fit: cover;
         transition: transform 0.3s ease-in-out;
-        display: block; /* Hapus whitespace bawah */
       }
-      .anime-item a:hover img { /* Efek zoom saat link gambar dihover */
+      .anime-item .anime-image-link:hover img {
         transform: scale(1.07);
       }
 
-      /* Konten Teks (Judul & Tombol) */
-      .anime-item .anime-title-link,
-      .anime-item .add-favorite-button {
-          padding: 0 10px; /* Padding kiri kanan untuk konten teks */
+      /* Wadah Konten Teks (Judul, Desc, Tombol) */
+      .anime-item .anime-details {
+        display: flex;
+        flex-direction: column;
+        /* Default (Card): Padding & gap untuk bawah kartu */
+        padding: 10px;
+        gap: 8px;
+        flex-grow: 1; /* Ambil sisa ruang (penting untuk card) */
+      }
+      /* Mode List: Layout detail di kanan */
+      .anime-list.list-layout .anime-item .anime-details {
+        padding: 0; /* Hapus padding khusus card */
+        gap: 10px; /* Sesuaikan gap mode list */
+        flex-grow: 1; /* Ambil sisa ruang horizontal */
+        justify-content: flex-start;
+        min-width: 0;
       }
 
-      /* Link Judul Anime */
-      .anime-item .anime-title-link {
-          width: 100%;
-          margin-top: 10px; /* Jarak dari gambar */
-          margin-bottom: 8px;
-      }
-      .anime-item .anime-title-link a {
-          text-decoration: none;
-      }
-      .anime-item .anime-title-link span {
-        display: -webkit-box; /* Untuk text ellipsis multi-baris */
-        -webkit-line-clamp: 2; /* Batasi 2 baris */
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      /* Judul Anime */
+      .anime-item .anime-title {
+        /* Default (Card): Ukuran & style judul kartu */
         font-size: 0.9em;
         font-weight: 600;
         color: #eee;
         line-height: 1.3;
-        min-height: 2.6em; /* Tinggi minimum = 2 baris */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-height: 2.6em; /* 2 baris */
+        margin: 0; /* Hapus margin bawah default h3 */
+      }
+      .anime-item .anime-title a {
+        color: inherit;
+        text-decoration: none;
         transition: color 0.2s ease;
       }
-      .anime-item .anime-title-link a:hover span {
+      .anime-item .anime-title a:hover {
         color: #ffa200;
-        text-decoration: none; /* Hapus underline */
+      }
+      /* Mode List: Style judul lebih besar */
+      .anime-list.list-layout .anime-item .anime-title {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #ffa200;
+        margin-bottom: 5px;
+        display: block; /* Hapus ellipsis */
+        -webkit-line-clamp: initial;
+        min-height: auto;
+      }
+      .anime-list.list-layout .anime-item .anime-title a:hover {
+        text-decoration: underline;
+      }
+
+      /* Deskripsi Anime */
+      .anime-item .anime-description {
+        /* Default (Card): SEMBUNYIKAN */
+        display: none;
+      }
+      /* Mode List: TAMPILKAN */
+      .anime-list.list-layout .anime-item .anime-description {
+        display: -webkit-box; /* Tampilkan lagi */
+        font-size: 0.9em;
+        color: #ccc;
+        line-height: 1.5;
+        -webkit-line-clamp: 4; /* Batasi 4 baris */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: auto; /* Dorong tombol ke bawah */
       }
 
       /* Tombol Favorit */
       .anime-item .add-favorite-button {
+        /* Default (Card): Tengahkan & margin bawah */
+        margin: 0 auto 5px auto;
+        align-self: center;
+        /* Style dasar tombol */
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 6px;
         width: auto;
         min-width: 95px;
-        margin: 0 auto 10px auto; /* Tengah horizontal, jarak bawah 10px */
         padding: 6px 12px;
         font-size: 12px;
         font-weight: 600;
@@ -499,21 +676,23 @@
         transition: all 0.3s ease;
         box-shadow: none;
       }
+      /* Mode List: Rata kiri & margin atas */
+      .anime-list.list-layout .anime-item .add-favorite-button {
+        margin: 10px 0 0 0; /* Margin atas, hapus auto */
+        align-self: flex-start; /* Rata kiri */
+      }
+      /* Hover & Favorited styles (tetap sama) */
       .anime-item .add-favorite-button:hover {
-        background-color: #ffa200;
-        color: #181818;
-        border-color: #ffa200;
-        transform: translateY(-2px);
+        /* ... */
       }
       .anime-item .add-favorite-button.favorited {
-        background-color: #ffa200;
-        color: #181818;
-        border-color: #ff8c00;
+        /* ... */
       }
       .anime-item .add-favorite-button.favorited i {
-         font-weight: 900; /* Solid icon */
+        /* ... */
       }
 
+      /* --- AKHIR CSS ANIME LIST & ITEM --- */
       /* Notice Box */
       .notice {
         margin: 30px auto; /* Jarak atas-bawah ditambah */
@@ -527,8 +706,14 @@
         z-index: 2;
         border-left: 4px solid #ffa200; /* Aksen kiri */
       }
-      .notice p { margin-bottom: 10px; line-height: 1.5; font-size: 0.95em;}
-      .notice p:last-child { margin-bottom: 0; }
+      .notice p {
+        margin-bottom: 10px;
+        line-height: 1.5;
+        font-size: 0.95em;
+      }
+      .notice p:last-child {
+        margin-bottom: 0;
+      }
 
       /* --- Genre Filter --- */
       .genre-filter {
@@ -549,11 +734,12 @@
         cursor: pointer;
         padding: 5px 10px;
       }
-      .genre-header h2 { /* Style judul genre */
-         color: #ffa200;
-         font-size: 1.2em;
-         margin: 0; /* Hapus margin bawaan */
-         font-weight: bold;
+      .genre-header h2 {
+        /* Style judul genre */
+        color: #ffa200;
+        font-size: 1.2em;
+        margin: 0; /* Hapus margin bawaan */
+        font-weight: bold;
       }
       .genre-toggle {
         background: none;
@@ -562,13 +748,17 @@
         cursor: pointer;
         transition: transform 0.3s ease;
       }
-      .genre-toggle:hover { transform: scale(1.2); }
-      .genre-toggle:hover path { fill: #ffd700; } /* Warna hover ikon */
+      .genre-toggle:hover {
+        transform: scale(1.2);
+      }
+      .genre-toggle:hover path {
+        fill: #ffd700;
+      } /* Warna hover ikon */
       .genre-list-container {
         max-height: 500px;
         overflow: hidden;
-        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), /* Transisi tinggi */
-                    opacity 0.4s ease; /* Transisi opacity */
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+          /* Transisi tinggi */ opacity 0.4s ease; /* Transisi opacity */
       }
       .genre-list-container.collapsed {
         max-height: 0;
@@ -580,9 +770,9 @@
       }
       /* Style tambahan saat tidak collapsed */
       .genre-list-container:not(.collapsed) {
-          margin-top: 15px; /* Jarak dari header */
-          padding-top: 15px; /* Padding atas */
-          border-top: 1px solid rgba(255, 162, 0, 0.1); /* Garis pemisah */
+        margin-top: 15px; /* Jarak dari header */
+        padding-top: 15px; /* Padding atas */
+        border-top: 1px solid rgba(255, 162, 0, 0.1); /* Garis pemisah */
       }
       .genre-list {
         display: flex;
@@ -676,7 +866,7 @@
         opacity: 0;
         transition: opacity 0.3s ease, bottom 0.3s ease; /* Transisi opacity dan posisi */
         pointer-events: none; /* Tidak bisa diklik */
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         text-align: center; /* Pastikan teks tengah */
       }
       #notification.visible {
@@ -684,9 +874,15 @@
         bottom: 30px; /* Naik sedikit saat visible */
         pointer-events: auto; /* Bisa diklik/interact jika perlu */
       }
-      #notification.success { background: linear-gradient(45deg, #28a745, #218838); } /* Gradient success */
-      #notification.error { background: linear-gradient(45deg, #dc3545, #c82333); } /* Gradient error */
-      #notification.info { background: linear-gradient(45deg, #17a2b8, #138496); } /* Gradient info */
+      #notification.success {
+        background: linear-gradient(45deg, #28a745, #218838);
+      } /* Gradient success */
+      #notification.error {
+        background: linear-gradient(45deg, #dc3545, #c82333);
+      } /* Gradient error */
+      #notification.info {
+        background: linear-gradient(45deg, #17a2b8, #138496);
+      } /* Gradient info */
 
       /* --- COOKIE CONSENT --- */
       .cookie-consent {
@@ -700,9 +896,11 @@
         z-index: 9999; /* Di bawah notifikasi */
         transition: bottom 0.5s ease-in-out; /* Transisi lebih smooth */
         border-top: 2px solid #ffa200;
-        box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
       }
-      .cookie-consent.show { bottom: 0; }
+      .cookie-consent.show {
+        bottom: 0;
+      }
       .cookie-content {
         max-width: 1200px;
         margin: 0 auto;
@@ -719,7 +917,10 @@
         font-size: 0.9em;
         line-height: 1.5;
       }
-      .cookie-content a { color: #ffa200; text-decoration: underline; }
+      .cookie-content a {
+        color: #ffa200;
+        text-decoration: underline;
+      }
       .cookie-buttons {
         display: flex;
         gap: 10px;
@@ -746,7 +947,9 @@
         color: #eee; /* Teks terang */
         border: 1px solid #666;
       }
-      #cancel-cookies:hover { background-color: #555; }
+      #cancel-cookies:hover {
+        background-color: #555;
+      }
 
       /* --- FOOTER --- */
       .footer {
@@ -824,23 +1027,96 @@
         transition: all 0.3s ease;
         flex-shrink: 0;
       }
-      .trakteer-icon { width: 20px; height: auto; } /* Ukuran ikon trakteer */
+      .trakteer-icon {
+        width: 20px;
+        height: auto;
+      } /* Ukuran ikon trakteer */
       .footer-item p a:hover .social-icon, /* Target ikon saat link dihover */
-      .social-icon:hover { /* Target ikon saat dihover langsung (jika bukan bagian link) */
+      .social-icon:hover {
+        /* Target ikon saat dihover langsung (jika bukan bagian link) */
         transform: scale(1.2) rotate(5deg); /* Efek hover ikon */
         color: #ffa200;
       }
 
-       /* --- Splash Screen (Sudah ada, style dipertahankan) --- */
-      #myDynamicSplash { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #181818; display: flex; align-items: center; justify-content: center; text-align: center; z-index: 99999; transition: opacity 0.5s ease; }
-      .splash-content { position: relative; z-index: 10000; }
-      .splash-title { font-size: clamp(30px, 8vw, 45px); margin-bottom: 2rem; display: flex; justify-content: center; position: relative; }
-      .splash-title span { display: inline-flex; font-family: "Play", sans-serif; animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate; margin: 0 clamp(1px, 0.5vw, 3px); color: #ffa200; text-shadow: 0 0 10px #ff6b00; font-weight: bold; }
-      .sk-cube-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; width: 40px; height: 40px; justify-content: center; align-items: center; margin: 20px auto; }
-      .sk-cube { width: 10px; height: 10px; background-color: #ffa200; animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; }
-      @keyframes sk-cubeGridScaleDelay { 0%, 70%, 100% { transform: scale3D(1, 1, 1); } 35% { transform: scale3D(0, 0, 1); } }
-      .network-status { position: absolute; bottom: 15%; left: 50%; transform: translateX(-50%); color: #ff5555; font-size: 1.1em; text-align: center; opacity: 0; transition: opacity 0.3s ease; width: 80%; max-width: 300px; font-weight: bold; }
-      .network-status.show { opacity: 1; }
+      /* --- Splash Screen (Sudah ada, style dipertahankan) --- */
+      #myDynamicSplash {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #181818;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        z-index: 99999;
+        transition: opacity 0.5s ease;
+      }
+      .splash-content {
+        position: relative;
+        z-index: 10000;
+      }
+      .splash-title {
+        font-size: clamp(30px, 8vw, 45px);
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: center;
+        position: relative;
+      }
+      .splash-title span {
+        display: inline-flex;
+        font-family: "Play", sans-serif;
+        animation: title-bounce 2.5s infinite,
+          fire 2s ease-in-out infinite alternate;
+        margin: 0 clamp(1px, 0.5vw, 3px);
+        color: #ffa200;
+        text-shadow: 0 0 10px #ff6b00;
+        font-weight: bold;
+      }
+      .sk-cube-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        margin: 20px auto;
+      }
+      .sk-cube {
+        width: 10px;
+        height: 10px;
+        background-color: #ffa200;
+        animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+      }
+      @keyframes sk-cubeGridScaleDelay {
+        0%,
+        70%,
+        100% {
+          transform: scale3D(1, 1, 1);
+        }
+        35% {
+          transform: scale3D(0, 0, 1);
+        }
+      }
+      .network-status {
+        position: absolute;
+        bottom: 15%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #ff5555;
+        font-size: 1.1em;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        width: 80%;
+        max-width: 300px;
+        font-weight: bold;
+      }
+      .network-status.show {
+        opacity: 1;
+      }
 
       /* ================================================== */
       /* --- MEDIA QUERIES (RESPONSIVE ADJUSTMENTS) --- */
@@ -848,105 +1124,329 @@
 
       /* Tablet dan Layar Menengah (max-width: 992px) */
       @media (max-width: 992px) {
-          .container { padding: 20px 15px; }
-          .anime-list { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 15px; }
-          .footer-item { min-width: 250px; } /* Biarkan 2 kolom lebih lama */
+        .container {
+          padding: 20px 15px;
+        }
+        .anime-list {
+          grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+          gap: 15px;
+        }
+        .footer-item {
+          min-width: 250px;
+        } /* Biarkan 2 kolom lebih lama */
       }
 
       /* Tablet Kecil & Mobile Landscape (max-width: 768px) */
       @media (max-width: 768px) {
-        header h1 { font-size: 2.5em; } /* Ukuran title header */
-        nav ul { justify-content: center; gap: 8px 15px; } /* Sesuaikan gap nav */
-        nav a { padding: 7px 12px; font-size: 0.95em; } /* Padding & font link nav */
+        header h1 {
+          font-size: 2.5em;
+        } /* Ukuran title header */
+        nav ul {
+          justify-content: center;
+          gap: 8px 15px;
+        } /* Sesuaikan gap nav */
+        nav a {
+          padding: 7px 12px;
+          font-size: 0.95em;
+        } /* Padding & font link nav */
 
-        .search-container { top: 45px; padding: 10px 0; } /* Adjust sticky top & padding */
-        #search-input { font-size: 15px; padding: 10px 18px; max-width: 90%; } /* Search input */
+        .search-container {
+          top: 45px;
+          padding: 10px 0;
+        } /* Adjust sticky top & padding */
+        #search-input {
+          font-size: 15px;
+          padding: 10px 18px;
+          max-width: 90%;
+        } /* Search input */
 
-        .notice { max-width: 90%; margin: 25px auto; } /* Lebar notice */
+        .notice {
+          max-width: 90%;
+          margin: 25px auto;
+        } /* Lebar notice */
 
-        .anime-list { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; } /* Grid 3-4 kolom */
-        .anime-item .anime-title-link span { font-size: 0.85em; min-height: 2.5em; } /* Judul item */
-        .anime-item .add-favorite-button { padding: 5px 10px; font-size: 11px; min-width: 90px; } /* Tombol fav */
+        .anime-list {
+          grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+          gap: 15px;
+        } /* Grid 3-4 kolom */
+        .anime-item .anime-title-link span {
+          font-size: 0.85em;
+          min-height: 2.5em;
+        } /* Judul item */
+        .anime-item .add-favorite-button {
+          padding: 5px 10px;
+          font-size: 11px;
+          min-width: 90px;
+        } /* Tombol fav */
 
-        .genre-filter { max-width: 95%; } /* Lebar filter genre */
+        .genre-filter {
+          max-width: 95%;
+        } /* Lebar filter genre */
 
-        .footer-section { flex-direction: column; align-items: center; gap: 30px; padding: 0 10px; }
-        .footer-item { width: 95%; max-width: 400px; min-width: auto; margin-bottom: 0; padding: 0; text-align: center; }
-        .footer-item h3 { text-align: center; margin-bottom: 15px; }
-        .social-links-container { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 15px; } /* Sosial links jadi row lagi di tengah */
-        .footer-item p { justify-content: center; text-align: center; }
-        .footer-item p a { margin-left: 5px; }
-        .social-icon { width: 18px; }
+        .footer-section {
+          flex-direction: column;
+          align-items: center;
+          gap: 30px;
+          padding: 0 10px;
+        }
+        .footer-item {
+          width: 95%;
+          max-width: 400px;
+          min-width: auto;
+          margin-bottom: 0;
+          padding: 0;
+          text-align: center;
+        }
+        .footer-item h3 {
+          text-align: center;
+          margin-bottom: 15px;
+        }
+        .social-links-container {
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 15px;
+        } /* Sosial links jadi row lagi di tengah */
+        .footer-item p {
+          justify-content: center;
+          text-align: center;
+        }
+        .footer-item p a {
+          margin-left: 5px;
+        }
+        .social-icon {
+          width: 18px;
+        }
 
         /* Adjustments for .main if it exists on other pages */
-        .main img { width: 70%; max-width: 250px; height: auto; padding: 15px; }
-        .main h3 { margin-left: 0; font-size: 18px; text-align: center; }
-        .main p { margin: 15px; padding: 10px; text-align: center; }
-        .main a { padding: 15px; margin: 15px; }
-        .video { width: 95%; height: auto; aspect-ratio: 16/9; }
+        .main img {
+          width: 70%;
+          max-width: 250px;
+          height: auto;
+          padding: 15px;
+        }
+        .main h3 {
+          margin-left: 0;
+          font-size: 18px;
+          text-align: center;
+        }
+        .main p {
+          margin: 15px;
+          padding: 10px;
+          text-align: center;
+        }
+        .main a {
+          padding: 15px;
+          margin: 15px;
+        }
+        .video {
+          width: 95%;
+          height: auto;
+          aspect-ratio: 16/9;
+        }
       }
 
       /* Mobile Kecil (max-width: 480px) */
       @media (max-width: 480px) {
-        .container { padding: 15px 10px; } /* Padding container lebih kecil */
-        header { padding-top: 55px; } /* Lebih banyak space dari about */
-        header h1 { font-size: 2em; } /* Title header lebih kecil */
-        .abt { padding: 8px 10px; } /* Padding about link */
-        .abt a { font-size: 0.9em; }
+        .container {
+          padding: 15px 10px;
+        } /* Padding container lebih kecil */
+        header {
+          padding-top: 55px;
+        } /* Lebih banyak space dari about */
+        header h1 {
+          font-size: 2em;
+        } /* Title header lebih kecil */
+        .abt {
+          padding: 8px 10px;
+        } /* Padding about link */
+        .abt a {
+          font-size: 0.9em;
+        }
 
-        nav ul { gap: 5px 10px; } /* Gap nav lebih kecil */
-        nav a { padding: 6px 8px; font-size: 0.9em; }
-        .profile-btn { gap: 5px; padding: 4px 8px; } /* Profile button lebih compact */
-        .profile-img { width: 25px; height: 25px; border-width: 1px; }
-        .profile-btn span { font-size: 0.8em; /* Mungkin sembunyikan jika terlalu panjang: display: none; */ }
+        nav ul {
+          gap: 5px 10px;
+        } /* Gap nav lebih kecil */
+        nav a {
+          padding: 6px 8px;
+          font-size: 0.9em;
+        }
+        .profile-btn {
+          gap: 5px;
+          padding: 4px 8px;
+        } /* Profile button lebih compact */
+        .profile-img {
+          width: 25px;
+          height: 25px;
+          border-width: 1px;
+        }
+        .profile-btn span {
+          font-size: 0.8em; /* Mungkin sembunyikan jika terlalu panjang: display: none; */
+        }
 
-        .search-container { padding: 8px 0; top: 41px;} /* Search sticky */
-        #search-input { font-size: 14px; padding: 9px 15px; } /* Search input */
+        .search-container {
+          padding: 8px 0;
+          top: 41px;
+        } /* Search sticky */
+        #search-input {
+          font-size: 14px;
+          padding: 9px 15px;
+        } /* Search input */
 
-        .notice { padding: 12px 15px; font-size: 0.9em; } /* Notice */
+        .notice {
+          padding: 12px 15px;
+          font-size: 0.9em;
+        } /* Notice */
 
-        .anime-list { grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 12px; } /* Grid 2-3 kolom */
-        .anime-item .anime-title-link span { font-size: 0.8em; line-height: 1.25; min-height: 2.5em; }
-        .anime-item .add-favorite-button { padding: 4px 8px; font-size: 10px; min-width: 80px; gap: 4px; }
+        .anime-list {
+          grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+          gap: 12px;
+        } /* Grid 2-3 kolom */
+        .anime-item .anime-title-link span {
+          font-size: 0.8em;
+          line-height: 1.25;
+          min-height: 2.5em;
+        }
+        .anime-item .add-favorite-button {
+          padding: 4px 8px;
+          font-size: 10px;
+          min-width: 80px;
+          gap: 4px;
+        }
 
-        .genre-header h2 { font-size: 1.1em; }
-        .genre-list { gap: 8px; } /* Gap tombol genre */
-        .genre-btn { padding: 6px 15px; font-size: 0.85em; } /* Tombol genre */
+        .genre-header h2 {
+          font-size: 1.1em;
+        }
+        .genre-list {
+          gap: 8px;
+        } /* Gap tombol genre */
+        .genre-btn {
+          padding: 6px 15px;
+          font-size: 0.85em;
+        } /* Tombol genre */
 
-        .pagination-controls { gap: 10px; padding: 8px 15px; } /* Pagination */
-        .pagination-btn { padding: 6px 12px; font-size: 0.9em; }
-        .page-info { font-size: 0.9em; }
+        .pagination-controls {
+          gap: 10px;
+          padding: 8px 15px;
+        } /* Pagination */
+        .pagination-btn {
+          padding: 6px 12px;
+          font-size: 0.9em;
+        }
+        .page-info {
+          font-size: 0.9em;
+        }
 
-        #notification { padding: 12px 25px; font-size: 0.9em; width: 90%; } /* Notifikasi */
+        #notification {
+          padding: 12px 25px;
+          font-size: 0.9em;
+          width: 90%;
+        } /* Notifikasi */
 
-        .cookie-content { flex-direction: column; align-items: center; text-align: center; gap: 10px;} /* Cookie consent stack */
-        .cookie-buttons button { padding: 7px 14px; font-size: 0.9em; }
+        .cookie-content {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 10px;
+        } /* Cookie consent stack */
+        .cookie-buttons button {
+          padding: 7px 14px;
+          font-size: 0.9em;
+        }
 
-        .footer { padding: 25px 0; }
-        .footer-item h3 { font-size: 16px; }
-        .footer-item p { font-size: 13px; }
+        .footer {
+          padding: 25px 0;
+        }
+        .footer-item h3 {
+          font-size: 16px;
+        }
+        .footer-item p {
+          font-size: 13px;
+        }
       }
 
       /* Tambahan untuk layar sangat kecil (opsional) */
       @media (max-width: 360px) {
-          .anime-list { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); } /* Maks 2 kolom nyaman */
-          nav a, .profile-btn span {
-              /* Pertimbangkan menyembunyikan teks atau membuat ikon saja jika terlalu sempit */
-          }
+        .anime-list {
+          grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        } /* Maks 2 kolom nyaman */
+        nav a,
+        .profile-btn span {
+          /* Pertimbangkan menyembunyikan teks atau membuat ikon saja jika terlalu sempit */
+        }
       }
 
       /* Style untuk halaman lain (seperti anime.html) jika diperlukan */
-      .main { text-align: center; margin-top: 5%; }
-      .main img { margin-bottom: 30px; /* Kurangi margin bawah */ width: clamp(200px, 60vw, 300px); /* Lebar responsif */ background-color: #383434; padding: 20px; border-radius: 20px; }
-      .main h2 { font-weight: bold; color: #ffa200; font-size: clamp(1.8em, 6vw, 2.2em); /* Ukuran judul responsif */ margin-bottom: 15px; }
-      .main h3 { margin-bottom: 15px; margin-left: 0; /* Hapus margin kiri */ text-align: center; font-size: clamp(1em, 4vw, 1.2em); color: #ffa200; }
-      .main p { margin: 20px 15px; /* Margin Kiri-Kanan */ letter-spacing: 0.5px; /* Spasi huruf normal */ text-align: left; background-color: #383434; border-radius: 15px; padding: 15px; line-height: 1.6; font-size: clamp(0.9em, 3.5vw, 1em); }
-      .main a { text-align: center; padding: 15px; font-size: clamp(0.9em, 4vw, 1em); color: #ffa200; text-decoration: none; display: block; margin: 20px 15px; background-color: #282828; border-radius: 10px; font-weight: bold; transition: background 0.5s ease; } /* Hapus animasi shimmer */
-      .main a:hover { background: #ffa200; color: #181818; } /* Hover sederhana */
+      .main {
+        text-align: center;
+        margin-top: 5%;
+      }
+      .main img {
+        margin-bottom: 30px; /* Kurangi margin bawah */
+        width: clamp(200px, 60vw, 300px); /* Lebar responsif */
+        background-color: #383434;
+        padding: 20px;
+        border-radius: 20px;
+      }
+      .main h2 {
+        font-weight: bold;
+        color: #ffa200;
+        font-size: clamp(1.8em, 6vw, 2.2em); /* Ukuran judul responsif */
+        margin-bottom: 15px;
+      }
+      .main h3 {
+        margin-bottom: 15px;
+        margin-left: 0; /* Hapus margin kiri */
+        text-align: center;
+        font-size: clamp(1em, 4vw, 1.2em);
+        color: #ffa200;
+      }
+      .main p {
+        margin: 20px 15px; /* Margin Kiri-Kanan */
+        letter-spacing: 0.5px; /* Spasi huruf normal */
+        text-align: left;
+        background-color: #383434;
+        border-radius: 15px;
+        padding: 15px;
+        line-height: 1.6;
+        font-size: clamp(0.9em, 3.5vw, 1em);
+      }
+      .main a {
+        text-align: center;
+        padding: 15px;
+        font-size: clamp(0.9em, 4vw, 1em);
+        color: #ffa200;
+        text-decoration: none;
+        display: block;
+        margin: 20px 15px;
+        background-color: #282828;
+        border-radius: 10px;
+        font-weight: bold;
+        transition: background 0.5s ease;
+      } /* Hapus animasi shimmer */
+      .main a:hover {
+        background: #ffa200;
+        color: #181818;
+      } /* Hover sederhana */
 
-      .video { position: relative; overflow: hidden; width: 90%; /* Lebar video */ max-width: 800px; /* Lebar maks video */ height: auto; aspect-ratio: 16/9; /* Jaga rasio 16:9 */ margin: 20px auto; border-radius: 10px; /* border video */ }
-      .video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-
+      .video {
+        position: relative;
+        overflow: hidden;
+        width: 90%; /* Lebar video */
+        max-width: 800px; /* Lebar maks video */
+        height: auto;
+        aspect-ratio: 16/9; /* Jaga rasio 16:9 */
+        margin: 20px auto;
+        border-radius: 10px; /* border video */
+      }
+      .video iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
     </style>
     <!-- ================================================== -->
     <!-- --- AKHIR STYLE CSS --- -->
@@ -957,7 +1457,100 @@
     <div id="particles-background">
       <!-- Sebanyak 100 div.circle-container (Tidak perlu diubah) -->
       <!-- ... (konten partikel tetap sama) ... -->
-      <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
+      <div class="circle-container"><div class="circle"></div></div>
     </div>
 
     <!-- Link About (Fixed Top) -->
@@ -966,7 +1559,8 @@
     <header>
       <div class="container">
         <h1 class="title">
-          <span>M</span><span>y</span><span>A</span><span>n</span><span>i</span><span>m</span><span>e</span>
+          <span>M</span><span>y</span><span>A</span><span>n</span><span>i</span
+          ><span>m</span><span>e</span>
         </h1>
         <!-- Hapus Teks Support & Link IG/Trakteer dari Header jika sudah ada di Footer -->
         <!-- <p>Support Saya Di</p>
@@ -981,28 +1575,50 @@
         </nav>
         <!-- Search Container dipindah ke bawah Nav -->
         <div class="search-container">
-          <input type="text" id="search-input" placeholder="Cari judul anime..." name="keyword" />
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Cari judul anime..."
+            name="keyword"
+          />
           <!-- Sparkle dihapus dari HTML, bisa ditambahkan via JS jika diinginkan -->
           <!-- <div class="sparkle" id="sparkle-container"></div> -->
-          <div class="suggestions"></div> <!-- Box suggestion -->
+          <div class="suggestions"></div>
+          <!-- Box suggestion -->
         </div>
       </div>
     </header>
 
     <main>
-      <div class="container"> <!-- Container utama untuk konten main -->
+      <div class="container">
+        <!-- Container utama untuk konten main -->
         <!-- Genre Filter dipindah ke dalam container -->
         <div class="genre-filter">
           <div class="genre-header">
             <h2>Genre</h2>
             <button class="genre-toggle">
-              <svg class="arrow-down" width="24" height="24" viewBox="0 0 24 24"><path fill="#ffa200" d="M7 10l5 5 5-5z" /></svg>
-              <svg class="arrow-up" width="24" height="24" viewBox="0 0 24 24" style="display: none"><path fill="#ffa200" d="M7 14l5-5 5 5z" /></svg>
+              <svg
+                class="arrow-down"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path fill="#ffa200" d="M7 10l5 5 5-5z" />
+              </svg>
+              <svg
+                class="arrow-up"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                style="display: none"
+              >
+                <path fill="#ffa200" d="M7 14l5-5 5 5z" />
+              </svg>
             </button>
           </div>
           <div class="genre-list-container collapsed">
             <div class="genre-list">
-                <!-- Tombol genre akan diisi oleh JS -->
+              <!-- Tombol genre akan diisi oleh JS -->
             </div>
           </div>
         </div>
@@ -1010,20 +1626,25 @@
         <!-- Notice Box -->
         <div class="notice">
           <p>Selamat datang! Situs ini masih dalam tahap pengembangan.</p>
-          <p>Temukan rekomendasi anime pilihan di sini. Belum semua genre tersedia, tapi kami terus menambahkannya. Ajak temanmu!</p>
+          <p>
+            Temukan rekomendasi anime pilihan di sini. Belum semua genre
+            tersedia, tapi kami terus menambahkannya. Ajak temanmu!
+          </p>
         </div>
 
         <!-- Konten Anime -->
         <div id="content">
           <section class="nama">
-            <h2>Anime Terbaru</h2> <!-- Judul section (bisa diubah oleh JS) -->
+            <h2>Anime Terbaru</h2>
+            <!-- Judul section (bisa diubah oleh JS) -->
             <div class="anime-list">
-                <!-- List anime akan diisi oleh JS -->
+              <!-- List anime akan diisi oleh JS -->
             </div>
           </section>
           <!-- Pagination Container akan ditambahkan oleh JS di sini -->
         </div>
-      </div> <!-- Akhir container utama -->
+      </div>
+      <!-- Akhir container utama -->
     </main>
 
     <!-- Notifikasi (di luar main/container agar fixed posisinya benar) -->
@@ -1032,7 +1653,11 @@
     <!-- Cookie Consent (di luar main/container agar fixed posisinya benar) -->
     <div id="cookie-consent" class="cookie-consent">
       <div class="cookie-content">
-        <p>Kami menggunakan cookie untuk meningkatkan pengalaman Anda. Dengan menggunakan situs ini, Anda setuju dengan <a href="/privacy" target="_blank">Kebijakan Privasi</a> kami.</p>
+        <p>
+          Kami menggunakan cookie untuk meningkatkan pengalaman Anda. Dengan
+          menggunakan situs ini, Anda setuju dengan
+          <a href="/privacy" target="_blank">Kebijakan Privasi</a> kami.
+        </p>
         <div class="cookie-buttons">
           <button id="accept-cookies">Setuju</button>
           <button id="cancel-cookies">Batalkan</button>
@@ -1045,19 +1670,35 @@
       <div class="footer-section">
         <div class="footer-item">
           <h3>Hak Cipta</h3>
-          <p>&copy; 2024 MyAnime.</p> <!-- Gunakan simbol &copy; -->
-          <p>Dikelola dan dikembangkan oleh Ransyah<p>
+          <p>&copy; 2024 MyAnime.</p>
+          <!-- Gunakan simbol &copy; -->
+          <p>Dikelola dan dikembangkan oleh Ransyah</p>
+          <p></p>
         </div>
+
         <div class="footer-item">
           <h3>Ikuti & Support Kami</h3>
           <div class="social-links-container">
-             <p><a href="https://www.instagram.com/ransyah_32/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram social-icon"></i> Instagram</a></p>
-             <p><a href="mailto:rizky1234kb@gmail.com"><i class="fas fa-envelope social-icon"></i> Email</a></p>
+            <p>
+              <a
+                href="https://www.instagram.com/ransyah_32/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-instagram social-icon"></i> Instagram</a
+              >
+            </p>
+            <p>
+              <a href="mailto:rizky1234kb@gmail.com"
+                ><i class="fas fa-envelope social-icon"></i> Email</a
+              >
+            </p>
           </div>
         </div>
         <div class="footer-item">
           <h3>Hubungi Kami</h3>
-          <p><a href="mailto:rizky1234kb@gmail.com">rizky1234kb@gmail.com</a></p>
+          <p>
+            <a href="mailto:rizky1234kb@gmail.com">rizky1234kb@gmail.com</a>
+          </p>
           <!-- Tambahkan info kontak lain jika ada -->
         </div>
       </div>
@@ -1072,37 +1713,42 @@
       // --- SPLASH SCREEN ---
       function createSplashScreen() {
         // (Kode Splash Screen tidak diubah)
-        const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/" || window.location.pathname.endsWith("/MyAnime/") || window.location.pathname.endsWith("/MyAnime"); // Tambahkan path root
-        if (!sessionStorage.getItem('splashShown') && isHomePage) { // Hanya tampil sekali per sesi di homepage
-            const splashScreen = document.createElement("div");
-            splashScreen.id = "myDynamicSplash";
-            const contentWrapper = document.createElement("div");
-            contentWrapper.className = "splash-content";
-            const title = document.createElement("div");
-            title.className = "splash-title";
-            const letters = ["M", "y", "A", "n", "i", "m", "e"];
-            letters.forEach((letter, index) => {
+        const isHomePage =
+          window.location.pathname.endsWith("index.html") ||
+          window.location.pathname === "/" ||
+          window.location.pathname.endsWith("/MyAnime/") ||
+          window.location.pathname.endsWith("/MyAnime"); // Tambahkan path root
+        if (!sessionStorage.getItem("splashShown") && isHomePage) {
+          // Hanya tampil sekali per sesi di homepage
+          const splashScreen = document.createElement("div");
+          splashScreen.id = "myDynamicSplash";
+          const contentWrapper = document.createElement("div");
+          contentWrapper.className = "splash-content";
+          const title = document.createElement("div");
+          title.className = "splash-title";
+          const letters = ["M", "y", "A", "n", "i", "m", "e"];
+          letters.forEach((letter, index) => {
             const span = document.createElement("span");
             span.textContent = letter;
             span.style.animationDelay = `${0.3 + index * 0.1}s`;
             title.appendChild(span);
-            });
-            const cubeGrid = document.createElement("div");
-            cubeGrid.className = "sk-cube-grid";
-            for (let i = 1; i <= 9; i++) {
+          });
+          const cubeGrid = document.createElement("div");
+          cubeGrid.className = "sk-cube-grid";
+          for (let i = 1; i <= 9; i++) {
             const cube = document.createElement("div");
             cube.className = `sk-cube sk-cube${i}`;
             cubeGrid.appendChild(cube);
-            }
-            const errorMessage = document.createElement("div");
-            errorMessage.className = "network-status";
-            contentWrapper.appendChild(title);
-            contentWrapper.appendChild(cubeGrid);
-            contentWrapper.appendChild(errorMessage);
-            splashScreen.appendChild(contentWrapper);
-            document.body.prepend(splashScreen);
-            sessionStorage.setItem('splashShown', 'true'); // Tandai sudah tampil
-            return { splashScreen, errorMessage };
+          }
+          const errorMessage = document.createElement("div");
+          errorMessage.className = "network-status";
+          contentWrapper.appendChild(title);
+          contentWrapper.appendChild(cubeGrid);
+          contentWrapper.appendChild(errorMessage);
+          splashScreen.appendChild(contentWrapper);
+          document.body.prepend(splashScreen);
+          sessionStorage.setItem("splashShown", "true"); // Tandai sudah tampil
+          return { splashScreen, errorMessage };
         }
         return null; // Tidak perlu splash jika bukan homepage atau sudah tampil
       }
@@ -1118,12 +1764,22 @@
           errorMessage.classList.add("show");
         };
         if (!navigator.onLine) showNetworkError("Koneksi internet offline");
-        window.addEventListener("offline", () => showNetworkError("Koneksi internet offline"));
-        window.addEventListener("online", () => errorMessage.classList.remove("show"));
-        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        window.addEventListener("offline", () =>
+          showNetworkError("Koneksi internet offline")
+        );
+        window.addEventListener("online", () =>
+          errorMessage.classList.remove("show")
+        );
+        const connection =
+          navigator.connection ||
+          navigator.mozConnection ||
+          navigator.webkitConnection;
         if (connection) {
           connection.addEventListener("change", () => {
-            if (connection.effectiveType === "slow-2g" || connection.effectiveType === "2g") {
+            if (
+              connection.effectiveType === "slow-2g" ||
+              connection.effectiveType === "2g"
+            ) {
               showNetworkError("Koneksi internet lemah terdeteksi");
             } else {
               errorMessage.classList.remove("show"); // Sembunyikan jika koneksi membaik
@@ -1147,15 +1803,16 @@
         };
         // Handle jika DOM sudah complete saat script jalan
         if (document.readyState === "complete") {
-            setTimeout(handleLoad, 300); // Beri sedikit delay agar animasi sempat terlihat
+          setTimeout(handleLoad, 300); // Beri sedikit delay agar animasi sempat terlihat
         } else {
-            // Event listener load akan memanggil hideSplash saat init utama selesai
+          // Event listener load akan memanggil hideSplash saat init utama selesai
         }
         return hideSplash; // Kembalikan fungsi hideSplash untuk dipanggil nanti
       }
 
       // --- AUTH SYSTEM ---
-      const CLIENT_ID = "429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com";
+      const CLIENT_ID =
+        "429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com";
       const REDIRECT_URI = window.location.origin + window.location.pathname;
 
       function handleLogin() {
@@ -1185,47 +1842,60 @@
         sessionStorage.removeItem("currentUser");
 
         // Coba disable GSI auto select (best effort)
-        if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-           try {
-               google.accounts.id.disableAutoSelect();
-               console.log("Google auto-select dinonaktifkan.");
-           } catch (e) {
-               console.warn("Gagal menonaktifkan Google auto-select:", e);
-           }
+        if (
+          typeof google !== "undefined" &&
+          google.accounts &&
+          google.accounts.id
+        ) {
+          try {
+            google.accounts.id.disableAutoSelect();
+            console.log("Google auto-select dinonaktifkan.");
+          } catch (e) {
+            console.warn("Gagal menonaktifkan Google auto-select:", e);
+          }
         } else {
-            console.log("Google Accounts ID library belum siap saat logout.");
+          console.log("Google Accounts ID library belum siap saat logout.");
         }
 
         updateMenu(); // Update UI menu setelah logout
         showNotification("Anda telah berhasil logout.", "info"); // Beri notifikasi
         console.log("Pengguna berhasil logout.");
-         // Optional: Redirect ke halaman utama setelah logout
-         // window.location.href = window.location.pathname;
+        // Optional: Redirect ke halaman utama setelah logout
+        // window.location.href = window.location.pathname;
       }
-
 
       async function getUserInfo(accessToken) {
         // (Kode getUserInfo tidak diubah)
         console.log("Fetching user info...");
         try {
-          const response = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", { headers: { Authorization: `Bearer ${accessToken}` } });
+          const response = await fetch(
+            "https://www.googleapis.com/oauth2/v2/userinfo",
+            { headers: { Authorization: `Bearer ${accessToken}` } }
+          );
           console.log("User info response status:", response.status);
           if (!response.ok) {
-             // Jika token expired atau tidak valid
+            // Jika token expired atau tidak valid
             if (response.status === 401) {
-                console.warn("Token tidak valid atau expired. Membersihkan storage.");
-                localStorage.removeItem("access_token");
-                localStorage.removeItem("user_info");
-                sessionStorage.removeItem("currentUser");
+              console.warn(
+                "Token tidak valid atau expired. Membersihkan storage."
+              );
+              localStorage.removeItem("access_token");
+              localStorage.removeItem("user_info");
+              sessionStorage.removeItem("currentUser");
             }
-            throw new Error(`Gagal mengambil info pengguna: Status ${response.status}`);
+            throw new Error(
+              `Gagal mengambil info pengguna: Status ${response.status}`
+            );
           }
           const userInfo = await response.json();
           console.log("User info received:", userInfo);
-           // Validasi sederhana info pengguna
+          // Validasi sederhana info pengguna
           if (!userInfo || (!userInfo.id && !userInfo.sub)) {
-              console.error("User info tidak valid atau tidak lengkap:", userInfo);
-              throw new Error("Data pengguna tidak lengkap.");
+            console.error(
+              "User info tidak valid atau tidak lengkap:",
+              userInfo
+            );
+            throw new Error("Data pengguna tidak lengkap.");
           }
           return userInfo;
         } catch (error) {
@@ -1239,70 +1909,81 @@
       }
 
       async function updateMenu() {
-          // (Kode updateMenu tidak diubah secara signifikan)
-          console.log("Updating menu...");
-          const menu = document.getElementById("menu");
-          if (!menu) {
-              console.error("Elemen #menu tidak ditemukan!"); // Ganti warn ke error
-              return;
-          }
+        // (Kode updateMenu tidak diubah secara signifikan)
+        console.log("Updating menu...");
+        const menu = document.getElementById("menu");
+        if (!menu) {
+          console.error("Elemen #menu tidak ditemukan!"); // Ganti warn ke error
+          return;
+        }
 
-          const accessToken = localStorage.getItem("access_token");
-          let storedUserInfo = null;
+        const accessToken = localStorage.getItem("access_token");
+        let storedUserInfo = null;
+        try {
+          storedUserInfo = JSON.parse(localStorage.getItem("user_info"));
+        } catch (e) {
+          /* abaikan jika parsing gagal */
+        }
+
+        let sessionUserInfo = null;
+        try {
+          sessionUserInfo = JSON.parse(sessionStorage.getItem("currentUser"));
+        } catch (e) {
+          /* abaikan jika parsing gagal */
+        }
+
+        // Prioritaskan session storage, lalu local storage
+        const currentUserInfo = sessionUserInfo || storedUserInfo;
+
+        // Verifikasi ulang token jika ada tapi user info tidak lengkap (misal hanya dari LS lama)
+        if (accessToken && (!currentUserInfo || !currentUserInfo.id)) {
+          console.warn(
+            "Token ada, tapi info user tidak lengkap/valid. Mencoba fetch ulang."
+          );
           try {
-              storedUserInfo = JSON.parse(localStorage.getItem("user_info"));
-          } catch (e) { /* abaikan jika parsing gagal */ }
-
-          let sessionUserInfo = null;
-           try {
-              sessionUserInfo = JSON.parse(sessionStorage.getItem("currentUser"));
-          } catch (e) { /* abaikan jika parsing gagal */ }
-
-          // Prioritaskan session storage, lalu local storage
-          const currentUserInfo = sessionUserInfo || storedUserInfo;
-
-          // Verifikasi ulang token jika ada tapi user info tidak lengkap (misal hanya dari LS lama)
-          if (accessToken && (!currentUserInfo || !currentUserInfo.id)) {
-              console.warn("Token ada, tapi info user tidak lengkap/valid. Mencoba fetch ulang.");
-               try {
-                  const freshUserInfo = await getUserInfo(accessToken);
-                  if (freshUserInfo) {
-                      console.log("Berhasil fetch ulang user info, memperbarui menu.");
-                      localStorage.setItem("user_info", JSON.stringify(freshUserInfo));
-                      sessionStorage.setItem("currentUser", JSON.stringify({
-                            id: freshUserInfo.id || freshUserInfo.sub,
-                            name: freshUserInfo.name,
-                            picture: freshUserInfo.picture,
-                            email: freshUserInfo.email
-                      }));
-                      // Panggil updateMenu lagi dengan data baru
-                      updateMenu(); // Rekursif HATI-HATI potensi infinite loop jika getUserInfo selalu gagal
-                      return; // Hentikan eksekusi saat ini
-                  } else {
-                      console.error("Gagal fetch ulang user info, melanjutkan sebagai logged out.");
-                      // Hapus token jika user info tidak bisa didapatkan
-                      localStorage.removeItem("access_token");
-                      localStorage.removeItem("user_info");
-                      sessionStorage.removeItem("currentUser");
-                  }
-              } catch (error) {
-                  console.error("Error saat fetch ulang user info:", error);
-                  // Logout jika fetch ulang gagal
-                  localStorage.removeItem("access_token");
-                  localStorage.removeItem("user_info");
-                  sessionStorage.removeItem("currentUser");
-              }
+            const freshUserInfo = await getUserInfo(accessToken);
+            if (freshUserInfo) {
+              console.log("Berhasil fetch ulang user info, memperbarui menu.");
+              localStorage.setItem("user_info", JSON.stringify(freshUserInfo));
+              sessionStorage.setItem(
+                "currentUser",
+                JSON.stringify({
+                  id: freshUserInfo.id || freshUserInfo.sub,
+                  name: freshUserInfo.name,
+                  picture: freshUserInfo.picture,
+                  email: freshUserInfo.email,
+                })
+              );
+              // Panggil updateMenu lagi dengan data baru
+              updateMenu(); // Rekursif HATI-HATI potensi infinite loop jika getUserInfo selalu gagal
+              return; // Hentikan eksekusi saat ini
+            } else {
+              console.error(
+                "Gagal fetch ulang user info, melanjutkan sebagai logged out."
+              );
+              // Hapus token jika user info tidak bisa didapatkan
+              localStorage.removeItem("access_token");
+              localStorage.removeItem("user_info");
+              sessionStorage.removeItem("currentUser");
+            }
+          } catch (error) {
+            console.error("Error saat fetch ulang user info:", error);
+            // Logout jika fetch ulang gagal
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("user_info");
+            sessionStorage.removeItem("currentUser");
           }
+        }
 
+        // Tampilkan menu sesuai status login
+        if (accessToken && currentUserInfo && currentUserInfo.id) {
+          console.log("User is logged in:", currentUserInfo);
+          // Pastikan gambar default jika picture tidak ada
+          const profilePic =
+            currentUserInfo.picture || "Gambar/default-avatar.png"; // Ganti path jika perlu
+          const userName = currentUserInfo.name || "User"; // Default name
 
-          // Tampilkan menu sesuai status login
-          if (accessToken && currentUserInfo && currentUserInfo.id) {
-              console.log("User is logged in:", currentUserInfo);
-              // Pastikan gambar default jika picture tidak ada
-              const profilePic = currentUserInfo.picture || 'Gambar/default-avatar.png'; // Ganti path jika perlu
-              const userName = currentUserInfo.name || 'User'; // Default name
-
-              menu.innerHTML = `
+          menu.innerHTML = `
                   <li><a href="favorites.html">Favorites</a></li>
                   <li>
                       <a href="#" id="logout-btn" class="profile-btn" title="Klik untuk Logout">
@@ -1310,47 +1991,50 @@
                           <span>${userName}</span>
                       </a>
                   </li>`;
-              // Sinkronkan ke LS jika data dari session
-              if (sessionUserInfo && !storedUserInfo) {
-                  localStorage.setItem("user_info", JSON.stringify(sessionUserInfo));
-              }
-          } else {
-              console.log("User is logged out.");
-              menu.innerHTML = `
+          // Sinkronkan ke LS jika data dari session
+          if (sessionUserInfo && !storedUserInfo) {
+            localStorage.setItem("user_info", JSON.stringify(sessionUserInfo));
+          }
+        } else {
+          console.log("User is logged out.");
+          menu.innerHTML = `
                   <li><a href="index.html">HOME</a></li> <!-- Pastikan link Home benar -->
                   <li><a href="#" id="google-login-btn">LOGIN</a></li>`;
-              // Pastikan storage bersih saat logout
-              if (localStorage.getItem("access_token") || localStorage.getItem("user_info") || sessionStorage.getItem("currentUser")) {
-                  console.log("Membersihkan storage sisa pada state logout.");
-                  localStorage.removeItem("access_token");
-                  localStorage.removeItem("user_info");
-                  sessionStorage.removeItem("currentUser");
-              }
+          // Pastikan storage bersih saat logout
+          if (
+            localStorage.getItem("access_token") ||
+            localStorage.getItem("user_info") ||
+            sessionStorage.getItem("currentUser")
+          ) {
+            console.log("Membersihkan storage sisa pada state logout.");
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("user_info");
+            sessionStorage.removeItem("currentUser");
           }
+        }
 
-          // Re-attach event listeners (delegasi lebih baik, tapi ini mengikuti pola lama)
-          // Hapus listener lama sebelum menambah baru untuk mencegah duplikasi
-          const googleLoginBtn = document.getElementById("google-login-btn");
-          const logoutBtn = document.getElementById("logout-btn");
+        // Re-attach event listeners (delegasi lebih baik, tapi ini mengikuti pola lama)
+        // Hapus listener lama sebelum menambah baru untuk mencegah duplikasi
+        const googleLoginBtn = document.getElementById("google-login-btn");
+        const logoutBtn = document.getElementById("logout-btn");
 
-          if (googleLoginBtn) {
-              googleLoginBtn.removeEventListener("click", handleLogin); // Hapus listener lama
-              googleLoginBtn.addEventListener("click", (e) => {
-                  e.preventDefault();
-                  handleLogin();
-              });
-          }
-          if (logoutBtn) {
-               logoutBtn.removeEventListener("click", handleLogout); // Hapus listener lama
-              logoutBtn.addEventListener("click", (e) => {
-                  e.preventDefault();
-                  handleLogout();
-              });
-          }
+        if (googleLoginBtn) {
+          googleLoginBtn.removeEventListener("click", handleLogin); // Hapus listener lama
+          googleLoginBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            handleLogin();
+          });
+        }
+        if (logoutBtn) {
+          logoutBtn.removeEventListener("click", handleLogout); // Hapus listener lama
+          logoutBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            handleLogout();
+          });
+        }
 
-          console.log("Menu updated.");
+        console.log("Menu updated.");
       }
-
 
       async function initAuth() {
         // (Kode initAuth tidak diubah secara signifikan)
@@ -1369,55 +2053,70 @@
             if (userInfo && (userInfo.id || userInfo.sub)) {
               console.log("✅ Info pengguna berhasil diambil:", userInfo);
               const simpleUserInfo = {
-                    id: userInfo.id || userInfo.sub,
-                    name: userInfo.name,
-                    picture: userInfo.picture,
-                    email: userInfo.email
+                id: userInfo.id || userInfo.sub,
+                name: userInfo.name,
+                picture: userInfo.picture,
+                email: userInfo.email,
               };
               localStorage.setItem("user_info", JSON.stringify(userInfo)); // Simpan info lengkap di LS
-              sessionStorage.setItem("currentUser", JSON.stringify(simpleUserInfo)); // Simpan info simpel di SS
+              sessionStorage.setItem(
+                "currentUser",
+                JSON.stringify(simpleUserInfo)
+              ); // Simpan info simpel di SS
               console.log("✅ Auth berhasil diinisialisasi dari redirect.");
               authInitializedFromRedirect = true;
             } else {
-              console.error("❌ Auth gagal: Info pengguna tidak lengkap atau tidak valid setelah fetch.");
+              console.error(
+                "❌ Auth gagal: Info pengguna tidak lengkap atau tidak valid setelah fetch."
+              );
               // getUserInfo sudah membersihkan token jika fetch gagal/info tidak valid
-              showNotification("Login gagal, data pengguna tidak lengkap.", "error");
+              showNotification(
+                "Login gagal, data pengguna tidak lengkap.",
+                "error"
+              );
             }
           } catch (error) {
             console.error("❌ Auth gagal saat memproses token:", error);
             showNotification("Login gagal. Silakan coba lagi.", "error");
-             // getUserInfo sudah membersihkan token jika error
+            // getUserInfo sudah membersihkan token jika error
           }
         } else {
-          console.log("🔍 Tidak ada access token di hash URL. Mengecek Local Storage.");
+          console.log(
+            "🔍 Tidak ada access token di hash URL. Mengecek Local Storage."
+          );
           // Cek token di Local Storage jika tidak ada di URL
           const existingToken = localStorage.getItem("access_token");
           if (existingToken) {
-              console.log("Token ditemukan di Local Storage. Memvalidasi...");
-              // Coba validasi token dengan getUserInfo
-              const userInfoFromStorage = await getUserInfo(existingToken);
-              if (!userInfoFromStorage) {
-                  console.warn("Token di Local Storage tidak valid/expired. Membersihkan.");
-                  // getUserInfo sudah membersihkan storage
-              } else {
-                   console.log("Token di Local Storage valid.");
-                  // Pastikan session storage juga terisi jika belum
-                   if (!sessionStorage.getItem("currentUser")) {
-                        const simpleUserInfo = {
-                            id: userInfoFromStorage.id || userInfoFromStorage.sub,
-                            name: userInfoFromStorage.name,
-                            picture: userInfoFromStorage.picture,
-                            email: userInfoFromStorage.email
-                        };
-                        sessionStorage.setItem("currentUser", JSON.stringify(simpleUserInfo));
-                        console.log("Session storage diisi dari Local Storage.");
-                   }
+            console.log("Token ditemukan di Local Storage. Memvalidasi...");
+            // Coba validasi token dengan getUserInfo
+            const userInfoFromStorage = await getUserInfo(existingToken);
+            if (!userInfoFromStorage) {
+              console.warn(
+                "Token di Local Storage tidak valid/expired. Membersihkan."
+              );
+              // getUserInfo sudah membersihkan storage
+            } else {
+              console.log("Token di Local Storage valid.");
+              // Pastikan session storage juga terisi jika belum
+              if (!sessionStorage.getItem("currentUser")) {
+                const simpleUserInfo = {
+                  id: userInfoFromStorage.id || userInfoFromStorage.sub,
+                  name: userInfoFromStorage.name,
+                  picture: userInfoFromStorage.picture,
+                  email: userInfoFromStorage.email,
+                };
+                sessionStorage.setItem(
+                  "currentUser",
+                  JSON.stringify(simpleUserInfo)
+                );
+                console.log("Session storage diisi dari Local Storage.");
               }
+            }
           } else {
-              console.log("Tidak ada token aktif.");
-              // Pastikan storage bersih jika tidak ada token
-              localStorage.removeItem("user_info");
-              sessionStorage.removeItem("currentUser");
+            console.log("Tidak ada token aktif.");
+            // Pastikan storage bersih jika tidak ada token
+            localStorage.removeItem("user_info");
+            sessionStorage.removeItem("currentUser");
           }
         }
 
@@ -1425,13 +2124,13 @@
         await updateMenu();
         // Beri notifikasi jika login berhasil dari redirect
         if (authInitializedFromRedirect) {
-            showNotification("Login berhasil!", "success");
+          showNotification("Login berhasil!", "success");
         }
       }
 
       // --- PAGINATION & DATA LOADING ---
       let currentPage = 1;
-      let itemsPerPage = 24; // Coba 24 item per halaman (lebih banyak)
+      let itemsPerPage = 21; // Coba 24 item per halaman (lebih banyak)
       let totalPages = 1;
       let allAnimeData = [];
       let filteredData = [];
@@ -1441,117 +2140,149 @@
         // (Kode loadAnimeData tidak diubah secara signifikan, pastikan JSON valid)
         console.log("🔄 Memulai load data dari:", JSON_PATH);
         try {
-          const response = await fetch(JSON_PATH, { cache: 'no-store' }); // Tambah cache: no-store untuk debug
+          const response = await fetch(JSON_PATH, { cache: "no-store" }); // Tambah cache: no-store untuk debug
           console.log("🔍 Status response:", response.status);
           if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+            throw new Error(
+              `HTTP error! Status: ${response.status} ${response.statusText}`
+            );
           }
           const contentType = response.headers.get("content-type");
           let data;
           if (!contentType || !contentType.includes("application/json")) {
-             console.warn(`Header content-type (${contentType}) bukan application/json, mencoba parsing teks...`);
-             const text = await response.text();
-             try {
-                 data = JSON.parse(text);
-                 console.log("✅ Data berhasil diparsing dari teks.");
-             } catch (parseError) {
-                 console.error("❌ Gagal parsing teks sebagai JSON:", parseError);
-                 console.error("Konten teks:", text.substring(0, 500) + "..."); // Tampilkan sebagian teks error
-                 throw new Error("Response bukan JSON valid.");
-             }
+            console.warn(
+              `Header content-type (${contentType}) bukan application/json, mencoba parsing teks...`
+            );
+            const text = await response.text();
+            try {
+              data = JSON.parse(text);
+              console.log("✅ Data berhasil diparsing dari teks.");
+            } catch (parseError) {
+              console.error("❌ Gagal parsing teks sebagai JSON:", parseError);
+              console.error("Konten teks:", text.substring(0, 500) + "..."); // Tampilkan sebagian teks error
+              throw new Error("Response bukan JSON valid.");
+            }
           } else {
-              data = await response.json();
-              console.log("✅ Data diterima (application/json).");
+            data = await response.json();
+            console.log("✅ Data diterima (application/json).");
           }
 
           // Validasi struktur data (lebih fleksibel)
           let animeArray;
           if (Array.isArray(data)) {
-              console.warn("Struktur JSON adalah array langsung. Menggunakannya.");
-              animeArray = data;
+            console.warn(
+              "Struktur JSON adalah array langsung. Menggunakannya."
+            );
+            animeArray = data;
           } else if (data && Array.isArray(data.data)) {
-              console.log("Struktur JSON memiliki properti 'data'. Menggunakan data.data.");
-              animeArray = data.data;
+            console.log(
+              "Struktur JSON memiliki properti 'data'. Menggunakan data.data."
+            );
+            animeArray = data.data;
           } else {
-              console.error("Struktur JSON tidak valid. Data diterima:", data);
-              throw new Error("Struktur JSON tidak valid: Array anime tidak ditemukan.");
+            console.error("Struktur JSON tidak valid. Data diterima:", data);
+            throw new Error(
+              "Struktur JSON tidak valid: Array anime tidak ditemukan."
+            );
           }
 
           // Sanitasi data dasar (opsional tapi bagus)
-          animeArray = animeArray.filter(anime => anime && anime.title && anime.slug); // Pastikan title & slug ada
-          console.log(`✅ Data anime siap digunakan: ${animeArray.length} item valid.`);
+          animeArray = animeArray.filter(
+            (anime) => anime && anime.title && anime.slug
+          ); // Pastikan title & slug ada
+          console.log(
+            `✅ Data anime siap digunakan: ${animeArray.length} item valid.`
+          );
           return animeArray;
-
         } catch (error) {
           console.error("❌ Error kritikal saat memuat data anime:", error);
-          showNotification(`Gagal memuat data anime: ${error.message}. Periksa file JSON & path.`, "error", 7000);
+          showNotification(
+            `Gagal memuat data anime: ${error.message}. Periksa file JSON & path.`,
+            "error",
+            7000
+          );
           return [];
         }
       }
 
-
       // --- RENDERING ---
+      // Pastikan fungsi ini digunakan (sama seperti jawaban sebelumnya)
       function renderAnimeItems(data) {
-        // (Kode renderAnimeItems diperbaiki untuk escape & fallback)
         const animeList = document.querySelector(".anime-list");
-        if (!animeList) { console.error("Container .anime-list tidak ditemukan!"); return; }
-
-        // Clear previous items dan tampilkan pesan loading/kosong
-        if (data.length === 0) {
-          const currentFilterInfo = selectedGenre && selectedGenre !== 'All'
-              ? `untuk genre "${selectedGenre}"`
-              : (searchInput && searchInput.value ? `dengan kata kunci "${searchInput.value}"` : "");
-          animeList.innerHTML = `<p style="text-align: center; color: #ccc; width: 100%; grid-column: 1 / -1; padding: 20px 0;">Tidak ada anime ditemukan ${currentFilterInfo}.</p>`;
+        if (!animeList) {
+          console.error("Container .anime-list tidak ditemukan!");
           return;
         }
 
-        // Ambil data favorit terbaru
+        if (data.length === 0) {
+          const currentFilterInfo =
+            selectedGenre && selectedGenre !== "All"
+              ? `untuk genre "${selectedGenre}"`
+              : searchInput && searchInput.value
+              ? `dengan kata kunci "${searchInput.value}"`
+              : "";
+          animeList.innerHTML = `<p style="text-align: center; color: #ccc; width: 100%; padding: 20px 0;">Tidak ada anime ditemukan ${currentFilterInfo}.</p>`;
+          return;
+        }
+
         const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-        const favoriteSlugs = new Set(favorites.map(fav => fav.slug));
+        const favoriteSlugs = new Set(favorites.map((fav) => fav.slug));
 
-        // Buat elemen HTML
-        animeList.innerHTML = data.map((anime) => {
-          // Fallback & Sanitasi
-          const slug = anime.slug || `unknown-slug-${Math.random().toString(36).substring(7)}`;
-          const imageUrl = anime.image || "Gambar/default-thumbnail.png"; // Ganti path jika perlu
-          const title = anime.title || "Judul Tidak Tersedia";
+        animeList.innerHTML = data
+          .map((anime) => {
+            const slug =
+              anime.slug ||
+              `unknown-slug-${Math.random().toString(36).substring(7)}`;
+            const imageUrl = anime.image || "Gambar/default-thumbnail.png";
+            const title = anime.title || "Judul Tidak Tersedia";
+            const description = anime.desc || "Deskripsi tidak tersedia."; // Deskripsi HARUS ADA di HTML
 
-          // Escape karakter khusus untuk atribut HTML dan parameter JS
-          const escapedSlug = slug.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-          const escapedTitle = title.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-          const escapedImageUrl = imageUrl.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+            const escapedSlug = slug.replace(/'/g, "\\'").replace(/"/g, '"');
+            const escapedTitle = title.replace(/'/g, "\\'").replace(/"/g, '"');
+            const escapedImageUrl = imageUrl
+              .replace(/'/g, "\\'")
+              .replace(/"/g, '"');
 
-          const isFavorited = favoriteSlugs.has(slug); // Cek slug asli
-          const buttonText = isFavorited ? 'Disimpan' : 'Simpan';
-          const iconClass = isFavorited ? 'fas fa-bookmark' : 'far fa-bookmark'; // Solid vs Regular
+            const isFavorited = favoriteSlugs.has(slug);
+            const buttonText = isFavorited ? "Disimpan" : "Simpan";
+            const iconClass = isFavorited
+              ? "fas fa-bookmark"
+              : "far fa-bookmark";
 
-          // Struktur HTML item
-          return `
-              <div class="anime-item">
-                <a href="anime.html?slug=${encodeURIComponent(slug)}" title="${escapedTitle}">
-                  <img src="${imageUrl}" alt="${escapedTitle}" loading="lazy" onerror="this.src='Gambar/default-thumbnail.png'; this.onerror=null;">
-                </a>
-                <div class="anime-item-content" style="padding: 10px;"> <!-- Wrapper konten teks -->
-                  <div class="anime-title-link">
-                    <a href="anime.html?slug=${encodeURIComponent(slug)}" title="${escapedTitle}">
-                      <span>${title}</span>
-                    </a>
-                  </div>
-                  <button
-                    class="add-favorite-button ${isFavorited ? 'favorited' : ''}"
-                    onclick="addToFavorites({ slug: '${escapedSlug}', title: '${escapedTitle}', image: '${escapedImageUrl}' }, this)">
-                    <i class="${iconClass}"></i>
-                    <span>${buttonText}</span>
-                  </button>
-                </div>
-              </div>
-          `;
-        }).join("");
+            // Struktur HTML lengkap (termasuk deskripsi)
+            return `
+          <div class="anime-item">
+            <a href="anime.html?slug=${encodeURIComponent(
+              slug
+            )}" class="anime-image-link" title="${escapedTitle}">
+              <img src="${imageUrl}" alt="${escapedTitle}" loading="lazy" onerror="this.src='Gambar/default-thumbnail.png'; this.onerror=null;">
+            </a>
+            <div class="anime-details">
+              <h3 class="anime-title">
+                <a href="anime.html?slug=${encodeURIComponent(
+                  slug
+                )}" title="${escapedTitle}">${title}</a>
+              </h3>
+              
+              <p class="anime-description">${description}</p>
+              <button
+                class="add-favorite-button ${isFavorited ? "favorited" : ""}"
+                onclick="addToFavorites({ slug: '${escapedSlug}', title: '${escapedTitle}', image: '${escapedImageUrl}' }, this)">
+                <i class="${iconClass}"></i>
+                <span>${buttonText}</span>
+              </button>
+            </div>
+          </div>
+      `;
+          })
+          .join("");
       }
 
       function renderPagination() {
         // (Kode renderPagination diperbaiki untuk penempatan)
-        let paginationContainer = document.querySelector(".pagination-container");
+        let paginationContainer = document.querySelector(
+          ".pagination-container"
+        );
         // Buat container jika belum ada
         if (!paginationContainer) {
           paginationContainer = document.createElement("div");
@@ -1562,57 +2293,75 @@
           const mainElement = document.querySelector("main");
 
           if (animeListElement && animeListElement.parentNode) {
-              animeListElement.parentNode.insertBefore(paginationContainer, animeListElement.nextSibling);
+            animeListElement.parentNode.insertBefore(
+              paginationContainer,
+              animeListElement.nextSibling
+            );
           } else if (contentElement) {
-             contentElement.appendChild(paginationContainer);
+            contentElement.appendChild(paginationContainer);
           } else if (mainElement) {
-             mainElement.appendChild(paginationContainer);
+            mainElement.appendChild(paginationContainer);
           } else {
-              console.warn("Tidak bisa menemukan tempat ideal untuk pagination. Menambahkan ke body.");
-              document.body.appendChild(paginationContainer); // Fallback terakhir
+            console.warn(
+              "Tidak bisa menemukan tempat ideal untuk pagination. Menambahkan ke body."
+            );
+            document.body.appendChild(paginationContainer); // Fallback terakhir
           }
         }
 
         // Jangan render jika hanya 1 halaman atau tidak ada data
         if (totalPages <= 1) {
-            paginationContainer.innerHTML = ''; // Kosongkan jika tidak perlu
-            return;
+          paginationContainer.innerHTML = ""; // Kosongkan jika tidak perlu
+          return;
         }
 
         // Render kontrol pagination
         paginationContainer.innerHTML = `
           <div class="pagination-controls">
-            <button class="pagination-btn" id="prev-btn" ${currentPage === 1 ? "disabled" : ""} aria-label="Halaman Sebelumnya">Previous</button>
+            <button class="pagination-btn" id="prev-btn" ${
+              currentPage === 1 ? "disabled" : ""
+            } aria-label="Halaman Sebelumnya">Previous</button>
             <span class="page-info" aria-live="polite">Hal ${currentPage} / ${totalPages}</span>
-            <button class="pagination-btn" id="next-btn" ${currentPage === totalPages ? "disabled" : ""} aria-label="Halaman Berikutnya">Next</button>
+            <button class="pagination-btn" id="next-btn" ${
+              currentPage === totalPages ? "disabled" : ""
+            } aria-label="Halaman Berikutnya">Next</button>
           </div>`;
 
-         // Attach event listener ke tombol baru (lebih baik pakai delegasi sebenarnya)
-         const prevBtn = document.getElementById('prev-btn');
-         const nextBtn = document.getElementById('next-btn');
-         if(prevBtn) {
-             prevBtn.addEventListener('click', handlePaginationClick);
-         }
-         if(nextBtn) {
-             nextBtn.addEventListener('click', handlePaginationClick);
-         }
+        // Attach event listener ke tombol baru (lebih baik pakai delegasi sebenarnya)
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        if (prevBtn) {
+          prevBtn.addEventListener("click", handlePaginationClick);
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener("click", handlePaginationClick);
+        }
       }
 
       // Handler untuk klik pagination
       function handlePaginationClick(e) {
-          e.preventDefault();
-          if (e.target.id === "prev-btn" && !e.target.disabled) {
-               if (currentPage > 1) { currentPage--; updateDisplay(); console.log("Pagination: Previous page"); }
+        e.preventDefault();
+        if (e.target.id === "prev-btn" && !e.target.disabled) {
+          if (currentPage > 1) {
+            currentPage--;
+            updateDisplay();
+            console.log("Pagination: Previous page");
           }
-          if (e.target.id === "next-btn" && !e.target.disabled) {
-               if (currentPage < totalPages) { currentPage++; updateDisplay(); console.log("Pagination: Next page"); }
+        }
+        if (e.target.id === "next-btn" && !e.target.disabled) {
+          if (currentPage < totalPages) {
+            currentPage++;
+            updateDisplay();
+            console.log("Pagination: Next page");
           }
+        }
       }
-
 
       function updateDisplay() {
         // (Kode updateDisplay sedikit disesuaikan)
-        console.log(`Updating display: Page ${currentPage}/${totalPages}, filtered items: ${filteredData.length}.`);
+        console.log(
+          `Updating display: Page ${currentPage}/${totalPages}, filtered items: ${filteredData.length}.`
+        );
         const start = (currentPage - 1) * itemsPerPage;
         const end = start + itemsPerPage;
         const itemsToDisplay = filteredData.slice(start, end);
@@ -1621,7 +2370,7 @@
         const sectionTitle = document.querySelector("section.nama h2");
         if (sectionTitle) {
           let titleText = "Anime"; // Default
-          if (selectedGenre && selectedGenre !== 'All') {
+          if (selectedGenre && selectedGenre !== "All") {
             titleText = `Genre: ${selectedGenre}`;
           } else if (searchInput && searchInput.value.trim()) {
             titleText = `Hasil Pencarian: "${searchInput.value.trim()}"`;
@@ -1630,11 +2379,11 @@
           }
           // Tambahkan info jumlah jika ada hasil
           if (filteredData.length > 0) {
-              titleText += ` (${filteredData.length} hasil)`;
+            titleText += ` (${filteredData.length} hasil)`;
           }
           sectionTitle.textContent = titleText;
         } else {
-            console.warn("Section title element (.nama h2) not found.");
+          console.warn("Section title element (.nama h2) not found.");
         }
 
         // Render item dan pagination
@@ -1642,17 +2391,23 @@
         renderPagination();
 
         // Scroll ke atas list anime setelah update (jika bukan load awal)
-        const animeListElement = document.querySelector('.anime-list');
-        if (animeListElement && currentPage > 1) { // Hanya scroll jika pindah halaman
-             // Beri sedikit timeout agar rendering selesai
-            setTimeout(() => {
-                // Scroll ke bagian atas filter genre atau list anime
-                const targetElement = document.querySelector('.genre-filter') || animeListElement;
-                targetElement.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
-            }, 150);
+        const animeListElement = document.querySelector(".anime-list");
+        if (animeListElement && currentPage > 1) {
+          // Hanya scroll jika pindah halaman
+          // Beri sedikit timeout agar rendering selesai
+          setTimeout(() => {
+            // Scroll ke bagian atas filter genre atau list anime
+            const targetElement =
+              document.querySelector(".genre-filter") || animeListElement;
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+              inline: "nearest",
+            });
+          }, 150);
         } else if (!animeListElement) {
-            // Fallback scroll ke atas jika list tidak ada
-             window.scrollTo({ top: 0, behavior: "smooth" });
+          // Fallback scroll ke atas jika list tidak ada
+          window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
         console.log("Display updated.");
@@ -1676,62 +2431,94 @@
             filterAndDisplay(searchValue, selectedGenre);
           }, 350); // Delay sedikit lebih lama
         });
-         // Tambah event listener untuk clear search (opsional)
-         // searchInput.addEventListener("search", function(e) {
-         //     if (!e.target.value) {
-         //         filterAndDisplay("", selectedGenre); // Tampilkan semua jika search dikosongkan
-         //     }
-         // });
-      } else { console.warn("Search input not found!"); }
-
-      function filterAndDisplay(searchValue = "", genre = null) {
-          // (Kode filterAndDisplay diperbaiki)
-          console.log(`Filtering by search: "${searchValue}", genre: "${genre === 'All' ? 'Semua' : genre || 'Tidak ada'}"`);
-
-          // 1. Filter berdasarkan genre
-          let genreFilteredData = [...allAnimeData]; // Mulai dari data asli
-          if (genre && genre !== "All") {
-              genreFilteredData = allAnimeData.filter(anime =>
-                  anime.info?.genres?.some(g => typeof g === 'string' && g.toLowerCase() === genre.toLowerCase())
-              );
-              console.log(`After genre filter ('${genre}'): ${genreFilteredData.length} items`);
-          } else {
-              console.log("Genre filter 'All' or none applied.");
-          }
-
-          // 2. Filter berdasarkan search dari hasil filter genre
-          let searchFilteredData = genreFilteredData;
-          if (searchValue) {
-              searchFilteredData = genreFilteredData.filter(anime => {
-                  // Cek null/undefined sebelum toLowerCase
-                  const titleMatch = anime.title?.toLowerCase().includes(searchValue);
-                  // Tambahkan pencarian alternatif jika ada (misal: other_titles)
-                  // const altTitleMatch = anime.other_titles?.some(t => t?.toLowerCase().includes(searchValue));
-                  return titleMatch; // || altTitleMatch;
-              });
-              console.log(`After search filter ("${searchValue}"): ${searchFilteredData.length} items`);
-          } else {
-              console.log("Search filter empty.");
-          }
-
-          filteredData = searchFilteredData; // Simpan hasil akhir
-
-          currentPage = 1; // Reset ke halaman 1 setiap filter berubah
-          totalPages = Math.ceil(filteredData.length / itemsPerPage);
-          if (totalPages < 1) totalPages = 1; // Minimal 1 halaman
-
-          updateDisplay(); // Update UI dengan data hasil filter
-          console.log(`Filtering complete. Total pages: ${totalPages}`);
-
-          // Sembunyikan suggestions jika ada
-          // if (suggestionsBox) suggestionsBox.style.display = "none";
+        // Tambah event listener untuk clear search (opsional)
+        // searchInput.addEventListener("search", function(e) {
+        //     if (!e.target.value) {
+        //         filterAndDisplay("", selectedGenre); // Tampilkan semua jika search dikosongkan
+        //     }
+        // });
+      } else {
+        console.warn("Search input not found!");
       }
+
+      // --- MODIFIKASI Fungsi filterAndDisplay ---
+      function filterAndDisplay(searchValue = "", genre = null) {
+        console.log(
+          `Filtering by search: "${searchValue}", genre: "${
+            genre === "All" ? "Semua" : genre || "Tidak ada"
+          }"`
+        );
+        const animeListElement = document.querySelector(".anime-list"); // Dapatkan elemen list
+        if (!animeListElement) {
+          console.error(
+            "Elemen .anime-list tidak ditemukan untuk mengubah layout!"
+          );
+          return; // Hentikan jika list tidak ada
+        }
+
+        // --- LOGIKA PENGUBAH LAYOUT ---
+        const isFilterOrSearchActive =
+          (genre && genre !== "All") || searchValue.trim() !== "";
+        if (isFilterOrSearchActive) {
+          console.log("🔍 Filter/Search aktif, menerapkan layout list.");
+          animeListElement.classList.add("list-layout");
+        } else {
+          console.log(
+            "🏠 Filter/Search tidak aktif, menerapkan layout grid (default)."
+          );
+          animeListElement.classList.remove("list-layout");
+        }
+        // --- AKHIR LOGIKA PENGUBAH LAYOUT ---
+
+        // 1. Filter berdasarkan genre
+        let genreFilteredData = [...allAnimeData];
+        if (genre && genre !== "All") {
+          genreFilteredData = allAnimeData.filter((anime) =>
+            anime.info?.genres?.some(
+              (g) =>
+                typeof g === "string" && g.toLowerCase() === genre.toLowerCase()
+            )
+          );
+          console.log(
+            `After genre filter ('${genre}'): ${genreFilteredData.length} items`
+          );
+        } else {
+          console.log("Genre filter 'All' or none applied.");
+        }
+
+        // 2. Filter berdasarkan search dari hasil filter genre
+        let searchFilteredData = genreFilteredData;
+        if (searchValue) {
+          searchFilteredData = genreFilteredData.filter((anime) => {
+            const titleMatch = anime.title?.toLowerCase().includes(searchValue);
+            return titleMatch;
+          });
+          console.log(
+            `After search filter ("${searchValue}"): ${searchFilteredData.length} items`
+          );
+        } else {
+          console.log("Search filter empty.");
+        }
+
+        filteredData = searchFilteredData;
+
+        currentPage = 1;
+        totalPages = Math.ceil(filteredData.length / itemsPerPage);
+        if (totalPages < 1) totalPages = 1;
+
+        updateDisplay(); // Update UI
+        console.log(`Filtering complete. Total pages: ${totalPages}`);
+      }
+      // --- AKHIR MODIFIKASI filterAndDisplay ---
 
       // --- GENRE FILTER ---
       function renderGenreFilters() {
         // (Kode renderGenreFilters diperbaiki)
         const genreContainer = document.querySelector(".genre-list");
-        if (!genreContainer) { console.warn("Genre list container not found!"); return; }
+        if (!genreContainer) {
+          console.warn("Genre list container not found!");
+          return;
+        }
 
         const allGenres = new Set();
         allAnimeData.forEach((anime) => {
@@ -1747,7 +2534,9 @@
         });
 
         // Urutkan genre A-Z
-        const sortedGenres = Array.from(allGenres).sort((a, b) => a.localeCompare(b));
+        const sortedGenres = Array.from(allGenres).sort((a, b) =>
+          a.localeCompare(b)
+        );
 
         genreContainer.innerHTML = ""; // Kosongkan container
 
@@ -1758,8 +2547,8 @@
         allButton.dataset.genre = "All"; // Tambahkan data-genre
         // Tandai selected jika tidak ada genre lain yang dipilih
         if (selectedGenre === null || selectedGenre === "All") {
-            allButton.classList.add("selected");
-            selectedGenre = "All"; // Pastikan state konsisten
+          allButton.classList.add("selected");
+          selectedGenre = "All"; // Pastikan state konsisten
         }
         allButton.addEventListener("click", handleGenreClick);
         genreContainer.appendChild(allButton);
@@ -1772,76 +2561,86 @@
           button.dataset.genre = genre; // Tambahkan data-genre
           // Tandai selected jika cocok dengan state saat ini
           if (selectedGenre === genre) {
-              button.classList.add("selected");
+            button.classList.add("selected");
           }
           button.addEventListener("click", handleGenreClick);
           genreContainer.appendChild(button);
         });
 
-        console.log("Genre filters rendered with", sortedGenres.length, "genres.");
+        console.log(
+          "Genre filters rendered with",
+          sortedGenres.length,
+          "genres."
+        );
       }
 
       // Handler terpusat untuk klik tombol genre
       function handleGenreClick(event) {
-          const clickedGenre = event.target.dataset.genre;
-          console.log("Genre button clicked:", clickedGenre);
-          filterByGenre(clickedGenre);
+        const clickedGenre = event.target.dataset.genre;
+        console.log("Genre button clicked:", clickedGenre);
+        filterByGenre(clickedGenre);
       }
 
-
       function filterByGenre(genre) {
-          // (Kode filterByGenre diperbaiki)
-          const container = document.querySelector(".genre-list-container");
-          const animeList = document.querySelector(".anime-list");
-          const genreButtons = document.querySelectorAll(".genre-btn"); // Ambil semua tombol genre
+        // (Kode filterByGenre diperbaiki)
+        const container = document.querySelector(".genre-list-container");
+        const animeList = document.querySelector(".anime-list");
+        const genreButtons = document.querySelectorAll(".genre-btn"); // Ambil semua tombol genre
 
-          if (!container || !animeList || genreButtons.length === 0) {
-              console.warn("Missing elements for genre filtering.");
-              return;
+        if (!container || !animeList || genreButtons.length === 0) {
+          console.warn("Missing elements for genre filtering.");
+          return;
+        }
+
+        // Hanya filter jika genre berubah
+        if (selectedGenre === genre) {
+          console.log("Genre already selected:", genre);
+          // Opsional: Toggle off jika genre yg sama diklik lagi?
+          // if (genre !== 'All') {
+          //     filterByGenre('All'); // Kembali ke All
+          // }
+          return;
+        }
+
+        console.log(`Filtering by genre: ${genre}`);
+        selectedGenre = genre; // Update state genre terpilih
+
+        // Update tampilan tombol aktif
+        genreButtons.forEach((btn) => {
+          btn.classList.toggle("selected", btn.dataset.genre === genre);
+        });
+
+        // Tambahkan animasi slide/fade (opsional)
+        animeList.style.opacity = "0";
+        animeList.style.transform = "translateY(20px)";
+
+        setTimeout(() => {
+          // Panggil fungsi filter utama dengan search value saat ini dan genre baru
+          filterAndDisplay(
+            searchInput ? searchInput.value.toLowerCase().trim() : "",
+            selectedGenre
+          );
+          // Kembalikan opacity dan posisi setelah filter
+          animeList.style.opacity = "1";
+          animeList.style.transform = "translateY(0)";
+          animeList.style.transition = "opacity 0.3s ease, transform 0.3s ease"; // Tambahkan transisi
+        }, 150); // Delay kecil untuk efek visual
+
+        // Tutup dropdown di mobile setelah memilih (jika terbuka)
+        const genreHeader = document.querySelector(".genre-header");
+        if (
+          window.innerWidth <= 768 &&
+          container &&
+          !container.classList.contains("collapsed")
+        ) {
+          container.classList.add("collapsed");
+          const arrowDown = genreHeader?.querySelector(".arrow-down");
+          const arrowUp = genreHeader?.querySelector(".arrow-up");
+          if (arrowDown && arrowUp) {
+            arrowDown.style.display = "block";
+            arrowUp.style.display = "none";
           }
-
-          // Hanya filter jika genre berubah
-          if (selectedGenre === genre) {
-              console.log("Genre already selected:", genre);
-              // Opsional: Toggle off jika genre yg sama diklik lagi?
-              // if (genre !== 'All') {
-              //     filterByGenre('All'); // Kembali ke All
-              // }
-              return;
-          }
-
-          console.log(`Filtering by genre: ${genre}`);
-          selectedGenre = genre; // Update state genre terpilih
-
-          // Update tampilan tombol aktif
-          genreButtons.forEach((btn) => {
-              btn.classList.toggle("selected", btn.dataset.genre === genre);
-          });
-
-          // Tambahkan animasi slide/fade (opsional)
-          animeList.style.opacity = '0';
-          animeList.style.transform = 'translateY(20px)';
-
-          setTimeout(() => {
-              // Panggil fungsi filter utama dengan search value saat ini dan genre baru
-              filterAndDisplay(searchInput ? searchInput.value.toLowerCase().trim() : "", selectedGenre);
-              // Kembalikan opacity dan posisi setelah filter
-              animeList.style.opacity = '1';
-              animeList.style.transform = 'translateY(0)';
-              animeList.style.transition = 'opacity 0.3s ease, transform 0.3s ease'; // Tambahkan transisi
-          }, 150); // Delay kecil untuk efek visual
-
-          // Tutup dropdown di mobile setelah memilih (jika terbuka)
-          const genreHeader = document.querySelector(".genre-header");
-          if (window.innerWidth <= 768 && container && !container.classList.contains('collapsed')) {
-              container.classList.add("collapsed");
-              const arrowDown = genreHeader?.querySelector(".arrow-down");
-              const arrowUp = genreHeader?.querySelector(".arrow-up");
-              if (arrowDown && arrowUp) {
-                  arrowDown.style.display = "block";
-                  arrowUp.style.display = "none";
-              }
-          }
+        }
       }
 
       // Toggle Genre List
@@ -1851,107 +2650,136 @@
           const container = document.querySelector(".genre-list-container");
           const arrowDown = genreHeader.querySelector(".arrow-down");
           const arrowUp = genreHeader.querySelector(".arrow-up");
-          if (!container || !arrowDown || !arrowUp) { console.warn("Missing elements for genre toggle."); return; }
+          if (!container || !arrowDown || !arrowUp) {
+            console.warn("Missing elements for genre toggle.");
+            return;
+          }
 
           const isCollapsed = container.classList.toggle("collapsed");
           arrowDown.style.display = isCollapsed ? "block" : "none";
           arrowUp.style.display = isCollapsed ? "none" : "block";
           // Tambah ARIA attribute untuk aksesibilitas
-          genreHeader.setAttribute('aria-expanded', !isCollapsed);
-          container.setAttribute('aria-hidden', isCollapsed);
+          genreHeader.setAttribute("aria-expanded", !isCollapsed);
+          container.setAttribute("aria-hidden", isCollapsed);
 
           console.log("Genre list toggled. Collapsed:", isCollapsed);
         });
-         // Set initial ARIA state
-         const initialCollapsed = document.querySelector(".genre-list-container")?.classList.contains('collapsed');
-         if (initialCollapsed !== undefined) {
-             genreHeader.setAttribute('aria-expanded', !initialCollapsed);
-             document.querySelector(".genre-list-container")?.setAttribute('aria-hidden', initialCollapsed);
-         }
-      } else { console.warn("Genre header not found!"); }
-
+        // Set initial ARIA state
+        const initialCollapsed = document
+          .querySelector(".genre-list-container")
+          ?.classList.contains("collapsed");
+        if (initialCollapsed !== undefined) {
+          genreHeader.setAttribute("aria-expanded", !initialCollapsed);
+          document
+            .querySelector(".genre-list-container")
+            ?.setAttribute("aria-hidden", initialCollapsed);
+        }
+      } else {
+        console.warn("Genre header not found!");
+      }
 
       // --- FAVORITES SYSTEM ---
       function addToFavorites(animeData, buttonElement) {
-          // (Kode addToFavorites sedikit disempurnakan)
-          // Pastikan user login
-          let currentUserInfo = JSON.parse(sessionStorage.getItem("currentUser")) || JSON.parse(localStorage.getItem("user_info"));
-          if (!currentUserInfo || !currentUserInfo.id) {
-              showNotification("Silakan login untuk menyimpan favorit!", "error");
-              return;
-          }
+        // (Kode addToFavorites sedikit disempurnakan)
+        // Pastikan user login
+        let currentUserInfo =
+          JSON.parse(sessionStorage.getItem("currentUser")) ||
+          JSON.parse(localStorage.getItem("user_info"));
+        if (!currentUserInfo || !currentUserInfo.id) {
+          showNotification("Silakan login untuk menyimpan favorit!", "error");
+          return;
+        }
 
-          // Validasi data anime dasar
-          if (!animeData || !animeData.slug || !animeData.title) {
-              console.error("Data anime tidak valid untuk ditambahkan ke favorit:", animeData);
-              showNotification("Gagal menyimpan favorit, data anime tidak lengkap.", "error");
-              return;
-          }
+        // Validasi data anime dasar
+        if (!animeData || !animeData.slug || !animeData.title) {
+          console.error(
+            "Data anime tidak valid untuk ditambahkan ke favorit:",
+            animeData
+          );
+          showNotification(
+            "Gagal menyimpan favorit, data anime tidak lengkap.",
+            "error"
+          );
+          return;
+        }
 
-          // Ambil favorites dari localStorage
-          let favorites = [];
-          try {
-              favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-              if (!Array.isArray(favorites)) favorites = []; // Pastikan array
-          } catch (e) {
-              console.error("Gagal parse data favorit dari localStorage:", e);
-              favorites = []; // Reset jika data korup
-          }
+        // Ambil favorites dari localStorage
+        let favorites = [];
+        try {
+          favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+          if (!Array.isArray(favorites)) favorites = []; // Pastikan array
+        } catch (e) {
+          console.error("Gagal parse data favorit dari localStorage:", e);
+          favorites = []; // Reset jika data korup
+        }
 
-          const favoriteIndex = favorites.findIndex((fav) => fav.slug === animeData.slug);
-          const buttonTextSpan = buttonElement?.querySelector('span'); // Optional chaining
-          const buttonIcon = buttonElement?.querySelector('i'); // Optional chaining
+        const favoriteIndex = favorites.findIndex(
+          (fav) => fav.slug === animeData.slug
+        );
+        const buttonTextSpan = buttonElement?.querySelector("span"); // Optional chaining
+        const buttonIcon = buttonElement?.querySelector("i"); // Optional chaining
 
-          if (favoriteIndex > -1) { // --- HAPUS DARI FAVORIT ---
-              favorites.splice(favoriteIndex, 1);
-              localStorage.setItem("favorites", JSON.stringify(favorites));
-              showNotification(`"${animeData.title}" dihapus dari favorit.`, "info"); // Sertakan judul
-              if (buttonElement) {
-                  buttonElement.classList.remove('favorited');
-                  if (buttonTextSpan) buttonTextSpan.textContent = 'Simpan';
-                  if (buttonIcon) buttonIcon.className = 'far fa-bookmark'; // Regular icon
-              }
-              console.log("Removed from Favorites:", animeData.slug);
-
-          } else { // --- TAMBAH KE FAVORIT ---
-              // Buat objek favorit yang bersih
-              const newFavorite = {
-                  slug: animeData.slug,
-                  title: animeData.title,
-                  image: animeData.image || "Gambar/default-thumbnail.png" // Fallback image
-                  // Tambahkan field lain jika perlu (misal: type, score)
-              };
-              favorites.push(newFavorite);
-              localStorage.setItem("favorites", JSON.stringify(favorites));
-              showNotification(`"${animeData.title}" ditambahkan ke favorit!`, "success"); // Sertakan judul
-              if (buttonElement) {
-                  buttonElement.classList.add('favorited');
-                  if (buttonTextSpan) buttonTextSpan.textContent = 'Disimpan';
-                  if (buttonIcon) buttonIcon.className = 'fas fa-bookmark'; // Solid icon
-              }
-              console.log("Added to Favorites:", animeData.slug);
+        if (favoriteIndex > -1) {
+          // --- HAPUS DARI FAVORIT ---
+          favorites.splice(favoriteIndex, 1);
+          localStorage.setItem("favorites", JSON.stringify(favorites));
+          showNotification(
+            `"${animeData.title}" dihapus dari favorit.`,
+            "info"
+          ); // Sertakan judul
+          if (buttonElement) {
+            buttonElement.classList.remove("favorited");
+            if (buttonTextSpan) buttonTextSpan.textContent = "Simpan";
+            if (buttonIcon) buttonIcon.className = "far fa-bookmark"; // Regular icon
           }
-          console.log("Current Favorites count:", favorites.length);
-          // Jika berada di halaman favorit, refresh list (opsional)
-          if (window.location.pathname.includes('favorites.html')) {
-              // Panggil fungsi render favorit jika ada
-              if (typeof renderFavorites === 'function') {
-                  renderFavorites();
-              }
+          console.log("Removed from Favorites:", animeData.slug);
+        } else {
+          // --- TAMBAH KE FAVORIT ---
+          // Buat objek favorit yang bersih
+          const newFavorite = {
+            slug: animeData.slug,
+            title: animeData.title,
+            image: animeData.image || "Gambar/default-thumbnail.png", // Fallback image
+            // Tambahkan field lain jika perlu (misal: type, score)
+          };
+          favorites.push(newFavorite);
+          localStorage.setItem("favorites", JSON.stringify(favorites));
+          showNotification(
+            `"${animeData.title}" ditambahkan ke favorit!`,
+            "success"
+          ); // Sertakan judul
+          if (buttonElement) {
+            buttonElement.classList.add("favorited");
+            if (buttonTextSpan) buttonTextSpan.textContent = "Disimpan";
+            if (buttonIcon) buttonIcon.className = "fas fa-bookmark"; // Solid icon
           }
+          console.log("Added to Favorites:", animeData.slug);
+        }
+        console.log("Current Favorites count:", favorites.length);
+        // Jika berada di halaman favorit, refresh list (opsional)
+        if (window.location.pathname.includes("favorites.html")) {
+          // Panggil fungsi render favorit jika ada
+          if (typeof renderFavorites === "function") {
+            renderFavorites();
+          }
+        }
       }
 
       // --- NOTIFICATION SYSTEM ---
       function showNotification(message, type = "info", duration = 3000) {
         // (Kode showNotification diperbaiki dengan timer clear)
         const notification = document.getElementById("notification");
-        if (!notification) { console.warn("Notification element not found!"); alert(message); return; }
+        if (!notification) {
+          console.warn("Notification element not found!");
+          alert(message);
+          return;
+        }
 
         // Hapus timer sebelumnya jika ada (mencegah bug multiple timeout)
         if (notification.timerId) {
           clearTimeout(notification.timerId);
           notification.classList.remove("visible"); // Sembunyikan dulu yg lama
-           // Paksa reflow agar transisi berikutnya jalan
+          // Paksa reflow agar transisi berikutnya jalan
           void notification.offsetWidth;
         }
 
@@ -1960,10 +2788,10 @@
         notification.textContent = message;
 
         // Tampilkan notifikasi
-         requestAnimationFrame(() => { // Pastikan style diterapkan sebelum transisi
-            notification.classList.add("visible");
-         });
-
+        requestAnimationFrame(() => {
+          // Pastikan style diterapkan sebelum transisi
+          notification.classList.add("visible");
+        });
 
         // Set timer baru untuk menyembunyikan
         notification.timerId = setTimeout(() => {
@@ -1974,40 +2802,41 @@
 
       // --- COOKIE CONSENT ---
       function initializeCookieConsent() {
-          const cookieConsent = document.getElementById("cookie-consent");
-          const acceptCookiesBtn = document.getElementById("accept-cookies");
-          const cancelCookiesBtn = document.getElementById("cancel-cookies");
+        const cookieConsent = document.getElementById("cookie-consent");
+        const acceptCookiesBtn = document.getElementById("accept-cookies");
+        const cancelCookiesBtn = document.getElementById("cancel-cookies");
 
-          if (!cookieConsent || !acceptCookiesBtn || !cancelCookiesBtn) {
-              console.warn("Satu atau lebih elemen cookie consent tidak ditemukan.");
-              return;
-          }
+        if (!cookieConsent || !acceptCookiesBtn || !cancelCookiesBtn) {
+          console.warn(
+            "Satu atau lebih elemen cookie consent tidak ditemukan."
+          );
+          return;
+        }
 
-          const consentGiven = localStorage.getItem("cookie_consent");
+        const consentGiven = localStorage.getItem("cookie_consent");
 
-          // Tampilkan hanya jika belum ada pilihan ATAU jika pilihan 'denied' (opsional)
-          if (!consentGiven) {
-              // Tampilkan setelah delay agar tidak ganggu load awal
-              setTimeout(() => {
-                  cookieConsent.classList.add("show");
-              }, 1500); // Delay 1.5 detik
-          }
+        // Tampilkan hanya jika belum ada pilihan ATAU jika pilihan 'denied' (opsional)
+        if (!consentGiven) {
+          // Tampilkan setelah delay agar tidak ganggu load awal
+          setTimeout(() => {
+            cookieConsent.classList.add("show");
+          }, 1500); // Delay 1.5 detik
+        }
 
-          acceptCookiesBtn.addEventListener("click", () => {
-              localStorage.setItem("cookie_consent", "given");
-              cookieConsent.classList.remove("show");
-              console.log("Cookie consent: Diterima.");
-              // Tambahkan logika jika perlu (misal: load script analytics)
-          });
+        acceptCookiesBtn.addEventListener("click", () => {
+          localStorage.setItem("cookie_consent", "given");
+          cookieConsent.classList.remove("show");
+          console.log("Cookie consent: Diterima.");
+          // Tambahkan logika jika perlu (misal: load script analytics)
+        });
 
-          cancelCookiesBtn.addEventListener("click", () => {
-              localStorage.setItem("cookie_consent", "denied");
-              cookieConsent.classList.remove("show");
-              console.log("Cookie consent: Ditolak.");
-              // Tambahkan logika jika perlu (misal: nonaktifkan fitur tertentu)
-          });
+        cancelCookiesBtn.addEventListener("click", () => {
+          localStorage.setItem("cookie_consent", "denied");
+          cookieConsent.classList.remove("show");
+          console.log("Cookie consent: Ditolak.");
+          // Tambahkan logika jika perlu (misal: nonaktifkan fitur tertentu)
+        });
       }
-
 
       // --- INITIALIZATION ---
       document.addEventListener("DOMContentLoaded", async () => {
@@ -2015,49 +2844,57 @@
         const hideSplash = initSplashScreen(); // Jalankan splash screen (jika perlu)
 
         try {
-            console.log("🔒 Initializing Authentication...");
-            await initAuth(); // Inisialisasi otentikasi & update menu pertama kali
-            console.log("✅ Authentication initialized.");
+          console.log("🔒 Initializing Authentication...");
+          await initAuth(); // Inisialisasi otentikasi & update menu pertama kali
+          console.log("✅ Authentication initialized.");
 
-            console.log("💾 Loading Anime Data...");
-            allAnimeData = await loadAnimeData(); // Muat data anime
-            console.log(`✅ Anime Data Loaded: ${allAnimeData.length} items.`);
+          console.log("💾 Loading Anime Data...");
+          allAnimeData = await loadAnimeData(); // Muat data anime
+          console.log(`✅ Anime Data Loaded: ${allAnimeData.length} items.`);
 
-            if (allAnimeData.length > 0) {
-                console.log("🎨 Rendering Initial Display & Filters...");
-                filterAndDisplay("", null); // Tampilkan semua data awal (filterAndDisplay akan panggil updateDisplay)
-                renderGenreFilters(); // Render filter genre berdasarkan data yg ada
-                console.log("✅ Initial Display & Filters Rendered.");
-            } else {
-                console.warn("⚠️ Tidak ada data anime yang dimuat atau array kosong.");
-                 // Tampilkan pesan di area list jika kosong
-                 const animeList = document.querySelector(".anime-list");
-                 if(animeList) animeList.innerHTML = '<p style="text-align: center; color: #ccc; width: 100%; grid-column: 1 / -1; padding: 20px 0;">Gagal memuat anime atau tidak ada data tersedia.</p>';
-                 // Render pagination kosong
-                 renderPagination();
-            }
+          if (allAnimeData.length > 0) {
+            console.log("🎨 Rendering Initial Display & Filters...");
+            filterAndDisplay("", null); // Tampilkan semua data awal (filterAndDisplay akan panggil updateDisplay)
+            renderGenreFilters(); // Render filter genre berdasarkan data yg ada
+            console.log("✅ Initial Display & Filters Rendered.");
+          } else {
+            console.warn(
+              "⚠️ Tidak ada data anime yang dimuat atau array kosong."
+            );
+            // Tampilkan pesan di area list jika kosong
+            const animeList = document.querySelector(".anime-list");
+            if (animeList)
+              animeList.innerHTML =
+                '<p style="text-align: center; color: #ccc; width: 100%; grid-column: 1 / -1; padding: 20px 0;">Gagal memuat anime atau tidak ada data tersedia.</p>';
+            // Render pagination kosong
+            renderPagination();
+          }
 
-            console.log("🍪 Initializing Cookie Consent...");
-            initializeCookieConsent(); // Jalankan fungsi cookie consent
-            console.log("✅ Cookie Consent Initialized.");
-
+          console.log("🍪 Initializing Cookie Consent...");
+          initializeCookieConsent(); // Jalankan fungsi cookie consent
+          console.log("✅ Cookie Consent Initialized.");
         } catch (error) {
-             console.error("❌ Terjadi error kritis saat inisialisasi:", error);
-             showNotification("Terjadi kesalahan saat memuat halaman.", "error", 5000);
-             // Tampilkan pesan error di area list
-             const animeList = document.querySelector(".anime-list");
-             if(animeList) animeList.innerHTML = '<p style="text-align: center; color: red; width: 100%; grid-column: 1 / -1; padding: 20px 0;">Error memuat data. Coba refresh halaman.</p>';
-             // Render pagination kosong jika error
-             renderPagination();
+          console.error("❌ Terjadi error kritis saat inisialisasi:", error);
+          showNotification(
+            "Terjadi kesalahan saat memuat halaman.",
+            "error",
+            5000
+          );
+          // Tampilkan pesan error di area list
+          const animeList = document.querySelector(".anime-list");
+          if (animeList)
+            animeList.innerHTML =
+              '<p style="text-align: center; color: red; width: 100%; grid-column: 1 / -1; padding: 20px 0;">Error memuat data. Coba refresh halaman.</p>';
+          // Render pagination kosong jika error
+          renderPagination();
         } finally {
-            // Sembunyikan splash screen setelah semua selesai (atau gagal)
-             console.log("✨ Hiding Splash Screen...");
-             // Beri delay sedikit lebih lama agar user sempat lihat konten sebelum splash hilang
-            setTimeout(hideSplash, 500); // Panggil fungsi hideSplash dari initSplashScreen
-            console.log("🏁 Initialization complete.");
+          // Sembunyikan splash screen setelah semua selesai (atau gagal)
+          console.log("✨ Hiding Splash Screen...");
+          // Beri delay sedikit lebih lama agar user sempat lihat konten sebelum splash hilang
+          setTimeout(hideSplash, 500); // Panggil fungsi hideSplash dari initSplashScreen
+          console.log("🏁 Initialization complete.");
         }
       });
     </script>
-
   </body>
 </html>
