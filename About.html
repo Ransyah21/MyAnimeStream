@@ -129,8 +129,7 @@
             </P>
         </div>
     </section>
-</body>
-<footer class="footer">
+    <footer class="footer">
     <div class="footer-section">
         <div class="footer-item">
             <img src="https://cdn-icons-png.flaticon.com/128/3631/3631618.png" alt="Tips Icon" class="footer-icon">
@@ -145,4 +144,18 @@
         </div>
     </div>
 </footer>
+</body>
+<script>  // Cek apakah browser mendukung Service Worker
+    if ('serviceWorker' in navigator) {
+      // Daftarkan Service Worker saat halaman selesai dimuat
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/MyAnimeStream/sw.js') // <-- PENTING! Pastikan path ke sw.js benar
+          .then(registration => {
+            console.log('SW terdaftar:', registration);
+          })
+          .catch(registrationError => {
+            console.log('Pendaftaran SW gagal:', registrationError);
+          });
+      });
+    }</script>
 </html>
