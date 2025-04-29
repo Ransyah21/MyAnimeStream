@@ -1499,19 +1499,6 @@
               console.log("Watch.html initialization complete.");
         });
 
-  // Cek apakah browser mendukung Service Worker
-  if ('serviceWorker' in navigator) {
-    // Daftarkan Service Worker saat halaman selesai dimuat
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/MyAnimeStream/sw.js') // <-- PENTING! Pastikan path ke sw.js benar
-        .then(registration => {
-          console.log('SW terdaftar:', registration);
-        })
-        .catch(registrationError => {
-          console.log('Pendaftaran SW gagal:', registrationError);
-        });
-    });
-  }
 
 
     </script>
