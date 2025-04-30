@@ -1,5 +1,260 @@
 {
     "data": [
+
+      {
+        "title": "Tenkuu Shinpan",
+        "slug": "tenkuu-shinpan",
+        "image": "https://cdn.myanimelist.net/images/anime/1547/117947.jpg",
+        "info": {
+            "type": "ONA",
+            "episodes": 12,
+            "status": "Finished Airing",
+            "aired": "Feb 25, 2021",
+            "premiered": "Winter 2021",
+            "broadcast": null,
+            "producers": ["Kodansha", "Bandai Namco Arts", "Avex Pictures", "NetEase"],
+            "studios": ["Zero-G"],
+            "source": "Manga",
+            "genres": ["Action", "Mystery"],
+            "themes": ["Gore", "High Stakes Game", "Survival"],
+            "demographic": "Shounen",
+            "duration": "25 min. per ep.",
+            "rating": "R - 17+ (violence & profanity)"
+        },
+        "desc": "Yuri Honjou tiba-tiba menemukan dirinya di dunia aneh yang terdiri dari gedung pencakar langit yang terhubung oleh jembatan gantung, dikejar oleh sosok bertopeng misterius yang membunuh tanpa ampun. Untuk bertahan hidup, Yuri harus menemukan kakaknya dan mencari cara melarikan diri dari dunia brutal ini.",
+        "download": "https://drive.usercontent.google.com/download?id=1pkS1Z4bnOIy_iYLRoTQ6t8fgNo6UOre0&export=download&authuser=0",
+        "streaming": [
+            "https://drive.google.com/file/d/1CcHGfrsJGmrJCwFVMV1GjSxKCoaD_Y3D/preview",
+            "https://drive.google.com/file/d/1dczvQjLQ05kCwQo-GeEd8rCTrIIh2t_H/preview",
+            "https://drive.google.com/file/d/1pEmY0-MBDzWXNKq49JMTQZO7qMhpIhXg/preview",
+            "https://drive.google.com/file/d/1arI0kCHJecpDtcUMX1d6SvR9JqfYf-_1/preview",
+            "https://drive.google.com/file/d/1vPcM-Tex_3JRwWthTwdGrXYxCO9JRFVS/preview",
+            "https://drive.google.com/file/d/1qksY64YolK9zt3iRhW_I4WlDCmJbwqzH/preview",
+            "https://drive.google.com/file/d/1Njhheyy0TSSyPdSW_Ps6Fyjypmj9rOl4/preview",
+            "https://drive.google.com/file/d/1GX4PGs-RQyN9yLEOdqX2JDFXkP5t_gxB/preview",
+            "https://drive.google.com/file/d/1rrHv6PubAdYfR21-0FPCj82INiOjIbfv/preview",
+            "https://drive.google.com/file/d/1rIfAbDayM5BbT3uSqpsYR2Bx3zpqCwtA/preview",
+            "https://drive.google.com/file/d/1weg4hy2q-q4nflwNXWwqQ-oJl2NHwIOZ/preview",
+            "https://drive.google.com/file/d/1XyIWFp3ul5R0XvJQ_g4tCAlh0OXrEdVH/preview"
+        ]
+    },
+
+      {
+        "title": "Kono Naka ni Hitori, Imouto ga Iru!",
+        "slug": "kono-naka-ni-hitori-imouto-ga-iru",
+        "image": "https://cdn.myanimelist.net/images/anime/5/75534.jpg",
+        "info": {
+            "type": "TV",
+            "episodes": 12,
+            "status": "Finished Airing",
+            "aired": "Jul 6, 2012 to Sep 28, 2012",
+            "premiered": "Summer 2012",
+            "broadcast": "Fridays at 02:25 (JST)",
+            "producers": ["Media Factory", "Lantis", "TBS", "DAX Production", "Sentai Filmworks"],
+            "studios": ["Studio Gokumi"],
+            "source": "Light novel",
+            "genres": ["Comedy", "Romance", "Ecchi"],
+            "themes": ["Harem", "School"],
+            "demographic": "Seinen",
+            "duration": "24 min. per ep.",
+            "rating": "R+ - Mild Nudity"
+        },
+        "desc": "Shougo Mikadono adalah pewaris perusahaan besar. Namun, wasiat ayahnya mengharuskannya menemukan pasangan hidup di sekolah sebelum lulus. Masalahnya, dia mengetahui bahwa adik perempuannya yang telah lama hilang juga bersekolah di sana dan berniat menikahinya tanpa mengungkapkan identitasnya.",
+        "download": "https://drive.usercontent.google.com/download?id=1NQDzJqXtPIRpVt-mQr1e1mURt3wECDUJ&export=download&authuser=0",
+        "streaming": [
+            "https://drive.google.com/file/d/1novQrGF5Erzh571r8VpHK507L8m634di/preview",
+            "https://drive.google.com/file/d/1zsHa-KW9mFLQbXcnjz-Gv7WBVYwwfw8h/preview",
+            "https://drive.google.com/file/d/1-hJNO3cEDz22f1myxwlE9fJZ6gGpCm44/preview",
+            "https://drive.google.com/file/d/1epVbqQQfGZtt9Qd-UB_wuj8wYzWfuEDo/preview",
+            "https://drive.google.com/file/d/1aFIn3vddY327lGVbJ1N8Pp1C4lEDYEqm/preview",
+            "https://drive.google.com/file/d/1JN3r8iLmAWhNyJ6bzvuJYbsi1BqUKVjw/preview",
+            "https://drive.google.com/file/d/1huKd5GTzc1ZXsHoFyzpclhbjnimnpf-b/preview",
+            "https://drive.google.com/file/d/13QKLgFLEYoagF8wQiX03CBvj4tyy2p1q/preview",
+            "https://drive.google.com/file/d/1UZYpppEfY0mPunsvX4ZhkY35qDCHE6bh/preview",
+            "https://drive.google.com/file/d/1Q86EAahsSiDFwWAFMoNQPyR6bpD-usWE/preview",
+            "https://drive.google.com/file/d/1NBKtO15AQfTbABHgtA6YwcwguOV-Dx-W/preview",
+            "https://drive.google.com/file/d/1ZwpycP12IfkIVskCl7sFK9KWuky-a6WK/preview",
+            "https://drive.google.com/file/d/1lZeXGviR0XhBOdsy6FtjD8KAmCdWAqRL/preview"
+        ]
+    },
+
+      {
+        "title": "Dark Gathering",
+        "slug": "dark-gathering",
+        "image": "https://cdn.myanimelist.net/images/anime/1346/138731.jpg",
+        "info": {
+            "type": "TV",
+            "episodes": 25,
+            "status": "Finished Airing",
+            "aired": "Jul 10, 2023 to Dec 25, 2023",
+            "premiered": "Summer 2023",
+            "broadcast": "Mondays at 01:05 (JST)",
+            "producers": ["Pony Canyon", "Shueisha", "Mainichi Broadcasting System", "Asmik Ace", "Bandai Namco Music Live", "BS Asahi"],
+            "studios": ["OLM"],
+            "source": "Manga",
+            "genres": ["Horror", "Supernatural"],
+            "themes": ["Mythology"],
+            "demographic": "Shounen",
+            "duration": "23 min. per ep.",
+            "rating": "R - 17+ (violence & profanity)"
+        },
+        "desc": "Keitaro Gentoga, seorang mahasiswa yang memiliki kemampuan menarik roh, menjadi tutor privat untuk Yayoi Hozuki, seorang anak jenius dengan kemampuan spiritual yang kuat. Bersama-sama, mereka memulai perjalanan berbahaya untuk menangkap roh jahat, menghadapi kengerian gaib dan masa lalu traumatis Keitaro.",
+        "seasons": [
+        {
+            "name": "eps 1-13",
+            "download": "https://drive.usercontent.google.com/download?id=1ou-TG28A0VG5kzCWrY1xQ05fmDnlc-PC&export=download&authuser=0",
+            "streaming": [
+	      "https://drive.google.com/file/d/1nXO7GRRaIoWIdu454_T1UEXiR86x7Y_7/preview",
+        "https://drive.google.com/file/d/1FNokEoU5wK7Qpb1nl-Mj7atQAO3irINt/preview",
+        "https://drive.google.com/file/d/1AR8ZYQYcpwwp0xUzdKGH0UzLf-YwVebm/preview",
+        "https://drive.google.com/file/d/1NQCv7qDqAM5x9m3fEZV5jHELidLsak_1/preview",
+        "https://drive.google.com/file/d/1JJlprxehGM-2BD0JfIDkt0f6ErhOQGXF/preview",
+        "https://drive.google.com/file/d/1HtfH7T-xk0nyjUMTseT1vCtGQRD2USwF/preview",
+        "https://drive.google.com/file/d/1kDoUJMwUtXLXX1i-oM90YHI6rlUKM_iV/preview",
+        "https://drive.google.com/file/d/151QZHrZ6fWlpATNRbyaNQrrbQtOFFaY_/preview",
+        "https://drive.google.com/file/d/1A2P4gpmrnaG9iETYxUuY82rLgr6ORjKS/preview",
+        "https://drive.google.com/file/d/1ueUxzM_xGKnDpxg2DDDT5u1Pk_Mat7cM/preview",
+        "https://drive.google.com/file/d/1FXsdg-aBjDP674VwiSCaNyuUlaZh6m2N/preview",
+        "https://drive.google.com/file/d/1SSWLBFWVM-FGSlEGSsqiXfRJV1e_fQW4/preview",
+        "https://drive.google.com/file/d/1IRzAxDSpBtpUkh8NhLkk5XXli9aX7szx/preview"
+            ]
+        },
+        {
+            "name": "eps 14-25",
+            "download": "https://drive.usercontent.google.com/download?id=1OVczxI6q6nEfKLtk8hN1CE6saF3FuEVc&export=download&authuser=0",
+            "streaming": [
+        "https://drive.google.com/file/d/1xBqmNyqm500I8-cMOHtaM-SVaHcsI5oU/preview",
+        "https://drive.google.com/file/d/1L39tT02SZ-jzZI4FjLqDbm1zHvBTDnNR/preview",
+        "https://drive.google.com/file/d/1DMAYMYgNVrwqb8o9chKd5VCaMgXUiLrR/preview",
+        "https://drive.google.com/file/d/1x3c0LXre_gS3M5Q68mozQIiwTD4Wz2tI/preview",
+        "https://drive.google.com/file/d/1S2fmdUCsbHKkHN3awLmyYO01hM46PuVM/preview",
+        "https://drive.google.com/file/d/1sAJokDnAdf6ktK0T92w-dObOetgtuhmp/preview",
+        "https://drive.google.com/file/d/1RZEHEOywrDANACyhO1_ANIaXMEnRcPk0/preview",
+        "https://drive.google.com/file/d/1353CnqttSlvw1ffoJi57XO2QSk0zJBc-/preview",
+        "https://drive.google.com/file/d/1UtsTEqZ01X3uX6Gq1-ApFp9wH_SNqOMq/preview",
+        "https://drive.google.com/file/d/17rJ3toR_CE8fveda4CXYMjr7cS4WqWyd/preview",
+        "https://drive.google.com/file/d/1C2RgPSr5HphSIKLGUeXfsAapstm2rLop/preview",
+        "https://drive.google.com/file/d/1rG2jjNUBnKdnD6p67kVYMAKB5fqEFpm4/preview"
+            ]
+        }
+    ]
+    },
+
+      {
+        "title": "Tomodachi Game",
+        "slug": "tomodachi-game",
+        "image": "https://cdn.myanimelist.net/images/anime/1247/121345.jpg",
+        "info": {
+            "type": "TV",
+            "episodes": 12,
+            "status": "Finished Airing",
+            "aired": "Apr 6, 2022 to Jun 22, 2022",
+            "premiered": "Spring 2022",
+            "broadcast": "Wednesdays at 01:29 (JST)",
+            "producers": ["King Records", "Kodansha", "Nippon Television Network", "BS NTV"],
+            "studios": ["Okuruto Noboru"],
+            "source": "Manga",
+            "genres": ["Suspense"],
+            "themes": ["Gore", "High Stakes Game", "Psychological", "Strategy Game", "Survival"],
+            "demographic": "Shounen",
+            "duration": "22 min. per ep.",
+            "rating": "R - 17+ (violence & profanity)"
+        },
+        "desc": "Yuuichi Katagiri percaya bahwa teman lebih penting daripada uang. Namun, ketika dana karyawisata kelasnya dicuri, dia dan keempat teman terdekatnya ditarik ke dalam \"Tomodachi Game\" misterius untuk melunasi hutang besar yang dimiliki salah satu dari mereka. Ikatan dan rahasia mereka diuji dalam serangkaian permainan psikologis.",
+        "download": "https://drive.usercontent.google.com/download?id=1jLgW15A-x1WfAyZxROqAcUOMLNgxOczP&export=download&authuser=0",
+        "streaming": [
+            "https://drive.google.com/file/d/1qvvSxIDT8oZ1j_Sr_vjge7gQrX-8eSEo/preview",
+            "https://drive.google.com/file/d/1HgDyGMoPr4ze3S8aXg9Mu9XnP95_qhO7/preview",
+            "https://drive.google.com/file/d/1QxAsTdcrPDhQIu5Txz0LSe-wIeq6m-rw/preview",
+            "https://drive.google.com/file/d/17PcmcUOu1x_fwRS7xKWRZZ6PMBq9htg0/preview",
+            "https://drive.google.com/file/d/1r_orwbUZ7sL69vQJzis_G_2AEuEWXKZJ/preview",
+            "https://drive.google.com/file/d/1O6VZNl31o-wN5RHHX6hKIX4lc7CG25TZ/preview",
+            "https://drive.google.com/file/d/14qF4W2PmFWMygJFXFioKgSAlo0Z3EisK/preview",
+            "https://drive.google.com/file/d/15bgz0pU7STdKvFirc5WO2Ot1Sg0-ZArS/preview",
+            "https://drive.google.com/file/d/1JD0XTkQw7XQHUZaDKYBA4-817jocBq5l/preview",
+            "https://drive.google.com/file/d/1BKKhyi8jmiDtfxP_OZFbC_lmUC--W8v7/preview",
+            "https://drive.google.com/file/d/1DPHmR1rlEkeKtYJBEYv4JruFy9_w1SqR/preview",
+            "https://drive.google.com/file/d/13XglFs1vWVIRJQCVIYsAYuIcGvoonsZq/preview"
+        ]
+    },
+
+      {
+        "title": "Mayoi Neko Overrun!",
+        "slug": "mayoi-neko-overrun",
+        "image": "https://cdn.myanimelist.net/images/anime/1398/133870.jpg",
+        "info": {
+            "type": "TV",
+            "episodes": 13,
+            "status": "Finished Airing",
+            "aired": "Apr 6, 2010 to Jun 29, 2010",
+            "premiered": "Spring 2010",
+            "broadcast": "Tuesdays at 01:15 (JST)",
+            "producers": ["Geneon Universal Entertainment", "Shueisha", "Sentai Filmworks"],
+            "studios": ["AIC"],
+            "source": "Light novel",
+            "genres": ["Comedy", "Romance"],
+            "themes": ["Harem", "School"],
+            "demographic": "Shounen",
+            "duration": "24 min. per ep.",
+            "rating": "PG-13 - Teens 13 or older"
+        },
+        "desc": "Takumi Tsuzuki tinggal bersama kakak angkatnya, Otome, mengelola toko kue yang gagal bernama Stray Cats. Suatu hari, Otome membawa pulang seorang gadis misterius seperti kucing bernama Nozomi Kiriya, menambah 'kucing liar' lain dalam hidup mereka dan mengarah ke kejenakaan komedi bersama teman-teman mereka.",
+        "download": "https://drive.usercontent.google.com/download?id=1kh9IkqXo8mjMJyU8oYQFAD7-lXMUfJ5C&export=download&authuser=0",
+        "streaming": [
+            "https://drive.google.com/file/d/1-4lsmP9M9PqJTvksjJPbZktql3sqTz1Z/preview",
+            "https://drive.google.com/file/d/1M5nv3A29Gmz0m4XS5yQklNlVlzuOJ3T4/preview",
+            "https://drive.google.com/file/d/1hZMDTZuJsRKc8n7FcKT4jJuoL6Bx9V-5/preview",
+            "https://drive.google.com/file/d/1oZDLjrFKvpfPWR3AMpynp7s-39zdnQbp/preview",
+            "https://drive.google.com/file/d/1PvNcTNwnP_H3J26dDobK6PK7b8uAVI3w/preview",
+            "https://drive.google.com/file/d/1PKPFvDNpn3yHY4HneGrqKcr0T0HqrIPT/preview",
+            "https://drive.google.com/file/d/1xdhuWWMoGZ_LZGYCs6iat8JO3ZiaHlMl/preview",
+            "https://drive.google.com/file/d/10G9IEBIs-Ooo3ttcBZkq_d7T-0M_DfFg/preview",
+            "https://drive.google.com/file/d/1gSGX98xTouP-3jIz2e8D2wt73k8WwShC/preview",
+            "https://drive.google.com/file/d/18XU1Y2K9g07nuJDAlI9ViHIZNkP8KuCE/preview",
+            "https://drive.google.com/file/d/1BbVQWO6AAGfT1jvfgm_ZlUmq3Rmoe2c3/preview",
+            "https://drive.google.com/file/d/1i6y_Cg8S1_jbz8usyg7d_5FEm4yp1mWn/preview",
+            "https://drive.google.com/file/d/15eUFpl9jqJn3L-dOTLYoYWZEWGKmxDDs/preview"
+        ]
+    },
+
+      {
+        "title": "Lv1 Maou to One Room Yuusha",
+        "slug": "lv1-maou-to-one-room-yuusha",
+        "image": "https://cdn.myanimelist.net/images/anime/1879/136721.jpg",
+        "info": {
+            "type": "TV",
+            "episodes": 12,
+            "status": "Finished Airing",
+            "aired": "Jul 3, 2023 to Sep 18, 2023",
+            "premiered": "Summer 2023",
+            "broadcast": "Mondays at 22:30 (JST)",
+            "producers": ["Kadokawa", "AT-X", "Kansai Telecasting", "BS NTV", "GREE Entertainment", "NewGin"],
+            "studios": ["Silver Link.", "Blade"],
+            "source": "Manga",
+            "genres": ["Adventure", "Comedy", "Fantasy"],
+            "themes": ["Gag Humor"],
+            "demographic": "Seinen",
+            "duration": "23 min. per ep.",
+            "rating": "PG-13 - Teens 13 or older"
+        },
+        "desc": "Setelah dikalahkan oleh pahlawan Max, Raja Iblis tertidur lelap. Dia bangun sepuluh tahun kemudian dalam wujud chibi dan menemukan mantan musuhnya hidup sebagai NEET di apartemen satu kamar yang berantakan. Raja Iblis memutuskan untuk tinggal dan membantu pahlawan yang jatuh itu bangkit kembali.",
+        "download": "https://drive.usercontent.google.com/download?id=18VDfu9INu-RFXhy8GNpa0h7EtmO22fui&export=download&authuser=0",
+        "streaming": [
+            "https://drive.google.com/file/d/15uLfkVkn4GfCHfPhmim3799dVvodqQon/preview",
+            "https://drive.google.com/file/d/14CwwDq2VOc6GMxNcHN8RnEOawgAG569L/preview",
+            "https://drive.google.com/file/d/1GD4DBgnRMMfyZk82BPK9S5SLnfXI8ySH/preview",
+            "https://drive.google.com/file/d/1l88zQuP3G7Q2ZkV4Vb41RH7n-nWOBFJf/preview",
+            "https://drive.google.com/file/d/1ThpUezyV_DRSKK-p49k48aw2vkJ2ESTo/preview",
+            "https://drive.google.com/file/d/1v6exFuWhHL1BAH_9WBKka1ol72pYRlJP/preview",
+            "https://drive.google.com/file/d/1L1vwJ_5fLigum6UZfMwPtk9X2hFqSts0/preview",
+            "https://drive.google.com/file/d/16HN4OdL1yZWVmmzcGw0L0ikK69nBmnii/preview",
+            "https://drive.google.com/file/d/1Y95O4_O5yrN29KEqEAd2atv553_sja29/preview",
+            "https://drive.google.com/file/d/1erehosQ6rw8eLWC26zPfpPh6tRjCC0uX/preview",
+            "https://drive.google.com/file/d/14Ll3Kz5-nmWPgE1dK3WRaPXlGCt7mZeO/preview",
+            "https://drive.google.com/file/d/1rbd4-Y1sQtmVXdlWDYybNcbOalhIQdbM/preview"
+        ]
+    },
+
       {
         "title": "Azumanga Daioh",
         "slug": "azumanga-daioh",
@@ -1146,10 +1401,10 @@
             "name": "Season 2 (OVA)",
             "download": "https://drive.google.com/uc?id=1m0ByuVPIQgSTG0-MjLMSdDkKXt2KGwLG&export=download",
             "streaming": [
-              "https://drive.google.com/file/d/1-__lBsEroKOV6xqc2Zwo3IELTjD41-_a/preview",
-              "https://drive.google.com/file/d/1DY-hp5I6sVEAy1THZXLN0EmQ-8hyvC55/preview",
-              "https://drive.google.com/file/d/10kzCJa6q2Ay_jz-0mxpYZhV6-op6Nhbv/preview",
-              "https://drive.google.com/file/d/1kRWVh1QYg_R-YvM1rfaRKgIc1zhi1v9F/preview"
+              "https://drive.google.com/file/d/1VkMVy2HDemsH92lFOd0W7btbud4xJTNX/preview",
+              "https://drive.google.com/file/d/1m2U6qvFEvZREeYs6yySXMghPWJzGqRld/preview",
+              "https://drive.google.com/file/d/11nZVes4hjtP84uVhT7ovrzGwNS0UtBnt/preview",
+              "https://drive.google.com/file/d/14Axn7z7OX10rIG7tIuHwyknRtuQMZGsB/preview"
             ]
           }
         ]
