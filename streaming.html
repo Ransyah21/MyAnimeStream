@@ -4,1507 +4,285 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="Gambar/logo-Myanime512.png" type="image/x-icon" />
-    <title>Streaming</title>
-    <!-- Tambahkan Font Awesome untuk ikon like/dislike/edit/delete/email -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Library jwt-decode untuk membaca token Google -->
-    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
-    <!-- Google Identity Services Script (diperlukan meskipun menggunakan metode redirect untuk fitur seperti auto-select dan disableAutoSelect) -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <title>Streaming Anime</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
-
-    <!-- ================================================== -->
-    <!-- --- STYLE CSS (GABUNGAN watch.css, footer dari index.css, dan partikel) --- -->
-    <!-- ================================================== -->
     <style>
-        /* Reset dan Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box; /* Lebih baik menggunakan box-sizing border-box */
-        }
-
-        html, body {
-            width: 100%;
-            min-height: 100vh; /* Pastikan minimal setinggi viewport */
-            scroll-behavior: smooth; /* Scrolling lebih halus */
-        }
-
+        /* Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background-color: #181818; /* Pindahkan background gelap ke body */
-            color: #fff; /* Pindahkan warna teks default ke body */
-            font-family: sans-serif;
-            font-weight: bold;
-            overflow-x: hidden; /* Mencegah scroll horizontal */
-            background-image: radial-gradient(#021027, #000000); /* Background gradient partikel */
-            position: relative; /* Untuk stacking context */
-            z-index: 1; /* Biarkan body di atas background partikel */
-            line-height: 1.6; /* Menambah jarak antar baris */
+            background-color: #181818; color: #fff; font-family: sans-serif;
+            overflow-x: hidden; background-image: radial-gradient(#021027, #000000);
+            position: relative; z-index: 1; line-height: 1.6;
         }
-         body::-webkit-scrollbar {
-            display: none; /* Untuk Chrome, Edge, Safari */
-          }
+        body::-webkit-scrollbar { display: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 2; }
+        
+        /* Particles (opsional, tapi saya sertakan untuk konsistensi) */
+        #particles-background { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -2; }
 
-
-        /* ================================================== */
-        /* --- STYLE BACKGROUND PARTIKEL (disalin dari index.html) --- */
-        /* ================================================== */
-
-        #particles-background {
-            position: fixed; /* Menggunakan fixed agar menutupi viewport */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh; /* Menutupi setinggi viewport */
-            z-index: -2; /* Pastikan di belakang konten utama dan body */
-            overflow: hidden; /* Sembunyikan partikel yang keluar area */
-            pointer-events: none; /* Agar tidak menghalangi interaksi mouse */
-        }
-
-        /* Kontainer untuk setiap partikel (mengatur posisi & animasi gerak) */
-        .circle-container {
-            position: absolute; /* Posisi absolut di dalam #particles-background */
-             width: 5px; height: 5px; /* Ukuran default, akan diatur via JS */
-             animation-iteration-count: infinite;
-             animation-timing-function: linear; /* Atau ease-in-out */
-        }
-
-        /* Elemen visual partikel (bentuk, warna, animasi fade/scale) */
-        .circle {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            mix-blend-mode: screen; /* Efek blending */
-            background-image: radial-gradient(
-              hsl(180, 100%, 80%), /* Warna cerah */
-              hsl(180, 100%, 80%) 10%,
-              hsla(180, 100%, 80%, 0) 56% /* Transparan di tepi */
-            );
-            /* Animasi fade dan scale */
-            animation: fade-frames 2s infinite ease-in-out alternate, scale-frames 3s infinite ease-in-out; /* Sesuaikan durasi/timing */
-        }
-
-        /* Keyframes untuk animasi partikel */
-        @keyframes fade-frames {
-          0%, 100% { opacity: 0.7; }
-          50% { opacity: 1; }
-        }
-
-        @keyframes scale-frames {
-          0%, 100% { transform: scale(0.5); }
-          50% { transform: scale(1.5); }
-        }
-
-        /* Keyframes untuk animasi gerak partikel (dari bawah ke atas kanan secara umum) */
-         @keyframes move-particle {
-             from { transform: translate3d(0vw, 100vh, 0); } /* Mulai dari bawah layar */
-             to { transform: translate3d(100vw, 0vh, 0); } /* Bergerak ke atas kanan */
-         }
-        /* CATATAN: JavaScript akan mengatur posisi awal, durasi, dan delay per partikel */
-
-        /* ================================================== */
-        /* --- AKHIR STYLE BACKGROUND PARTIKEL --- */
-        /* ================================================== */
-
-
-        /* ================================================== */
-        /* --- STYLE DARI watch.css KAMU --- */
-        /* ================================================== */
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative; /* Penting: untuk stacking context di atas partikel */
-            z-index: 2; /* Di atas background partikel */
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* Rasio 16:9 */
-            height: 0;
-            overflow: hidden;
-            margin-bottom: 20px;
-            background-color: black; /* Background saat iframe belum load */
-            border-radius: 10px; /* Tambahkan border radius */
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .episode-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 10px;
-            margin-top: 20px;
-            padding: 10px; /* Tambah padding */
-            background-color: #282828; /* Background gelap */
-            border-radius: 8px;
-            position: relative; z-index: 2; /* Di atas background */
-        }
-
-        .episode-btn {
-            padding: 10px;
-            background: #ffa200;
-            color: #181818;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            font-weight: bold;
-            text-align: center;
-            font-size: 0.9em;
-        }
-
-        .episode-btn:hover {
-            background: #f1ca47;
-        }
-
-        .current-episode {
-            background: white !important;
-            color: #181818 !important;
-            box-shadow: 0 0 8px rgba(255,162,0,0.5);
-        }
-
-        .loading {
-            text-align: center;
-            color: #fff;
-            font-size: 20px;
-            padding: 20px;
-            display: none; /* Disembunyikan default, ditampilkan via JS */
-        }
-
-        /* Style untuk tombol Kembali */
+        /* Tombol Kembali */
         .back-btn {
-            color: black !important;
-            text-decoration: none;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            display: inline-block;
-            padding: 10px 15px;
-            width: auto;
-            background-color: #ffa200;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-            position: relative; z-index: 2; /* Di atas background */
+            color: #181818 !important; text-decoration: none; border-radius: 20px;
+            margin-bottom: 20px; display: inline-block; padding: 10px 20px;
+            background-color: #ffa200; transition: all 0.3s ease; font-weight: bold;
         }
-        .back-btn:hover {
-            background-color: #ff8c00;
+        .back-btn:hover { background-color: #ff8c00; transform: translateY(-2px); }
+
+        /* Player & Episode List */
+        .video-container {
+            position: relative; padding-bottom: 56.25%; height: 0;
+            margin-bottom: 20px; background-color: black; border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
-
-
-        /* --- Style untuk Rating (Like/Dislike) --- */
-        .rating-section {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: #282828;
-            border-radius: 10px;
-            text-align: center;
-            color: #fff;
-            position: relative; z-index: 2; /* Di atas background */
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .episode-list {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px; margin-top: 20px; padding: 15px;
+            background-color: rgba(40, 40, 40, 0.8); backdrop-filter: blur(4px);
+            border-radius: 8px; border: 1px solid rgba(255, 162, 0, 0.15);
         }
-
-        .rating-section h2 {
-            color: #ffa200; margin-top: 0; margin-bottom: 15px; font-size: 1.8em;
+        .episode-btn {
+            padding: 10px; background: #3a3a3a; color: #ccc; border: 1px solid #555;
+            border-radius: 5px; cursor: pointer; transition: all 0.3s ease;
+            font-weight: bold; text-align: center; font-size: 0.9em;
         }
-
-        .rating-buttons {
-            display: flex; justify-content: center; gap: 20px; margin-bottom: 15px;
+        .episode-btn:hover { background: #ffa200; color: #181818; border-color: #ffa200; }
+        .current-episode {
+            background: #ffa200 !important; color: #181818 !important; border-color: #ffa200 !important;
+            box-shadow: 0 0 8px rgba(255,162,0,0.5); transform: scale(1.05);
         }
-
-        .rating-btn {
-            padding: 10px 20px; background-color: #3a3a3a; color: #fff;
-            border: none; border-radius: 5px; cursor: pointer; font-size: 1em;
-            transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; font-weight: bold;
+        
+        /* Detail Season (Mirip anime.html) */
+        .season-details-wrapper {
+            margin-top: 40px; display: flex; flex-direction: column; gap: 30px;
         }
-        .rating-btn:hover:not(:disabled) { background-color: #555; }
-        .rating-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-        .rating-btn.liked { background-color: #28a745; }
-        .rating-btn.liked:hover:not(:disabled) { background-color: #218838; }
-        .rating-btn.disliked { background-color: #dc3545; }
-        .rating-btn.disliked:hover:not(:disabled) { background-color: #c82333; }
-
-        .rating-info { color: #ccc; font-size: 0.9em; }
-
-
-        /* --- Style untuk Komentar --- */
-        .comment-section {
-            margin-top: 30px; padding: 20px; background-color: #282828;
-            border-radius: 10px; color: #fff;
-            position: relative; z-index: 2; /* Di atas background */
+        .season-title {
+            font-size: clamp(2em, 6vw, 3em); color: #ffa200; text-align: center;
+            font-weight: bold; text-shadow: 0 0 8px rgba(255, 162, 0, 0.4);
         }
-        .comment-section h2 { color: #ffa200; margin-top: 0; margin-bottom: 20px; font-size: 1.8em; text-align: center; }
-
-        .user-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #3a3a3a; }
-        .user-pic { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #ffa200; flex-shrink: 0; }
-        .user-name { font-weight: bold; flex-grow: 1; color: #eee; word-break: break-word; }
-
-        .stylebutton {
-             padding: 8px 15px; background-color: #ffa200; color: #181818;
-             border: none; border-radius: 4px; cursor: pointer; transition: all 0.3s ease;
-             font-weight: bold; text-align: center; display: inline-block;
+        .detail-content {
+            display: flex; gap: 40px;
         }
-        .stylebutton:hover { background-color: #ff8c00; transform: translateY(-1px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        #signout-btn { font-size: 0.9em; }
-
-
-        #comment-input-area { margin-bottom: 20px; background-color: transparent; }
-        #comment-input-area textarea {
-            width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #444;
-            border-radius: 5px; background-color: #3a3a3a; color: #fff; resize: vertical;
-            box-sizing: border-box; font-family: sans-serif; line-height: 1.5;
+        .season-poster {
+            width: 35%; max-width: 320px; flex-shrink: 0;
+            border-radius: 12px; object-fit: cover;
+            border: 3px solid rgba(255, 162, 0, 0.3); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
         }
-        #comment-input-area textarea:focus { outline: none; border-color: #ffa200; box-shadow: 0 0 5px rgba(255, 162, 0, 0.3); }
-        #post-comment-btn { padding: 10px 20px; display: block; width: 100%; box-sizing: border-box; }
-        #post-comment-btn:disabled { background-color: #555; cursor: not-allowed; opacity: 0.7; }
-
-        #comment-login-prompt { text-align: center; color: #ccc; font-size: 0.9em; }
-        #comment-login-prompt span { text-decoration: underline; cursor: pointer; }
-        #comment-login-prompt span:hover { color: white; }
-
-
-        /* --- Style untuk Daftar Komentar --- */
-        #comments-list { margin-top: 20px; }
-        .comment-item {
-            background-color: #3a3a3a; padding: 15px; margin-bottom: 15px; border-radius: 8px;
-            border: 1px solid #444; word-wrap: break-word; overflow-wrap: break-word;
+        .season-info-box {
+            flex-grow: 1; display: flex; flex-direction: column; gap: 25px;
         }
-        .comment-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #555; }
-        .comment-user-pic { width: 30px; height: 30px; border-radius: 50%; border: 1px solid #ffa200; flex-shrink: 0; }
-        .comment-user-name { font-weight: bold; color: #ffa200; font-size: 1em; word-break: break-word; }
-        .comment-timestamp { font-size: 0.8em; color: #ccc; margin-left: auto; flex-shrink: 0; }
-        .comment-body { margin-bottom: 10px; }
-        .comment-text { margin: 0; color: #eee; line-height: 1.5; }
-        .comment-edit-text {
-            width: 100%; padding: 10px; border: 1px solid #ffa200; border-radius: 5px;
-            background-color: #282828; color: #fff; resize: vertical; box-sizing: border-box;
-            font-family: sans-serif; font-size: 1em; line-height: 1.5;
+        .info-box, .synopsis-box {
+            background-color: rgba(40, 40, 40, 0.8); backdrop-filter: blur(4px);
+            padding: 20px; border-radius: 10px; border: 1px solid rgba(255, 162, 0, 0.15);
         }
-        .comment-actions { text-align: right; }
-        .comment-actions button {
-            padding: 5px 10px; margin-left: 10px; border: none; border-radius: 4px;
-            cursor: pointer; font-size: 0.9em; transition: background-color 0.3s ease;
-             font-weight: normal; background-color: #555; color: white;
+        .info-box h3, .synopsis-box h3 {
+            color: #ffa200; font-size: 1.4em; margin-bottom: 15px;
+            padding-bottom: 8px; border-bottom: 1px solid rgba(255, 162, 0, 0.2);
         }
-        .comment-actions button:hover { background-color: #777; }
-        .edit-comment-btn { background-color: #007bff; } .edit-comment-btn:hover { background-color: #0056b3; }
-        .delete-comment-btn { background-color: #dc3545; } .delete-comment-btn:hover { background-color: #c82333; }
+        .info-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px 20px;
+        }
+        .info-item { font-size: 0.95em; color: #eee; line-height: 1.5; }
+        .info-item strong { color: #ffa200; margin-right: 5px; }
+        .synopsis-text { color: #ccc; font-size: 1em; line-height: 1.7; text-align: justify; }
 
+        /* Tombol Lanjut Season */
+        .continue-section { text-align: center; margin-top: 40px; }
+        .continue-btn {
+            display: inline-block; padding: 15px 35px;
+            font-size: 1.1em; font-weight: bold; text-decoration: none;
+            color: #181818; background-color: #28a745; /* Warna hijau untuk lanjut */
+            border-radius: 30px; transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        }
+        .continue-btn:hover { background-color: #218838; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(40, 167, 69, 0.5); }
+        .loading { text-align: center; font-size: 20px; padding: 20px; display: none; }
 
-        /* --- Responsif watch.css --- */
+        /* Responsive */
         @media (max-width: 768px) {
-            .rating-section h2, .comment-section h2 { font-size: 1.5em; }
-            .rating-buttons { flex-direction: column; gap: 10px; }
-            .rating-btn { justify-content: center; width: 100%; box-sizing: border-box; }
-            .user-info { flex-direction: column; gap: 10px; text-align: center; }
-            .user-pic { width: 30px; height: 30px; }
-            .user-name { font-size: 0.9em; }
-            #signout-btn { width: 100%; box-sizing: border-box; font-size: 0.8em; }
-            .comment-header { flex-direction: column; align-items: flex-start; gap: 5px; }
-            .comment-timestamp { margin-left: 0; text-align: left; }
-            .comment-actions { text-align: left; }
-            .comment-actions button { margin-left: 0; margin-right: 10px; margin-top: 5px; }
+            .detail-content { flex-direction: column; align-items: center; }
+            .season-poster { width: 100%; max-width: 250px; }
         }
-        /* ================================================== */
-        /* --- AKHIR STYLE watch.css KAMU --- */
-        /* ================================================== */
-
-
-        /* ================================================== */
-        /* --- STYLE FOOTER (disalin dari index.html) --- */
-        /* ================================================== */
-
-        .footer {
-            background-color: #1f1f1f; color: #fff; padding: 20px 0; font-size: 14px;
-            position: relative; z-index: 3; /* Penting: di atas semua konten dan background */
-            margin-top: 50px; /* Beri jarak dari konten di atasnya */
-        }
-        .footer-section {
-            display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap;
-            max-width: 1200px; margin: 0 auto; padding: 0 20px;
-        }
-        .footer-item {
-            width: 30%; min-width: 200px; margin-bottom: 20px; padding: 0 10px;
-            box-sizing: border-box; text-align: left;
-        }
-        .footer-item h3 {
-            display: block; margin: 0 0 10px 0; font-size: 18px;
-            border-bottom: 1px solid #444; padding-bottom: 5px; color: orange; text-align: left;
-        }
-        .social-links-container {
-             display: flex; flex-direction: column; gap: 10px; margin-top: 10px; align-items: flex-start;
-        }
-        .footer-item p {
-            margin: 0; display: flex; align-items: center; font-size: 14px;
-        }
-        .footer-item p a { color: #ccc; text-decoration: none; transition: color 0.3s ease; }
-        .footer-item p a:hover { color: #ffa200; text-decoration: underline; }
-
-        .social-icon {
-          margin-right: 8px; vertical-align: middle; width: 20px; height: auto; color: #fff;
-          transition: all 0.3s ease; flex-shrink: 0;
-        }
-        .trakteer-icon { width: 20px; height: auto; }
-        .social-icon:hover { transform: scale(1.2); color: #ffa200; filter: brightness(1.5); }
-
-
-        /* --- Responsif Footer --- */
-        @media (min-width: 769px) {
-          .footer-section { justify-content: space-between; gap: 20px; }
-          .footer-item { width: 30%; margin-bottom: 0; text-align: left; }
-          .social-links-container { flex-direction: row; flex-wrap: wrap; gap: 15px; justify-content: flex-start; }
-          .footer-item p { margin-right: 15px; margin-bottom: 5px; }
-        }
-        @media (max-width: 768px) {
-          .footer-section { flex-direction: column; align-items: center; gap: 30px; padding: 0 10px; }
-          .footer-item { width: 95%; min-width: auto; margin-bottom: 0; padding: 0; text-align: center; }
-          .footer-item h3 { text-align: center; margin-bottom: 15px; }
-          .social-links-container { flex-direction: column; align-items: center; gap: 10px; margin-top: 5px; }
-          .footer-item p { justify-content: center; margin-right: 0; }
-          .social-icon { width: 18px; }
-        }
-
-        /* ================================================== */
-        /* --- AKHIR STYLE FOOTER --- */
-        /* ================================================== */
-
-
-        /* Styles dari watch.css yang mungkin tidak terpakai di index.html tapi penting di watch.html */
-        /* .video, .main h2 */ /* Style ini sepertinya untuk halaman detail atau watch */
-
-        /* Pastikan tidak ada style yang tumpang tindih atau konflik */
-
     </style>
-    <!-- ================================================== -->
-    <!-- --- AKHIR STYLE CSS --- -->
-    <!-- ================================================== -->
 </head>
 <body>
-
-    <!-- ================================================== -->
-    <!-- --- BACKGROUND PARTIKEL HTML --- -->
-    <!-- ================================================== -->
-    <!-- Kontainer untuk partikel. JavaScript akan membuat div.circle-container di dalamnya -->
     <div id="particles-background"></div>
-    <!-- ================================================== -->
-    <!-- --- AKHIR BACKGROUND PARTIKEL HTML --- -->
-    <!-- ================================================== -->
-
-
-    <!-- Div untuk Google Sign-In, disembunyikan secara visual -->
-    <!-- Google Identity Services v2 tidak perlu callback jika pakai redirect flow -->
-    <!-- Tapi div ini perlu ada agar GSI script bisa mendeteksi state user -->
-    <div id="g_id_onload"
-         data-client_id="429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com" <!-- PASTIKAN INI CLIENT ID PUNYA KAMU -->
-    </div>
-     <!-- Tombol bawaan Google, disembunyikan, GSI v2 akan handle proses login -->
-    <div class="g_id_signin"
-         data-type="standard" data-size="large" data-theme="filled_black"
-         data-text="sign_in_with" data-shape="rectangular" data-logo_alignment="left"
-         style="display: none;">
-    </div>
-    <!-- Akhir Google Sign-In Div -->
-
 
     <div class="container">
-        <!-- Tombol Kembali -->
-        <a href="index.html" class="back-btn">← Kembali</a>
+        <a id="back-link" href="index.html" class="back-btn">← Kembali</a>
 
-        <!-- Video Player dan Daftar Episode -->
         <div id="player-container">
             <div class="video-container">
-                <!-- Tambahkan sandbox attribute untuk keamanan iframe dari pihak ketiga -->
                 <iframe id="main-player" allowfullscreen sandbox="allow-same-origin allow-scripts allow-forms allow-presentation"></iframe>
             </div>
-            <div id="episode-container" class="episode-list">
-                 <!-- Episode buttons will be loaded here by JavaScript -->
-            </div>
+            <div id="episode-container" class="episode-list"></div>
         </div>
+        
+        <div id="season-details-container" style="display: none;">
+            <!-- Konten detail season di-inject oleh JS -->
+        </div>
+        
+        <div id="continue-container">
+            <!-- Tombol lanjut season di-inject oleh JS -->
+        </div>
+        
         <div id="loading" class="loading">Memuat data...</div>
+    </div>
 
-        <!-- Bagian Rating (Like / Dislike) -->
-        <div class="rating-section">
-            <h2>Rating Anime Ini</h2>
-            <div class="rating-buttons">
-                <button id="like-btn" class="rating-btn" disabled><i class="far fa-thumbs-up"></i> Like (<span id="like-count">0</span>)</button>
-                <button id="dislike-btn" class="rating-btn" disabled><i class="far fa-thumbs-down"></i> Dislike (<span id="dislike-count">0</span>)</button>
-            </div>
-             <p class="rating-info" id="rating-info">Login untuk memberikan rating!</p>
-        </div>
-        <!-- Akhir Bagian Rating -->
+    <!-- Footer bisa ditambahkan di sini jika mau -->
 
-        <!-- Bagian Komentar -->
-        <div class="comment-section">
-            <h2>Komentar</h2>
-
-            <div id="user-info" class="user-info" style="display: none;">
-                <img id="user-pic" src="" alt="Profile Picture" class="user-pic">
-                <span id="user-name"></span>
-                <button id="signout-btn" class="stylebutton">Keluar</button>
-            </div>
-
-            <div id="comment-input-area">
-                <textarea id="comment-text" placeholder="Tulis komentar Anda..." rows="4" disabled></textarea> <!-- Non-aktifkan default -->
-                <button id="post-comment-btn" class="stylebutton" disabled>Kirim Komentar</button> <!-- Non-aktifkan default -->
-                 <p id="comment-login-prompt">Silakan <span id="signin-link">login</span> dengan Google untuk berkomentar.</p>
-            </div>
-
-            <div id="comments-list">
-                <!-- Komentar akan dimuat di sini oleh JavaScript -->
-                 <p style="text-align:center; color:#ccc;">Belum ada komentar. Jadilah yang pertama!</p>
-            </div>
-
-             <p style="text-align: center; margin-top: 20px; color: #ff8c00; font-size: 0.9em;">Catatan: Komentar dan Rating tersimpan hanya di browser Anda.</p> <!-- Peringatan penting -->
-
-        </div>
-        <!-- Akhir Bagian Komentar -->
-
-    </div> <!-- Akhir container -->
-
-    <!-- Footer -->
-     <footer class="footer">
-        <div class="footer-section">
-            <div class="footer-item">
-                <h3>Hak Cipta</h3>
-                <p>Hak Cipta © 2024 MyAnime.</p>
-                <p>Dikelola dan dikembangkan oleh Ransyah</p>
-            </div>
-            <div class="footer-item">
-                <h3>Ikuti & Support</h3>
-                <div class="social-links-container">
-                     <p>
-                        <i class="fab fa-instagram social-icon"></i>
-                        <a href="https://www.instagram.com/ransyah_32/" target="_blank" rel="noopener noreferrer">Instagram</a>
-                    </p>
-                    <p>
-                        <img src="Gambar/trakteer_logo.png" alt="Trakteer Icon" class="trakteer-icon social-icon"> <!-- PASTIKAN PATH BENAR -->
-                        <a href="https://trakteer.id/ransyah4" target="_blank" rel="noopener noreferrer">Trakteer!</a>
-                    </p>
-                     <p>
-                         <i class="fas fa-envelope social-icon"></i>
-                         <a href="mailto:rizky1234kb@gmail.com">Email</a>
-                     </p>
-                 </div>
-            </div>
-            <div class="footer-item">
-                <h3>Hubungi Kami</h3>
-                <p><a href="mailto:rizky1234kb@gmail.com">rizky1234kb@gmail.com</a></p>
-            </div>
-        </div>
-    </footer>
-    <!-- Akhir Footer -->
-
-    <!-- ================================================== -->
-    <!-- --- KODE JAVASCRIPT (GABUNGAN watch.js, login dari index.js, dan partikel JS) --- -->
-    <!-- ================================================== -->
     <script>
-        // Kode JavaScript gabungan di sini
-
-        // ============== KODE JAVASCRIPT LAMA KAMU (VIDEO PLAYER & EPISODE) ==============
-        // Ambil parameter dari URL
         const urlParams = new URLSearchParams(window.location.search);
-        const animeSlug = decodeURIComponent(urlParams.get('slug')); // Decode slug
-        const seasonIndex = parseInt(urlParams.get('season')) || 0;
-
-        // Elemen DOM
+        const animeSlug = decodeURIComponent(urlParams.get('slug') || '');
+        let seasonSlug = urlParams.get('season_slug'); // Deklarasikan di sini
+    
         const player = document.getElementById('main-player');
         const episodeContainer = document.getElementById('episode-container');
-        const loading = document.getElementById('loading'); // Elemen loading (pesan teks)
-
-
-        // Fungsi untuk convert Google Drive URL
-        function convertToEmbedUrl(url) {
-            try {
-                // Handle berbagai format URL Google Drive
-                const fileIdMatch = url.match(/\/d\/([^\/]+)/) || url.match(/id=([^&]+)/);
-                if(fileIdMatch && fileIdMatch[1]) {
-                    // Menggunakan /preview lebih aman dari /embed
-                    return `https://drive.google.com/file/d/${fileIdMatch[1]}/preview`;
-                }
-                 // Jika URL bukan GDrive, kembalikan apa adanya
-                return url;
-            } catch {
-                console.error("Error converting URL:", url, error);
-                return url;
-            }
+        const detailsContainer = document.getElementById('season-details-container');
+        const continueContainer = document.getElementById('continue-container');
+        const backLink = document.getElementById('back-link');
+        const loading = document.getElementById('loading');
+    
+        if (animeSlug) {
+            backLink.href = `anime.html?slug=${encodeURIComponent(animeSlug)}`;
         }
-
-        // Load data anime dari file JSON lokal
+    
+        function convertToEmbedUrl(url) {
+            const fileIdMatch = url.match(/\/d\/([^\/]+)/) || url.match(/id=([^&]+)/);
+            return fileIdMatch ? `https://drive.google.com/file/d/${fileIdMatch[1]}/preview` : url;
+        }
+    
         async function loadStreamingData() {
             try {
-                // Tampilkan loading pesan teks
                 loading.style.display = 'block';
-                 console.log("🔄 Memulai load data anime...");
-
-                // Fetch data anime dari file JSON lokal
-                // PASTIKAN PATH KE anime-data.json BENAR RELATIF TERHADAP watch.html ini
-                const response = await fetch('anime-data.json');
-                if(!response.ok) {
-                     // Jika file tidak ditemukan (404) atau error lain
-                     const errorMsg = `Gagal memuat data anime: Status ${response.status}`;
-                     console.error(errorMsg);
-                     showError(errorMsg); // Tampilkan error di halaman
-                     return; // Hentikan eksekusi
-                }
-
+                if (!animeSlug) throw new Error("Parameter 'slug' anime tidak ditemukan di URL.");
+    
+                const response = await fetch('./anime-data.json'); // Pastikan path ini benar
+                if (!response.ok) throw new Error(`Gagal memuat data: Status ${response.status}`);
+    
                 const fullData = await response.json();
-                const animeList = fullData.data || fullData; // Handle struktur data berbeda (objek dengan properti data atau array langsung)
-
-                if(!Array.isArray(animeList)) {
-                     const errorMsg = 'Format data anime tidak valid.';
-                     console.error(errorMsg);
-                     showError(errorMsg);
-                     return;
+                const animeList = fullData.data || fullData;
+    
+                const anime = animeList.find(a => a.slug?.trim().toLowerCase() === animeSlug.trim().toLowerCase());
+                if (!anime) throw new Error(`Anime dengan slug "${animeSlug}" tidak ditemukan.`);
+    
+                if (!anime.seasons || anime.seasons.length === 0) {
+                    throw new Error(`Anime "${anime.title}" tidak memiliki data season yang valid.`);
                 }
-                 console.log("✅ Data anime diterima:", animeList.length, "items.");
-
-                // Cari anime dengan case-insensitive dan trim
-                const anime = animeList.find(a =>
-                    a.slug?.trim().toLowerCase() === animeSlug.trim().toLowerCase()
-                );
-
-                if(!anime) {
-                     const errorMsg = `Anime dengan slug "${animeSlug}" tidak ditemukan dalam data.`;
-                     console.warn(errorMsg);
-                     showError(errorMsg);
-                     return;
-                }
-                 console.log("✅ Anime ditemukan:", anime.title);
-
-                // Handle episode
-                let episodes = [];
-
-                if(anime.seasons?.length > 0) {
-                    // Ambil episode dari season yang dipilih
-                    const season = anime.seasons[seasonIndex];
-                    if(!season) {
-                         const errorMsg = `Season ${seasonIndex + 1} untuk anime "${anime.title}" tidak tersedia.`;
-                         console.warn(errorMsg);
-                         showError(errorMsg);
-                         return;
-                    }
-                    // Pastikan season.streaming ada dan berupa array sebelum map
-                    episodes = Array.isArray(season.streaming) ? season.streaming.map(convertToEmbedUrl) : [];
-                     console.log(`✅ Episodes found for Season ${seasonIndex + 1}:`, episodes.length);
-                }
-                else if(Array.isArray(anime.streaming)) { // Fallback untuk struktur lama (jika tidak pakai seasons)
-                    episodes = anime.streaming.map(convertToEmbedUrl);
-                     console.log(`✅ Episodes found (old structure):`, episodes.length);
-                }
-                 else {
-                      console.warn("Anime structure does not contain 'seasons' or 'streaming' array.");
-                 }
-
-
-                if(episodes.length === 0) {
-                     const errorMsg = `Episode untuk anime "${anime.title}" (Season ${seasonIndex + 1}) belum tersedia.`;
-                     console.warn(errorMsg);
-                     showError(errorMsg);
-                     return;
-                }
-
-                // Update UI
-                loading.style.display = 'none'; // Sembunyikan loading pesan teks
-                player.src = episodes[0]; // Set episode pertama
-                createEpisodeButtons(episodes); // Buat tombol episode
-
-                // Setelah data anime termuat dan diproses, load komentar dan rating untuk anime ini
-                 console.log("✅ Streaming data loaded successfully. Loading comments and ratings...");
-                loadComments();
-                loadRatings();
-
-            } catch (error) {
-                console.error('❌ Error loading streaming data:', error);
-                // Tampilkan pesan error di halaman jika ada kesalahan
-                showError(error.message || 'Terjadi kesalahan saat memuat data streaming.');
-            }
-        }
-
-        function createEpisodeButtons(episodes) {
-            episodeContainer.innerHTML = ''; // Bersihkan daftar tombol lama
-
-            episodes.forEach((episodeUrl, index) => {
-                const btn = document.createElement('button');
-                btn.className = `episode-btn${index === 0 ? ' current-episode' : ''}`; // Tambahkan class current-episode untuk episode pertama
-                btn.textContent = `Episode ${index + 1}`;
-
-                // Tambahkan event listener untuk tombol episode
-                btn.onclick = () => {
-                    player.src = episodeUrl; // Ganti sumber iframe player
-                    // Hapus class 'current-episode' dari semua tombol
-                    document.querySelectorAll('.episode-btn').forEach(b =>
-                        b.classList.remove('current-episode'));
-                    // Tambahkan class 'current-episode' ke tombol yang diklik
-                    btn.classList.add('current-episode');
-                     console.log(`Playing Episode ${index + 1}: ${episodeUrl}`);
-                };
-
-                episodeContainer.appendChild(btn); // Tambahkan tombol ke container
-            });
-             console.log("Episode buttons created:", episodes.length);
-        }
-
-        // Fungsi untuk menampilkan pesan error di halaman
-        function showError(message) {
-             loading.style.display = 'none'; // Sembunyikan loading jika tampil
-
-             // Temukan container utama atau body jika container tidak ada
-             const targetElement = document.querySelector('.container') || document.body;
-
-             // Buat konten error HTML
-             const errorHtml = `
-                <div style="text-align: center; padding: 40px;">
-                    <h1 style="color: #e74c3c; margin-bottom: 20px;">Terjadi Kesalahan!</h1>
-                    <p style="color: #ccc; font-size: 1.1em;">${message}</p>
-                    <a href="index.html" class="back-btn" style="margin-top: 30px;">← Kembali ke Beranda</a>
-                </div>
-             `;
-
-             // Ganti konten container atau body dengan pesan error
-             if (targetElement) {
-                 targetElement.innerHTML = errorHtml;
-             } else {
-                 // Fallback jika tidak ada container maupun body (sangat tidak mungkin)
-                 document.body.innerHTML = errorHtml;
-             }
-             console.error("Error displayed on page:", message);
-        }
-
-
-        // ============== KODE JAVASCRIPT (GOOGLE LOGIN, KOMENTAR, RATING) ==============
-        // Bagian ini diadaptasi dari watch.js sebelumnya
-
-        // --- Konfigurasi Google OAuth ---
-        // PASTIKAN CLIENT_ID DAN REDIRECT_URI SESUAI DENGAN YANG TERDAFTAR DI GOOGLE CONSOLE
-        const CLIENT_ID = "429779218315-46milavmlmmbb1b1v5p6v4mbh1o40uk6.apps.googleusercontent.com"; // <-- PASTIKAN INI CLIENT ID KAMU
-        // REDIRECT_URI untuk halaman watch.html ini
-        const REDIRECT_URI = window.location.origin + window.location.pathname; // Mengarah kembali ke halaman ini sendiri
-
-        let currentUser = null; // Variabel untuk menyimpan data pengguna yang login
-
-
-        // Ambil info pengguna dari Google API (dipanggil setelah dapat access token)
-        async function getUserInfo(accessToken) {
-          console.log("Fetching user info using access token...");
-          try {
-            const response = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
-              headers: { Authorization: `Bearer ${accessToken}` }
-            });
-             console.log("User info response status:", response.status);
-            if (!response.ok) {
-                 console.error("Failed to fetch user info:", response.status, response.statusText);
-                 // Hapus token jika gagal fetch user info (misal token expired/invalid)
-                 localStorage.removeItem('access_token');
-                 localStorage.removeItem('user_info');
-                 sessionStorage.removeItem('currentUser');
-                 // Tidak perlu throw error lagi, handle di initAuth
-                 return null; // Mengembalikan null jika gagal
-             }
-            const userInfo = await response.json();
-             console.log("User info received:", userInfo);
-            return userInfo; // Mengembalikan objek user info
-          } catch (error) {
-            console.error("Error fetching user info:", error);
-            // Pastikan storage bersih jika terjadi error lain saat fetch (misal jaringan)
-             localStorage.removeItem('access_token');
-             localStorage.removeItem('user_info');
-             sessionStorage.removeItem('currentUser');
-            return null; // Mengembalikan null jika gagal
-          }
-        }
-
-        // Fungsi untuk memulai alur login Google (Redirect Flow)
-        function handleLogin() {
-          console.log("Attempting Google login (Redirect Flow)...");
-          // Bersihkan potential previous tokens before starting new flow
-          localStorage.removeItem('access_token');
-          localStorage.removeItem('user_info');
-          sessionStorage.removeItem('currentUser');
-
-          // Parameter scope: 'email' dan 'profile' untuk mendapatkan info dasar user
-          const oauth2Url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=email profile&prompt=select_account`;
-           // Gunakan encodeURIComponent untuk redirect_uri
-
-          // Arahkan browser ke URL Google OAuth
-          window.location.href = oauth2Url;
-        }
-
-        // Fungsi Logout
-        function handleLogout() {
-          console.log("Attempting Google logout...");
-          // Hapus data user dari storage
-          localStorage.removeItem('access_token');
-          localStorage.removeItem('user_info');
-          sessionStorage.removeItem('currentUser');
-
-          // Menggunakan GSI untuk logout/clear session di sisi Google juga (jika GSI di-init)
-          if (google && google.accounts && google.accounts.id) {
-              google.accounts.id.disableAutoSelect(); // Mencegah auto-login berikutnya
-              console.log('Google auto-select disabled.');
-          }
-
-          currentUser = null; // Set user ke null
-          updateUIForLogout(); // Update UI
-
-           console.log("User logged out.");
-           // Optional: show logout notification
-           // showNotification("Anda telah logout.", "info"); // Notifikasi hanya ada di index.html
-        }
-
-
-        // Inisialisasi Auth saat halaman dimuat (cek hash URL & storage)
-        async function initAuth() {
-            console.log("Initializing Auth flow...");
-            // Cek URL hash untuk access token (setelah redirect dari Google)
-            const hash = window.location.hash.substring(1); // Hapus '#' di awal hash
-            const params = new URLSearchParams(hash);
-            const accessToken = params.get('access_token'); // Ambil nilai access_token
-
-            // Cek apakah ada access token baru di hash URL
-            if (accessToken) {
-              console.log("✅ Access token found in URL hash.");
-              // Baru saja redirect dari Google. Ambil info user dan simpan.
-              try {
-                const userInfo = await getUserInfo(accessToken); // Fungsi ini juga validasi token & hapus storage jika gagal
-                if (userInfo) { // Cek apakah userInfo berhasil didapatkan (tidak null)
-                   console.log("✅ User info successfully retrieved from Google.");
-                  // Simpan token dan info user di localStorage (untuk persistensi antar sesi)
-                  localStorage.setItem('access_token', accessToken); // Access token hanya valid sementara
-                  localStorage.setItem('user_info', JSON.stringify(userInfo)); // Info user lebih permanen
-                   // Simpan juga di sessionStorage (untuk sesi browser saat ini, lebih cepat diakses)
-                   sessionStorage.setItem('currentUser', JSON.stringify({
-                      id: userInfo.id || userInfo.sub, // Gunakan id atau sub sebagai ID unik Google
-                      name: userInfo.name,
-                      picture: userInfo.picture,
-                      email: userInfo.email // Email penting untuk beberapa kasus
-                   }));
-
-                  // Hapus hash dari URL agar tidak terlihat dan tidak memicu re-auth saat refresh
-                  // Gunakan history.replaceState untuk mengganti history saat ini
-                  // Pertahankan parameter query string (?slug=...)
-                  history.replaceState(null, '', window.location.pathname + window.location.search);
-
-                   console.log("✅ Authentication successful from redirect. Data stored, URL hash cleared.");
-
-                   // Set currentUser global
-                   currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-
-                   // Update UI ke login state
-                   updateUIForLogin();
-
+    
+                let currentSeason;
+    
+                if (seasonSlug) {
+                    currentSeason = anime.seasons.find(s => s.season_slug === seasonSlug);
+                    if (!currentSeason) throw new Error(`Season dengan slug "${seasonSlug}" tidak ditemukan untuk anime ini.`);
                 } else {
-                   // getUserInfo sudah mencatat error dan membersihkan storage jika gagal
-                   console.error("❌ Authentication failed: Could not retrieve user info from Google API.");
-                    // Update UI ke logout state jika pengambilan info gagal
-                   updateUIForLogout();
+                    console.warn("URL tidak memiliki 'season_slug'. Menggunakan season pertama sebagai default.");
+                    currentSeason = anime.seasons[0];
+                    if (!currentSeason || !currentSeason.season_slug) throw new Error("Tidak dapat menemukan season default yang valid untuk anime ini.");
+                    seasonSlug = currentSeason.season_slug; // Update seasonSlug agar tombol Lanjut berfungsi
                 }
-              } catch (error) {
-                console.error("❌ Authentication failed during token processing:", error);
-                 alert('Login failed. Silakan coba lagi!');
-                 // Error sudah dicatat dan storage dibersihkan di getUserInfo/handleLogout
-                 updateUIForLogout(); // Pastikan UI logout
-              }
-            } else {
-                 console.log("🔍 No access token in URL hash. Checking local storage/session storage for existing session.");
-                // Tidak ada token baru di hash, cek apakah sudah login sebelumnya
-                // Ini akan membaca dari storage dan set `currentUser` jika ada
-                checkLoginStatus();
-            }
-             // Update menu navigasi setelah mencoba inisialisasi auth
-             // updateMenu(); // Menu navigasi tidak ada di watch.html, hapus ini jika tidak dipakai
-        }
-
-        // Cek status login dari storage saat halaman dimuat
-        function checkLoginStatus() {
-            console.log("Checking login status from storage...");
-            // Cek dari Session Storage terlebih dahulu, lalu fallback ke Local Storage
-            const storedUser = sessionStorage.getItem('currentUser') || localStorage.getItem('user_info');
-            const storedToken = localStorage.getItem('access_token'); // Cek keberadaan access token
-
-            if (storedUser && storedToken) { // Memastikan ada data user dan token
-                try {
-                     // Parse user info dari storage
-                     const userInfo = JSON.parse(storedUser);
-                     // Basic check if data looks valid (punya ID unik)
-                     if (userInfo && (userInfo.id || userInfo.sub) && userInfo.name && userInfo.picture) {
-                        // Set currentUser global
-                        currentUser = {
-                            id: userInfo.id || userInfo.sub, // Gunakan id atau sub
-                            name: userInfo.name,
-                            picture: userInfo.picture,
-                             email: userInfo.email // Mungkin ada email
-                        };
-                        console.log("✅ User found in storage:", currentUser);
-                        // Update UI ke login state
-                        updateUIForLogin();
-
-                        // Opsional: Verifikasi token di background jika perlu (lebih kompleks)
-                        // Untuk simulasi Local Storage ini, kita asumsikan token valid jika ada
-                     } else {
-                         // Data user di storage rusak atau tidak lengkap
-                         console.warn('Invalid user data found in storage.');
-                         throw new Error('Invalid user data in storage.'); // Lempar error untuk ditangkap di catch
-                     }
-                } catch (error) {
-                    console.error('Error reading user from storage:', error);
-                    // Bersihkan storage jika data rusak atau parsing error
-                    handleLogout(); // handleLogout akan membersihkan storage dan update UI ke logout state
-                }
-            } else {
-                 console.log("❌ User session not found in storage.");
-                 // Tidak ada data login di storage, update UI ke logout state
-                 updateUIForLogout();
+    
+                document.title = `Nonton ${anime.title} - ${currentSeason.name}`;
+    
+                const episodes = currentSeason.streaming?.map(convertToEmbedUrl) || [];
+                if (episodes.length === 0) throw new Error(`Episode untuk ${currentSeason.name} belum tersedia.`);
+    
+                loading.style.display = 'none';
+                player.src = episodes[0];
+                createEpisodeButtons(episodes);
+                renderSeasonDetails(currentSeason, anime.image);
+                renderContinueButton(anime.seasons, currentSeason.season_slug);
+    
+            } catch (error) {
+                console.error('Error:', error);
+                showError(error.message);
             }
         }
-
-
-        // Update UI berdasarkan status login
-        function updateUIForLogin() {
-            console.log("🛠️ Updating UI to Login state...");
-            document.getElementById('user-info').style.display = 'flex'; // Tampilkan info user
-            document.getElementById('user-pic').src = currentUser.picture || 'Gambar/default-profile.png'; // Gunakan gambar default jika tidak ada
-            document.getElementById('user-name').textContent = `Login sebagai ${currentUser.name || 'User'}`; // Gunakan 'User' jika nama tidak ada
-
-            document.getElementById('comment-text').disabled = false; // Aktifkan textarea komentar
-            document.getElementById('post-comment-btn').disabled = false; // Aktifkan tombol kirim komentar
-            document.getElementById('comment-login-prompt').style.display = 'none'; // Sembunyikan prompt login komentar
-
-            // Aktifkan tombol rating
-            document.getElementById('like-btn').disabled = false;
-            document.getElementById('dislike-btn').disabled = false;
-            document.getElementById('rating-info').style.display = 'none'; // Sembunyikan info login untuk rating
-
-            document.getElementById('signout-btn').style.display = 'inline-block'; // Tampilkan tombol logout
-
-            // Refresh komentar dan rating setelah UI login diupdate
-            // Ini penting agar komentar/rating user yang login terlihat
-            loadComments();
-            loadRatings();
-             console.log("UI updated for logged in user.");
-        }
-
-        function updateUIForLogout() {
-            console.log("🛠️ Updating UI to Logout state...");
-            currentUser = null; // Pastikan user null
-            document.getElementById('user-info').style.display = 'none'; // Sembunyikan info user
-
-            document.getElementById('comment-text').disabled = true; // Non-aktifkan textarea komentar
-            document.getElementById('comment-text').value = ''; // Kosongkan textarea
-            document.getElementById('post-comment-btn').disabled = true; // Non-aktifkan tombol kirim komentar
-            document.getElementById('comment-login-prompt').style.display = 'block'; // Tampilkan prompt login komentar
-
-            // Non-aktifkan tombol rating
-            document.getElementById('like-btn').disabled = true;
-            document.getElementById('dislike-btn').disabled = true;
-            // Reset tampilan tombol like/dislike (hapus class liked/disliked, kembalikan ikon outline)
-            likeBtn.classList.remove('liked');
-            dislikeBtn.classList.remove('disliked');
-            likeBtn.querySelector('i').className = 'far fa-thumbs-up'; // Ikon outline
-            dislikeBtn.querySelector('i').className = 'far fa-thumbs-down'; // Ikon outline
-
-
-            document.getElementById('rating-info').style.display = 'block'; // Tampilkan info login untuk rating
-
-            document.getElementById('signout-btn').style.display = 'none'; // Sembunyikan tombol logout
-
-             // Refresh komentar (ini akan hanya menampilkan komentar dari user lain jika ada, atau kosong jika semua komentar dari user yang logout)
-             loadComments();
-             // loadRatings(); // Rating count tetap global, tidak perlu di-reset di UI logout, tapi loadRatings akan perbarui state tombol
-              console.log("UI updated for logged out user.");
-        }
-
-
-        // Handler tombol logout
-        document.getElementById('signout-btn').addEventListener('click', handleLogout);
-
-        // Handler klik link "login" di prompt komentar
-        document.getElementById('signin-link').addEventListener('click', handleLogin); // Arahkan ke fungsi handleLogin
-
-
-        // --- Komentar (Simulasi dengan Local Storage) ---
-
-        const COMMENTS_STORAGE_KEY = 'myanime_comments'; // Key untuk Local Storage komentar
-        const commentsListElement = document.getElementById('comments-list');
-        const commentTextarea = document.getElementById('comment-text');
-        const postCommentBtn = document.getElementById('post-comment-btn');
-
-        // Load komentar dari Local Storage
-        function loadComments() {
-            console.log("Loading comments...");
-            const storedComments = localStorage.getItem(COMMENTS_STORAGE_KEY);
-            let allComments = storedComments ? JSON.parse(storedComments) : [];
-             console.log("All stored comments:", allComments.length);
-
-
-            // Filter komentar hanya untuk anime ini (menggunakan lowercase slug untuk case-insensitivity)
-            const currentAnimeSlug = animeSlug.trim().toLowerCase();
-            // Pastikan comment.animeSlug ada dan valid sebelum dibandingkan
-            const animeComments = allComments.filter(comment =>
-                 comment.animeSlug && typeof comment.animeSlug === 'string' && comment.animeSlug.trim().toLowerCase() === currentAnimeSlug
-            );
-             console.log(`Comments found for slug "${currentAnimeSlug}":`, animeComments.length);
-
-            displayComments(animeComments); // Tampilkan komentar yang sudah difilter
-        }
-
-        // Simpan komentar ke Local Storage
-        // Fungsi ini menerima array komentar UNTUK ANIME INI
-        function saveComments(currentAnimeComments) {
-            console.log("Saving comments...");
-            const storedComments = localStorage.getItem(COMMENTS_STORAGE_KEY);
-            let allComments = storedComments ? JSON.parse(storedComments) : [];
-
-            // Hapus komentar lama untuk anime ini dari daftar semua komentar
-            const currentAnimeSlug = animeSlug.trim().toLowerCase();
-            allComments = allComments.filter(comment =>
-                !(comment.animeSlug && typeof comment.animeSlug === 'string' && comment.animeSlug.trim().toLowerCase() === currentAnimeSlug)
-            );
-
-            // Gabungkan komentar dari anime lain dengan komentar baru/terupdate untuk anime ini
-            const updatedAllComments = allComments.concat(currentAnimeComments);
-
-            localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(updatedAllComments));
-            console.log("Comments saved:", updatedAllComments.length, "total comments."); // Debugging
-        }
-
-
-        // Tampilkan komentar di UI
-        function displayComments(comments) {
-            console.log("Displaying comments...");
-            commentsListElement.innerHTML = ''; // Bersihkan daftar komentar lama
-
-            if (!comments || comments.length === 0) {
-                commentsListElement.innerHTML = '<p style="text-align:center; color:#ccc;">Belum ada komentar. Jadilah yang pertama!</p>';
-                 console.log("No comments to display.");
-                return;
-            }
-
-            // Urutkan komentar terbaru di atas berdasarkan timestamp
-            comments.sort((a, b) => b.timestamp - a.timestamp);
-
-            comments.forEach(comment => {
-                const commentElement = document.createElement('div');
-                commentElement.className = 'comment-item'; // Class untuk style komentar
-                // Simpan ID komentar di elemen (gunakan number)
-                commentElement.dataset.id = comment.id;
-
-                const date = new Date(comment.timestamp);
-                // Format tanggal dan waktu yang lebih mudah dibaca
-                const formattedDate = date.toLocaleString('id-ID', {
-                    year: 'numeric', month: 'short', day: 'numeric',
-                    hour: '2-digit', minute: '2-digit'
-                });
-
-                 // Tentukan apakah user saat ini adalah pemilik komentar (bandingkan ID user)
-                 const isOwner = currentUser && comment.userId && currentUser.id === comment.userId;
-
-                commentElement.innerHTML = `
-                    <div class="comment-header">
-                        <img src="${comment.userPic || 'Gambar/default-profile.png'}" alt="${comment.userName || 'Pengguna Anonim'}" class="comment-user-pic">
-                        <span class="comment-user-name">${comment.userName || 'Pengguna Anonim'}</span>
-                        <span class="comment-timestamp">${formattedDate}</span>
-                    </div>
-                    <div class="comment-body">
-                        <p class="comment-text">${comment.text}</p>
-                        <textarea class="comment-edit-text" style="display:none;">${comment.text}</textarea>
-                    </div>
-                    <div class="comment-actions">
-                        ${isOwner ? `
-                            <button class="edit-comment-btn"><i class="fas fa-edit"></i> Edit</button>
-                            <button class="delete-comment-btn"><i class="fas fa-trash-alt"></i> Hapus</button>
-                        ` : ''}
-                    </div>
-                `;
-                 // Tambahkan event listener untuk tombol edit/delete jika user adalah pemilik
-                 if (isOwner) {
-                      // Gunakan addEventListener langsung karena elemen baru dibuat
-                     commentElement.querySelector('.edit-comment-btn').addEventListener('click', handleEditComment);
-                     commentElement.querySelector('.delete-comment-btn').addEventListener('click', handleDeleteComment);
-                 }
-
-                commentsListElement.appendChild(commentElement); // Tambahkan elemen komentar ke daftar
+    
+        function createEpisodeButtons(episodes) {
+            episodeContainer.innerHTML = '';
+            episodes.forEach((url, index) => {
+                const btn = document.createElement('button');
+                btn.className = `episode-btn${index === 0 ? ' current-episode' : ''}`;
+                btn.textContent = `Episode ${index + 1}`;
+                btn.onclick = () => {
+                    player.src = url;
+                    document.querySelectorAll('.episode-btn').forEach(b => b.classList.remove('current-episode'));
+                    btn.classList.add('current-episode');
+                };
+                episodeContainer.appendChild(btn);
             });
-             console.log(`Displayed ${comments.length} comments.`);
         }
-
-        // Handler tombol kirim komentar
-        postCommentBtn.addEventListener('click', () => {
-            console.log("Post comment button clicked.");
-            const text = commentTextarea.value.trim();
-
-            // Validasi: teks tidak kosong dan user sudah login
-            if (text === '') {
-                 alert('Komentar tidak boleh kosong!');
-                 return;
+    
+        function renderSeasonDetails(season, fallbackImage) {
+            detailsContainer.style.display = 'block';
+            const seasonImage = season.image || fallbackImage || 'Gambar/default-thumbnail.png';
+            let infoGridHtml = '<p class="info-item">Info detail tidak tersedia.</p>';
+    
+            if (season.info && typeof season.info === 'object') {
+                const labels = { type: "Tipe", episodes: "Episode", status: "Status", aired: "Tayang", studios: "Studio", source: "Sumber", duration: "Durasi" };
+                const items = Object.entries(labels).map(([key, label]) => {
+                    if (season.info[key]) {
+                        const value = Array.isArray(season.info[key]) ? season.info[key].join(', ') : season.info[key];
+                        return `<div class="info-item"><strong>${label}:</strong> ${value}</div>`;
+                    }
+                    return '';
+                }).join('');
+                if (items) infoGridHtml = items;
             }
-             if (!currentUser) {
-                 alert('Silakan login untuk mengirim komentar.');
-                 console.warn("Attempted to post comment without login.");
-                 return; // Jangan kirim jika belum login
-             }
-            // Pastikan currentUser punya ID
-            if (!currentUser.id) {
-                console.error("Logged in user has no ID!");
-                alert('Data login tidak lengkap. Silakan coba login ulang.');
-                return;
-            }
-
-
-            // Buat objek komentar baru
-            const newComment = {
-                id: Date.now() + Math.random(), // ID unik sederhana (gunakan float)
-                animeSlug: animeSlug.trim().toLowerCase(), // Simpan slug anime (lowercase)
-                userId: currentUser.id, // ID unik user dari Google
-                userName: currentUser.name || 'Pengguna', // Nama user
-                userPic: currentUser.picture || 'Gambar/default-profile.png', // URL foto profil user
-                text: text, // Isi komentar
-                timestamp: Date.now() // Waktu dibuat (timestamp)
-            };
-             console.log("New comment created:", newComment);
-
-            // Load komentar yang sudah ada dari Local Storage
-            const storedComments = localStorage.getItem(COMMENTS_STORAGE_KEY);
-            let allComments = storedComments ? JSON.parse(storedComments) : [];
-
-            // Filter komentar dari anime lain (agar tidak terhapus)
-            const currentAnimeSlugLower = animeSlug.trim().toLowerCase();
-             const commentsFromOtherAnimes = allComments.filter(comment =>
-                 !(comment.animeSlug && typeof comment.animeSlug === 'string' && comment.animeSlug.trim().toLowerCase() === currentAnimeSlugLower)
-             );
-
-             // Tambahkan komentar baru ke daftar komentar untuk anime ini
-             // (load komentar untuk anime ini, tambahkan yang baru, lalu gabungkan lagi)
-             const currentAnimeComments = allComments.filter(comment =>
-                 comment.animeSlug && typeof comment.animeSlug === 'string' && comment.animeSlug.trim().toLowerCase() === currentAnimeSlugLower
-             );
-             const updatedCurrentAnimeComments = currentAnimeComments.concat([newComment]);
-
-
-            // Gabungkan kembali komentar dari anime lain dengan komentar yang diupdate untuk anime ini
-            const updatedAllComments = commentsFromOtherAnimes.concat(updatedCurrentAnimeComments);
-
-
-            // Simpan kembali semua komentar (termasuk yang baru) ke Local Storage
-            localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(updatedAllComments));
-             console.log("Comment added and saved to Local Storage.");
-
-
-            commentTextarea.value = ''; // Kosongkan textarea setelah mengirim
-            loadComments(); // Refresh daftar komentar di UI
-        });
-
-        // Handler tombol edit komentar
-        function handleEditComment(event) {
-             const button = event.target.closest('.edit-comment-btn');
-             const commentElement = button.closest('.comment-item');
-             const commentId = parseFloat(commentElement.dataset.id); // Ambil ID komentar (float)
-             const commentTextElement = commentElement.querySelector('.comment-text'); // Elemen teks komentar
-             const commentEditTextarea = commentElement.querySelector('.comment-edit-text'); // Textarea edit
-
-             // Cek apakah user login saat ini adalah pemilik komentar ini (sisi UI)
-             // Verifikasi yang lebih ketat harus dilakukan di backend (tapi kita pakai Local Storage)
-             const storedCommentsCheck = localStorage.getItem(COMMENTS_STORAGE_KEY);
-             const allCommentsCheck = storedCommentsCheck ? JSON.parse(storedCommentsCheck) : [];
-             const commentToEditCheck = allCommentsCheck.find(comment =>
-                 comment.id === commentId && comment.animeSlug && comment.animeSlug.trim().toLowerCase() === animeSlug.trim().toLowerCase()
-             );
-
-            // Pastikan komentar ada dan user yang login adalah pemiliknya
-            if (!commentToEditCheck || !currentUser || currentUser.id !== commentToEditCheck.userId) {
-                 alert('Anda tidak memiliki izin untuk mengedit komentar ini.');
-                 console.warn(`Edit attempt failed: User ${currentUser?.id} is not owner of comment ${commentId}`);
-                 loadComments(); // Refresh jika state di storage beda
-                 return; // Hentikan proses edit
-            }
-
-
-             // Jika sedang dalam mode edit, simpan perubahan
-             if (commentElement.classList.contains('editing')) {
-                 const newText = commentEditTextarea.value.trim(); // Ambil teks baru dari textarea
-
-                 // Validasi: teks baru tidak kosong
-                 if (newText === '') {
-                     alert('Komentar tidak boleh kosong!');
-                     return;
-                 }
-
-                 // Load semua komentar dari Local Storage untuk diupdate
-                 const storedComments = localStorage.getItem(COMMENTS_STORAGE_KEY);
-                 let allComments = storedComments ? JSON.parse(storedComments) : [];
-
-                 // Cari komentar yang akan diedit berdasarkan ID dan slug
-                 const commentToEdit = allComments.find(comment => comment.id === commentId && comment.animeSlug && comment.animeSlug.trim().toLowerCase() === animeSlug.trim().toLowerCase());
-
-                 // Lakukan update jika komentar ditemukan
-                 if (commentToEdit) {
-                     commentToEdit.text = newText; // Update teks komentar
-                     // Tidak perlu update timestamp untuk edit
-
-                     // Simpan kembali semua komentar yang sudah diupdate ke Local Storage
-                     localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(allComments));
-                     console.log(`Comment ${commentId} updated.`);
-
-                     // Update UI: tampilkan teks baru, sembunyikan textarea, kembalikan tombol
-                     commentTextElement.textContent = newText;
-                     commentTextElement.style.display = 'block'; // Tampilkan kembali teks
-                     commentEditTextarea.style.display = 'none'; // Sembunyikan textarea
-                     button.innerHTML = '<i class="fas fa-edit"></i> Edit'; // Ubah teks tombol kembali ke "Edit"
-                     commentElement.classList.remove('editing'); // Hapus class editing
-
-                 } else {
-                      // Jika komentar tidak ditemukan di storage (walaupun sebelumnya ada)
-                      alert('Komentar tidak ditemukan saat mencoba menyimpan.');
-                      console.error(`Comment ${commentId} not found in storage during save attempt.`);
-                      loadComments(); // Refresh daftar komentar untuk sinkronisasi
-                 }
-
-             } else { // Masuk mode edit (tampilkan textarea, sembunyikan teks)
-                 commentTextarea.style.display = 'none'; // Pastikan textarea utama tersembunyi
-                 commentEditTextarea.value = commentTextElement.textContent.trim(); // Masukkan teks komentar ke textarea edit
-                 commentTextElement.style.display = 'none'; // Sembunyikan teks komentar
-                 commentEditTextarea.style.display = 'block'; // Tampilkan textarea edit
-                 button.innerHTML = '<i class="fas fa-save"></i> Simpan'; // Ubah teks tombol ke "Simpan"
-                 commentElement.classList.add('editing'); // Tambahkan class editing ke elemen komentar
-                 commentEditTextarea.focus(); // Fokuskan ke textarea edit agar user bisa langsung mengetik
-                 console.log(`Entering edit mode for comment ${commentId}`);
-             }
+    
+            detailsContainer.innerHTML = `
+                <div class="season-details-wrapper">
+                    <h1 class="season-title">${season.name}</h1>
+                    <div class="detail-content">
+                        <img src="${seasonImage}" alt="Poster ${season.name}" class="season-poster" onerror="this.src='Gambar/default-thumbnail.png';">
+                        <div class="season-info-box">
+                            <div class="info-box">
+                                <h3>Informasi Season</h3>
+                                <div class="info-grid">${infoGridHtml}</div>
+                            </div>
+                            <div class="synopsis-box">
+                                <h3>Sinopsis</h3>
+                                <p class="synopsis-text">${season.desc || 'Sinopsis tidak tersedia.'}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
-
-        // Handler tombol hapus komentar
-        function handleDeleteComment(event) {
-            console.log("Delete comment button clicked.");
-            const button = event.target.closest('.delete-comment-btn');
-            const commentElement = button.closest('.comment-item');
-            const commentId = parseFloat(commentElement.dataset.id); // Ambil ID komentar (float)
-
-
-            // Cek di storage apakah user yang login adalah pemilik komentar ini
-             const storedCommentsCheck = localStorage.getItem(COMMENTS_STORAGE_KEY);
-             const allCommentsCheck = storedCommentsCheck ? JSON.parse(storedCommentsCheck) : [];
-             const commentToDeleteCheck = allCommentsCheck.find(comment =>
-                 comment.id === commentId && comment.animeSlug && typeof comment.animeSlug === 'string' && comment.animeSlug.trim().toLowerCase() === animeSlug.trim().toLowerCase()
-             );
-
-            // Pastikan komentar ada dan user yang login adalah pemiliknya
-            if (!commentToDeleteCheck || !currentUser || currentUser.id !== commentToDeleteCheck.userId) {
-                 alert('Anda tidak memiliki izin untuk menghapus komentar ini.');
-                 console.warn(`Delete attempt failed: User ${currentUser?.id} is not owner of comment ${commentId}`);
-                 loadComments(); // Refresh jika state di storage beda
-                 return; // Hentikan proses hapus
-            }
-
-
-            // Konfirmasi user sebelum menghapus
-            if (!confirm('Yakin ingin menghapus komentar ini?')) {
-                console.log("Delete cancelled by user.");
-                return; // Batal jika user tidak yakin
-            }
-
-            // Load semua komentar dari Local Storage
-            const storedComments = localStorage.getItem(COMMENTS_STORAGE_KEY);
-            let allComments = storedComments ? JSON.parse(storedComments) : [];
-
-            // Filter komentar yang akan dihapus (biarkan komentar yang ID-nya TIDAK cocok ATAU slug-nya TIDAK cocok)
-            const currentAnimeSlugLower = animeSlug.trim().toLowerCase();
-            const updatedComments = allComments.filter(comment =>
-                 !(comment.id === commentId && comment.animeSlug && typeof comment.animeSlug === 'string' && comment.animeSlug.trim().toLowerCase() === currentAnimeSlugLower)
-            );
-
-            // Simpan kembali daftar komentar yang sudah diupdate ke Local Storage
-            localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(updatedComments));
-            console.log(`Comment ${commentId} deleted and saved to Local Storage.`);
-
-            loadComments(); // Refresh daftar komentar di UI
-        }
-
-
-        // --- Rating (Simulasi dengan Local Storage) ---
-
-        const RATINGS_STORAGE_KEY = 'myanime_ratings'; // Key untuk Local Storage count rating per anime
-        const USER_RATINGS_STORAGE_KEY = 'myanime_user_ratings'; // Key untuk Local Storage rating per user
-
-        const likeBtn = document.getElementById('like-btn');
-        const dislikeBtn = document.getElementById('dislike-btn');
-        const likeCountSpan = document.getElementById('like-count');
-        const dislikeCountSpan = document.getElementById('dislike-count');
-        const ratingInfo = document.getElementById('rating-info');
-
-
-        // Load rating dari Local Storage
-        function loadRatings() {
-            console.log("Loading ratings...");
-            const storedRatings = localStorage.getItem(RATINGS_STORAGE_KEY);
-            // ratings: { slug: { likes: N, dislikes: M }, ... }
-            const ratings = storedRatings ? JSON.parse(storedRatings) : {};
-
-            const storedUserRatings = localStorage.getItem(USER_RATINGS_STORAGE_KEY);
-            // userRatings: { userId: { liked: ['slug1'], disliked: ['slug2'], ... }, ... }
-            const userRatings = storedUserRatings ? JSON.parse(storedUserRatings) : {};
-
-            // Pastikan entry untuk anime ini ada (menggunakan lowercase slug)
-            const currentAnimeSlug = animeSlug.trim().toLowerCase();
-            if (!ratings[currentAnimeSlug]) {
-                ratings[currentAnimeSlug] = { likes: 0, dislikes: 0 };
-                 console.log(`Initialized ratings for slug "${currentAnimeSlug}".`);
-            }
-
-            // Tampilkan count like/dislike
-            likeCountSpan.textContent = ratings[currentAnimeSlug].likes;
-            dislikeCountSpan.textContent = ratings[currentAnimeSlug].dislikes;
-
-            // Reset button states (hapus class 'liked'/'disliked', kembalikan ikon outline)
-            likeBtn.classList.remove('liked');
-            dislikeBtn.classList.remove('disliked');
-            likeBtn.querySelector('i').className = 'far fa-thumbs-up'; // Ikon outline (Font Awesome Regular)
-            dislikeBtn.querySelector('i').className = 'far fa-thumbs-down'; // Ikon outline
-
-
-            // Cek apakah user sudah login dan sudah memberi rating untuk anime ini
-            if (currentUser) {
-                // Pastikan entry user ada
-                if (!userRatings[currentUser.id]) {
-                    userRatings[currentUser.id] = { liked: [], disliked: [] };
+    
+        function renderContinueButton(allSeasons, currentSeasonSlug) {
+            const currentIndex = allSeasons.findIndex(s => s.season_slug === currentSeasonSlug);
+            if (currentIndex !== -1 && currentIndex < allSeasons.length - 1) {
+                const nextSeason = allSeasons[currentIndex + 1];
+                if (nextSeason && nextSeason.season_slug) {
+                    continueContainer.innerHTML = `
+                        <div class="continue-section">
+                            <a href="streaming.html?slug=${encodeURIComponent(animeSlug)}&season_slug=${encodeURIComponent(nextSeason.season_slug)}" class="continue-btn">
+                                Lanjut ke ${nextSeason.name} →
+                            </a>
+                        </div>
+                    `;
                 }
-
-                // Cek apakah user sudah like anime ini (dengan slug lowercase)
-                if (userRatings[currentUser.id].liked.includes(currentAnimeSlug)) {
-                    likeBtn.classList.add('liked'); // Tambah class 'liked'
-                     likeBtn.querySelector('i').className = 'fas fa-thumbs-up'; // Ganti ikon solid (Font Awesome Solid)
-                }
-                // Cek apakah user sudah dislike anime ini (dengan slug lowercase)
-                if (userRatings[currentUser.id].disliked.includes(currentAnimeSlug)) {
-                    dislikeBtn.classList.add('disliked'); // Tambah class 'disliked'
-                     dislikeBtn.querySelector('i').className = 'fas fa-thumbs-down'; // Ganti ikon solid
-                }
-                // Update UI untuk user yang login (tombol aktif, info login rating hilang)
-                likeBtn.disabled = false;
-                dislikeBtn.disabled = false;
-                ratingInfo.style.display = 'none';
-
             } else {
-                // Update UI untuk user yang logout (tombol non-aktif, info login rating tampil)
-                 likeBtn.disabled = true;
-                 dislikeBtn.disabled = true;
-                 ratingInfo.style.display = 'block';
+                continueContainer.innerHTML = '';
             }
-
-            // Simpan state ratings dan userRatings (meskipun hanya load, untuk memastikan struktur tersimpan)
-            localStorage.setItem(RATINGS_STORAGE_KEY, JSON.stringify(ratings));
-            localStorage.setItem(USER_RATINGS_STORAGE_KEY, JSON.stringify(userRatings));
-
-            console.log(`Ratings loaded for slug "${currentAnimeSlug}": Likes=${ratings[currentAnimeSlug].likes}, Dislikes=${ratings[currentAnimeSlug].dislikes}`);
-            console.log(`User ratings loaded for user "${currentUser?.id}": Liked=${userRatings[currentUser?.id]?.liked.length}, Disliked=${userRatings[currentUser?.id]?.disliked.length}`);
         }
-
-        // Handler tombol Like
-        likeBtn.addEventListener('click', () => {
-            console.log("Like button clicked.");
-            // Pastikan user login sebelum memproses
-            if (!currentUser) {
-                 alert('Silakan login untuk memberikan rating.');
-                 console.warn("Attempted to like without login.");
-                 return;
-            }
-             if (!currentUser.id) {
-                 console.error("Logged in user has no ID!");
-                 alert('Data login tidak lengkap. Silakan coba login ulang.');
-                 return;
-             }
-
-            const storedRatings = localStorage.getItem(RATINGS_STORAGE_KEY);
-            const ratings = storedRatings ? JSON.parse(storedRatings) : {};
-            const storedUserRatings = localStorage.getItem(USER_RATINGS_STORAGE_KEY);
-            const userRatings = storedUserRatings ? JSON.parse(storedUserRatings) : {};
-
-             const currentAnimeSlug = animeSlug.trim().toLowerCase();
-
-             // Pastikan entry ada
-             if (!ratings[currentAnimeSlug]) ratings[currentAnimeSlug] = { likes: 0, dislikes: 0 };
-             if (!userRatings[currentUser.id]) userRatings[currentUser.id] = { liked: [], disliked: [] };
-
-            // Cek status rating user saat ini untuk anime ini
-            const userLiked = userRatings[currentUser.id].liked.includes(currentAnimeSlug);
-            const userDisliked = userRatings[currentUser.id].disliked.includes(currentAnimeSlug);
-
-            // Logika Like:
-            if (userLiked) {
-                // Jika user sudah pernah Like, batalkan Like
-                ratings[currentAnimeSlug].likes = Math.max(0, ratings[currentAnimeSlug].likes - 1); // Pastikan count tidak negatif
-                userRatings[currentUser.id].liked = userRatings[currentUser.id].liked.filter(slug => slug !== currentAnimeSlug); // Hapus dari daftar liked
-                 console.log(`User ${currentUser.id} unliked anime ${currentAnimeSlug}.`);
-            } else {
-                // Jika user belum pernah Like
-                ratings[currentAnimeSlug].likes++; // Tambah count like
-                userRatings[currentUser.id].liked.push(currentAnimeSlug); // Tambahkan ke daftar liked
-                 console.log(`User ${currentUser.id} liked anime ${currentAnimeSlug}.`);
-
-
-                // Jika user sebelumnya Dislike, batalkan Dislike juga
-                if (userDisliked) {
-                    ratings[currentAnimeSlug].dislikes = Math.max(0, ratings[currentAnimeSlug].dislikes - 1); // Kurangi count dislike
-                    userRatings[currentUser.id].disliked = userRatings[currentUser.id].disliked.filter(slug => slug !== currentAnimeSlug); // Hapus dari daftar disliked
-                     console.log(`User ${currentUser.id} also un-disliked anime ${currentAnimeSlug}.`);
-                }
-            }
-
-            // Simpan perubahan ke Local Storage
-            localStorage.setItem(RATINGS_STORAGE_KEY, JSON.stringify(ratings));
-            localStorage.setItem(USER_RATINGS_STORAGE_KEY, JSON.stringify(userRatings));
-
-            loadRatings(); // Refresh UI rating untuk menampilkan count baru dan status tombol
-        });
-
-        // Handler tombol Dislike
-        dislikeBtn.addEventListener('click', () => {
-            console.log("Dislike button clicked.");
-            // Pastikan user login sebelum memproses
-            if (!currentUser) {
-                alert('Silakan login untuk memberikan rating.');
-                 console.warn("Attempted to dislike without login.");
-                return;
-            }
-             if (!currentUser.id) {
-                 console.error("Logged in user has no ID!");
-                 alert('Data login tidak lengkap. Silakan coba login ulang.');
-                 return;
-             }
-
-
-            const storedRatings = localStorage.getItem(RATINGS_STORAGE_KEY);
-            const ratings = storedRatings ? JSON.parse(storedRatings) : {};
-            const storedUserRatings = localStorage.getItem(USER_RATINGS_STORAGE_KEY);
-            const userRatings = storedUserRatings ? JSON.parse(storedUserRatings) : {};
-
-            const currentAnimeSlug = animeSlug.trim().toLowerCase();
-
-             // Pastikan entry ada
-             if (!ratings[currentAnimeSlug]) ratings[currentAnimeSlug] = { likes: 0, dislikes: 0 };
-             if (!userRatings[currentUser.id]) userRatings[currentUser.id] = { liked: [], disliked: [] };
-
-            // Cek status rating user saat ini untuk anime ini
-            const userLiked = userRatings[currentUser.id].liked.includes(currentAnimeSlug);
-            const userDisliked = userRatings[currentUser.id].disliked.includes(currentAnimeSlug);
-
-            // Logika Dislike:
-            if (userDisliked) {
-                // Jika user sudah pernah Dislike, batalkan Dislike
-                ratings[currentAnimeSlug].dislikes = Math.max(0, ratings[currentAnimeSlug].dislikes - 1); // Pastikan count tidak negatif
-                userRatings[currentUser.id].disliked = userRatings[currentUser.id].disliked.filter(slug => slug !== currentAnimeSlug); // Hapus dari daftar disliked
-                 console.log(`User ${currentUser.id} un-disliked anime ${currentAnimeSlug}.`);
-            } else {
-                // Jika user belum pernah Dislike
-                ratings[currentAnimeSlug].dislikes++; // Tambah count dislike
-                userRatings[currentUser.id].disliked.push(currentAnimeSlug); // Tambahkan ke daftar disliked
-                 console.log(`User ${currentUser.id} disliked anime ${currentAnimeSlug}.`);
-
-
-                // Jika user sebelumnya Like, batalkan Like juga
-                if (userLiked) {
-                     ratings[currentAnimeSlug].likes = Math.max(0, ratings[currentAnimeSlug].likes - 1); // Kurangi count like
-                    userRatings[currentUser.id].liked = userRatings[currentUser.id].liked.filter(slug => slug !== currentAnimeSlug); // Hapus dari daftar liked
-                     console.log(`User ${currentUser.id} also unliked anime ${currentAnimeSlug}.`);
-                }
-            }
-
-            // Simpan perubahan ke Local Storage
-            localStorage.setItem(RATINGS_STORAGE_KEY, JSON.stringify(ratings));
-            localStorage.setItem(USER_RATINGS_STORAGE_KEY, JSON.stringify(userRatings));
-
-            loadRatings(); // Refresh UI rating untuk menampilkan count baru dan status tombol
-        });
-
-
-        // --- KODE UNTUK BACKGROUND PARTIKEL JS ---
-        // Ini akan membuat elemen partikel secara dinamis dan mengatur animasinya
-
-        function createParticles(numParticles = 100) {
-             const container = document.getElementById('particles-background');
-             if (!container) {
-                  console.warn("Particle background container not found (#particles-background)!");
-                  return;
-             }
-             container.innerHTML = ''; // Kosongkan container jika sudah ada isi
-
-             // Loop untuk membuat elemen partikel
-             for (let i = 0; i < numParticles; i++) {
-                 const circleContainer = document.createElement('div');
-                 circleContainer.className = 'circle-container'; // Kontainer untuk mengatur posisi dan gerak
-
-                 const circle = document.createElement('div');
-                 circle.className = 'circle'; // Elemen visual partikel
-
-                 circleContainer.appendChild(circle);
-                 container.appendChild(circleContainer);
-
-                 // Atur ukuran acak (sesuai range di CSS style)
-                 const size = 3 + Math.random() * 7; // Ukuran antara 3px dan 10px
-                 circleContainer.style.width = `${size}px`;
-                 circleContainer.style.height = `${size}px`;
-
-                 // Atur durasi dan delay animasi gerak acak
-                 const duration = 8 + Math.random() * 7; // Durasi 8s - 15s
-                 const delay = Math.random() * 10; // Delay 0s - 10s (penentu kapan animasi mulai)
-
-                 // Atur nama animasi gerak, durasi, dan delay pada circleContainer
-                 circleContainer.style.animationName = 'move-particle'; // Gunakan keyframe gerak dasar dari CSS
-                 circleContainer.style.animationDuration = `${duration}s`;
-                 circleContainer.style.animationDelay = `${delay}s`;
-
-                 // Atur delay animasi fade/scale partikel (pada elemen circle)
-                 // Ini memberikan variasi kapan setiap partikel membesar/mengecil atau transparan
-                 circle.style.animationDelay = `${Math.random() * 3}s`;
-
-                 // Atur posisi awal acak (di luar viewport, di bawah) menggunakan properti top/left
-                 const startX = Math.random() * 100; // Mulai di posisi X acak (0-100vw)
-                 const startY = 100 + Math.random() * 10; // Mulai sedikit di bawah viewport (100-110vh)
-                 circleContainer.style.top = `${startY}vh`;
-                 circleContainer.style.left = `${startX}vw`;
-
-             }
-             console.log("Particles created:", numParticles);
+    
+        function showError(message) {
+            loading.style.display = 'none';
+            const container = document.querySelector('.container');
+            const backBtnHtml = `<a href="anime.html?slug=${encodeURIComponent(animeSlug)}" class="back-btn">Kembali ke Detail Anime</a>`;
+            container.innerHTML = `<div style="text-align:center; padding: 40px; color: #ffc107;">
+                                    <h1 style="color:#dc3545; margin-bottom: 15px;">Error</h1>
+                                    <p style="margin-bottom: 25px;">${message}</p>
+                                    ${backBtnHtml}
+                                   </div>`;
         }
-
-
-        // --- Initial Load ---
-
-        // Gunakan DOMContentLoaded untuk memastikan DOM siap sebelum mengakses elemen
-        document.addEventListener('DOMContentLoaded', async () => {
-             console.log("DOM fully loaded. Starting watch.html initialization...");
-
-             // 1. Buat elemen partikel background
-             // Ini akan membuat elemen-elemen div partikel di dalam #particles-background
-             createParticles(100); // Buat 100 partikel
-
-
-             // 2. Inisialisasi Auth (cek hash URL & storage)
-             // Ini akan set `currentUser` jika ada, dan memanggil `updateUIForLogin/Logout`
-             // yang mana akan memicu loadComments dan loadRatings jika user login.
-             await initAuth();
-
-
-             // 3. Load data streaming (episode)
-             // Fungsi loadStreamingData akan memuat data anime dan episode,
-             // kemudian memanggil loadComments dan loadRatings setelah data anime berhasil dimuat.
-             // Pemanggilan ini penting agar komentar/rating diload SETELAH kita tahu `animeSlug`
-             // dari URL dan SETELAH status login (`currentUser`) diperbarui oleh initAuth.
-             loadStreamingData();
-
-             // Event listeners untuk tombol logout dan link signin sudah diatur di luar ini (menggunakan addEventListener pada elemen yang ada setelah DOM siap)
-              console.log("Watch.html initialization complete.");
-        });
-
-
-
+    
+        document.addEventListener('DOMContentLoaded', loadStreamingData);
     </script>
-    <!-- ================================================== -->
-    <!-- --- AKHIR KODE JAVASCRIPT --- -->
-    <!-- ================================================== -->
-
-</body>
+    </body>
 </html>
