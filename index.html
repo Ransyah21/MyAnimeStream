@@ -291,9 +291,6 @@
         <h1 class="title">
           <span>M</span><span>y</span><span>A</span><span>n</span><span>i</span><span>m</span><span>e</span>
         </h1>
-        <div class="search-container">
-          <input type="text" id="search-input" placeholder="Cari judul anime..." name="keyword" />
-        </div>
       </div>
     </header>
 
@@ -308,6 +305,9 @@
 
     <main>
       <div class="container">
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="Cari judul anime..." name="keyword" />
+        </div>
         <div class="notice">
           <p>Selamat datang! Situs ini masih dalam tahap pengembangan.</p>
           <p>Temukan rekomendasi anime pilihan di sini. Belum semua genre tersedia, tapi kami terus menambahkannya. Ajak temanmu!</p>
@@ -547,13 +547,26 @@ function renderGenreFilters() {
 
 function initScrollToTopButton() {
   const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-  const targetElement = document.getElementById('pagination-top') || document.querySelector('header');
+  // Target scroll adalah elemen paling atas yang masuk akal, yaitu header
+  const targetElement = document.querySelector('header');
+  
   if (!scrollToTopBtn || !targetElement) return;
+
   window.addEventListener('scroll', () => {
-    scrollToTopBtn.classList.toggle('visible', window.scrollY > 400);
+    // Tampilkan tombol setelah user scroll ke bawah sejauh 400px
+    if (window.scrollY > 400) {
+      scrollToTopBtn.classList.add('visible');
+    } else {
+      scrollToTopBtn.classList.remove('visible');
+    }
   }, { passive: true });
+
   scrollToTopBtn.addEventListener('click', () => {
-    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Scroll ke bagian paling atas halaman dengan smooth
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   });
 }
 
@@ -626,7 +639,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("❌ Error kritis saat inisialisasi:", error);
   } finally {
     setTimeout(hideSplash, 500);
-    initShrinkingHeader();
+    // PASTIKAN PANGGILAN INI ADA
     initScrollToTopButton();
     console.log("🏁 Initialization complete.");
   }
