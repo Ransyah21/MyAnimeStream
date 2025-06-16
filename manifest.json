@@ -1,7 +1,7 @@
 {
     "name": "MyAnime",
     "short_name": "MyAnime",
-    "start_url": "./",
+    "start_url": "https://github.com/Ransyah21/MyAnimeStream.git/",
     "display": "standalone",
     "background_color": "#181818",
     "theme_color": "#ffa200",
