@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#ffa200" />
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -484,6 +486,37 @@
               console.log("🏁 Initialization complete.");
           }
       });
+
+              const CACHE_NAME = 'myanime-cache-v1';
+        const URLS_TO_CACHE = [
+          './',
+          './index.html',
+          './Gambar/logo-Myanime512.png',
+          './Gambar/logo-Myanime192.png',
+          // Tambahkan file CSS, JS, gambar penting lainnya
+        ];
+
+        self.addEventListener('install', event => {
+          event.waitUntil(
+            caches.open(CACHE_NAME).then(cache => {
+              return cache.addAll(URLS_TO_CACHE);
+            })
+          );
+        });
+
+        self.addEventListener('fetch', event => {
+          event.respondWith(
+            caches.match(event.request)
+              .then(response => response || fetch(event.request))
+          );
+        });
+
+
+        if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(reg => console.log('✅ Service Worker registered', reg))
+      .catch(err => console.error('❌ Service Worker registration failed', err));
+  }
     </script>
   </body>
 </html>

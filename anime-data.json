@@ -1,5 +1,159 @@
 {
   "data": [
+    
+    {
+        "title": "2.5-jigen no Ririsa",
+        "slug": "2-5-jigen-no-ririsa",
+        "image": "https://i.pinimg.com/736x/2b/d5/41/2bd5410668c30fc8906235da025eb022.jpg",
+        "info": {
+            "type": "TV",
+            "episodes": 24,
+            "status": "Currently Airing",
+            "aired": "Jul 5, 2024 to ?",
+            "premiered": "Summer 2024",
+            "broadcast": "Fridays at 22:30 (JST)",
+            "producers": [
+                "Aniplex",
+                "Shueisha"
+            ],
+            "studios": [
+                "J.C.Staff"
+            ],
+            "source": "Manga",
+            "genres": [
+                "Comedy",
+                "Romance"
+            ],
+            "themes": [
+                "Otaku Culture",
+                "School"
+            ],
+            "demographic": "Shounen",
+            "duration": "23 min. per ep.",
+            "rating": "PG-13 - Teens 13 or older"
+        },
+        "desc": "Siswa SMA tahun ketiga Masamune Okumura adalah ketua klub manga di sekolahnya. Sebagai seorang otaku, ia tidak tertarik pada gadis sungguhan, karena hatinya hanya untuk karakter 2D fiksi bernama Liliel. Namun suatu hari, dunianya terbalik ketika seorang siswi tahun pertama bernama Ririsa Amano, yang memiliki hasrat pada gadis 3D, bergabung dengan klub. Tujuan Ririsa adalah menjadi seorang cosplayer, dan ia mencoba meyakinkan Masamune untuk menjadi fotografernya. Akankah Masamune tetap setia pada cinta 2D-nya, atau akankah ia menyerah pada godaan gadis sungguhan dalam diri Ririsa, seorang gadis yang tampaknya merupakan perwujudan dari Liliel yang ia cintai?",
+        "download": "https://drive.usercontent.google.com/download?id=1ZNS91iSlEcX9cpBoJIcR1R_ECJouoYTm&export=download&authuser=0",
+        "seasons": [
+            {
+                "name": "2.5-jigen no Ririsa",
+                "season_slug": "main-story",
+                "image": "https://i.pinimg.com/736x/2b/d5/41/2bd5410668c30fc8906235da025eb022.jpg",
+                "desc": "Siswa SMA tahun ketiga Masamune Okumura adalah ketua klub manga di sekolahnya. Sebagai seorang otaku, ia tidak tertarik pada gadis sungguhan, karena hatinya hanya untuk karakter 2D fiksi bernama Liliel. Namun suatu hari, dunianya terbalik ketika seorang siswi tahun pertama bernama Ririsa Amano, yang memiliki hasrat pada gadis 3D, bergabung dengan klub. Tujuan Ririsa adalah menjadi seorang cosplayer, dan ia mencoba meyakinkan Masamune untuk menjadi fotografernya. Akankah Masamune tetap setia pada cinta 2D-nya, atau akankah ia menyerah pada godaan gadis sungguhan dalam diri Ririsa, seorang gadis yang tampaknya merupakan perwujudan dari Liliel yang ia cintai?",
+                "info": {
+                    "type": "TV",
+                    "episodes": 24,
+                    "status": "Currently Airing",
+                    "aired": "Jul 5, 2024 to ?",
+                    "studios": [
+                        "J.C.Staff"
+                    ],
+                    "source": "Manga",
+                    "duration": "23 min. per ep."
+                },
+                "streaming": [
+                    "https://drive.google.com/file/d/14dARLh7x-I4aU7oLHwfrMEnxyMoSlhCD/preview",
+                    "https://drive.google.com/file/d/1yaE5aMGYwuSira4BklBgDs8j-JkujXeu/preview",
+                    "https://drive.google.com/file/d/1hMKf0NuE_3tnZlHdJK9R3rONizjpJc_5/preview",
+                    "https://drive.google.com/file/d/1t3Th7EkoxYBpTbOU70SxOdDmM0Qoj68_/preview",
+                    "https://drive.google.com/file/d/1IDhsv5hDi8FooBie0s3u5MyK7V3jkmQ3/preview",
+                    "https://drive.google.com/file/d/165mB5VyH-8RRgnjTOF2buUWFTqJj26is/preview",
+                    "https://drive.google.com/file/d/1s7q1PPbhru-ZZoErD7wNqlNOS4n7CsHF/preview",
+                    "https://drive.google.com/file/d/1VvtM3vRzMbturCxzYt0_tZzP29f5Iscu/preview",
+                    "https://drive.google.com/file/d/1g93sRLUgKUC0ZrB5E8QqFdciVA8vJBBO/preview",
+                    "https://drive.google.com/file/d/1E1p86AW9bK79-3Wwi0zYhQUFC1bv__zc/preview",
+                    "https://drive.google.com/file/d/1Ci27sSWCY_FsCyNVmn_7vppCe0FKTPrZ/preview",
+                    "https://drive.google.com/file/d/1XMk86BGI_YGL5f1JNUFBMUxyZ6Zpb5CM/preview",
+                    "https://drive.google.com/file/d/109Z7sFQ8OaoM5Rbnz749PYA_I8sy-Bqx/preview",
+                    "https://drive.google.com/file/d/1KMyKJ88GgGJmKLhhQZ1IEj5ImgG4g6Zm/preview",
+                    "https://drive.google.com/file/d/1sPva7vm8R2MfFD2TQMpzzz3ZUT0o2U7W/preview",
+                    "https://drive.google.com/file/d/1PcEA16QDIgcvr2u-vFx_SP6U0imZdLO_/preview",
+                    "https://drive.google.com/file/d/1q7rkGFvEHlC4WTh_5MDh5hDR4ixNdCWa/preview",
+                    "https://drive.google.com/file/d/1gWdFVng77TUjn7VnpAsfpkCG-63tIWrf/preview",
+                    "https://drive.google.com/file/d/1VdFqX_WV1AgPppOBaLbz-6atzr6Tu9li/preview",
+                    "https://drive.google.com/file/d/1_Ct4cgwAFIXH4iorXEw6zihFYMQqxUQ_/preview",
+                    "https://drive.google.com/file/d/1D2n0spCaXAC4qJXv8eDheU6ZJ8gWEkZj/preview",
+                    "https://drive.google.com/file/d/1k_dAyaB9M6hZxp2FbhxSMd35BPZh8uBQ/preview",
+                    "https://drive.google.com/file/d/1Zc-T-RB9s8XYu6VXLSnNahXlSYeYbGoJ/preview",
+                    "https://drive.google.com/file/d/1gfUBKGaOOFxK019kCxplphWYAGYQecFu/preview"
+                ]
+            }
+        ]
+    },
+
+    {
+        "title": "Around 40 Otoko no Isekai Tsuuhan",
+        "slug": "around-40-otoko-no-isekai-tsuuhan",
+        "image": "https://cdn.myanimelist.net/images/anime/1887/146512.jpg",
+        "info": {
+            "type": "TV",
+            "episodes": 13,
+            "status": "Finished Airing",
+            "aired": "Jan 9, 2025 to Apr 3, 2025",
+            "premiered": "Winter 2025",
+            "broadcast": "Thursdays at 21:00 (JST)",
+            "producers": [
+                "Nippon Columbia",
+                "AT-X",
+                "TOKYO MX",
+                "BS NTV",
+                "Crunchyroll",
+                "Kadokawa",
+                "GREE Entertainment"
+            ],
+            "studios": [
+                "East Fish Studio"
+            ],
+            "source": "Light Novel",
+            "genres": [
+                "Adventure",
+                "Fantasy",
+                "Slice of Life"
+            ],
+            "themes": [
+                "Isekai"
+            ],
+            "demographic": "Shounen",
+            "duration": "23 min. per ep.",
+            "rating": "PG-13 - Teens 13 or older"
+        },
+        "desc": "Kenichi, seorang pria berusia 39 tahun yang tidak puas dengan hidupnya, secara tidak sengaja mendapatkan 'skill' aneh yang memungkinkannya memesan barang dari dunia nyata ke dunia lain. Setelah dipindahkan ke dunia fantasi, ia memulai kehidupan baru yang santai dengan memanfaatkan kemampuan uniknya untuk berbisnis dan bertahan hidup.",
+        "download": "https://drive.usercontent.google.com/download?id=1h-JtbcevWWLOnIE12p8eN8R2jy0C97BL&export=download&authuser=0",
+        "seasons": [
+            {
+                "name": "Around 40 Otoko no Isekai Tsuuhan",
+                "season_slug": "main-story",
+                "image": "https://cdn.myanimelist.net/images/anime/1887/146512.jpg",
+                "desc": "Kenichi, seorang pria berusia 39 tahun yang tidak puas dengan hidupnya, secara tidak sengaja mendapatkan 'skill' aneh yang memungkinkannya memesan barang dari dunia nyata ke dunia lain. Setelah dipindahkan ke dunia fantasi, ia memulai kehidupan baru yang santai dengan memanfaatkan kemampuan uniknya untuk berbisnis dan bertahan hidup.",
+                "info": {
+                    "type": "TV",
+                    "episodes": 13,
+                    "status": "Finished Airing",
+                    "aired": "Jan 9, 2025 to Apr 3, 2025",
+                    "studios": [
+                        "East Fish Studio"
+                    ],
+                    "source": "Light Novel",
+                    "duration": "23 min. per ep."
+                },
+                "streaming": [
+                    "https://drive.google.com/file/d/1qiGGkJ0912V6A7toxd9aZzHHbq_NNtsY/preview",
+                    "https://drive.google.com/file/d/1fYpUUFBlWNv5PdaSYheSdu1GdsmPOaYs/preview",
+                    "https://drive.google.com/file/d/1XGMLVe8NSdwU46zmIa7TKHf4RiA5v0md/preview",
+                    "https://drive.google.com/file/d/1u0HlG7MHS-0TPEBCFT5lwV-HZO0STz0i/preview",
+                    "https://drive.google.com/file/d/1H6NVVSLtoZUpPjEwdsdb697CRZp4kQRo/preview",
+                    "https://drive.google.com/file/d/1Za5ubPB0vAiky_kwMa7y-iROMBujbtSx/preview",
+                    "https://drive.google.com/file/d/1sdw8Bc1QONePTcmaHi_S9od6BsY76h9k/preview",
+                    "https://drive.google.com/file/d/1PvGHoW3SCWwV870N6RaER1_s7LrJ1ryy/preview",
+                    "https://drive.google.com/file/d/1YTs18LtRnXS7AbcKti6cMzpHqD3Yzc4I/preview",
+                    "https://drive.google.com/file/d/1IEUsSNaJlA0mGccG8nl3fuZylHHPtjLp/preview",
+                    "https://drive.google.com/file/d/11gN0pTQwa5HlQ8TYuB8n4zontZRC0K2A/preview",
+                    "https://drive.google.com/file/d/1xdJtvQHgnaus1h7Wwd_UfeeILFzAJi1i/preview",
+                    "https://drive.google.com/file/d/1tXcyjSvM5l40g-lZZs5wQ6ZuiduVio_7/preview"
+                ]
+            }
+        ]
+    },
 
     {
         "title": "Date A Live S1 - S5",
@@ -46,8 +200,8 @@
                     "https://drive.google.com/file/d/1PN9YmtCW0GdHloz3EVwt5TDK6R1awhjz/preview",
                     "https://drive.google.com/file/d/1V4fpIHE0MDX_SDveNZq9quiFj4aVs_Rh/preview",
                     "https://drive.google.com/file/d/1F1izDj0FfKKE5aDWfEGTom6-Wpq8ilQX/preview",
-                    "https://drive.google.com/file/d/1BPd8qTfVGIJc-moegGOTBP8udd_Hnx2U/preview",
                     "https://drive.google.com/file/d/1PGqqvIJ6a3l5DcqKWqXMruBg1knsNeeZ/preview",
+                    "https://drive.google.com/file/d/1BPd8qTfVGIJc-moegGOTBP8udd_Hnx2U/preview",
                     "https://drive.google.com/file/d/1sqwE_aVmt_VUhlqaZKlDBZlEFKvpNJsv/preview",
                     "https://drive.google.com/file/d/1q9TyCKXeOH1sDnQdrGBiwknBdiYsO-6M/preview",
                     "https://drive.google.com/file/d/1X1cpdMjEzBrzVg79zrKCt8x8dfiaQpAn/preview",
@@ -99,16 +253,16 @@
                 },
                 "download": "https://drive.usercontent.google.com/download?id=1W0ncGC6NyBRd-qDgFqvj-Mw5I1y1xO3X&export=download&authuser=0",
                 "streaming": [
-                    "https://drive.google.com/file/d/1e6rTOqLvQEqwR6V-D-alrU6w-L56dwvG/preview",
                     "https://drive.google.com/file/d/14OxoTX-Adk-g2i6xoTKwhRl5Z2epyzMl/preview",
-                    "https://drive.google.com/file/d/1BIwefDTh9O5DYLG23Ii-58XBjl0xOK_Q/preview",
-                    "https://drive.google.com/file/d/1ITkviguwRH3wGGtTBYVju8wJjZEv_pQ3/preview",
-                    "https://drive.google.com/file/d/1HCxFdTXSy15jVnzozZpXTMAZ8v2KQZbi/preview",
+                    "https://drive.google.com/file/d/1e6rTOqLvQEqwR6V-D-alrU6w-L56dwvG/preview",
                     "https://drive.google.com/file/d/1rB98HhpRESMhscW-2WcB5_dtzRJBhOoN/preview",
-                    "https://drive.google.com/file/d/13Ftf2Q56wlHVbLv0MvOLrI94w7o44AYs/preview",
+                    "https://drive.google.com/file/d/1HCxFdTXSy15jVnzozZpXTMAZ8v2KQZbi/preview",
+                    "https://drive.google.com/file/d/1ITkviguwRH3wGGtTBYVju8wJjZEv_pQ3/preview",
+                    "https://drive.google.com/file/d/1BIwefDTh9O5DYLG23Ii-58XBjl0xOK_Q/preview",
                     "https://drive.google.com/file/d/1A4updnrLvMN_5bGWgb7AATgowI9PY1Mg/preview",
-                    "https://drive.google.com/file/d/1JMidATqCv9qjNLkm7VSFC81MNcQsKm0K/preview",
+                    "https://drive.google.com/file/d/13Ftf2Q56wlHVbLv0MvOLrI94w7o44AYs/preview",
                     "https://drive.google.com/file/d/1mTL9DFUE3_D8-ispes2arPJboiv5XOof/preview",
+                    "https://drive.google.com/file/d/1JMidATqCv9qjNLkm7VSFC81MNcQsKm0K/preview",
                     "https://drive.google.com/file/d/15Pdn7flUXvzmY-Ox4k3I2CQ3rH0NILkD/preview",
                     "https://drive.google.com/file/d/16vYBg5AHFFdQr-EW0w1Vp5bk-Uaw-B6v/preview"
                 ]
@@ -129,18 +283,18 @@
                 },
                 "download": "https://drive.usercontent.google.com/download?id=1tbHRtztrQrZIJbpbK9z11VrEDIT48pBh&export=download&authuser=0",
                 "streaming": [
-                    "https://drive.google.com/file/d/1Gb3-5_qTpMvMtpa647DTAOy1uaskJOr1/preview",
-                    "https://drive.google.com/file/d/1EVECY0MBsU7ugujZBx9pAIwZf18eX4g0/preview",
-                    "https://drive.google.com/file/d/1_IA7Lxh4mkE9WNoSrD-NFNslbAsH79uT/preview",
                     "https://drive.google.com/file/d/1hIHwwlQ8xnJ0Np9GU_IjRK7f-me3-8Vb/preview",
-                    "https://drive.google.com/file/d/1rRSQXMMmTp8Xd3-pAMVrEQyt-3oAPGqS/preview",
-                    "https://drive.google.com/file/d/1v6D6QZmCO3cAwiDBeplkfGmxfA3wq7MO/preview",
-                    "https://drive.google.com/file/d/1cqSbSRt8HHEGtV9EmFrNN-SRCAwCVVrn/preview",
+                    "https://drive.google.com/file/d/1_IA7Lxh4mkE9WNoSrD-NFNslbAsH79uT/preview",
+                    "https://drive.google.com/file/d/1EVECY0MBsU7ugujZBx9pAIwZf18eX4g0/preview",
+                    "https://drive.google.com/file/d/1Gb3-5_qTpMvMtpa647DTAOy1uaskJOr1/preview",
                     "https://drive.google.com/file/d/19BTrcP7iXG41AOxug0pSKN1g8oExV4Gr/preview",
-                    "https://drive.google.com/file/d/1WAJVm-NbcmMBaAOqKZKYRl80jPxepqkT/preview",
+                    "https://drive.google.com/file/d/1cqSbSRt8HHEGtV9EmFrNN-SRCAwCVVrn/preview",
+                    "https://drive.google.com/file/d/1v6D6QZmCO3cAwiDBeplkfGmxfA3wq7MO/preview",
+                    "https://drive.google.com/file/d/1rRSQXMMmTp8Xd3-pAMVrEQyt-3oAPGqS/preview",
                     "https://drive.google.com/file/d/1PlTPFl-pUUlNOu7N9wfZYvF2eyyfRAhP/preview",
-                    "https://drive.google.com/file/d/16zUAEdCC_BhfckUYpsZK2uy3_3NpdNuJ/preview",
-                    "https://drive.google.com/file/d/1c3BB4IJC_FlYii-F-YcgxzEtbNHijbIS/preview"
+                    "https://drive.google.com/file/d/1WAJVm-NbcmMBaAOqKZKYRl80jPxepqkT/preview",
+                    "https://drive.google.com/file/d/1c3BB4IJC_FlYii-F-YcgxzEtbNHijbIS/preview",
+                    "https://drive.google.com/file/d/16zUAEdCC_BhfckUYpsZK2uy3_3NpdNuJ/preview"
                 ]
             },
             {
@@ -161,14 +315,14 @@
                 "streaming": [
                     "https://drive.google.com/file/d/1mSVTYmdn91PMzTnDYKTVK-DZghnvAudX/preview",
                     "https://drive.google.com/file/d/13lQQE5yAL-IoTvVoW_MEA3H8jKod4QuL/preview",
-                    "https://drive.google.com/file/d/1PxCqcrSC8fwC17V9m4bU9dPp41VKP1Q5/preview",
-                    "https://drive.google.com/file/d/14m6fzac4EHqi9VwPTln-Wd5ncThaqQnD/preview",
-                    "https://drive.google.com/file/d/1oRMBFBaA_-RSeO36QCGchbvgBHHX16GX/preview",
-                    "https://drive.google.com/file/d/1Pgv5kkRTKfJWBJCt5rSaumcDYQy7uV6X/preview",
                     "https://drive.google.com/file/d/1PaqzK69ur6yEmLpXmB1s230oaEtUpwFd/preview",
-                    "https://drive.google.com/file/d/1Yd8h_c2EEMY5iFPDaN7t4v2dcd_0uFAT/preview",
-                    "https://drive.google.com/file/d/1hoZsqnDdIQ0iw3NN7YjjX-6xwTjffX8Q/preview",
+                    "https://drive.google.com/file/d/1Pgv5kkRTKfJWBJCt5rSaumcDYQy7uV6X/preview",
+                    "https://drive.google.com/file/d/1oRMBFBaA_-RSeO36QCGchbvgBHHX16GX/preview",
+                    "https://drive.google.com/file/d/14m6fzac4EHqi9VwPTln-Wd5ncThaqQnD/preview",
+                    "https://drive.google.com/file/d/1PxCqcrSC8fwC17V9m4bU9dPp41VKP1Q5/preview",
                     "https://drive.google.com/file/d/1ZU4IEovpFpygIXuWZoAxKa7bhfAm05zE/preview",
+                    "https://drive.google.com/file/d/1hoZsqnDdIQ0iw3NN7YjjX-6xwTjffX8Q/preview",
+                    "https://drive.google.com/file/d/1Yd8h_c2EEMY5iFPDaN7t4v2dcd_0uFAT/preview",
                     "https://drive.google.com/file/d/1nqW-YGAz9tP1436_rWYATPXTHdQfh1Sb/preview",
                     "https://drive.google.com/file/d/1_c4wNQJc_3NJGhOETLLkf1raORVB2eeh/preview"
                 ]
