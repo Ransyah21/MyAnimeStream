@@ -36,10 +36,26 @@
       .container { max-width: 1200px; margin: 0 auto; padding: 20px 15px; position: relative; z-index: 2; }
       .container a { text-decoration: none; color: #ccc; }
       .container a:hover { text-decoration: underline; color: #ffa200; }
-      header { text-align: center; position: relative; z-index: 2; padding-top: 50px; }
+      header { transition: padding-top 0.4s ease-in-out; text-align: center; position: relative; z-index: 2; padding-top: 50px; }
+      header.scrolled {padding-top: 10px; /* Kurangi padding atas header saat di-scroll */}
       
       /* Title Animation */
-      .title { font-size: clamp(30px, 8vw, 45px); width: 100%; margin: 1.5rem auto; display: flex; flex-wrap: nowrap; justify-content: center; -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(0, 0, 0, 0.15)); position: relative; }
+      .title { transition: all 0.4s ease-in-out; font-size: clamp(30px, 8vw, 45px); width: 100%; margin: 1.5rem auto; display: flex; flex-wrap: nowrap; justify-content: center; -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(0, 0, 0, 0.15)); position: relative; }
+      .title.scrolled {
+  position: fixed; /* Kunci posisinya di layar */
+  top: 0;
+  right: 0;
+  z-index: 1002; /* Pastikan di atas bar .abt */
+
+  /* Ubah ukuran & posisi */
+  font-size: 1.6em; /* Perkecil ukuran font */
+  padding: 11px 20px; /* Sesuaikan padding agar sejajar dengan ABOUT/HOME */
+  margin: 0; /* Hapus margin otomatis */
+  
+  /* Hapus animasi & efek yang tidak perlu */
+  animation: none; /* Matikan animasi bounce */
+  -webkit-box-reflect: none; /* Hilangkan refleksi */
+}
       .title span { display: inline-block; font-family: "Play", sans-serif; animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate; margin: 0 clamp(1px, 0.5vw, 3px); color: #ffa200; text-shadow: 0 0 10px #ff6b00; font-weight: bold; }
       @keyframes title-bounce { 0%, 60%, 100% { transform: translateY(0) scale(1); } 30% { transform: translateY(clamp(-25px, -5vw, -15px)) scale(1.1); } }
       @keyframes fire { 0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00; } 100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; } }
@@ -50,11 +66,6 @@
       .abt a { position: relative; text-decoration: none; color: #ccc; background-color: transparent; padding: 5px 10px; border-radius: 6px; font-weight: bold; transition: color 0.3s ease, background-color 0.3s ease; }
       .abt a:hover { color: #ffa200; background-color: rgba(255, 162, 0, 0.1); }
 
-      /* Navigation (Disederhanakan) */
-      nav { background-color: rgba(24, 24, 24, 0.5); padding: 10px; border-radius: 15px; opacity: 0.9; margin-top: 15px; }
-      nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px 20px; }
-      nav a { color: #ffa200; text-decoration: none; padding: 8px 15px; border-radius: 10px; transition: background-color 0.3s ease, color 0.3s ease; display: inline-block; font-weight: bold; }
-      nav a:hover { text-decoration: none; color: #181818; background-color: #ff8c00; }
 
       /* Search Container & Input */
       .search-container { position: sticky; top: 45px; z-index: 1000; padding: 15px 0; transition: all 0.3s ease; text-align: center; backdrop-filter: blur(5px); margin-left: -15px; margin-right: -15px; padding-left: 15px; padding-right: 15px; }
@@ -149,7 +160,9 @@
     </div>
 
     <!-- Link About (Fixed Top) -->
-    <div class="abt"><a href="About.html">ABOUT</a></div>
+    <div class="abt"><a href="About.html">ABOUT</a>
+      <a href="index.html">HOME</a></div>
+    
 
     <header>
       <div class="container">
@@ -157,12 +170,6 @@
           <span>M</span><span>y</span><span>A</span><span>n</span><span>i</span><span>m</span><span>e</span>
         </h1>
         <!-- Navigasi Disederhanakan: Tidak ada lagi menu login/profil -->
-        <nav>
-          <ul id="menu">
-            <li><a href="index.html">HOME</a></li>
-            <!-- Anda bisa menambahkan link lain di sini jika perlu, misal 'Genre' atau 'Jadwal' -->
-          </ul>
-        </nav>
         <div class="search-container">
           <input type="text" id="search-input" placeholder="Cari judul anime..." name="keyword" />
         </div>
@@ -493,6 +500,29 @@
       .then(reg => console.log('✅ Service Worker registered', reg))
       .catch(err => console.error('❌ Service Worker registration failed', err));
   }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector('header');
+    const title = document.querySelector('.title');
+    const abtBar = document.querySelector('.abt');
+
+    // Cek jika elemen ada untuk menghindari error
+    if (header && title && abtBar) {
+        window.addEventListener('scroll', () => {
+            // Ambil ketinggian bar atas (abt) untuk dijadikan patokan
+            const topBarHeight = abtBar.offsetHeight;
+
+            // Jika posisi scroll lebih besar dari ketinggian bar atas
+            if (window.scrollY > topBarHeight) {
+                header.classList.add('scrolled');
+                title.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+                title.classList.remove('scrolled');
+            }
+        });
+    }
+});
     </script>
   </body>
 </html>
