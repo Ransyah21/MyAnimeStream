@@ -8,13 +8,13 @@
     "description": "Temukan rekomendasi anime pilihan di sini.",
     "icons": [
       {
-        "src": "/MyAnimeStream/Gambar/Logo-APL-Myanime.png",
+        "src": "/Gambar/logo-luar.png",
         "sizes": "192x192",
         "type": "image/png",
         "purpose": "any maskable"
       },
       {
-        "src": "/MyAnimeStream/Gambar/Logo-APL-Myanime.png",
+        "src": "/Gambar/logo-luar.png",
         "sizes": "512x512",
         "type": "image/png",
         "purpose": "any maskable"
