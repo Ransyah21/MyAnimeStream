@@ -155,51 +155,61 @@
         }
     
         async function loadStreamingData() {
-            try {
-                loading.style.display = 'block';
-                if (!animeSlug) throw new Error("Parameter 'slug' anime tidak ditemukan di URL.");
-    
-                const response = await fetch('./anime-data.json'); // Pastikan path ini benar
-                if (!response.ok) throw new Error(`Gagal memuat data: Status ${response.status}`);
-    
-                const fullData = await response.json();
-                const animeList = fullData.data || fullData;
-    
-                const anime = animeList.find(a => a.slug?.trim().toLowerCase() === animeSlug.trim().toLowerCase());
-                if (!anime) throw new Error(`Anime dengan slug "${animeSlug}" tidak ditemukan.`);
-    
-                if (!anime.seasons || anime.seasons.length === 0) {
-                    throw new Error(`Anime "${anime.title}" tidak memiliki data season yang valid.`);
-                }
-    
-                let currentSeason;
-    
-                if (seasonSlug) {
-                    currentSeason = anime.seasons.find(s => s.season_slug === seasonSlug);
-                    if (!currentSeason) throw new Error(`Season dengan slug "${seasonSlug}" tidak ditemukan untuk anime ini.`);
-                } else {
-                    console.warn("URL tidak memiliki 'season_slug'. Menggunakan season pertama sebagai default.");
-                    currentSeason = anime.seasons[0];
-                    if (!currentSeason || !currentSeason.season_slug) throw new Error("Tidak dapat menemukan season default yang valid untuk anime ini.");
-                    seasonSlug = currentSeason.season_slug; // Update seasonSlug agar tombol Lanjut berfungsi
-                }
-    
-                document.title = `Nonton ${anime.title} - ${currentSeason.name}`;
-    
-                const episodes = currentSeason.streaming?.map(convertToEmbedUrl) || [];
-                if (episodes.length === 0) throw new Error(`Episode untuk ${currentSeason.name} belum tersedia.`);
-    
-                loading.style.display = 'none';
-                player.src = episodes[0];
-                createEpisodeButtons(episodes);
-                renderSeasonDetails(currentSeason, anime.image);
-                renderContinueButton(anime.seasons, currentSeason.season_slug);
-    
-            } catch (error) {
-                console.error('Error:', error);
-                showError(error.message);
+    try {
+        loading.style.display = 'block';
+        if (!animeSlug) throw new Error("Parameter 'slug' anime tidak ditemukan di URL.");
+
+        const response = await fetch('./anime-data.json');
+        if (!response.ok) throw new Error(`Gagal memuat data: Status ${response.status}`);
+
+        const fullData = await response.json();
+        const animeList = fullData.data || fullData;
+
+        const anime = animeList.find(a => a.slug?.trim().toLowerCase() === animeSlug.trim().toLowerCase());
+        if (!anime) throw new Error(`Anime dengan slug "${animeSlug}" tidak ditemukan.`);
+        if (!anime.seasons || anime.seasons.length === 0) throw new Error(`Anime "${anime.title}" tidak memiliki data season.`);
+
+        // --- INI BAGIAN YANG DIPERBAIKI ---
+        let currentSeason;
+        const seasonSlugParam = urlParams.get('season_slug');
+        const seasonIndexParam = urlParams.get('season'); // Ambil juga parameter 'season'
+
+        if (seasonSlugParam) {
+            currentSeason = anime.seasons.find(s => s.season_slug === seasonSlugParam);
+        } else if (seasonIndexParam) {
+            const index = parseInt(seasonIndexParam, 10);
+            if (!isNaN(index) && anime.seasons[index]) {
+                currentSeason = anime.seasons[index];
             }
         }
+
+        // Jika masih belum ketemu, gunakan yang pertama
+        if (!currentSeason) {
+            console.warn("Season tidak ditemukan dari parameter. Menggunakan season pertama.");
+            currentSeason = anime.seasons[0];
+        }
+        
+        if (!currentSeason) throw new Error("Tidak ada season yang valid untuk ditampilkan.");
+
+        seasonSlug = currentSeason.season_slug; // Selalu update seasonSlug saat ini
+        // --- AKHIR BAGIAN YANG DIPERBAIKI ---
+
+        document.title = `Nonton ${anime.title} - ${currentSeason.name}`;
+
+        const episodes = currentSeason.streaming?.map(convertToEmbedUrl) || [];
+        if (episodes.length === 0) throw new Error(`Episode untuk ${currentSeason.name} belum tersedia.`);
+
+        loading.style.display = 'none';
+        player.src = episodes[0];
+        createEpisodeButtons(episodes, episodes[0]); // Kirim episode pertama
+        renderSeasonDetails(currentSeason, anime.image);
+        renderContinueButton(anime.seasons, seasonSlug);
+
+    } catch (error) {
+        console.error('Error:', error);
+        showError(error.message);
+    }
+}
     
         function createEpisodeButtons(episodes) {
             episodeContainer.innerHTML = '';

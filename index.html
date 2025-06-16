@@ -102,6 +102,20 @@
       .anime-item .anime-description { display: none; }
       .anime-list.list-layout .anime-item .anime-description { display: -webkit-box; font-size: 0.9em; color: #ccc; line-height: 1.5; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; margin-bottom: auto; }
       
+      @media (max-width: 480px) { /* Target untuk layar HP (lebar 480px ke bawah) */
+        .anime-list {
+          /* Paksa grid untuk selalu menjadi 3 kolom yang sama lebarnya */
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px; /* Kurangi jarak antar item agar lebih pas */
+        }
+
+        .anime-item .anime-title {
+          font-size: 0.8em; /* Sedikit kecilkan font judul agar tidak terpotong */
+          line-height: 1.2;
+          min-height: 2.4em; /* Sesuaikan tinggi minimum agar pas 2 baris */
+        }
+      }
+
       .notice { margin: 30px auto; padding: 15px 20px; background-color: rgba(40, 40, 40, 0.8); border-radius: 8px; max-width: 600px; text-align: center; color: #ccc; position: relative; z-index: 2; border-left: 4px solid #ffa200; }
       .notice p { margin-bottom: 10px; line-height: 1.5; font-size: 0.95em; }
       .notice p:last-child { margin-bottom: 0; }
@@ -157,6 +171,52 @@
         .footer-item { width: 95%; text-align: center; }
         .footer-item h3, .footer-item p { justify-content: center; text-align: center; }
       }
+
+      /* --- STYLE UNTUK TOMBOL SCROLL TO TOP --- */
+
+#scrollToTopBtn {
+  position: fixed; /* Membuatnya melayang di atas segalanya */
+  bottom: 20px;
+  right: 20px;
+  z-index: 1050; /* Pastikan di atas semua elemen lain */
+  
+  /* Bentuk & Ukuran */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Membuatnya bulat sempurna */
+  
+  /* Tampilan */
+  background-color: #ffa200;
+  color: #181818;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  
+  /* Posisi Ikon di Tengah */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Efek & Visibilitas Awal */
+  opacity: 0; /* Sembunyi secara default */
+  transform: translateY(100px); /* Posisi awal di luar layar */
+  pointer-events: none; /* Tidak bisa diklik saat sembunyi */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#scrollToTopBtn.visible {
+  opacity: 1; /* Tampilkan */
+  transform: translateY(0); /* Pindahkan ke posisi normal */
+  pointer-events: auto; /* Bisa diklik */
+}
+
+#scrollToTopBtn:hover {
+  background-color: #ff8c00;
+  transform: scale(1.1); /* Sedikit membesar saat disentuh mouse */
+}
+
     </style>
   </head>
   <body>
@@ -235,8 +295,22 @@
       </div>
     </footer>
 
+    <button id="scrollToTopBtn" title="Kembali ke atas">▲</button>
+
     <script>
-     // --- BAGIAN 1: DEFINISI FUNGSI DAN VARIABEL ---
+// --- BAGIAN 1: DEFINISI VARIABEL & FUNGSI ---
+
+// Variabel Global
+let currentPage = 1;
+let itemsPerPage = 21;
+let totalPages = 1;
+let allAnimeData = [];
+let filteredData = [];
+let searchTimer;
+let selectedGenre = "All";
+
+const searchInput = document.getElementById("search-input");
+const animeListContainer = document.getElementById("anime-list-container");
 
 // Fungsi Splash Screen
 function createSplashScreen() {
@@ -270,19 +344,7 @@ function initSplashScreen() {
   return hideSplash;
 }
 
-// Variabel Global
-let currentPage = 1;
-let itemsPerPage = 21;
-let totalPages = 1;
-let allAnimeData = [];
-let filteredData = [];
-let searchTimer;
-let selectedGenre = "All";
-
-const searchInput = document.getElementById("search-input");
-const animeListContainer = document.getElementById("anime-list-container");
-
-// Fungsi State Management (Scroll & Filter)
+// Fungsi State Management
 function saveState() {
   const state = {
     scrollPosition: window.scrollY,
@@ -312,61 +374,53 @@ async function loadAnimeData() {
     const response = await fetch("./anime-data.json", { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     const data = await response.json();
-    const animeArray = data.data || data;
-    if (!Array.isArray(animeArray)) throw new Error("Format data anime tidak valid.");
-    return animeArray.filter(anime => anime && anime.title && anime.slug);
+    return (data.data || data).filter(anime => anime && anime.title && anime.slug);
   } catch (error) {
     console.error("❌ Error kritikal saat memuat data anime:", error);
-    // Asumsi kamu punya fungsi showNotification, jika tidak, ganti dengan alert
-    // showNotification(`Gagal memuat data anime.`, "error", 7000);
     return [];
   }
 }
 function renderAnimeItems(data) {
   if (!animeListContainer) return;
   if (data.length === 0) {
-    const currentFilterInfo = selectedGenre && selectedGenre !== "All" ? `untuk genre "${selectedGenre}"` : searchInput.value ? `dengan kata kunci "${searchInput.value}"` : "";
-    animeListContainer.innerHTML = `<p style="text-align: center; color: #ccc; width: 100%; grid-column: 1 / -1; padding: 20px 0;">Tidak ada anime ditemukan ${currentFilterInfo}.</p>`;
+    const info = selectedGenre !== "All" ? `untuk genre "${selectedGenre}"` : searchInput.value ? `dengan kata kunci "${searchInput.value}"` : "";
+    animeListContainer.innerHTML = `<p style="text-align: center; color: #ccc; width: 100%; grid-column: 1 / -1; padding: 20px 0;">Tidak ada anime ditemukan ${info}.</p>`;
     return;
   }
-  animeListContainer.innerHTML = data.map(anime => {
-    const slug = anime.slug;
-    const imageUrl = anime.image || "Gambar/default-thumbnail.png";
-    const title = anime.title || "Judul Tidak Tersedia";
-    const description = anime.desc || "Deskripsi tidak tersedia.";
-    return `
-      <div class="anime-item">
-        <a href="anime.html?slug=${encodeURIComponent(slug)}" class="anime-image-link" title="${title}">
-          <img src="${imageUrl}" alt="${title}" loading="lazy" onerror="this.src='Gambar/default-thumbnail.png';">
-        </a>
-        <div class="anime-details">
-          <h3 class="anime-title">
-            <a href="anime.html?slug=${encodeURIComponent(slug)}" title="${title}">${title}</a>
-          </h3>
-          <p class="anime-description">${description}</p>
-        </div>
-      </div>`;
-  }).join("");
+  animeListContainer.innerHTML = data.map(anime => `
+    <div class="anime-item">
+      <a href="anime.html?slug=${encodeURIComponent(anime.slug)}" class="anime-image-link" title="${anime.title}">
+        <img src="${anime.image || 'Gambar/default-thumbnail.png'}" alt="${anime.title}" loading="lazy" onerror="this.src='Gambar/default-thumbnail.png';">
+      </a>
+      <div class="anime-details">
+        <h3 class="anime-title"><a href="anime.html?slug=${encodeURIComponent(anime.slug)}" title="${anime.title}">${anime.title}</a></h3>
+        <p class="anime-description">${anime.desc || 'Deskripsi tidak tersedia.'}</p>
+      </div>
+    </div>`).join("");
 }
 function renderPagination() {
-  let paginationContainer = document.querySelector(".pagination-container");
+  let paginationContainer = document.querySelector("#pagination-top");
   if (!paginationContainer) {
-      paginationContainer = document.createElement("div");
-      paginationContainer.className = "pagination-container";
-      animeListContainer.parentNode.insertAdjacentElement('afterend', paginationContainer);
+    paginationContainer = document.createElement("div");
+    paginationContainer.className = "pagination-container";
+    paginationContainer.id = "pagination-top";
+    const sectionTitle = document.querySelector("section.nama");
+    if (sectionTitle) {
+      sectionTitle.parentNode.insertBefore(paginationContainer, sectionTitle);
+    }
   }
   if (totalPages <= 1) {
-      paginationContainer.innerHTML = "";
-      return;
+    paginationContainer.innerHTML = "";
+    return;
   }
   paginationContainer.innerHTML = `
-      <div class="pagination-controls">
-          <button class="pagination-btn" id="prev-btn" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
-          <span class="page-info">Hal ${currentPage} / ${totalPages}</span>
-          <button class="pagination-btn" id="next-btn" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
-      </div>`;
-  document.getElementById("prev-btn")?.addEventListener("click", () => { if(currentPage > 1) { currentPage--; updateDisplay(); } });
-  document.getElementById("next-btn")?.addEventListener("click", () => { if(currentPage < totalPages) { currentPage++; updateDisplay(); } });
+    <div class="pagination-controls">
+        <button class="pagination-btn" id="prev-btn" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
+        <span class="page-info">Hal ${currentPage} / ${totalPages}</span>
+        <button class="pagination-btn" id="next-btn" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
+    </div>`;
+  document.getElementById("prev-btn")?.addEventListener("click", () => { if (currentPage > 1) { currentPage--; updateDisplay(); } });
+  document.getElementById("next-btn")?.addEventListener("click", () => { if (currentPage < totalPages) { currentPage++; updateDisplay(); } });
 }
 function updateDisplay() {
   const start = (currentPage - 1) * itemsPerPage;
@@ -374,32 +428,25 @@ function updateDisplay() {
   const itemsToDisplay = filteredData.slice(start, end);
   const sectionTitle = document.querySelector("section.nama h2");
   if (sectionTitle) {
-      let titleText = "Semua Anime";
-      if (selectedGenre && selectedGenre !== "All") titleText = `Genre: ${selectedGenre}`;
-      if (searchInput.value.trim()) titleText = `Hasil Pencarian: "${searchInput.value.trim()}"`;
-      sectionTitle.textContent = `${titleText} (${filteredData.length} hasil)`;
+    let titleText = "Semua Anime";
+    if (selectedGenre !== "All") titleText = `Genre: ${selectedGenre}`;
+    if (searchInput.value.trim()) titleText = `Hasil Pencarian: "${searchInput.value.trim()}"`;
+    sectionTitle.textContent = `${titleText} (${filteredData.length} hasil)`;
   }
   renderAnimeItems(itemsToDisplay);
   renderPagination();
 }
 
-// Fungsi Search & Filter Logic
+// Fungsi Search & Filter
 function filterAndDisplay(searchValue = "", genre = "All") {
-  const isFilterOrSearchActive = (genre && genre !== "All") || searchValue.trim() !== "";
-  animeListContainer.classList.toggle("list-layout", isFilterOrSearchActive);
-  let temp_data = [...allAnimeData];
-  if (genre && genre !== "All") {
-      temp_data = temp_data.filter(anime => anime.info?.genres?.some(g => g?.toLowerCase() === genre.toLowerCase()));
-  }
-  if (searchValue) {
-      temp_data = temp_data.filter(anime => anime.title?.toLowerCase().includes(searchValue));
-  }
+  animeListContainer.classList.toggle("list-layout", genre !== "All" || searchValue.trim() !== "");
+  let temp_data = allAnimeData.filter(anime => 
+    (genre === "All" || anime.info?.genres?.some(g => g.toLowerCase() === genre.toLowerCase())) &&
+    (anime.title?.toLowerCase().includes(searchValue))
+  );
   filteredData = temp_data;
-  totalPages = Math.ceil(filteredData.length / itemsPerPage);
-  if (totalPages < 1) totalPages = 1;
-  if (!sessionStorage.getItem('pageState')) {
-      currentPage = 1;
-  }
+  totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
+  if (!sessionStorage.getItem('pageState')) currentPage = 1;
   updateDisplay();
 }
 function renderGenreFilters() {
@@ -412,15 +459,14 @@ function renderGenreFilters() {
     const button = document.createElement("button");
     button.className = "genre-btn";
     button.textContent = genre;
-    button.dataset.genre = genre;
     if (selectedGenre === genre) button.classList.add("selected");
     button.addEventListener("click", () => {
-        sessionStorage.removeItem('pageState');
-        selectedGenre = genre;
-        searchInput.value = "";
-        filterAndDisplay("", genre);
-        document.querySelectorAll(".genre-btn").forEach(btn => btn.classList.remove("selected"));
-        button.classList.add("selected");
+      sessionStorage.removeItem('pageState');
+      selectedGenre = genre;
+      searchInput.value = "";
+      filterAndDisplay("", genre);
+      document.querySelectorAll(".genre-btn.selected").forEach(btn => btn.classList.remove("selected"));
+      button.classList.add("selected");
     });
     return button;
   };
@@ -428,90 +474,78 @@ function renderGenreFilters() {
   sortedGenres.forEach(genre => genreContainer.appendChild(createGenreButton(genre)));
 }
 
-// Fungsi untuk Shrinking Header
+// Fungsi Efek UI
 function initShrinkingHeader() {
   const header = document.querySelector('header');
   const title = document.querySelector('.title');
   const abtBar = document.querySelector('.abt');
-  const mainContent = document.querySelector('main'); // <-- TAMBAHKAN INI
-
-// Cek jika SEMUA elemen ada
-if (header && title && abtBar && mainContent) { // <-- TAMBAHKAN mainContent di sini
+  const mainContent = document.querySelector('main');
+  if (header && title && abtBar && mainContent) {
+    window.addEventListener('scroll', () => {
+      const isScrolled = window.scrollY > abtBar.offsetHeight;
+      header.classList.toggle('scrolled', isScrolled);
+      title.classList.toggle('scrolled', isScrolled);
+      mainContent.classList.toggle('scrolled', isScrolled);
+    }, { passive: true });
+  }
+}
+function initScrollToTopButton() {
+  const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+  const targetElement = document.getElementById('pagination-top') || document.querySelector('header');
+  if (!scrollToTopBtn || !targetElement) return;
   window.addEventListener('scroll', () => {
-    const topBarHeight = abtBar.offsetHeight;
-    if (window.scrollY > topBarHeight) {
-      header.classList.add('scrolled');
-      title.classList.add('scrolled');
-      mainContent.classList.add('scrolled'); // <-- TAMBAHKAN INI
-    } else {
-      header.classList.remove('scrolled');
-      title.classList.remove('scrolled');
-      mainContent.classList.remove('scrolled'); // <-- TAMBAHKAN INI
-    }
+    scrollToTopBtn.classList.toggle('visible', window.scrollY > 400);
   }, { passive: true });
-}
+  scrollToTopBtn.addEventListener('click', () => {
+    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 }
 
-
-// --- BAGIAN 2: EKSEKUSI KODE & EVENT LISTENERS ---
+// --- BAGIAN 2: EKSEKUSI & EVENT LISTENERS ---
 
 // Event Listeners yang bisa berjalan kapan saja
 searchInput.addEventListener("input", (e) => {
-    clearTimeout(searchTimer);
-    searchTimer = setTimeout(() => {
-      sessionStorage.removeItem('pageState');
-      filterAndDisplay(e.target.value.toLowerCase().trim(), selectedGenre);
-    }, 350);
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    sessionStorage.removeItem('pageState');
+    filterAndDisplay(e.target.value.toLowerCase().trim(), selectedGenre);
+  }, 350);
 });
-
-const genreHeader = document.querySelector(".genre-header");
-genreHeader?.addEventListener("click", () => {
-    const container = document.querySelector(".genre-list-container");
-    const isCollapsed = container.classList.toggle("collapsed");
-    genreHeader.querySelector(".arrow-down").style.display = isCollapsed ? 'block' : 'none';
-    genreHeader.querySelector(".arrow-up").style.display = isCollapsed ? 'none' : 'block';
+document.querySelector(".genre-header")?.addEventListener("click", () => {
+  const container = document.querySelector(".genre-list-container");
+  const isCollapsed = container.classList.toggle("collapsed");
+  document.querySelector(".genre-header .arrow-down").style.display = isCollapsed ? 'block' : 'none';
+  document.querySelector(".genre-header .arrow-up").style.display = isCollapsed ? 'none' : 'block';
 });
-
 document.body.addEventListener('click', (e) => {
-    if (e.target.closest('a[href*="anime.html"]')) {
-        saveState();
-    }
+  if (e.target.closest('a[href*="anime.html"]')) saveState();
 });
-
 
 // Kode yang dijalankan setelah halaman siap (DOM Loaded)
 document.addEventListener("DOMContentLoaded", async () => {
-    console.log("🚀 DOM loaded. Initializing...");
-    const hideSplash = initSplashScreen();
-    
-    try {
-        allAnimeData = await loadAnimeData();
-        const restoredScrollY = restoreState();
-        
-        if (allAnimeData.length > 0) {
-            renderGenreFilters();
-            filterAndDisplay(searchInput.value, selectedGenre);
-
-            if (restoredScrollY > 0) {
-                setTimeout(() => {
-                    window.scrollTo({ top: restoredScrollY, behavior: 'auto' });
-                    console.log(`📜 Scrolled to Y: ${restoredScrollY}`);
-                }, 100);
-            }
-            sessionStorage.removeItem('pageState');
-        } else {
-            animeListContainer.innerHTML = '<p style="text-align: center; color: #ccc; width: 100%; padding: 20px 0;">Gagal memuat anime atau tidak ada data tersedia.</p>';
-        }
-    } catch (error) {
-        console.error("❌ Error kritis saat inisialisasi:", error);
-        // showNotification("Terjadi kesalahan saat memuat halaman.", "error", 5000);
-    } finally {
-        setTimeout(hideSplash, 500);
-        console.log("🏁 Initialization complete.");
+  console.log("🚀 DOM loaded. Initializing...");
+  const hideSplash = initSplashScreen();
+  try {
+    allAnimeData = await loadAnimeData();
+    const restoredScrollY = restoreState();
+    if (allAnimeData.length > 0) {
+      renderGenreFilters();
+      filterAndDisplay(searchInput.value, selectedGenre);
+      if (restoredScrollY > 0) {
+        setTimeout(() => window.scrollTo({ top: restoredScrollY, behavior: 'auto' }), 100);
+      }
+      sessionStorage.removeItem('pageState');
+    } else {
+      animeListContainer.innerHTML = '<p style="text-align: center; color: #ccc; width: 100%; padding: 20px 0;">Gagal memuat anime atau tidak ada data tersedia.</p>';
     }
-
-    // Jalankan fungsi shrinking header setelah DOM siap
+  } catch (error) {
+    console.error("❌ Error kritis saat inisialisasi:", error);
+  } finally {
+    setTimeout(hideSplash, 500);
     initShrinkingHeader();
+    initScrollToTopButton();
+    console.log("🏁 Initialization complete.");
+  }
 });
 
 // Pendaftaran Service Worker
@@ -522,6 +556,7 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.error('❌ Service Worker registration failed', err));
   });
 }
+
     </script>
   </body>
 </html>

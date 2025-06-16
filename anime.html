@@ -18,496 +18,163 @@
     <!-- ================================================== -->
     <!-- --- STYLE CSS (Disalin dari index.html + Tambahan Detail) --- -->
     <!-- ================================================== -->
-    <style>
-      /* Reset dan Base Styles (Salin dari index.html) */
+<style>
+      /* Reset dan Base Styles */
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html, body { width: 100%; min-height: 100vh; scroll-behavior: smooth; }
       body { background-color: #181818; color: #fff; font-family: sans-serif; overflow-x: hidden; background-image: radial-gradient(#021027, #000000); position: relative; z-index: 1; }
       body::-webkit-scrollbar { display: none; }
 
-      /* Style Partikel (Salin dari index.html) */
+      /* Style Partikel */
       #particles-background { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -2; overflow: hidden; }
-      .circle-container { position: absolute; width: 5px; height: 5px; animation-iteration-count: infinite; animation-timing-function: linear; animation-name: move-frames; animation-duration: 15s; animation-delay: 0s; }
+      .circle-container { position: absolute; width: 5px; height: 5px; animation: move-frames 15s linear infinite; }
       .circle { width: 100%; height: 100%; border-radius: 50%; mix-blend-mode: screen; background-image: radial-gradient(hsl(180, 100%, 80%), hsl(180, 100%, 80%) 10%, hsla(180, 100%, 80%, 0) 56%); animation: fade-frames 2.5s infinite ease-in-out alternate, scale-frames 3.5s infinite ease-in-out alternate; }
       @keyframes fade-frames { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
       @keyframes scale-frames { 0%, 100% { transform: scale(0.6); } 50% { transform: scale(1.4); } }
       @keyframes move-frames { from { transform: translate3d(-10vw, 110vh, 0); opacity: 0; } 20%, 80% { opacity: 1; } to { transform: translate3d(110vw, -10vh, 0); opacity: 0; } }
-      /* Variasi Partikel */
       .circle-container:nth-child(1) { width: 8px; height: 8px; animation-duration: 12s; animation-delay: 1s; left: 10%; }
       .circle-container:nth-child(2) { width: 5px; height: 5px; animation-duration: 19s; animation-delay: 4s; left: 50%; }
       .circle-container:nth-child(3) { width: 10px; height: 10px; animation-duration: 15s; animation-delay: 7s; left: 90%; }
-      /* ... (Tambahkan variasi lain jika perlu) ... */
-
-      /* Style Utama Lainnya (Salin dari index.html) */
+      
       .container { max-width: 1200px; margin: 0 auto; padding: 20px 15px; position: relative; z-index: 2; }
       .container a { text-decoration: none; color: #ccc; }
 
-      header { text-align: center; position: relative; z-index: 2; padding-top: 50px; }
-      /* header h1 { font-size: 3em; margin: 0; } */ /* Hapus jika judul utama ada di main */
-
-      /* Title Animation (Bisa digunakan untuk judul anime di main) */
-      .title { font-size: clamp(30px, 8vw, 45px); width: 100%; margin: 1.5rem auto; display: flex; flex-wrap: nowrap; justify-content: center; -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(0, 0, 0, 0.15)); position: relative; }
-      .title span { display: inline-block; font-family: "Play", sans-serif; animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate; margin: 0 clamp(1px, 0.5vw, 3px); color: #ffa200; text-shadow: 0 0 10px #ff6b00; font-weight: bold; }
-      @keyframes title-bounce { 0%, 60%, 100% { transform: translateY(0) scale(1); } 30% { transform: translateY(clamp(-25px, -5vw, -15px)) scale(1.1); } }
-      @keyframes fire { 0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00; } 100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; } }
-      /* Delay animasi title */
-      .title span:nth-child(1) { animation-delay: 0.3s; } .title span:nth-child(2) { animation-delay: 0.4s; } .title span:nth-child(3) { animation-delay: 0.5s; } .title span:nth-child(4) { animation-delay: 0.6s; } .title span:nth-child(5) { animation-delay: 0.7s; } .title span:nth-child(6) { animation-delay: 0.8s; } .title span:nth-child(7) { animation-delay: 0.9s; }
-
-      /* About Link */
-      .abt { background-color: rgba(24, 24, 24, 0.85); backdrop-filter: blur(8px); position: fixed; top: 0; left: 0; right: 0; padding: 10px 15px; z-index: 1001; display: flex; justify-content: flex-start; align-items: center; border-bottom: 1px solid rgba(255, 162, 0, 0.2); }
-      .abt a { position: relative; text-decoration: none; color: #ccc; background-color: transparent; padding: 5px 10px; border-radius: 6px; opacity: 1; font-weight: bold; transition: color 0.3s ease, background-color 0.3s ease; }
+      /* === HEADER BARU & KONSISTEN === */
+      .abt { background-color: rgba(24, 24, 24, 0.85); backdrop-filter: blur(8px); position: fixed; top: 0; left: 0; right: 0; padding: 10px 15px; z-index: 1001; display: flex; justify-content: flex-start; align-items: center; gap: 15px; border-bottom: 1px solid rgba(255, 162, 0, 0.2); }
+      .abt a { position: relative; text-decoration: none; color: #ccc; background-color: transparent; padding: 5px 10px; border-radius: 6px; font-weight: bold; transition: color 0.3s ease, background-color 0.3s ease; }
       .abt a:hover { color: #ffa200; background-color: rgba(255, 162, 0, 0.1); }
-
-      /* Navigation */
-      nav { background-color: rgba(24, 24, 24, 0.5); padding: 10px; border-radius: 15px; opacity: 0.9; margin-top: 15px; }
-      nav ul { font-weight: bold; list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px 20px; }
-      nav li { margin: 0; }
-      nav a { color: #ffa200; text-decoration: none; padding: 8px 15px; border-radius: 10px; transition: background-color 0.3s ease, color 0.3s ease; display: inline-block; }
-      nav a:hover { text-decoration: none; color: #181818; background-color: #ff8c00; }
-      /* Profile Button Style */
-      .profile-btn { display: flex; align-items: center; gap: 8px; text-decoration: none; color: white !important; padding: 5px 10px; border-radius: 20px; transition: background-color 0.3s ease; }
-      .profile-img { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #ffa200; object-fit: cover; vertical-align: middle; box-shadow: 0 0 8px rgba(255, 162, 0, 0.5); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-      .profile-btn:hover { background-color: rgba(255, 162, 0, 0.2); }
-      .profile-btn:hover .profile-img { transform: scale(1.1); box-shadow: 0 0 12px rgba(255, 162, 0, 0.8); }
-      .profile-btn span { font-weight: bold; font-size: 0.9em; }
+      
+      /* Logo MyAnime di Pojok Kanan Atas */
+      .abt::after {
+        content: "MyAnime";
+        font-family: "Play", sans-serif;
+        font-weight: bold;
+        font-size: 1.5em;
+        color: #ffa200;
+        text-shadow: 0 0 10px #ff6b00;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+      
+      /* Sembunyikan Navigasi Lama & Reset Header */
+      nav, .profile-btn { display: none !important; }
+      header { padding-top: 0 !important; margin-top: 50px; }
+      /* === AKHIR HEADER BARU === */
 
       /* Konten Utama */
-      main { position: relative; z-index: 2; padding-top: 20px; /* Jarak dari nav */ }
+      main { position: relative; z-index: 2; padding-top: 20px; }
+      .back-btn { display: inline-block; margin-bottom: 25px; padding: 8px 16px; background-color: #3a3a3a; color: #ccc; border: 1px solid #555; border-radius: 20px; text-decoration: none; font-weight: bold; transition: all 0.3s ease; }
+      .back-btn:hover { background-color: #ffa200; color: #181818; border-color: #ffa200; transform: translateX(-3px); }
 
-      /* --- Tombol Kembali --- */
-      .back-btn {
-          display: inline-block; /* Agar margin bekerja */
-          margin-bottom: 25px; /* Jarak ke judul anime */
-          padding: 8px 16px;
-          background-color: #3a3a3a;
-          color: #ccc;
-          border: 1px solid #555;
-          border-radius: 20px;
-          text-decoration: none;
-          font-weight: bold;
-          transition: all 0.3s ease;
-      }
-      .back-btn:hover {
-          background-color: #ffa200;
-          color: #181818;
-          border-color: #ffa200;
-          transform: translateX(-3px);
-      }
+      /* Layout Detail Anime */
+      #anime-title.detail-main-title { font-size: clamp(2em, 6vw, 3em); color: #ffa200; text-align: center; margin-bottom: 30px; font-weight: bold; text-shadow: 0 0 8px rgba(255, 162, 0, 0.4); }
+      .detail-content-wrapper { display: flex; flex-direction: column; gap: 30px; align-items: center; }
+      .anime-poster { display: block; width: 100%; max-width: 280px; height: auto; border-radius: 12px; object-fit: cover; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); border: 3px solid rgba(255, 162, 0, 0.3); transition: transform 0.3s ease; }
+      .anime-poster:hover { transform: scale(1.03); }
+      .anime-info { width: 100%; display: flex; flex-direction: column; gap: 25px; }
+      .meta-info { display: flex; flex-direction: column; gap: 25px; width: 100%; }
+      .info-box, .genre-box, .synopsis-box { background-color: rgba(40, 40, 40, 0.8); backdrop-filter: blur(4px); padding: 20px; border-radius: 10px; border: 1px solid rgba(255, 162, 0, 0.15); width: 100%; }
+      .info-box h3, .genre-box h3, .synopsis-box h3 { color: #ffa200; font-size: 1.4em; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 162, 0, 0.2); font-weight: bold; }
+      .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px 20px; }
+      .info-item { font-size: 0.95em; color: #eee; line-height: 1.5; }
+      .info-item strong { color: #ffa200; margin-right: 5px; font-weight: 600; }
+      .genre-list { display: flex; flex-wrap: wrap; gap: 8px; }
+      .genre-tag { background-color: #3a3a3a; color: #ccc; padding: 5px 12px; border-radius: 15px; font-size: 0.85em; border: 1px solid #555; transition: all 0.2s ease; cursor: default; }
+      .genre-tag:hover { background-color: #ffa200; color: #181818; border-color: #ffa200; }
+      .synopsis-text { color: #ccc; font-size: 1em; line-height: 1.7; text-align: justify; }
+      .action-buttons { display: flex; justify-content: center; gap: 20px; margin-top: 20px; flex-wrap: wrap; }
+      .btn-download, .btn-streaming { display: inline-flex; align-items: center; gap: 8px; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 1em; cursor: pointer; transition: all 0.3s ease; border: none; text-align: center; min-width: 150px; justify-content: center; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); }
+      .btn-download { background-color: #17a2b8; color: white; }
+      .btn-download:hover { background-color: #138496; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(23, 162, 184, 0.4); }
+      .btn-streaming { background-color: #ffa200; color: #181818; }
+      .btn-streaming:hover { background-color: #ff8c00; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(255, 162, 0, 0.4); }
 
-      /* --- Layout Detail Anime --- */
-      #anime-title.detail-main-title { /* Style khusus judul utama di detail */
-          font-size: clamp(2em, 6vw, 3em);
-          color: #ffa200;
-          text-align: center;
-          margin-bottom: 30px;
-          font-weight: bold;
-          text-shadow: 0 0 8px rgba(255, 162, 0, 0.4);
-      }
-
-      .detail-content-wrapper { /* Wrapper untuk poster dan info */
-          display: flex;
-          flex-direction: column; /* Default tumpuk di mobile */
-          gap: 30px;
-          align-items: center; /* Tengahkan item di mobile */
-      }
-
-      .anime-poster {
-          display: block;
-          width: 100%;
-          max-width: 280px; /* Lebar maks poster */
-          height: auto;
-          border-radius: 12px;
-          object-fit: cover;
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-          border: 3px solid rgba(255, 162, 0, 0.3);
-          transition: transform 0.3s ease;
-      }
-      .anime-poster:hover {
-          transform: scale(1.03);
-      }
-
-      .anime-info { /* Container untuk semua teks info */
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 25px;
-      }
-
-      .meta-info { /* Wrapper untuk info box & genre box */
-          display: flex;
-          flex-direction: column; /* Tumpuk di mobile */
-          gap: 25px;
-          width: 100%;
-      }
-
-      .info-box, .genre-box, .synopsis-box {
-          background-color: rgba(40, 40, 40, 0.8); /* Background semi-transparan */
-          backdrop-filter: blur(4px);
-          padding: 20px;
-          border-radius: 10px;
-          border: 1px solid rgba(255, 162, 0, 0.15);
-          width: 100%;
-      }
-
-      .info-box h3, .genre-box h3, .synopsis-box h3 {
-          color: #ffa200;
-          font-size: 1.4em;
-          margin-bottom: 15px;
-          padding-bottom: 8px;
-          border-bottom: 1px solid rgba(255, 162, 0, 0.2);
-          font-weight: bold;
-      }
-
-      .info-grid { /* Grid untuk metadata */
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Kolom responsif */
-          gap: 12px 20px; /* Jarak baris & kolom */
-      }
-      .info-item {
-          font-size: 0.95em;
-          color: #eee;
-          line-height: 1.5;
-      }
-      .info-item strong {
-          color: #ffa200;
-          margin-right: 5px;
-          font-weight: 600;
-      }
-
-      .genre-list { /* Flexbox untuk tag genre */
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-      }
-      .genre-tag {
-          background-color: #3a3a3a;
-          color: #ccc;
-          padding: 5px 12px;
-          border-radius: 15px;
-          font-size: 0.85em;
-          border: 1px solid #555;
-          transition: all 0.2s ease;
-          cursor: default; /* Tidak bisa diklik */
-      }
-      .genre-tag:hover {
-          background-color: #ffa200;
-          color: #181818;
-          border-color: #ffa200;
-      }
-
-      .synopsis-text {
-          color: #ccc;
-          font-size: 1em;
-          line-height: 1.7;
-          text-align: justify;
-      }
-
-      .action-buttons {
-          display: flex;
-          justify-content: center; /* Tengahkan tombol */
-          gap: 20px; /* Jarak antar tombol */
-          margin-top: 20px; /* Jarak dari sinopsis */
-          flex-wrap: wrap; /* Wrap jika layar kecil */
-      }
-
-      /* Style Tombol Download & Streaming (Gunakan style yang mirip) */
-      .btn-download, .btn-streaming {
-          display: inline-flex; /* Agar ikon dan teks sejajar */
-          align-items: center;
-          gap: 8px; /* Jarak ikon dan teks */
-          padding: 12px 25px;
-          border-radius: 25px;
-          text-decoration: none;
-          font-weight: bold;
-          font-size: 1em;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          border: none;
-          text-align: center;
-          min-width: 150px; /* Lebar minimum tombol */
-          justify-content: center;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      }
-      .btn-download {
-          background-color: #17a2b8; /* Warna biru info */
-          color: white;
-      }
-      .btn-download:hover {
-          background-color: #138496;
-          transform: translateY(-2px);
-          box-shadow: 0 6px 15px rgba(23, 162, 184, 0.4);
-      }
-      .btn-streaming {
-          background-color: #ffa200;
-          color: #181818;
-      }
-      .btn-streaming:hover {
-          background-color: #ff8c00;
-          transform: translateY(-2px);
-          box-shadow: 0 6px 15px rgba(255, 162, 0, 0.4);
-      }
-
-
-      /* --- Style Popup Season (Mirip tapi mungkin perlu sedikit penyesuaian) --- */
-      .season-popup {
-          display: none;
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 90%;
-          max-width: 400px;
-          background-color: #282828; /* Warna background popup */
-          padding: 30px;
-          border-radius: 15px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-          z-index: 1005; /* Di atas overlay blur */
-          border: 1px solid rgba(255, 162, 0, 0.2);
-      }
-      .season-popup h3 {
-          color: #ffa200;
-          text-align: center;
-          margin-top: 0;
-          margin-bottom: 25px;
-          font-size: 1.5em;
-      }
-      .season-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          max-height: 300px; /* Batas tinggi jika banyak season */
-          overflow-y: auto; /* Scroll jika perlu */
-          display: flex;
-          flex-direction: column;
-          gap: 12px; /* Jarak antar item season */
-      }
-      .season-item {
-          background-color: #3a3a3a;
-          color: #eee;
-          padding: 12px 18px;
-          border-radius: 8px;
-          cursor: pointer;
-          text-align: center;
-          font-weight: 600;
-          transition: all 0.2s ease;
-          border: 1px solid #555;
-      }
-      .season-item:hover {
-          background-color: #ffa200;
-          color: #181818;
-          border-color: #ffa200;
-          transform: scale(1.0);
-      }
-      .close-btn { /* Style tombol close (X) */
-          position: absolute;
-          top: 10px;
-          right: 15px;
-          font-size: 28px;
-          color: #aaa;
-          cursor: pointer;
-          transition: color 0.2s ease;
-          line-height: 1;
-      }
+      /* Popup Season & Loader */
+      .season-popup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 400px; background-color: #282828; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); z-index: 1005; border: 1px solid rgba(255, 162, 0, 0.2); }
+      .season-popup h3 { color: #ffa200; text-align: center; margin: 0 0 25px 0; font-size: 1.5em; }
+      .season-list { list-style: none; padding: 0; margin: 0; max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+      .season-item { background-color: #3a3a3a; color: #eee; padding: 12px 18px; border-radius: 8px; cursor: pointer; text-align: center; font-weight: 600; transition: all 0.2s ease; border: 1px solid #555; }
+      .season-item:hover { background-color: #ffa200; color: #181818; border-color: #ffa200; }
+      .close-btn { position: absolute; top: 10px; right: 15px; font-size: 28px; color: #aaa; cursor: pointer; transition: color 0.2s ease; line-height: 1; }
       .close-btn:hover { color: #fff; }
-
-      /* Blur Overlay & Loader */
-      #blur-overlay {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.6); /* Lebih gelap */
-          backdrop-filter: blur(5px);
-          z-index: 1004; /* Di bawah popup */
-      }
-      #loader { /* Style loader (bisa pakai spinner CSS) */
-          display: none;
-          position: fixed;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          border: 8px solid #3a3a3a; /* Light grey */
-          border-top: 8px solid #ffa200; /* Orange */
-          border-radius: 50%;
-          width: 60px;
-          height: 60px;
-          animation: spin 1s linear infinite;
-          z-index: 1006; /* Di atas popup dan overlay */
-      }
+      #blur-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); z-index: 1004; }
+      #loader { display: none; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); border: 8px solid #3a3a3a; border-top: 8px solid #ffa200; border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; z-index: 1006; }
       @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
 
-      /* Error Container */
-      .error-container {
-          text-align: center;
-          padding: 50px 20px;
-          color: #eee;
-          position: relative; z-index: 2;
-      }
-      .error-container h1 {
-          color: #ffa200;
-          font-size: 2em;
-          margin-bottom: 15px;
-      }
-      .error-container p {
-          color: #ccc;
-          margin-bottom: 25px;
-      }
-      /* Tombol kembali di error bisa pakai style .back-btn */
-
-      /* Notification Style (Salin dari index.html) */
+      /* Error & Notifikasi */
+      .error-container { text-align: center; padding: 50px 20px; color: #eee; position: relative; z-index: 2; }
+      .error-container h1 { color: #ffa200; font-size: 2em; margin-bottom: 15px; }
+      .error-container p { color: #ccc; margin-bottom: 25px; }
       #notification { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); padding: 15px 30px; border-radius: 25px; color: white; font-weight: bold; z-index: 10000; opacity: 0; transition: opacity 0.3s ease, bottom 0.3s ease; pointer-events: none; box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-align: center; }
       #notification.visible { opacity: 1; bottom: 30px; pointer-events: auto; }
       #notification.success { background: linear-gradient(45deg, #28a745, #218838); }
       #notification.error { background: linear-gradient(45deg, #dc3545, #c82333); }
       #notification.info { background: linear-gradient(45deg, #17a2b8, #138496); }
 
-      /* Footer Style (Salin dari index.html) */
+      /* Footer */
       .footer { background-color: #1f1f1f; color: #aaa; padding: 30px 0; font-size: 14px; position: relative; z-index: 3; margin-top: 50px; border-top: 1px solid #333; }
       .footer-section { display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; padding: 0 15px; gap: 30px; }
-      .footer-item { flex: 1; min-width: 220px; margin-bottom: 20px; padding: 0 10px; box-sizing: border-box; text-align: left; }
-      .footer-item h3 { display: block; margin: 0 0 15px 0; font-size: 18px; border-bottom: 1px solid #444; padding-bottom: 8px; color: #ffa200; text-align: left; font-weight: bold; }
-      .social-links-container { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; align-items: flex-start; }
+      .footer-item { flex: 1; min-width: 220px; margin-bottom: 20px; padding: 0 10px; text-align: left; }
+      .footer-item h3 { margin: 0 0 15px 0; font-size: 18px; border-bottom: 1px solid #444; padding-bottom: 8px; color: #ffa200; font-weight: bold; }
       .footer-item p { margin: 0 0 8px 0; display: flex; align-items: center; font-size: 14px; line-height: 1.6; color: #ccc; }
       .footer-item p a { color: #ccc; text-decoration: none; transition: color 0.3s ease; margin-left: 5px; }
       .footer-item p a:hover { color: #ffa200; text-decoration: underline; }
-      .social-icon { margin-right: 10px; vertical-align: middle; width: 20px; height: auto; color: #aaa; transition: all 0.3s ease; flex-shrink: 0; }
-      .trakteer-icon { width: 20px; height: auto; }
-      .footer-item p a:hover .social-icon, .social-icon:hover { transform: scale(1.2) rotate(5deg); color: #ffa200; }
-
-
-      /* --- MEDIA QUERIES (Gabungan index.html + Penyesuaian Detail) --- */
-      /* Tablet dan Layar Menengah */
-      @media (max-width: 992px) {
-          .container { padding: 20px 15px; }
-          .footer-item { min-width: 250px; }
-          .info-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+      .social-icon { margin-right: 10px; width: 20px; color: #aaa; transition: all 0.3s ease; }
+      .footer-item p a:hover .social-icon { transform: scale(1.2) rotate(5deg); color: #ffa200; }
+      
+      /* Media Queries */
+      @media (min-width: 769px) {
+        .detail-content-wrapper { flex-direction: row; align-items: flex-start; gap: 40px; }
+        .anime-poster { flex-shrink: 0; width: 35%; max-width: 320px; }
+        .anime-info { flex-grow: 1; width: auto; }
+        .meta-info { flex-direction: row; gap: 30px; align-items: flex-start; }
+        .info-box { flex: 2; }
+        .genre-box { flex: 1; }
+        .action-buttons { justify-content: flex-start; }
       }
-
-       /* Tablet Kecil & Mobile Landscape */
       @media (max-width: 768px) {
-          .detail-content-wrapper { flex-direction: column; align-items: center; }
-          .anime-poster { max-width: 240px; }
-          .anime-info { width: 100%; }
-          .meta-info { flex-direction: column; }
-          #anime-title.detail-main-title { font-size: 2.2em; }
-          .info-box h3, .genre-box h3, .synopsis-box h3 { font-size: 1.3em; }
-          .info-item { font-size: 0.9em; }
-          .synopsis-text { font-size: 0.95em; }
-          .btn-download, .btn-streaming { font-size: 0.95em; padding: 10px 20px; min-width: 130px;}
-          .season-popup { width: 90%; padding: 20px; }
-          .season-popup h3 { font-size: 1.3em; }
-          .season-item { padding: 10px 15px; font-size: 0.95em; }
-          #loader { width: 50px; height: 50px; border-width: 6px; }
-
-          /* Footer responsive */
-          .footer-section { flex-direction: column; align-items: center; gap: 30px; padding: 0 10px; }
-          .footer-item { width: 95%; max-width: 400px; min-width: auto; margin-bottom: 0; padding: 0; text-align: center; }
-          .footer-item h3 { text-align: center; margin-bottom: 15px; }
-          .social-links-container { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 15px; }
-          .footer-item p { justify-content: center; text-align: center; }
-          .footer-item p a { margin-left: 5px; }
-          .social-icon { width: 18px; }
-           /* Nav responsive (jika diperlukan) */
-          nav ul { justify-content: center; gap: 8px 15px; }
-          nav a { padding: 7px 12px; font-size: 0.95em; }
+        .footer-section { flex-direction: column; align-items: center; text-align: center; }
+        .footer-item { width: 95%; text-align: center; }
+        .footer-item h3, .footer-item p { justify-content: center; }
       }
-
-      /* Mobile Kecil */
       @media (max-width: 480px) {
-          .container { padding: 15px 10px; }
-          header { padding-top: 55px; }
-          .abt { padding: 8px 10px; }
-          .abt a { font-size: 0.9em; }
-          nav ul { gap: 5px 10px; }
-          nav a { padding: 6px 8px; font-size: 0.9em; }
-          .profile-btn { gap: 5px; padding: 4px 8px; }
-          .profile-img { width: 25px; height: 25px; border-width: 1px; }
-          .profile-btn span { font-size: 0.8em; }
-
-          .back-btn { padding: 7px 14px; font-size: 0.9em; margin-bottom: 20px; }
-          #anime-title.detail-main-title { font-size: 1.8em; margin-bottom: 20px; }
-          .anime-poster { max-width: 200px; }
-          .info-box, .genre-box, .synopsis-box { padding: 15px; }
-          .info-box h3, .genre-box h3, .synopsis-box h3 { font-size: 1.2em; }
-          .info-grid { grid-template-columns: 1fr; gap: 10px; } /* 1 kolom di mobile kecil */
-          .info-item { font-size: 0.85em; }
-          .genre-tag { font-size: 0.8em; padding: 4px 10px; }
-          .synopsis-text { font-size: 0.9em; line-height: 1.6; }
-          .action-buttons { gap: 15px; }
-          .btn-download, .btn-streaming { font-size: 0.9em; padding: 9px 18px; min-width: 120px; }
-          .season-popup { max-width: 95%; }
-          .season-popup h3 { font-size: 1.2em; }
-          .season-item { padding: 9px 12px; font-size: 0.9em; }
-          #loader { width: 40px; height: 40px; border-width: 5px; }
-          #notification { padding: 12px 25px; font-size: 0.9em; width: 90%; }
-          .footer { padding: 25px 0; }
-          .footer-item h3 { font-size: 16px; }
-          .footer-item p { font-size: 13px; }
+        #anime-title.detail-main-title { font-size: 1.8em; }
+        .info-grid { grid-template-columns: 1fr; }
       }
-
-       /* Style tambahan untuk layout 2 kolom di layar > 768px */
-       @media (min-width: 769px) {
-           .detail-content-wrapper {
-               flex-direction: row; /* Kembali ke row */
-               align-items: flex-start; /* Align ke atas */
-               gap: 40px; /* Jarak lebih besar */
-           }
-           .anime-poster {
-               flex-shrink: 0; /* Jangan biarkan poster menyusut */
-               width: 35%; /* Lebar poster */
-               max-width: 320px;
-           }
-           .anime-info {
-               flex-grow: 1; /* Biarkan info mengisi sisa ruang */
-               width: auto; /* Reset width */
-           }
-            .meta-info {
-                flex-direction: row; /* Info & genre berdampingan */
-                gap: 30px;
-                align-items: flex-start; /* Align ke atas */
-            }
-            .info-box {
-                flex: 2; /* Info box lebih lebar */
-            }
-            .genre-box {
-                 flex: 1;
-            }
-            .action-buttons {
-                 justify-content: flex-start; /* Tombol align kiri */
-             }
-       }
-
-    </style>
-    <!-- ================================================== -->
+    </style>    <!-- ================================================== -->
     <!-- --- AKHIR STYLE CSS --- -->
     <!-- ================================================== -->
 </head>
 <body>
-    <!-- Background Partikel (Salin dari index.html) -->
+    <!-- Background Partikel -->
     <div id="particles-background">
-      <!-- ... (konten partikel tetap sama, 100 div) ... -->
-      <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div> <div class="circle-container"><div class="circle"></div></div>
+      <!-- 100 div.circle-container -->
+      <div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div>
     </div>
 
-    <!-- Link About (Fixed Top) -->
-    <div class="abt"><a href="About.html">ABOUT</a></div>
+    <!-- ============================================= -->
+    <!-- === BAGIAN HTML YANG DIPERBAIKI (HEADER) === -->
+    <!-- ============================================= -->
 
-    <!-- Header dengan Navigasi -->
+    <!-- Bar Atas (Fixed) -->
+    <div class="abt">
+      <a href="About.html">About</a>
+      <a href="index.html">Beranda</a>
+      <!-- Logo MyAnime akan ditambahkan oleh CSS di sini -->
+    </div>
+
+    <!-- Header Kosong (Hanya untuk Jarak) -->
     <header>
-      <div class="container">
-        <!-- Kosongkan header ini jika judul utama ada di main -->
-        <!-- <h1 class="title"><span>D</span><span>e</span><span>t</span><span>a</span><span>i</span><span>l</span></h1> -->
-        <nav>
-          <ul id="menu">
-            <!-- Menu akan diisi oleh JS (Login/Logout/Profile) -->
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="#" id="google-login-btn">LOGIN</a></li>
-          </ul>
-        </nav>
-      </div>
+      <!-- Tidak perlu ada apa-apa di sini -->
     </header>
+
+    <!-- ============================================= -->
+    <!-- === AKHIR BAGIAN YANG DIPERBAIKI === -->
+    <!-- ============================================= -->
+
 
     <!-- Konten Utama Detail Anime -->
     <main>
@@ -586,8 +253,6 @@
                  <div class="social-links-container">
                      <p><a href="https://www.instagram.com/ransyah_32/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram social-icon"></i> Instagram</a></p>
                      <p><a href="mailto:rizky1234kb@gmail.com"><i class="fas fa-envelope social-icon"></i> Email</a></p>
-                     <!-- Tambahkan Trakteer jika masih relevan -->
-                     <!-- <p><a href="https://trakteer.id/ransyah4" target="_blank" rel="noopener noreferrer"><img src="Gambar/trakteer_logo.png" alt="Trakteer" class="trakteer-icon social-icon" style="filter: brightness(1.5);"/> Trakteer</a></p> -->
                  </div>
             </div>
             <div class="footer-item">
@@ -975,28 +640,28 @@
 
         // Fungsi popup season streaming
         function showStreamingSeasonPopup(seasons, slug) {
-            const popup = document.getElementById("streamingSeasonPopup");
-            const seasonList = document.getElementById("streamingSeasonList");
-            const blurOverlay = document.getElementById("blur-overlay");
-             if (!popup || !seasonList || !blurOverlay) return;
+    const popup = document.getElementById("streamingSeasonPopup");
+    const seasonList = document.getElementById("streamingSeasonList");
+    const blurOverlay = document.getElementById("blur-overlay");
+     if (!popup || !seasonList || !blurOverlay) return;
 
-             // Filter season yang punya link streaming valid
-             const validSeasons = seasons.filter(s => s && s.name && s.streaming && s.streaming.length > 0);
+     const validSeasons = seasons.filter(s => s && s.name && s.streaming && s.streaming.length > 0);
 
-             if (validSeasons.length === 0) {
-                 showNotification("Link streaming belum tersedia untuk season manapun.", "info");
-                 return;
-             }
+     if (validSeasons.length === 0) {
+         showNotification("Link streaming belum tersedia untuk season manapun.", "info");
+         return;
+     }
 
+    // GANTI BAGIAN ONCLICK DI BAWAH INI
+    seasonList.innerHTML = validSeasons.map(season => `
+        <li class="season-item"
+            onclick="window.open('streaming.html?slug=${encodeURIComponent(slug)}&season_slug=${encodeURIComponent(season.season_slug)}', '_blank'); closeStreamingSeasonPopup()">
+             ${season.name}
+        </li>`).join("");
 
-            seasonList.innerHTML = validSeasons.map((season, index) => `
-                <li class="season-item"
-                    onclick="window.open('streaming.html?slug=${encodeURIComponent(slug)}&season=${seasons.indexOf(season)}&episode=1', '_blank'); closeStreamingSeasonPopup()">
-                     ${season.name}
-                </li>`).join(""); // Gunakan index asli dari array `seasons`
-            popup.style.display = "block";
-            blurOverlay.style.display = "block";
-        }
+    popup.style.display = "block";
+    blurOverlay.style.display = "block";
+}
         
 
         // Fungsi tutup popup
