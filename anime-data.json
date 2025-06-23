@@ -1,6 +1,297 @@
 {
   "data": [
+
+    {
+        "title": "Undead Unluck",
+        "slug": "undead-unluck",
+        "image": "https://i.pinimg.com/736x/01/de/43/01de4347c2c2a9b9bdbeb983b860b6da.jpg",
+        "info": {
+            "type": "TV",
+            "episodes": 24,
+            "status": "Finished Airing",
+            "aired": "Oct 7, 2023 to Mar 23, 2024",
+            "premiered": "Fall 2023",
+            "broadcast": "Saturdays at 01:28 (JST)",
+            "producers": [
+                "TMS Entertainment",
+                "Shueisha"
+            ],
+            "studios": [
+                "David Production",
+                "TMS Entertainment"
+            ],
+            "source": "Manga",
+            "genres": [
+                "Action",
+                "Comedy",
+                "Fantasy",
+                "Sci-Fi",
+                "Supernatural"
+            ],
+            "themes": [
+                "Super Power"
+            ],
+            "demographic": "Shounen",
+            "duration": "23 min. per ep.",
+            "rating": "R - 17+ (violence & profanity)"
+        },
+        "desc": "Fuuko Izumo, seorang gadis yang membawa 'Sial' bagi siapa pun yang menyentuhnya, memutuskan untuk mengakhiri hidupnya. Namun, ia diselamatkan oleh seorang pria abadi (Undead) yang sangat ingin mati. Menamainya Andy, Fuuko bergabung dengannya dalam sebuah petualangan untuk memberinya 'kematian terbaik'. Perjalanan mereka menjadi rumit ketika mereka menjadi target Union, sebuah organisasi misterius yang memburu orang-orang dengan kemampuan khusus seperti mereka.",
+        "download": null,
+        "seasons": [
+            {
+                "name": "Undead Unluck",
+                "season_slug": "main-story",
+                "image": "https://i.pinimg.com/736x/01/de/43/01de4347c2c2a9b9bdbeb983b860b6da.jpg",
+                "desc": "Fuuko Izumo, seorang gadis yang membawa 'Sial' bagi siapa pun yang menyentuhnya, memutuskan untuk mengakhiri hidupnya. Namun, ia diselamatkan oleh seorang pria abadi (Undead) yang sangat ingin mati. Menamainya Andy, Fuuko bergabung dengannya dalam sebuah petualangan untuk memberinya 'kematian terbaik'. Perjalanan mereka menjadi rumit ketika mereka menjadi target Union, sebuah organisasi misterius yang memburu orang-orang dengan kemampuan khusus seperti mereka.",
+                "info": {
+                    "type": "TV",
+                    "episodes": 24,
+                    "status": "Finished Airing",
+                    "aired": "Oct 7, 2023 to Mar 23, 2024",
+                    "studios": [
+                        "David Production",
+                        "TMS Entertainment"
+                    ],
+                    "source": "Manga",
+                    "duration": "23 min. per ep."
+                },
+                "streaming": [
+                    "https://drive.google.com/file/d/1N4X473jqZr4LyKfa1ViWp8BxU6H2DBKW/preview",
+                    "https://drive.google.com/file/d/1lUUM_nKLb5E094_T3qVaxeP83y1wrJai/preview",
+                    "https://drive.google.com/file/d/1ZunVzNw7AxkmyDboDx53SO4-b29ulNX6/preview",
+                    "https://drive.google.com/file/d/1ktkoF-9gvSCbNNGt8anMz4XUUYkCQR8O/preview",
+                    "https://drive.google.com/file/d/1_ngw37YRqSArLOzHtgd_tifWXfsknzPH/preview",
+                    "https://drive.google.com/file/d/1vNksG-nHc6wgbyuTJ2PjVNtV8H_p4VTU/preview",
+                    "https://drive.google.com/file/d/1higUaG8blxdoOhBYiapioMvtGqVifYQ8/preview",
+                    "https://drive.google.com/file/d/15AcFVDeIvit-roBQzFY1FX2-pZsuTBDp/preview",
+                    "https://drive.google.com/file/d/1oRX7rgFcnJ4pPW-JM-dHZ3KoqI6NOm03/preview",
+                    "https://drive.google.com/file/d/1V9RATjJHIoya1Ae0Efv_y7tacQ7AL3ZJ/preview",
+                    "https://drive.google.com/file/d/1gbdzdR1TAvA69_4BCVep8hTG9RUW3Wo1/preview",
+                    "https://drive.google.com/file/d/1efxXQKo7zdf8X5iy0VQEMwBnaaLaMy9C/preview",
+                    "https://drive.google.com/file/d/1_fiLRjpT-jJCGrMjxPanSpsVoWAxYUx5/preview",
+                    "https://drive.google.com/file/d/1iX2wMlncjino7yVMqEWW8MSpFk4kCqGo/preview",
+                    "https://drive.google.com/file/d/1NCDKVtMEtJUxb5yId6xDUmHsDcih1Jmj/preview",
+                    "https://drive.google.com/file/d/1cjnju8iOW0RPS52SmQ9aP3wVw7aWqFxi/preview",
+                    "https://drive.google.com/file/d/1jnK_oJQhNnUqvZcUETJ7qEBqhqkUuy_X/preview",
+                    "https://drive.google.com/file/d/16ID7yTVT2YVtM5uPfEYyEgv7x-UU83DO/preview",
+                    "https://drive.google.com/file/d/1sA8jOgU4sx1MaWkrOqvpEc1bpzw3GxmX/preview",
+                    "https://drive.google.com/file/d/1NcPxttA8Ye-KeQOIy8OBsusQoS-mtvpm/preview",
+                    "https://drive.google.com/file/d/16OUzdJd6IuOH5En9dBUU7owc0Vm-nmwN/preview",
+                    "https://drive.google.com/file/d/1g8qSf14f4giNw5n6pfVTwJ67d3x_nlxJ/preview",
+                    "https://drive.google.com/file/d/14edVAjyhcPbyRKx6eJQCwIMbvCv2O9a6/preview",
+                    "https://drive.google.com/file/d/1EYUGtMgdGvAqHbppYUEKMa7Lv55sXdSA/preview"
+                ]
+            }
+        ]
+    },
     
+    {
+        "title": "Jitsu wa Watashi wa",
+        "slug": "jitsu-wa-watashi-wa",
+        "image": "https://i.pinimg.com/736x/84/66/79/84667909367777ef2883caeb64e25faa.jpg",
+        "info": {
+            "type": "TV",
+            "episodes": 13,
+            "status": "Finished Airing",
+            "aired": "Jul 7, 2015 to Sep 29, 2015",
+            "premiered": "Summer 2015",
+            "broadcast": "Tuesdays at 01:35 (JST)",
+            "producers": [
+                "TV Tokyo",
+                "TV Tokyo Music",
+                "Akita Shoten",
+                "TMS Music",
+                "DAX Production",
+                "Asmik Ace",
+                "Glovision"
+            ],
+            "studios": [
+                "TMS Entertainment"
+            ],
+            "source": "Manga",
+            "genres": [
+                "Comedy",
+                "Fantasy",
+                "Romance",
+                "Supernatural"
+            ],
+            "themes": [
+                "Harem",
+                "School",
+                "Vampire"
+            ],
+            "demographic": "Shounen",
+            "duration": "23 min. per ep.",
+            "rating": "PG-13 - Teens 13 or older"
+        },
+        "desc": "Asahi Kuromine dikenal sebagai 'keranjang bocor' karena ketidakmampuannya menyimpan rahasia. Suatu hari, ia secara tidak sengaja mengetahui rahasia terbesar teman sekelas yang disukainya, Youko Shiragami: dia adalah seorang vampir! Asahi bersumpah akan menjaga identitasnya, tetapi tugas ini menjadi sangat sulit saat ia terus-menerus terlibat dengan gadis-gadis supernatural lain di sekolahnya yang juga memiliki rahasia aneh mereka sendiri.",
+        "download": null,
+        "seasons": [
+            {
+                "name": "Jitsu wa Watashi wa",
+                "season_slug": "main-story",
+                "image": "https://i.pinimg.com/736x/84/66/79/84667909367777ef2883caeb64e25faa.jpg",
+                "desc": "Asahi Kuromine dikenal sebagai 'keranjang bocor' karena ketidakmampuannya menyimpan rahasia. Suatu hari, ia secara tidak sengaja mengetahui rahasia terbesar teman sekelas yang disukainya, Youko Shiragami: dia adalah seorang vampir! Asahi bersumpah akan menjaga identitasnya, tetapi tugas ini menjadi sangat sulit saat ia terus-menerus terlibat dengan gadis-gadis supernatural lain di sekolahnya yang juga memiliki rahasia aneh mereka sendiri.",
+                "info": {
+                    "type": "TV",
+                    "episodes": 13,
+                    "status": "Finished Airing",
+                    "aired": "Jul 7, 2015 to Sep 29, 2015",
+                    "studios": [
+                        "TMS Entertainment"
+                    ],
+                    "source": "Manga",
+                    "duration": "23 min. per ep."
+                },
+                "streaming": [
+                    "https://drive.google.com/file/d/1m8JYB1gUEBL7AnMKWCKwgis6lxELSmWg/preview",
+                    "https://drive.google.com/file/d/10WnIJs7DZAKXI8sCmm7Gsp--rdh05ast/preview",
+                    "https://drive.google.com/file/d/1cODUCSY4sTxydWdG6OKtXeTImflt-ooo/preview",
+                    "https://drive.google.com/file/d/1snnWzjScR3vDu_cVR148ZYP44JuOtdFp/preview",
+                    "https://drive.google.com/file/d/1SkAxPNSkrGHZJ5imr3EcVRcvedgf5AoJ/preview",
+                    "https://drive.google.com/file/d/1qboQsWlJ72Jgs6Vyv93DZgJCnqmOaA0z/preview",
+                    "https://drive.google.com/file/d/1pUrArAGn_XCJHVu73biuXTd1Hm2-t0jW/preview",
+                    "https://drive.google.com/file/d/1q3YqnAlOO5vXliUt9eZC9QuHVFUt2s3J/preview",
+                    "https://drive.google.com/file/d/1UcG_GqnAHkurSf6R0OMWHiy51QcApScD/preview",
+                    "https://drive.google.com/file/d/1SVV4ppLpXCnIY0R52FEj9Va02SrTb2Ma/preview",
+                    "https://drive.google.com/file/d/1VREztJRb1cxMV1aHVJXgS9GY2i7u7MUm/preview",
+                    "https://drive.google.com/file/d/1Z7KiLhXu2PI8OMVgpanXxzVfLkKXC7i2/preview",
+                    "https://drive.google.com/file/d/1_vro8J8OYSp4SLual3pcbk4tIaDIFENH/preview"
+                ]
+            }
+        ]
+    },
+
+    {
+        "title": "Nazo no Kanojo X",
+        "slug": "nazo-no-kanojo-x",
+        "image": "https://i.pinimg.com/736x/1c/d6/a3/1cd6a35a32867acc8769745242c5e663.jpg",
+        "info": {
+          "type": "TV",
+          "episodes": 13,
+          "status": "Finished Airing",
+          "aired": "Apr 7, 2012 to Jun 30, 2012",
+          "premiered": "Spring 2012",
+          "broadcast": "Saturdays at 25:30 (JST)",
+          "producers": [],
+          "studios": ["Hoods Entertainment"],
+          "source": "Manga",
+          "genres": ["Romance", "Comedy", "Supernatural"],
+          "themes": ["School"],
+          "demographic": "Seinen",
+          "duration": "26 min. per ep.",
+          "rating": "PG-13 - Teens 13 or older"
+        },
+        "desc": "Akira Tsubaki adalah siswa SMA biasa hingga suatu hari ia menjilat ludah Mikoto Urabe yang tertinggal di mejanya—dan menjadi tergila-gila padanya. Hubungan mereka dimulai dari kebiasaan aneh ini, tumbuh menjadi koneksi emosional yang unik dan tak biasa.",
+        "download": "https://drive.google.com/open?id=#&usp=drive_copy",
+        "seasons": [
+          {
+            "name": "Nazo no Kanojo X",
+            "season_slug": "main-story",
+            "image": "https://i.pinimg.com/736x/1c/d6/a3/1cd6a35a32867acc8769745242c5e663.jpg",
+            "desc": "Musim pertama dan satu-satunya dari serial ini yang mengeksplorasi hubungan unik antara Tsubaki dan Urabe dengan campuran romantisme misterius dan simbolisme yang tak lazim.",
+            "info": {
+              "type": "TV",
+              "episodes": 13,
+              "status": "Finished Airing",
+              "aired": "Apr 7, 2012 to Jun 30, 2012",
+              "studios": ["Hoods Entertainment"],
+              "source": "Manga",
+              "duration": "26 min. per ep."
+            },
+            "streaming": [
+              "https://drive.google.com/open?id=1K1twGqpXf9acKzI4o9YyFME8PZmCC6GY&usp=drive_copy",
+              "https://drive.google.com/open?id=1l5hm2s0lw0J7b02yQbxT54WlCpoZhP9G&usp=drive_copy",
+              "https://drive.google.com/open?id=1ndrGswYzjqu7FOLHqDSWwrXtHF8SLqCG&usp=drive_copy",
+              "https://drive.google.com/open?id=1rR3UR7gMAySaqeG11dqIGhC3XNVGFyob&usp=drive_copy",
+              "https://drive.google.com/open?id=1bOWmUR7PlWWZ5b-2mahE2YW0ejXYtnD6&usp=drive_copy",
+              "https://drive.google.com/open?id=108jtQLjwAerOg_z5c89qjVg098myLYA3&usp=drive_copy",
+              "https://drive.google.com/open?id=1_Gy9fk6o8fmtcoE-EIvh5KNWH3TnWhYE&usp=drive_copy",
+              "https://drive.google.com/open?id=17MtI2HeqtMK6q-0sacLPmdY_-TatRgA4&usp=drive_copy",
+              "https://drive.google.com/open?id=1PIiW-m2NwcaRytJaJctxZSJtyQGgW8tD&usp=drive_copy",
+              "https://drive.google.com/open?id=1N3bAQmW0hKPWhw1dkOFeQ_nQHJLXmi3T&usp=drive_copy",
+              "https://drive.google.com/open?id=1_q2dKio5CD37khOC5ZIkHFQ4oTVMlqmw&usp=drive_copy",
+              "https://drive.google.com/open?id=11-pLOaBW2jcsilZIIbZYmFG-YHOo_7y4&usp=drive_copy",
+              "https://drive.google.com/open?id=122tqWsnPD-vW_-sTQEpZn5eNkfBlCkN7&usp=drive_copy",
+              "https://drive.google.com/open?id=1V8y-LVf-Vi26c7kd70HMeeOXpNI9nT0s&usp=drive_copy"
+            ]
+          }
+        ]
+      },      
+
+    {
+        "title": "Sewayaki Kitsune no Senko-san",
+        "slug": "sewayaki-kitsune-no-senko-san",
+        "image": "https://i.pinimg.com/736x/a2/e4/ed/a2e4ed8d11c5daf3a8a3210da9225872.jpg",
+        "info": {
+            "type": "TV",
+            "episodes": 12,
+            "status": "Finished Airing",
+            "aired": "Apr 10, 2019 to Jun 26, 2019",
+            "premiered": "Spring 2019",
+            "broadcast": "Wednesdays at 22:30 (JST)",
+            "producers": [
+                "Kadokawa",
+                "AT-X",
+                "Glovision",
+                "Kadokawa Media House",
+                "Docomo Anime Store"
+            ],
+            "studios": [
+                "Doga Kobo"
+            ],
+            "source": "Web manga",
+            "genres": [
+                "Comedy",
+                "Fantasy",
+                "Slice of Life"
+            ],
+            "themes": [
+                "CGDCT",
+                "Iyashikei",
+                "Mythology"
+            ],
+            "demographic": "Seinen",
+            "duration": "23 min. per ep.",
+            "rating": "PG-13 - Teens 13 or older"
+        },
+        "desc": "Kehidupan sehari-hari Kuroto Nakano, seorang pegawai kantoran, dipenuhi dengan stres dan kerja berlebihan. Suatu malam, ia pulang dan menemukan seorang gadis kecil dengan telinga dan ekor rubah bernama Senko. Dia adalah rubah dewa berusia 800 tahun yang dikirim untuk menghilangkan kepenatan Kuroto. Dengan segala cara, mulai dari memasak, bersih-bersih, hingga membiarkan Kuroto membelai ekornya yang halus, Senko bertekad untuk memanjakannya dan mengembalikan kebahagiaan dalam hidupnya.",
+        "download": "https://drive.usercontent.google.com/download?id=#&export=download&authuser=0",
+        "seasons": [
+            {
+                "name": "Sewayaki Kitsune no Senko-san",
+                "season_slug": "main-story",
+                "image": "https://i.pinimg.com/736x/a2/e4/ed/a2e4ed8d11c5daf3a8a3210da9225872.jpg",
+                "desc": "Kehidupan sehari-hari Kuroto Nakano, seorang pegawai kantoran, dipenuhi dengan stres dan kerja berlebihan. Suatu malam, ia pulang dan menemukan seorang gadis kecil dengan telinga dan ekor rubah bernama Senko. Dia adalah rubah dewa berusia 800 tahun yang dikirim untuk menghilangkan kepenatan Kuroto. Dengan segala cara, mulai dari memasak, bersih-bersih, hingga membiarkan Kuroto membelai ekornya yang halus, Senko bertekad untuk memanjakannya dan mengembalikan kebahagiaan dalam hidupnya.",
+                "info": {
+                    "type": "TV",
+                    "episodes": 12,
+                    "status": "Finished Airing",
+                    "aired": "Apr 10, 2019 to Jun 26, 2019",
+                    "studios": [
+                        "Doga Kobo"
+                    ],
+                    "source": "Web manga",
+                    "duration": "23 min. per ep."
+                },
+                "streaming": [
+                    "https://drive.google.com/file/d/1FFFxDFsafOBi_KBu1f43unbA_5kfIWh-/preview",
+                    "https://drive.google.com/file/d/1YvHiEzI5NHinMMz8DXstW1YSSbXP2uPx/preview",
+                    "https://drive.google.com/file/d/1J1lKQkxF6QZNprgBVJcuZJMRuo17cFxl/preview",
+                    "https://drive.google.com/file/d/1jkn4NpqKuDtTXL69Nib0AI__mKa2PGiR/preview",
+                    "https://drive.google.com/file/d/1ofaSDjybJ35bn1LrwdOFbyrO3dNLHawp/preview",
+                    "https://drive.google.com/file/d/1gKsPfyf50cnqDHOhq5CdfxTGMsCjYQmu/preview",
+                    "https://drive.google.com/file/d/1p5CKjbeLatsAJnHsAUQB3tBCxFBGgoOd/preview",
+                    "https://drive.google.com/file/d/1L4XfW4bWz9v5JUxjfzlK0MMxxrMfiZV7/preview",
+                    "https://drive.google.com/file/d/1ZBXm0QBuAq72eXlmTcNlGpzBLy2v5DXA/preview",
+                    "https://drive.google.com/file/d/17H4dsBWn3kWyX0CjEaLSECeHTplLOU75/preview",
+                    "https://drive.google.com/file/d/1e5GsCio-pwsbo-hoiFy7bh2Yy2illjtV/preview",
+                    "https://drive.google.com/file/d/1xhE37BL2ZU_VnxV2bW3iRLFaAhLEcpwp/preview"
+                ]
+            }
+        ]
+    },
+
     {
         "title": "2.5-jigen no Ririsa",
         "slug": "2-5-jigen-no-ririsa",
@@ -11,10 +302,14 @@
             "status": "Currently Airing",
             "aired": "Jul 5, 2024 to ?",
             "premiered": "Summer 2024",
-            "broadcast": "Fridays at 22:30 (JST)",
+            "broadcast": "Fridays at 20:30 (JST)",
             "producers": [
                 "Aniplex",
-                "Shueisha"
+                "Shueisha",
+                "BS Asahi",
+                "Animax",
+                "Contents Seed",
+                "ABC Animation"
             ],
             "studios": [
                 "J.C.Staff"
@@ -22,6 +317,7 @@
             "source": "Manga",
             "genres": [
                 "Comedy",
+                "Ecchi",
                 "Romance"
             ],
             "themes": [
@@ -32,14 +328,14 @@
             "duration": "23 min. per ep.",
             "rating": "PG-13 - Teens 13 or older"
         },
-        "desc": "Siswa SMA tahun ketiga Masamune Okumura adalah ketua klub manga di sekolahnya. Sebagai seorang otaku, ia tidak tertarik pada gadis sungguhan, karena hatinya hanya untuk karakter 2D fiksi bernama Liliel. Namun suatu hari, dunianya terbalik ketika seorang siswi tahun pertama bernama Ririsa Amano, yang memiliki hasrat pada gadis 3D, bergabung dengan klub. Tujuan Ririsa adalah menjadi seorang cosplayer, dan ia mencoba meyakinkan Masamune untuk menjadi fotografernya. Akankah Masamune tetap setia pada cinta 2D-nya, atau akankah ia menyerah pada godaan gadis sungguhan dalam diri Ririsa, seorang gadis yang tampaknya merupakan perwujudan dari Liliel yang ia cintai?",
+        "desc": "Siswa SMA Masamune Okumura adalah ketua klub manga di sekolahnya dan sangat terobsesi dengan karakter 2D fiksi bernama Lilliel. Suatu hari, seorang siswi baru bernama Ririsa Amano bergabung dengan klub dan mengungkapkan mimpinya untuk menjadi cosplayer. Meskipun awalnya skeptis, Okumura terpesona oleh semangat Ririsa dan setuju untuk menjadi fotografernya, memulai perjalanan mereka untuk menciptakan cosplay Lilliel yang terbaik.",
         "download": "https://drive.usercontent.google.com/download?id=1ZNS91iSlEcX9cpBoJIcR1R_ECJouoYTm&export=download&authuser=0",
         "seasons": [
             {
                 "name": "2.5-jigen no Ririsa",
                 "season_slug": "main-story",
                 "image": "https://i.pinimg.com/736x/2b/d5/41/2bd5410668c30fc8906235da025eb022.jpg",
-                "desc": "Siswa SMA tahun ketiga Masamune Okumura adalah ketua klub manga di sekolahnya. Sebagai seorang otaku, ia tidak tertarik pada gadis sungguhan, karena hatinya hanya untuk karakter 2D fiksi bernama Liliel. Namun suatu hari, dunianya terbalik ketika seorang siswi tahun pertama bernama Ririsa Amano, yang memiliki hasrat pada gadis 3D, bergabung dengan klub. Tujuan Ririsa adalah menjadi seorang cosplayer, dan ia mencoba meyakinkan Masamune untuk menjadi fotografernya. Akankah Masamune tetap setia pada cinta 2D-nya, atau akankah ia menyerah pada godaan gadis sungguhan dalam diri Ririsa, seorang gadis yang tampaknya merupakan perwujudan dari Liliel yang ia cintai?",
+                "desc": "Siswa SMA Masamune Okumura adalah ketua klub manga di sekolahnya dan sangat terobsesi dengan karakter 2D fiksi bernama Lilliel. Suatu hari, seorang siswi baru bernama Ririsa Amano bergabung dengan klub dan mengungkapkan mimpinya untuk menjadi cosplayer. Meskipun awalnya skeptis, Okumura terpesona oleh semangat Ririsa dan setuju untuk menjadi fotografernya, memulai perjalanan mereka untuk menciptakan cosplay Lilliel yang terbaik.",
                 "info": {
                     "type": "TV",
                     "episodes": 24,
@@ -56,100 +352,100 @@
                     "https://drive.google.com/file/d/1yaE5aMGYwuSira4BklBgDs8j-JkujXeu/preview",
                     "https://drive.google.com/file/d/1hMKf0NuE_3tnZlHdJK9R3rONizjpJc_5/preview",
                     "https://drive.google.com/file/d/1t3Th7EkoxYBpTbOU70SxOdDmM0Qoj68_/preview",
-                    "https://drive.google.com/file/d/1IDhsv5hDi8FooBie0s3u5MyK7V3jkmQ3/preview",
                     "https://drive.google.com/file/d/165mB5VyH-8RRgnjTOF2buUWFTqJj26is/preview",
-                    "https://drive.google.com/file/d/1s7q1PPbhru-ZZoErD7wNqlNOS4n7CsHF/preview",
-                    "https://drive.google.com/file/d/1VvtM3vRzMbturCxzYt0_tZzP29f5Iscu/preview",
+                    "https://drive.google.com/file/d/1IDhsv5hDi8FooBie0s3u5MyK7V3jkmQ3/preview",
                     "https://drive.google.com/file/d/1g93sRLUgKUC0ZrB5E8QqFdciVA8vJBBO/preview",
-                    "https://drive.google.com/file/d/1E1p86AW9bK79-3Wwi0zYhQUFC1bv__zc/preview",
+                    "https://drive.google.com/file/d/1VvtM3vRzMbturCxzYt0_tZzP29f5Iscu/preview",
+                    "https://drive.google.com/file/d/1s7q1PPbhru-ZZoErD7wNqlNOS4n7CsHF/preview",
                     "https://drive.google.com/file/d/1Ci27sSWCY_FsCyNVmn_7vppCe0FKTPrZ/preview",
-                    "https://drive.google.com/file/d/1XMk86BGI_YGL5f1JNUFBMUxyZ6Zpb5CM/preview",
+                    "https://drive.google.com/file/d/1E1p86AW9bK79-3Wwi0zYhQUFC1bv__zc/preview",
                     "https://drive.google.com/file/d/109Z7sFQ8OaoM5Rbnz749PYA_I8sy-Bqx/preview",
+                    "https://drive.google.com/file/d/1XMk86BGI_YGL5f1JNUFBMUxyZ6Zpb5CM/preview",
                     "https://drive.google.com/file/d/1KMyKJ88GgGJmKLhhQZ1IEj5ImgG4g6Zm/preview",
                     "https://drive.google.com/file/d/1sPva7vm8R2MfFD2TQMpzzz3ZUT0o2U7W/preview",
                     "https://drive.google.com/file/d/1PcEA16QDIgcvr2u-vFx_SP6U0imZdLO_/preview",
                     "https://drive.google.com/file/d/1q7rkGFvEHlC4WTh_5MDh5hDR4ixNdCWa/preview",
                     "https://drive.google.com/file/d/1gWdFVng77TUjn7VnpAsfpkCG-63tIWrf/preview",
-                    "https://drive.google.com/file/d/1VdFqX_WV1AgPppOBaLbz-6atzr6Tu9li/preview",
-                    "https://drive.google.com/file/d/1_Ct4cgwAFIXH4iorXEw6zihFYMQqxUQ_/preview",
-                    "https://drive.google.com/file/d/1D2n0spCaXAC4qJXv8eDheU6ZJ8gWEkZj/preview",
                     "https://drive.google.com/file/d/1k_dAyaB9M6hZxp2FbhxSMd35BPZh8uBQ/preview",
-                    "https://drive.google.com/file/d/1Zc-T-RB9s8XYu6VXLSnNahXlSYeYbGoJ/preview",
-                    "https://drive.google.com/file/d/1gfUBKGaOOFxK019kCxplphWYAGYQecFu/preview"
+                    "https://drive.google.com/file/d/1D2n0spCaXAC4qJXv8eDheU6ZJ8gWEkZj/preview",
+                    "https://drive.google.com/file/d/1_Ct4cgwAFIXH4iorXEw6zihFYMQqxUQ_/preview",
+                    "https://drive.google.com/file/d/1VdFqX_WV1AgPppOBaLbz-6atzr6Tu9li/preview",
+                    "https://drive.google.com/file/d/1gfUBKGaOOFxK019kCxplphWYAGYQecFu/preview",
+                    "https://drive.google.com/file/d/1Zc-T-RB9s8XYu6VXLSnNahXlSYeYbGoJ/preview"
                 ]
             }
         ]
     },
-
     {
-        "title": "Around 40 Otoko no Isekai Tsuuhan",
-        "slug": "around-40-otoko-no-isekai-tsuuhan",
+        "title": "Mob kara Hajimaru Tansaku Eiyuutan",
+        "slug": "mob-kara-hajimaru-tansaku-eiyuutan",
         "image": "https://cdn.myanimelist.net/images/anime/1887/146512.jpg",
         "info": {
             "type": "TV",
-            "episodes": 13,
+            "episodes": 12,
             "status": "Finished Airing",
-            "aired": "Jan 9, 2025 to Apr 3, 2025",
-            "premiered": "Winter 2025",
-            "broadcast": "Thursdays at 21:00 (JST)",
+            "aired": "Jul 6, 2024 to Sep 21, 2024",
+            "premiered": "Summer 2024",
+            "broadcast": "Saturdays at 22:00 (JST)",
             "producers": [
-                "Nippon Columbia",
                 "AT-X",
-                "TOKYO MX",
+                "Nippon Columbia",
                 "BS NTV",
-                "Crunchyroll",
                 "Kadokawa",
-                "GREE Entertainment"
+                "GEEK TOYS",
+                "Crunchyroll",
+                "KlockWorx",
+                "Yomiuri TV Enterprise"
             ],
             "studios": [
-                "East Fish Studio"
+                "GEEK TOYS"
             ],
-            "source": "Light Novel",
+            "source": "Light novel",
             "genres": [
+                "Action",
                 "Adventure",
-                "Fantasy",
-                "Slice of Life"
+                "Fantasy"
             ],
             "themes": [
                 "Isekai"
             ],
-            "demographic": "Shounen",
+            "demographic": null,
             "duration": "23 min. per ep.",
             "rating": "PG-13 - Teens 13 or older"
         },
-        "desc": "Kenichi, seorang pria berusia 39 tahun yang tidak puas dengan hidupnya, secara tidak sengaja mendapatkan 'skill' aneh yang memungkinkannya memesan barang dari dunia nyata ke dunia lain. Setelah dipindahkan ke dunia fantasi, ia memulai kehidupan baru yang santai dengan memanfaatkan kemampuan uniknya untuk berbisnis dan bertahan hidup.",
+        "desc": "Kaito Takagi adalah seorang penjelajah dungeon berstatus rendah yang menghabiskan hari-harinya dengan pekerjaan biasa. Suatu hari, saat menjelajahi dungeon yang seharusnya tidak ia masuki, ia bertemu dengan seorang gadis slime yang sangat langka. Setelah berhasil mengalahkannya, ia mendapatkan beberapa item super langka dan seorang pelayan. Keberuntungan yang tiba-tiba ini menandai awal dari kebangkitan Kaito, dari seorang karakter figuran menjadi pahlawan penjelajah sejati.",
         "download": "https://drive.usercontent.google.com/download?id=1h-JtbcevWWLOnIE12p8eN8R2jy0C97BL&export=download&authuser=0",
         "seasons": [
             {
-                "name": "Around 40 Otoko no Isekai Tsuuhan",
+                "name": "Mob kara Hajimaru Tansaku Eiyuutan",
                 "season_slug": "main-story",
                 "image": "https://cdn.myanimelist.net/images/anime/1887/146512.jpg",
-                "desc": "Kenichi, seorang pria berusia 39 tahun yang tidak puas dengan hidupnya, secara tidak sengaja mendapatkan 'skill' aneh yang memungkinkannya memesan barang dari dunia nyata ke dunia lain. Setelah dipindahkan ke dunia fantasi, ia memulai kehidupan baru yang santai dengan memanfaatkan kemampuan uniknya untuk berbisnis dan bertahan hidup.",
+                "desc": "Kaito Takagi adalah seorang penjelajah dungeon berstatus rendah yang menghabiskan hari-harinya dengan pekerjaan biasa. Suatu hari, saat menjelajahi dungeon yang seharusnya tidak ia masuki, ia bertemu dengan seorang gadis slime yang sangat langka. Setelah berhasil mengalahkannya, ia mendapatkan beberapa item super langka dan seorang pelayan. Keberuntungan yang tiba-tiba ini menandai awal dari kebangkitan Kaito, dari seorang karakter figuran menjadi pahlawan penjelajah sejati.",
                 "info": {
                     "type": "TV",
-                    "episodes": 13,
+                    "episodes": 12,
                     "status": "Finished Airing",
-                    "aired": "Jan 9, 2025 to Apr 3, 2025",
+                    "aired": "Jul 6, 2024 to Sep 21, 2024",
                     "studios": [
-                        "East Fish Studio"
+                        "GEEK TOYS"
                     ],
-                    "source": "Light Novel",
+                    "source": "Light novel",
                     "duration": "23 min. per ep."
                 },
                 "streaming": [
                     "https://drive.google.com/file/d/1qiGGkJ0912V6A7toxd9aZzHHbq_NNtsY/preview",
                     "https://drive.google.com/file/d/1fYpUUFBlWNv5PdaSYheSdu1GdsmPOaYs/preview",
-                    "https://drive.google.com/file/d/1XGMLVe8NSdwU46zmIa7TKHf4RiA5v0md/preview",
-                    "https://drive.google.com/file/d/1u0HlG7MHS-0TPEBCFT5lwV-HZO0STz0i/preview",
-                    "https://drive.google.com/file/d/1H6NVVSLtoZUpPjEwdsdb697CRZp4kQRo/preview",
-                    "https://drive.google.com/file/d/1Za5ubPB0vAiky_kwMa7y-iROMBujbtSx/preview",
-                    "https://drive.google.com/file/d/1sdw8Bc1QONePTcmaHi_S9od6BsY76h9k/preview",
                     "https://drive.google.com/file/d/1PvGHoW3SCWwV870N6RaER1_s7LrJ1ryy/preview",
-                    "https://drive.google.com/file/d/1YTs18LtRnXS7AbcKti6cMzpHqD3Yzc4I/preview",
-                    "https://drive.google.com/file/d/1IEUsSNaJlA0mGccG8nl3fuZylHHPtjLp/preview",
+                    "https://drive.google.com/file/d/1sdw8Bc1QONePTcmaHi_S9od6BsY76h9k/preview",
+                    "https://drive.google.com/file/d/1Za5ubPB0vAiky_kwMa7y-iROMBujbtSx/preview",
+                    "https://drive.google.com/file/d/1H6NVVSLtoZUpPjEwdsdb697CRZp4kQRo/preview",
+                    "https://drive.google.com/file/d/1u0HlG7MHS-0TPEBCFT5lwV-HZO0STz0i/preview",
+                    "https://drive.google.com/file/d/1XGMLVe8NSdwU46zmIa7TKHf4RiA5v0md/preview",
                     "https://drive.google.com/file/d/11gN0pTQwa5HlQ8TYuB8n4zontZRC0K2A/preview",
-                    "https://drive.google.com/file/d/1xdJtvQHgnaus1h7Wwd_UfeeILFzAJi1i/preview",
-                    "https://drive.google.com/file/d/1tXcyjSvM5l40g-lZZs5wQ6ZuiduVio_7/preview"
+                    "https://drive.google.com/file/d/1IEUsSNaJlA0mGccG8nl3fuZylHHPtjLp/preview",
+                    "https://drive.google.com/file/d/1YTs18LtRnXS7AbcKti6cMzpHqD3Yzc4I/preview",
+                    "https://drive.google.com/file/d/1tXcyjSvM5l40g-lZZs5wQ6ZuiduVio_7/preview",
+                    "https://drive.google.com/file/d/1xdJtvQHgnaus1h7Wwd_UfeeILFzAJi1i/preview"
                 ]
             }
         ]
@@ -166,11 +462,28 @@
             "aired": "Apr 6, 2013 to Jun 22, 2013",
             "premiered": "Spring 2013",
             "broadcast": "Saturdays at 01:30 (JST)",
-            "producers": ["Lantis", "Kadokawa Shoten", "KlockWorx", "Nippon Columbia", "AMG MUSIC"],
-            "studios": ["AIC Plus+"],
+            "producers": [
+                "Lantis",
+                "Kadokawa Shoten",
+                "KlockWorx",
+                "Nippon Columbia",
+                "AMG MUSIC"
+            ],
+            "studios": [
+                "AIC Plus+"
+            ],
             "source": "Light novel",
-            "genres": ["Action", "Fantasy", "Romance", "Sci-Fi"],
-            "themes": ["Harem", "Mecha", "School"],
+            "genres": [
+                "Action",
+                "Fantasy",
+                "Romance",
+                "Sci-Fi"
+            ],
+            "themes": [
+                "Harem",
+                "Mecha",
+                "School"
+            ],
             "demographic": "Shounen",
             "duration": "23 min. per ep.",
             "rating": "PG-13 - Teens 13 or older"
@@ -187,7 +500,9 @@
                     "episodes": 12,
                     "status": "Finished Airing",
                     "aired": "Apr 6, 2013 to Jun 22, 2013",
-                    "studios": ["AIC Plus+"],
+                    "studios": [
+                        "AIC Plus+"
+                    ],
                     "source": "Light novel",
                     "duration": "23 min. per ep."
                 },
@@ -218,7 +533,9 @@
                     "episodes": 10,
                     "status": "Finished Airing",
                     "aired": "Apr 12, 2014 to Jun 14, 2014",
-                    "studios": ["Production IMS"],
+                    "studios": [
+                        "Production IMS"
+                    ],
                     "source": "Light novel",
                     "duration": "24 min. per ep."
                 },
@@ -247,7 +564,9 @@
                     "episodes": 12,
                     "status": "Finished Airing",
                     "aired": "Jan 11, 2019 to Mar 29, 2019",
-                    "studios": ["J.C.Staff"],
+                    "studios": [
+                        "J.C.Staff"
+                    ],
                     "source": "Light novel",
                     "duration": "23 min. per ep."
                 },
@@ -277,7 +596,9 @@
                     "episodes": 12,
                     "status": "Finished Airing",
                     "aired": "Apr 8, 2022 to Jun 24, 2022",
-                    "studios": ["GEEK TOYS"],
+                    "studios": [
+                        "GEEK TOYS"
+                    ],
                     "source": "Light novel",
                     "duration": "23 min. per ep."
                 },
@@ -307,7 +628,9 @@
                     "episodes": 12,
                     "status": "Finished Airing",
                     "aired": "Apr 10, 2024 to Jun 26, 2024",
-                    "studios": ["GEEK TOYS"],
+                    "studios": [
+                        "GEEK TOYS"
+                    ],
                     "source": "Light novel",
                     "duration": "23 min. per ep."
                 },
@@ -329,7 +652,6 @@
             }
         ]
     },
-
       {
           "title": "Kobayashi-san Chi no Maid Dragon",
           "slug": "kobayashi-san-chi-no-maid-dragon",
@@ -368,16 +690,16 @@
                   "download": "https://drive.usercontent.google.com/download?id=1OHGnXUDfStRSAqxHPPnBaOdA1wEoGCHD&export=download&authuser=0",
                   "streaming": [
                       "https://drive.google.com/file/d/15sNTCkKvg_XQ21-z6Qsr_AVjVilDPxgd/preview",
-                      "https://drive.google.com/file/d/1oXhhKjB5IhYSTojq4dHzw6vV08WkMpnO/preview",
                       "https://drive.google.com/file/d/1dAqU86Dt_2tJ1YVDDntnwGrN4G3-Iw2d/preview",
-                      "https://drive.google.com/file/d/1r5GsmJDvGaPSy1PE3nHGRXt2Xy11MeBZ/preview",
-                      "https://drive.google.com/file/d/1bw8lE22r7g5a9YYuBU8mC87FmmGgWY34/preview",
-                      "https://drive.google.com/file/d/1RSnVXMVYgxf3F_PLEtyixrC6VllnrsPd/preview",
-                      "https://drive.google.com/file/d/1yoD4QXJH60Es19fO_BOHmRPhwowalD_H/preview",
-                      "https://drive.google.com/file/d/1Q6XbqSupDY334SYUlqYAbl9sp2PgjN5Z/preview",
+                      "https://drive.google.com/file/d/1oXhhKjB5IhYSTojq4dHzw6vV08WkMpnO/preview",
                       "https://drive.google.com/file/d/1i1JkM6YPzMciA3Y016-iQxcxdNrfCpj_/preview",
-                      "https://drive.google.com/file/d/1p695MnNjK3ZgEHRkr1Ej-TFr6uBxQGhY/preview",
+                      "https://drive.google.com/file/d/1Q6XbqSupDY334SYUlqYAbl9sp2PgjN5Z/preview",
+                      "https://drive.google.com/file/d/1yoD4QXJH60Es19fO_BOHmRPhwowalD_H/preview",
+                      "https://drive.google.com/file/d/1RSnVXMVYgxf3F_PLEtyixrC6VllnrsPd/preview",
+                      "https://drive.google.com/file/d/1bw8lE22r7g5a9YYuBU8mC87FmmGgWY34/preview",
+                      "https://drive.google.com/file/d/1r5GsmJDvGaPSy1PE3nHGRXt2Xy11MeBZ/preview",
                       "https://drive.google.com/file/d/1Vs20sWMnEDwhMkuTg-pmPZRY0bwDbsB7/preview",
+                      "https://drive.google.com/file/d/1p695MnNjK3ZgEHRkr1Ej-TFr6uBxQGhY/preview",
                       "https://drive.google.com/file/d/130J4nWnvuRNfQS61JvSKCFJuOVOuXPIM/preview",
                       "https://drive.google.com/file/d/1x4zClFGxKPWjmHkpFSNXWDrLHXGy9zRY/preview",
                       "https://drive.google.com/file/d/12CMr3X_a4IhQZ1ONdE3JjGY4UzqCmpPY/preview"
@@ -399,19 +721,19 @@
                   },
                   "download": "https://drive.usercontent.google.com/download?id=1eRDpeZuRoOoH7sHh26-xlZKtLZs0VKd1&export=download&authuser=0",
                   "streaming": [
-                      "https://drive.google.com/file/d/1LsDF1ALCHQMOhxCqUvqrb2hecR_WjHrJ/preview",
-                      "https://drive.google.com/file/d/1os7-yZlvirJrUC20YVwu9yYuDhsO6UGf/preview",
-                      "https://drive.google.com/file/d/1_3t6qIrg99hryp_2mAI0YN3xXmBRLoJ4/preview",
-                      "https://drive.google.com/file/d/1_feMcJK87W1LHC305fOMzwtYwXeDeIS6/preview",
-                      "https://drive.google.com/file/d/1Ve5fMJAx4Fx6mk26GTMdA2AqHdnVEIRy/preview",
-                      "https://drive.google.com/file/d/1eX_kZWkrr6TRIrGXYvZ6CfxZQ4U8yRsG/preview",
-                      "https://drive.google.com/file/d/1O0jgsMYUa0o7ZOZ3jgc9tP_HdG4oRAcP/preview",
-                      "https://drive.google.com/file/d/1Irrc4KU68g9Rt8Jp8qNBENKr3DKp3_-y/preview",
-                      "https://drive.gdrive.google.com/file/d/1tYBzKK-sRnMgox1sHYzzq1vxF0enFNYx/preview",
-                      "https://drive.google.com/file/d/15ipusHnY8tti-hCp-vPmwn6DAh2XO7xd/preview",
-                      "https://drive.google.com/file/d/1WyUWVnWjsI1ekoZ_i9MDz8NXhKeKGcC1/preview",
-                      "https://drive.google.com/file/d/1tNGSPVFN-Rt4fWAG793AL1bV7EVaSDsv/preview"
-                  ]
+                    "https://drive.google.com/file/d/1LsDF1ALCHQMOhxCqUvqrb2hecR_WjHrJ/preview",
+                    "https://drive.google.com/file/d/1os7-yZlvirJrUC20YVwu9yYuDhsO6UGf/preview",
+                    "https://drive.google.com/file/d/1O0jgsMYUa0o7ZOZ3jgc9tP_HdG4oRAcP/preview",
+                    "https://drive.google.com/file/d/1eX_kZWkrr6TRIrGXYvZ6CfxZQ4U8yRsG/preview",
+                    "https://drive.google.com/file/d/1Ve5fMJAx4Fx6mk26GTMdA2AqHdnVEIRy/preview",
+                    "https://drive.google.com/file/d/1_feMcJK87W1LHC305fOMzwtYwXeDeIS6/preview",
+                    "https://drive.google.com/file/d/1_3t6qIrg99hryp_2mAI0YN3xXmBRLoJ4/preview",
+                    "https://drive.google.com/file/d/1tYBzKK-sRnMgox1sHYzzq1vxF0enFNYx/preview",
+                    "https://drive.google.com/file/d/1Irrc4KU68g9Rt8Jp8qNBENKr3DKp3_-y/preview",
+                    "https://drive.google.com/file/d/15ipusHnY8tti-hCp-vPmwn6DAh2XO7xd/preview",
+                    "https://drive.google.com/file/d/1WyUWVnWjsI1ekoZ_i9MDz8NXhKeKGcC1/preview",
+                    "https://drive.google.com/file/d/1tNGSPVFN-Rt4fWAG793AL1bV7EVaSDsv/preview"
+                ]
               }
           ]
       },
