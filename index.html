@@ -21,6 +21,78 @@
       }
       body::-webkit-scrollbar { display: none; }
 
+      /* ======================================== */
+      /* --- CSS SPLASH SCREEN BARU & LEBIH BAIK --- */
+      /* ======================================== */
+      #splash-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #121212; /* Warna gelap pekat */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+      }
+      #splash-screen.hidden {
+        opacity: 0;
+        pointer-events: none; /* Agar tidak bisa diklik setelah hilang */
+      }
+      .splash-title {
+        font-size: clamp(40px, 10vw, 60px);
+        display: flex;
+        justify-content: center;
+        margin-bottom: 25px;
+      }
+      .splash-title span {
+        font-family: "Play", sans-serif;
+        color: #ffa200;
+        font-weight: bold;
+        text-shadow: 0 0 10px #ff6b00;
+        animation: fire 2s ease-in-out infinite alternate;
+      }
+      .splash-loader {
+        width: 80%;
+        max-width: 250px;
+        height: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 15px;
+      }
+      .splash-loader-bar {
+        width: 0;
+        height: 100%;
+        background: linear-gradient(90deg, #ff8c00, #ffa200);
+        border-radius: 4px;
+        animation: loading 2.5s ease-out forwards;
+      }
+      .splash-network-status {
+        color: #ff5555;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        height: 20px; /* Beri ruang agar layout tidak loncat */
+      }
+      .splash-network-status.show {
+        opacity: 1;
+      }
+      
+      @keyframes fire { 
+        0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00; }
+        100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; }
+      }
+      @keyframes loading {
+        from { width: 0%; }
+        to { width: 100%; }
+      }
+      /* --- AKHIR CSS SPLASH SCREEN BARU --- */
+
       /* Style Partikel */
       #particles-background { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -2; overflow: hidden; }
       .circle-container { position: absolute; width: 5px; height: 5px; animation-iteration-count: infinite; animation-timing-function: linear; animation-name: move-frames; animation-duration: 15s; }
@@ -31,17 +103,14 @@
       .circle-container:nth-child(1) { width: 8px; height: 8px; animation-duration: 12s; animation-delay: 1s; left: 10%; }
       .circle-container:nth-child(2) { width: 5px; height: 5px; animation-duration: 19s; animation-delay: 4s; left: 50%; }
       .circle-container:nth-child(3) { width: 10px; height: 10px; animation-duration: 15s; animation-delay: 7s; left: 90%; }
-
-      /* Style Utama */
+      
       .container { max-width: 1200px; margin: 0 auto; padding: 20px 15px; position: relative; z-index: 2; }
       .container a { text-decoration: none; color: #ccc; }
       .container a:hover { text-decoration: underline; color: #ffa200; }
       header { transition: padding-top 0.4s ease-in-out; text-align: center; position: relative; z-index: 2; padding-top: 50px; }
-      
       .title { transition: all 0.4s ease-in-out; font-size: clamp(30px, 8vw, 45px); width: 100%; margin: 1.5rem auto; display: flex; flex-wrap: nowrap; justify-content: center; -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(0, 0, 0, 0.15)); position: relative; }
       .title span { display: inline-block; font-family: "Play", sans-serif; animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate; margin: 0 clamp(1px, 0.5vw, 3px); color: #ffa200; text-shadow: 0 0 10px #ff6b00; font-weight: bold; }
       @keyframes title-bounce { 0%, 60%, 100% { transform: translateY(0) scale(1); } 30% { transform: translateY(clamp(-25px, -5vw, -15px)) scale(1.1); } }
-      @keyframes fire { 0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00; } 100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; } }
       .title span:nth-child(1) { animation-delay: 0.3s; } .title span:nth-child(2) { animation-delay: 0.4s; } .title span:nth-child(3) { animation-delay: 0.5s; } .title span:nth-child(4) { animation-delay: 0.6s; } .title span:nth-child(5) { animation-delay: 0.7s; } .title span:nth-child(6) { animation-delay: 0.8s; } .title span:nth-child(7) { animation-delay: 0.9s; }
       
       .abt { background-color: rgba(24, 24, 24, 0.85); backdrop-filter: blur(8px); position: fixed; top: 0; left: 0; right: 0; padding: 10px 15px; z-index: 1001; display: flex; justify-content: flex-start; align-items: center; border-bottom: 1px solid rgba(255, 162, 0, 0.2); }
@@ -84,10 +153,7 @@
       .anime-list.list-layout .anime-item .anime-title a:hover { text-decoration: underline; }
       .anime-list.list-layout .anime-item .anime-description { display: -webkit-box; font-size: 0.9em; color: #ccc; line-height: 1.5; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; margin-bottom: auto; }
       
-      .anime-list.list-layout .anime-item .anime-meta-info {
-        display: flex; flex-direction: row; flex-wrap: wrap; gap: 15px; font-size: 0.8em;
-        color: #b0b0b0; margin: 10px 0; border-top: none; padding: 0;
-      }
+      .anime-list.list-layout .anime-item .anime-meta-info { display: flex; flex-direction: row; flex-wrap: wrap; gap: 15px; font-size: 0.8em; color: #b0b0b0; margin: 10px 0; border-top: none; padding: 0; }
       
       @media (max-width: 480px) {
         .anime-list:not(.list-layout) { grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -134,20 +200,6 @@
       .social-icon { margin-right: 10px; width: 20px; color: #aaa; transition: all 0.3s ease; }
       .footer-item p a:hover .social-icon { transform: scale(1.2) rotate(5deg); color: #ffa200; }
 
-      /* ======================================== */
-      /* --- CSS ANIMASI SPLASH SCREEN BARU --- */
-      /* ======================================== */
-      body.welcome { overflow: hidden; }
-      .welcome .splash { height: 0px; padding: 0px; border: 130em solid #021027; position: fixed; left: 50%; top: 100%; display: block; box-sizing: initial; overflow: hidden; border-radius: 50%; transform: translate(-50%, -50%); animation: puff 0.5s 1.8s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, borderRadius 0.2s 2.3s linear forwards; z-index: 99998; }
-      .welcome #welcome { background: #181818; width: 56px; height: 56px; position: absolute; left: 50%; top: 50%; overflow: hidden; opacity: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 99999; animation: init 0.5s 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, moveDown 1s 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards, moveUp 1s 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, materia 0.5s 2.7s cubic-bezier(0.86, 0, 0.07, 1) forwards, hide 2s 2.9s ease forwards; }
-      @keyframes init { 0% { width: 0px; height: 0px; } 100% { width: 56px; height: 56px; margin-top: 0px; opacity: 1; } }
-      @keyframes puff { 0% { top: 100%; height: 0px; padding: 0px; } 100% { top: 50%; height: 100%; padding: 0px 100%; } }
-      @keyframes borderRadius { 0% { border-radius: 50%; } 100% { border-radius: 0px; } }
-      @keyframes moveDown { 0% { top: 50%; } 50% { top: 40%; } 100% { top: 100%; } }
-      @keyframes moveUp { 0% { background: #181818; top: 100%; } 50% { top: 40%; } 100% { top: 50%; background: #021027; } }
-      @keyframes materia { 0% { background: #021027; } 50% { background: #021027; top: 26px; } 100% { background: #181818; width: 100%; height: 64px; border-radius: 0px; top: 26px; } }
-      @keyframes hide { 0% { opacity: 1; } 100% { opacity: 0; pointer-events: none; } }
-
       @media (max-width: 768px) {
         .footer-section { flex-direction: column; align-items: center; text-align: center; }
         .footer-item { width: 95%; text-align: center; }
@@ -159,9 +211,18 @@
       #scrollToTopBtn:hover { background-color: #ff8c00; transform: scale(1.1); }
     </style>
   </head>
-  <body class="welcome">
-    <span id="splash-overlay" class="splash"></span>
-    <span id="welcome" class="z-depth-4"></span>
+  <body>
+    <!-- SPLASH SCREEN BARU -->
+    <div id="splash-screen">
+      <div class="splash-title">
+        <span>M</span><span>y</span><span>A</span><span>n</span><span>i</span><span>m</span><span>e</span>
+      </div>
+      <div class="splash-loader">
+        <div class="splash-loader-bar"></div>
+      </div>
+      <div class="splash-network-status"></div>
+    </div>
+
     <div id="particles-background"></div>
 
     <div class="abt"><a href="About.html">About</a>
@@ -238,20 +299,6 @@
         });
       });
 
-// --- JS UNTUK SPLASH SCREEN BARU ---
-if (document.body.classList.contains('welcome')) {
-  if (!sessionStorage.getItem("splashShown")) {
-    setTimeout(() => {
-      document.body.classList.remove('welcome');
-      sessionStorage.setItem("splashShown", "true"); 
-    }, 3500);
-  } else {
-    document.body.classList.remove('welcome');
-    document.getElementById('splash-overlay')?.remove();
-    document.getElementById('welcome')?.remove();
-  }
-}
-
 // --- BAGIAN 1: DEFINISI VARIABEL & FUNGSI ---
 let currentPage = 1;
 let itemsPerPage = 21;
@@ -264,6 +311,71 @@ let selectedGenre = "All";
 const searchInput = document.getElementById("search-input");
 const animeListContainer = document.getElementById("anime-list-container");
 const clearSearchBtn = document.getElementById('clear-search-btn');
+
+
+/* ======================================== */
+/* --- JS UNTUK SPLASH SCREEN BARU (DENGAN PENGECEKAN INTERNET & LOGIKA PWA) --- */
+/* ======================================== */
+
+// Fungsi untuk menangani splash screen
+function handleSplashScreen() {
+    const splashScreen = document.getElementById('splash-screen');
+    if (!splashScreen) return;
+
+    // Cek apakah halaman dibuka sebagai PWA atau dari navigasi biasa
+    const isPWA = window.matchMedia('(display-mode: standalone)').matches;
+    const isNavigation = performance.navigation.type === performance.navigation.TYPE_NAVIGATE;
+
+    // Hanya tampilkan splash jika ini adalah pembukaan pertama aplikasi (bukan refresh)
+    if (isNavigation && !sessionStorage.getItem("splashShownThisSession")) {
+        // Logika pengecekan internet
+        const networkStatusEl = document.querySelector('.splash-network-status');
+        const showNetworkError = (message) => {
+            if (networkStatusEl) {
+                networkStatusEl.textContent = message;
+                networkStatusEl.classList.add('show');
+            }
+        };
+
+        if (!navigator.onLine) showNetworkError("Koneksi internet offline.");
+        window.addEventListener("offline", () => showNetworkError("Koneksi terputus."));
+        window.addEventListener("online", () => { if (networkStatusEl) networkStatusEl.classList.remove('show'); });
+
+        const longLoadTimer = setTimeout(() => {
+            showNetworkError("Memuat data agak lama...");
+        }, 7000);
+
+        // Fungsi untuk menyembunyikan splash screen
+        const hideSplash = () => {
+            clearTimeout(longLoadTimer);
+            splashScreen.classList.add('hidden');
+            splashScreen.addEventListener('transitionend', () => {
+                splashScreen.style.display = 'none';
+            }, { once: true });
+        };
+
+        // Tunggu data anime dimuat atau timeout
+        let dataLoaded = false;
+        window.addEventListener('animeDataLoaded', () => {
+            dataLoaded = true;
+            setTimeout(hideSplash, 500);
+        }, { once: true });
+
+        // Fallback jika event tidak tertangkap
+        setTimeout(() => {
+            if (!dataLoaded) hideSplash();
+        }, 10000);
+
+        // Tandai bahwa splash sudah tampil di sesi ini
+        sessionStorage.setItem("splashShownThisSession", "true");
+    } else {
+        // Jika ini adalah refresh atau splash sudah tampil, langsung sembunyikan
+        splashScreen.style.display = 'none';
+    }
+}
+
+// Panggil fungsi splash screen di awal
+handleSplashScreen();
 
 function formatTimeAgo(dateString) {
   if (!dateString) return '';
@@ -309,13 +421,20 @@ async function loadAnimeData() {
     const response = await fetch("./anime-data.json", { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     const data = await response.json();
+    
+    // PERUBAHAN 1: Kirim sinyal bahwa data sudah berhasil dimuat
+    window.dispatchEvent(new Event('animeDataLoaded')); 
+    
     return (data.data || data).filter(anime => anime && anime.title && anime.slug);
   } catch (error) {
     console.error("❌ Error kritikal saat memuat data anime:", error);
+    
+    // PERUBAHAN 2: Tetap kirim sinyal agar splash screen hilang meskipun error
+    window.dispatchEvent(new Event('animeDataLoaded')); 
+    
     return [];
   }
 }
-
 function renderAnimeItems(data) {
   if (!animeListContainer) return;
   animeListContainer.innerHTML = ""; 
