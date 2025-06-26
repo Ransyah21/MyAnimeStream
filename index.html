@@ -38,157 +38,81 @@
       .container a:hover { text-decoration: underline; color: #ffa200; }
       header { transition: padding-top 0.4s ease-in-out; text-align: center; position: relative; z-index: 2; padding-top: 50px; }
       
-      /* Title Animation */
       .title { transition: all 0.4s ease-in-out; font-size: clamp(30px, 8vw, 45px); width: 100%; margin: 1.5rem auto; display: flex; flex-wrap: nowrap; justify-content: center; -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(0, 0, 0, 0.15)); position: relative; }
-
-/* TAMBAHKAN BLOK BARU INI UNTUK MEMATIKAN ANIMASI DI SETIAP HURUF */
       .title span { display: inline-block; font-family: "Play", sans-serif; animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate; margin: 0 clamp(1px, 0.5vw, 3px); color: #ffa200; text-shadow: 0 0 10px #ff6b00; font-weight: bold; }
       @keyframes title-bounce { 0%, 60%, 100% { transform: translateY(0) scale(1); } 30% { transform: translateY(clamp(-25px, -5vw, -15px)) scale(1.1); } }
       @keyframes fire { 0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00; } 100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; } }
       .title span:nth-child(1) { animation-delay: 0.3s; } .title span:nth-child(2) { animation-delay: 0.4s; } .title span:nth-child(3) { animation-delay: 0.5s; } .title span:nth-child(4) { animation-delay: 0.6s; } .title span:nth-child(5) { animation-delay: 0.7s; } .title span:nth-child(6) { animation-delay: 0.8s; } .title span:nth-child(7) { animation-delay: 0.9s; }
-
-
       
-      /* About Link (Fixed Top) */
       .abt { background-color: rgba(24, 24, 24, 0.85); backdrop-filter: blur(8px); position: fixed; top: 0; left: 0; right: 0; padding: 10px 15px; z-index: 1001; display: flex; justify-content: flex-start; align-items: center; border-bottom: 1px solid rgba(255, 162, 0, 0.2); }
       .abt a { position: relative; text-decoration: none; color: #ccc; background-color: transparent; padding: 5px 10px; border-radius: 6px; font-weight: bold; transition: color 0.3s ease, background-color 0.3s ease; }
       .abt a:hover { color: #ffa200; background-color: rgba(255, 162, 0, 0.1); }
-
-
-      /* Search Container & Input */
-/* GANTI BLOK CSS .search-container LAMA DENGAN INI */
-
-/* Search Container & Input */
-.search-container {
-  position: block;
-  top: 48px; /* Menempel 48px dari atas (beri ruang untuk bar .abt) */
-  z-index: 1000;
-  
-  /* Style background & padding */
-  backdrop-filter: blur(8px);
-  padding: 15px;
-  
-  /* Pastikan lebar penuh dan di tengah */
-  width: 100%; 
-  text-align: center;
-  
-  /* Transisi agar mulus (opsional) */
-  transition: top 0.3s ease;
-}
-
-#search-input { 
-  width: 100%; 
-  max-width: 600px; 
-  padding: 12px 20px; 
-  font-size: 16px; 
-  border: 2px solid #ffa200; 
-  border-radius: 25px; 
-  background: rgba(40, 40, 40, 0.7); 
-  color: white; 
-  transition: all 0.3s ease; 
-  font-weight: bold; 
-}
-#search-input::placeholder { color: #888; font-weight: normal; }
-#search-input:focus { outline: none; box-shadow: 0 0 15px rgba(255, 162, 0, 0.5); border-color: #ff8c00; background: rgba(50, 50, 50, 0.8); }      
-      main { position: relative; z-index: 2; padding-top: 20px; transition: padding-top 0.4s ease-in-out;}
+      
+      .search-wrapper { position: relative; width: 100%; max-width: 600px; margin: 0 auto; }
+      .search-container { position: block; z-index: 1000; backdrop-filter: blur(8px); padding: 15px; width: 100%; text-align: center; }
+      #search-input { width: 100%; padding: 12px 40px 12px 20px; font-size: 16px; border: 2px solid #ffa200; border-radius: 25px; background: rgba(40, 40, 40, 0.7); color: white; transition: all 0.3s ease; font-weight: bold; }
+      #search-input::placeholder { color: #888; font-weight: normal; }
+      #search-input:focus { outline: none; box-shadow: 0 0 15px rgba(255, 162, 0, 0.5); border-color: #ff8c00; background: rgba(50, 50, 50, 0.8); }
+      #clear-search-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%) scale(0.5); background: transparent; border: none; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; opacity: 0; pointer-events: none; transition: all 0.2s ease-in-out; }
+      #clear-search-btn.visible { opacity: 1; pointer-events: auto; transform: translateY(-50%) scale(1); }
+      #clear-search-btn:hover { color: #ffa200; transform: translateY(-50%) scale(1.2) rotate(90deg); }
+      
+      main { position: relative; z-index: 2; padding-top: 20px; }
       section.nama h2 { color: #ffa200; font-size: clamp(1.5em, 5vw, 2em); margin-bottom: 20px; text-align: center; font-weight: bold; }
       
       .anime-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 20px; margin-top: 20px; padding: 0 5px; }
-      .anime-list.list-layout { display: flex; flex-direction: column; align-items: center; gap: 25px; grid-template-columns: none; }
-      .anime-item { background-color: #282828; border-radius: 10px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); text-align: center; display: flex; flex-direction: column; position: relative; transition: transform 0.2s ease, box-shadow 0.2s ease; overflow: hidden; width: 100%; max-width: 180px; justify-self: center; }
-      .anime-list.list-layout .anime-item { flex-direction: row; max-width: 800px; text-align: left; padding: 15px; gap: 15px; justify-self: initial; }
+      .anime-item { background-color: #282828; border-radius: 10px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); text-align: center; display: flex; flex-direction: column; position: relative; transition: all 0.2s ease; overflow: hidden; width: 100%; max-width: 180px; justify-self: center; }
       .anime-item:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4); }
       .anime-item .anime-image-link { display: block; overflow: hidden; width: 100%; aspect-ratio: 2 / 3; }
-      .anime-list.list-layout .anime-item .anime-image-link { width: 150px; height: auto; flex-shrink: 0; border-radius: 6px; }
       .anime-item img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease-in-out; }
       .anime-item .anime-image-link:hover img { transform: scale(1.07); }
-      .anime-item .anime-details { display: flex; flex-direction: column; padding: 10px; gap: 8px; flex-grow: 1; }
-      .anime-list.list-layout .anime-item .anime-details { padding: 0; gap: 10px; flex-grow: 1; justify-content: flex-start; min-width: 0; }
-      .anime-item .anime-title { font-size: 0.9em; font-weight: 600; color: #eee; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.6em; margin: 0; }
+      .anime-item .anime-details { display: flex; flex-direction: column; padding: 10px; gap: 6px; flex-grow: 1; text-align: left; }
+      .anime-item .anime-title { font-size: 0.9em; font-weight: 600; color: #eee; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.6em; margin: 0; text-align: center; }
       .anime-item .anime-title a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
       .anime-item .anime-title a:hover { color: #ffa200; }
-      .anime-list.list-layout .anime-item .anime-title { font-size: 1.2em; font-weight: bold; color: #ffa200; margin-bottom: 5px; display: block; -webkit-line-clamp: initial; min-height: auto; }
-      .anime-list.list-layout .anime-item .anime-title a:hover { text-decoration: underline; }
       .anime-item .anime-description { display: none; }
+
+      .anime-meta-info { font-size: 0.75em; color: #b0b0b0; display: flex; flex-direction: column; gap: 4px; margin-top: auto; padding-top: 6px; border-top: 1px solid #444; }
+      .anime-meta-info p { margin: 0; display: flex; align-items: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .anime-meta-info i { margin-right: 6px; width: 12px; text-align: center; color: #999; }
+      
+      .anime-list.list-layout { display: flex; flex-direction: column; align-items: center; gap: 25px; grid-template-columns: none; }
+      .anime-list.list-layout .anime-item { flex-direction: row; max-width: 800px; text-align: left; padding: 15px; gap: 15px; justify-self: initial; }
+      .anime-list.list-layout .anime-item .anime-image-link { width: 150px; height: 225px; flex-shrink: 0; border-radius: 6px; aspect-ratio: 2 / 3; }
+      .anime-list.list-layout .anime-item .anime-details { padding: 0; gap: 10px; justify-content: flex-start; }
+      .anime-list.list-layout .anime-item .anime-title { font-size: 1.3em; font-weight: bold; color: #ffa200; margin-bottom: 5px; display: block; -webkit-line-clamp: initial; min-height: auto; text-align: left; }
+      .anime-list.list-layout .anime-item .anime-title a:hover { text-decoration: underline; }
       .anime-list.list-layout .anime-item .anime-description { display: -webkit-box; font-size: 0.9em; color: #ccc; line-height: 1.5; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; margin-bottom: auto; }
       
-      @media (max-width: 480px) { /* Target untuk layar HP (lebar 480px ke bawah) */
-        .anime-list {
-          /* Paksa grid untuk selalu menjadi 3 kolom yang sama lebarnya */
-          grid-template-columns: repeat(3, 1fr);
-          gap: 10px; /* Kurangi jarak antar item agar lebih pas */
-        }
-
-        .anime-item .anime-title {
-          font-size: 0.8em; /* Sedikit kecilkan font judul agar tidak terpotong */
-          line-height: 1.2;
-          min-height: 2.4em; /* Sesuaikan tinggi minimum agar pas 2 baris */
-        }
+      .anime-list.list-layout .anime-item .anime-meta-info {
+        display: flex; flex-direction: row; flex-wrap: wrap; gap: 15px; font-size: 0.8em;
+        color: #b0b0b0; margin: 10px 0; border-top: none; padding: 0;
+      }
+      
+      @media (max-width: 480px) {
+        .anime-list:not(.list-layout) { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .anime-list:not(.list-layout) .anime-item .anime-title { font-size: 0.8em; line-height: 1.2; min-height: 2.4em; }
+        .anime-list:not(.list-layout) .anime-meta-info { font-size: 0.65em; gap: 3px; }
+        .anime-list.list-layout .anime-item { flex-direction: column; align-items: center; text-align: center; }
+        .anime-list.list-layout .anime-item .anime-details { text-align: left; width: 100%; }
       }
 
       .notice { margin: 30px auto; padding: 15px 20px; background-color: rgba(40, 40, 40, 0.8); border-radius: 8px; max-width: 600px; text-align: center; color: #ccc; position: relative; z-index: 2; border-left: 4px solid #ffa200; }
       .notice p { margin-bottom: 10px; line-height: 1.5; font-size: 0.95em; }
       .notice p:last-child { margin-bottom: 0; }
 
-      /* --- STYLE UNTUK POPUP GENRE --- */
-
-.genre-popup {
-  display: none; /* Sembunyi secara default */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Overlay gelap */
-  backdrop-filter: blur(5px);
-  z-index: 2000; /* Paling atas */
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.genre-popup.visible {
-  display: flex; /* Tampilkan saat class 'visible' ditambahkan */
-}
-
-.genre-popup-content {
-  background-color: #282828;
-  padding: 25px;
-  border-radius: 15px;
-  width: 100%;
-  max-width: 600px;
-  max-height: 80vh;
-  overflow-y: auto;
-  border: 1px solid rgba(255, 162, 0, 0.2);
-  text-align: center;
-  position: relative;
-}
-
-.genre-popup-content h3 {
-  color: #ffa200;
-  margin-bottom: 20px;
-  font-size: 1.5em;
-}
-
-/* Gunakan kembali style .genre-list dan .genre-btn yang sudah ada */
-.genre-popup .genre-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
-/* Kita tidak perlu lagi style untuk .genre-filter, .genre-header, dll. Bisa dihapus */
-      .genre-list-container { max-height: 500px; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease; }
-      .genre-list-container.collapsed { max-height: 0; opacity: 0; margin-top: 0; padding-top: 0; padding-bottom: 0; border-top: none; }
-      .genre-list-container:not(.collapsed) { margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255, 162, 0, 0.1); }
+      .genre-popup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+      .genre-popup.visible { display: flex; }
+      .genre-popup-content { background-color: #282828; padding: 25px; border-radius: 15px; width: 100%; max-width: 600px; max-height: 80vh; overflow-y: auto; border: 1px solid rgba(255, 162, 0, 0.2); text-align: center; position: relative; }
+      .genre-popup-content h3 { color: #ffa200; margin-bottom: 20px; font-size: 1.5em; }
+      .genre-popup .genre-list { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
       .genre-list { display: flex; flex-wrap: wrap; gap: 10px; padding: 0 10px 5px; justify-content: center; }
       .genre-btn { padding: 8px 18px; background: #3a3a3a; border: none; border-radius: 25px; color: white; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-weight: bold; font-size: 0.9em; }
       .genre-btn:hover { background: #ffa200; color: #181818; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255, 162, 0, 0.3); }
       .genre-btn.selected { background: #ffa200; color: #181818; transform: translateY(-3px); box-shadow: 0 5px 20px rgba(255, 162, 0, 0.4); }
 
-      .pagination-container { margin: 30px 0; display: flex; justify-content: center; position: relative; z-index: 2; }
-      .pagination-controls { display: flex; gap: 15px; align-items: center; background-color: rgba(40, 40, 40, 0.8); padding: 10px 20px; border-radius: 20px; }
+      .pagination-container { margin-bottom: 20px; display: flex; justify-content: center; position: relative; z-index: 2; }
+      .pagination-controls { display: flex; gap: 15px; align-items: center; background-color: rgba(40, 40, 40, 0.8); padding: 10px 20px; border-radius: 20px; margin-top: 15px; }
       .pagination-btn { padding: 8px 16px; background: #ffa200; border: none; border-radius: 4px; color: #181818; cursor: pointer; transition: all 0.3s; font-weight: bold; }
       .pagination-btn:hover:not(:disabled) { background: #ff8c00; transform: translateY(-2px); }
       .pagination-btn:disabled { background: #555; cursor: not-allowed; opacity: 0.6; }
@@ -225,67 +149,19 @@
         .footer-item { width: 95%; text-align: center; }
         .footer-item h3, .footer-item p { justify-content: center; text-align: center; }
       }
-
-      /* --- STYLE UNTUK TOMBOL SCROLL TO TOP --- */
-
-#scrollToTopBtn {
-  position: fixed; /* Membuatnya melayang di atas segalanya */
-  bottom: 20px;
-  right: 20px;
-  z-index: 1050; /* Pastikan di atas semua elemen lain */
-  
-  /* Bentuk & Ukuran */
-  width: 50px;
-  height: 50px;
-  border-radius: 50%; /* Membuatnya bulat sempurna */
-  
-  /* Tampilan */
-  background-color: #ffa200;
-  color: #181818;
-  border: none;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  
-  /* Posisi Ikon di Tengah */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  /* Efek & Visibilitas Awal */
-  opacity: 0; /* Sembunyi secara default */
-  transform: translateY(100px); /* Posisi awal di luar layar */
-  pointer-events: none; /* Tidak bisa diklik saat sembunyi */
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-#scrollToTopBtn.visible {
-  opacity: 1; /* Tampilkan */
-  transform: translateY(0); /* Pindahkan ke posisi normal */
-  pointer-events: auto; /* Bisa diklik */
-}
-
-#scrollToTopBtn:hover {
-  background-color: #ff8c00;
-  transform: scale(1.1); /* Sedikit membesar saat disentuh mouse */
-}
-
+      
+      #scrollToTopBtn { position: fixed; bottom: 20px; right: 20px; z-index: 1050; width: 50px; height: 50px; border-radius: 50%; background-color: #ffa200; color: #181818; border: none; font-size: 24px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(100px); pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+      #scrollToTopBtn.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+      #scrollToTopBtn:hover { background-color: #ff8c00; transform: scale(1.1); }
     </style>
   </head>
   <body>
-    <!-- Background Partikel (Tidak perlu diubah) -->
-    <div id="particles-background">
-      <!-- 100 div.circle-container -->
-      <div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div><div class="circle-container"><div class="circle"></div></div>
-    </div>
+    <div id="particles-background"></div>
 
-    <!-- Link About (Fixed Top) -->
     <div class="abt"><a href="About.html">About</a>
       <a href="index.html">Beranda</a>
       <a href="#" id="genre-popup-btn">Genre</a></div>
     
-
     <header>
       <div class="container">
         <h1 class="title">
@@ -297,16 +173,17 @@
     <div id="genre-popup-container" class="genre-popup">
       <div class="genre-popup-content">
         <h3>Pilih Genre</h3>
-        <div class="genre-list">
-          <!-- Daftar genre akan diisi oleh JavaScript -->
-        </div>
+        <div class="genre-list"></div>
       </div>
     </div>
 
     <main>
       <div class="container">
         <div class="search-container">
-          <input type="text" id="search-input" placeholder="Cari judul anime..." name="keyword" />
+          <div class="search-wrapper">
+            <input type="text" id="search-input" placeholder="Cari judul anime..." name="keyword" />
+            <button id="clear-search-btn" title="Hapus pencarian">×</button>
+          </div>
         </div>
         <div class="notice">
           <p>Selamat datang! Situs ini masih dalam tahap pengembangan.</p>
@@ -315,10 +192,9 @@
 
         <div id="content">
           <section class="nama">
+            <div id="pagination-top" class="pagination-container"></div>
             <h2>Anime Terbaru</h2>
-            <div id="anime-list-container" class="anime-list">
-              <!-- List anime akan diisi oleh JS -->
-            </div>
+            <div id="anime-list-container" class="anime-list"></div>
           </section>
         </div>
       </div>
@@ -347,10 +223,16 @@
 
     <button id="scrollToTopBtn" title="Kembali ke atas">▲</button>
 
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
+       window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "35924ada-6b18-4d09-82da-78c9021dae3f",
+        });
+      });
 // --- BAGIAN 1: DEFINISI VARIABEL & FUNGSI ---
 
-// Variabel Global
 let currentPage = 1;
 let itemsPerPage = 21;
 let totalPages = 1;
@@ -361,8 +243,26 @@ let selectedGenre = "All";
 
 const searchInput = document.getElementById("search-input");
 const animeListContainer = document.getElementById("anime-list-container");
+const clearSearchBtn = document.getElementById('clear-search-btn');
 
-// Fungsi Splash Screen
+function formatTimeAgo(dateString) {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  const now = new Date();
+  const seconds = Math.floor((now - date) / 1000);
+  let interval = seconds / 31536000;
+  if (interval > 1) return Math.floor(interval) + " tahun yang lalu";
+  interval = seconds / 2592000;
+  if (interval > 1) return Math.floor(interval) + " bulan yang lalu";
+  interval = seconds / 86400;
+  if (interval >= 1) return Math.floor(interval) + " hari yang lalu";
+  interval = seconds / 3600;
+  if (interval >= 1) return Math.floor(interval) + " jam yang lalu";
+  interval = seconds / 60;
+  if (interval > 1) return Math.floor(interval) + " menit yang lalu";
+  return "Baru saja";
+}
+
 function createSplashScreen() {
   const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/" || window.location.pathname.endsWith("/MyAnime/") || window.location.pathname.endsWith("/MyAnime");
   if (!sessionStorage.getItem("splashShown") && isHomePage) {
@@ -394,22 +294,14 @@ function initSplashScreen() {
   return hideSplash;
 }
 
-// Fungsi State Management
 function saveState() {
-  const state = {
-    scrollPosition: window.scrollY,
-    searchTerm: searchInput.value,
-    selectedGenre: selectedGenre,
-    currentPage: currentPage
-  };
+  const state = { scrollPosition: window.scrollY, searchTerm: searchInput.value, selectedGenre: selectedGenre, currentPage: currentPage };
   sessionStorage.setItem('pageState', JSON.stringify(state));
-  console.log("📝 State saved:", state);
 }
 function restoreState() {
   const savedState = sessionStorage.getItem('pageState');
   if (savedState) {
     const state = JSON.parse(savedState);
-    console.log("🔄 Restoring state:", state);
     searchInput.value = state.searchTerm || "";
     selectedGenre = state.selectedGenre || "All";
     currentPage = state.currentPage || 1;
@@ -418,7 +310,6 @@ function restoreState() {
   return 0;
 }
 
-// Fungsi Data Loading & Rendering
 async function loadAnimeData() {
   try {
     const response = await fetch("./anime-data.json", { cache: "no-store" });
@@ -430,6 +321,7 @@ async function loadAnimeData() {
     return [];
   }
 }
+
 function renderAnimeItems(data) {
   if (!animeListContainer) return;
   if (data.length === 0) {
@@ -437,76 +329,122 @@ function renderAnimeItems(data) {
     animeListContainer.innerHTML = `<p style="text-align: center; color: #ccc; width: 100%; grid-column: 1 / -1; padding: 20px 0;">Tidak ada anime ditemukan ${info}.</p>`;
     return;
   }
-  animeListContainer.innerHTML = data.map(anime => `
+  
+  animeListContainer.innerHTML = data.map(anime => {
+    const { uploadInfo } = anime;
+    const metaInfoHtml = uploadInfo ? `
+      <div class="anime-meta-info">
+        <p><i class="fas fa-play"></i> Eps ${uploadInfo.episode}${uploadInfo.isEnd ? ' [END]' : ''}</p>
+        <p><i class="fas fa-user"></i> By: ${uploadInfo.postedBy}</p>
+        <p><i class="fas fa-calendar-days"></i> ${formatTimeAgo(uploadInfo.releasedOn)}</p>
+      </div>` : '';
+
+    return `
     <div class="anime-item">
       <a href="anime.html?slug=${encodeURIComponent(anime.slug)}" class="anime-image-link" title="${anime.title}">
         <img src="${anime.image || 'Gambar/default-thumbnail.png'}" alt="${anime.title}" loading="lazy" onerror="this.src='Gambar/default-thumbnail.png';">
       </a>
       <div class="anime-details">
         <h3 class="anime-title"><a href="anime.html?slug=${encodeURIComponent(anime.slug)}" title="${anime.title}">${anime.title}</a></h3>
+        <div class="meta-wrapper">${metaInfoHtml}</div>
         <p class="anime-description">${anime.desc || 'Deskripsi tidak tersedia.'}</p>
       </div>
-    </div>`).join("");
+    </div>`;
+  }).join("");
 }
+
 function renderPagination() {
-  let paginationContainer = document.querySelector("#pagination-top");
-  if (!paginationContainer) {
-    paginationContainer = document.createElement("div");
-    paginationContainer.className = "pagination-container";
-    paginationContainer.id = "pagination-top";
-    const sectionTitle = document.querySelector("section.nama");
-    if (sectionTitle) {
-      sectionTitle.parentNode.insertBefore(paginationContainer, sectionTitle);
-    }
+  let paginationContainer = document.getElementById("pagination-top");
+  
+  const isFiltered = searchInput.value.trim() !== "" || selectedGenre !== "All";
+  if (!isFiltered && currentPage === 1) { 
+      paginationContainer.innerHTML = "";
   }
+
+  let bottomPaginationContainer = document.querySelector('.pagination-bottom');
+  if (!bottomPaginationContainer) {
+      bottomPaginationContainer = document.createElement('div');
+      bottomPaginationContainer.className = 'pagination-container pagination-bottom';
+      animeListContainer.insertAdjacentElement('afterend', bottomPaginationContainer);
+  }
+
   if (totalPages <= 1) {
     paginationContainer.innerHTML = "";
+    bottomPaginationContainer.innerHTML = "";
     return;
   }
-  paginationContainer.innerHTML = `
+
+  const paginationHtml = `
     <div class="pagination-controls">
-        <button class="pagination-btn" id="prev-btn" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
+        <button class="pagination-btn prev-btn" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
         <span class="page-info">Hal ${currentPage} / ${totalPages}</span>
-        <button class="pagination-btn" id="next-btn" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
+        <button class="pagination-btn next-btn" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
     </div>`;
-  document.getElementById("prev-btn")?.addEventListener("click", () => { if (currentPage > 1) { currentPage--; updateDisplay(); } });
-  document.getElementById("next-btn")?.addEventListener("click", () => { if (currentPage < totalPages) { currentPage++; updateDisplay(); } });
+  
+  if (isFiltered) {
+    paginationContainer.innerHTML = paginationHtml;
+    bottomPaginationContainer.innerHTML = paginationHtml;
+  } else {
+    paginationContainer.innerHTML = ""; 
+    bottomPaginationContainer.innerHTML = paginationHtml;
+  }
+
+  document.querySelectorAll(".prev-btn").forEach(btn => btn.addEventListener("click", () => { if (currentPage > 1) { currentPage--; updateDisplay(); document.getElementById('anime-list-container').scrollIntoView({ behavior: 'smooth' }); } }));
+  document.querySelectorAll(".next-btn").forEach(btn => btn.addEventListener("click", () => { if (currentPage < totalPages) { currentPage++; updateDisplay(); document.getElementById('anime-list-container').scrollIntoView({ behavior: 'smooth' }); } }));
 }
+
 function updateDisplay() {
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   const itemsToDisplay = filteredData.slice(start, end);
   const sectionTitle = document.querySelector("section.nama h2");
+  
   if (sectionTitle) {
-    let titleText = "Semua Anime";
-    if (selectedGenre !== "All") titleText = `Genre: ${selectedGenre}`;
-    if (searchInput.value.trim()) titleText = `Hasil Pencarian: "${searchInput.value.trim()}"`;
-    sectionTitle.textContent = `${titleText} (${filteredData.length} hasil)`;
+    let titleText = "Anime Terbaru";
+    if (selectedGenre !== "All") {
+        titleText = `Genre: ${selectedGenre}`;
+        sectionTitle.textContent = `${titleText} (${filteredData.length} hasil)`;
+    } else if (searchInput.value.trim()) {
+        titleText = `Hasil Pencarian: "${searchInput.value.trim()}"`;
+        sectionTitle.textContent = `${titleText} (${filteredData.length} hasil)`;
+    } else {
+        sectionTitle.textContent = titleText;
+    }
   }
   renderAnimeItems(itemsToDisplay);
   renderPagination();
 }
 
-// Fungsi Search & Filter
 function filterAndDisplay(searchValue = "", genre = "All") {
-  animeListContainer.classList.toggle("list-layout", genre !== "All" || searchValue.trim() !== "");
-  let temp_data = allAnimeData.filter(anime => 
-    (genre === "All" || anime.info?.genres?.some(g => g.toLowerCase() === genre.toLowerCase())) &&
-    (anime.title?.toLowerCase().includes(searchValue))
-  );
+  const isFiltered = searchValue.trim() !== "" || genre !== "All";
+  animeListContainer.classList.toggle("list-layout", isFiltered);
+
+  let temp_data = allAnimeData;
+  if (isFiltered) {
+    temp_data = allAnimeData.filter(anime => 
+      (genre === "All" || anime.info?.genres?.some(g => g.toLowerCase() === genre.toLowerCase())) &&
+      (anime.title?.toLowerCase().includes(searchValue))
+    );
+  } else {
+    temp_data.sort((a, b) => {
+        if (!a.uploadInfo || !a.uploadInfo.releasedOn) return 1;
+        if (!b.uploadInfo || !b.uploadInfo.releasedOn) return -1;
+        return new Date(b.uploadInfo.releasedOn) - new Date(a.uploadInfo.releasedOn);
+    });
+  }
+
   filteredData = temp_data;
   totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
   if (!sessionStorage.getItem('pageState')) currentPage = 1;
   updateDisplay();
 }
+
 function renderGenreFilters() {
-  // Targetnya sekarang adalah .genre-list di dalam popup
   const genreContainer = document.querySelector("#genre-popup-container .genre-list");
   if (!genreContainer) return;
 
   const allGenres = new Set(allAnimeData.flatMap(anime => anime.info?.genres || []).filter(Boolean));
   const sortedGenres = Array.from(allGenres).sort((a, b) => a.localeCompare(b));
-
   genreContainer.innerHTML = "";
   
   const createGenreButton = (genre) => {
@@ -515,118 +453,79 @@ function renderGenreFilters() {
     button.textContent = genre;
     button.dataset.genre = genre;
     if (selectedGenre === genre) button.classList.add("selected");
-    
     button.addEventListener("click", () => {
-      // 1. Logika filter yang sudah ada
       sessionStorage.removeItem('pageState');
       selectedGenre = genre;
       searchInput.value = "";
       filterAndDisplay("", genre);
       document.querySelectorAll("#genre-popup-container .genre-btn").forEach(btn => btn.classList.remove("selected"));
       button.classList.add("selected");
-      
-      // 2. Tutup Popup
       document.getElementById('genre-popup-container').classList.remove('visible');
-
-      // 3. Scroll ke bagian hasil
       const targetElement = document.querySelector("section.nama h2");
-      if (targetElement) {
-        setTimeout(() => { // Beri sedikit delay agar konten sempat render
-          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
-      }
+      if (targetElement) { setTimeout(() => targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100); }
     });
     return button;
   };
-
-  // Tambahkan tombol 'All' dan semua genre lainnya
   genreContainer.appendChild(createGenreButton("All"));
   sortedGenres.forEach(genre => genreContainer.appendChild(createGenreButton(genre)));
 }
-// Fungsi Efek UI
 
 function initScrollToTopButton() {
   const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-  // Target scroll adalah elemen paling atas yang masuk akal, yaitu header
-  const targetElement = document.querySelector('header');
-  
-  if (!scrollToTopBtn || !targetElement) return;
-
+  if (!scrollToTopBtn) return;
   window.addEventListener('scroll', () => {
-    // Tampilkan tombol setelah user scroll ke bawah sejauh 400px
-    if (window.scrollY > 400) {
-      scrollToTopBtn.classList.add('visible');
-    } else {
-      scrollToTopBtn.classList.remove('visible');
-    }
+    scrollToTopBtn.classList.toggle('visible', window.scrollY > 400);
   }, { passive: true });
-
-  scrollToTopBtn.addEventListener('click', () => {
-    // Scroll ke bagian paling atas halaman dengan smooth
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
+  scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-// --- BAGIAN 2: EKSEKUSI & EVENT LISTENERS ---
+function setupEventListeners() {
+    searchInput.addEventListener("input", () => {
+        clearSearchBtn.classList.toggle('visible', searchInput.value.length > 0);
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(() => {
+            filterAndDisplay(searchInput.value.toLowerCase().trim(), selectedGenre);
+        }, 300);
+    });
 
-// Event Listeners yang bisa berjalan kapan saja
-// --- BAGIAN 2: EKSEKUSI & EVENT LISTENERS ---
+    searchInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault(); 
+            clearTimeout(searchTimer);
+            filterAndDisplay(searchInput.value.toLowerCase().trim(), selectedGenre);
+            const targetElement = document.querySelector("section.nama h2");
+            if (targetElement) { targetElement.scrollIntoView({ behavior: "smooth", block: "start" }); }
+        }
+    });
 
+    clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        clearSearchBtn.classList.remove('visible');
+        filterAndDisplay("", selectedGenre);
+        searchInput.focus();
+    });
 
-// ==========================================================
-// === TAMBAHAN BARU: FUNGSI ENTER DAN SCROLL ===
-// ==========================================================
-searchInput.addEventListener("keydown", function(event) {
-  // Cek apakah tombol yang ditekan adalah "Enter"
-  if (event.key === "Enter") {
-    // 1. Mencegah aksi default dari Enter (misal: submit form)
-    event.preventDefault(); 
-    
-    // 2. Langsung trigger filter (menghapus delay dari searchTimer)
-    clearTimeout(searchTimer); // Hentikan timer yang mungkin berjalan
-    filterAndDisplay(this.value.toLowerCase().trim(), selectedGenre);
+    const genrePopupBtn = document.getElementById('genre-popup-btn');
+    const genrePopupContainer = document.getElementById('genre-popup-container');
+    genrePopupBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        genrePopupContainer.classList.add('visible');
+    });
+    genrePopupContainer.addEventListener('click', (e) => {
+        if (e.target.id === 'genre-popup-container') {
+            genrePopupContainer.classList.remove('visible');
+        }
+    });
+}
 
-    // 3. Cari elemen target untuk di-scroll
-    const targetElement = document.querySelector("section.nama h2");
-
-    // 4. Lakukan scroll jika target ditemukan
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: "smooth", // Animasi scroll halus
-        block: "start"      // Berhenti di bagian atas elemen target
-      });
-    }
-  }
-});
-
-// Event Listener baru untuk Tombol Genre dan Popup
-const genrePopupBtn = document.getElementById('genre-popup-btn');
-const genrePopupContainer = document.getElementById('genre-popup-container');
-
-genrePopupBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  genrePopupContainer.classList.add('visible');
-});
-
-// Klik di luar popup (pada overlay) untuk menutup
-genrePopupContainer.addEventListener('click', (e) => {
-  if (e.target.id === 'genre-popup-container') {
-    genrePopupContainer.classList.remove('visible');
-  }
-});
-
-// Kode yang dijalankan setelah halaman siap (DOM Loaded)
 document.addEventListener("DOMContentLoaded", async () => {
-  console.log("🚀 DOM loaded. Initializing...");
   const hideSplash = initSplashScreen();
   try {
     allAnimeData = await loadAnimeData();
     const restoredScrollY = restoreState();
     if (allAnimeData.length > 0) {
       renderGenreFilters();
+      setupEventListeners();
       filterAndDisplay(searchInput.value, selectedGenre);
       if (restoredScrollY > 0) {
         setTimeout(() => window.scrollTo({ top: restoredScrollY, behavior: 'auto' }), 100);
@@ -639,13 +538,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("❌ Error kritis saat inisialisasi:", error);
   } finally {
     setTimeout(hideSplash, 500);
-    // PASTIKAN PANGGILAN INI ADA
     initScrollToTopButton();
-    console.log("🏁 Initialization complete.");
   }
 });
 
-// Pendaftaran Service Worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./service-worker.js')
@@ -653,7 +549,6 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.error('❌ Service Worker registration failed', err));
   });
 }
-
     </script>
   </body>
 </html>

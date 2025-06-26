@@ -3,148 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <title>About Us - MyAnime</title>
     <link rel="icon" href="Gambar/Logo-APL-Myanime.png" type="image/x-icon" />
-    <link rel="icon" href="Gambar/nime-removebg-preview.png" type="image/x-icon">
-    <style>/* Global Styles */
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Menggunakan style dasar yang sama dengan halaman lain */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; min-height: 100vh; scroll-behavior: smooth; }
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #181818; /* Background black */
-            color: #fff;
+            background-color: #181818; color: #fff; font-family: sans-serif;
+            overflow-x: hidden; background-image: radial-gradient(#021027, #000000);
+            position: relative; z-index: 1; display: flex; flex-direction: column;
         }
         
-        /* Navigation Bar */
-        .navbar {
-            background-color: #333;
-            padding: 10px 20px;
-            margin: auto;
-            text-align: left; /* Aligns the navbar to the right */
+        /* Header Konsisten */
+        .abt { background-color: rgba(24, 24, 24, 0.85); backdrop-filter: blur(8px); position: fixed; top: 0; left: 0; right: 0; padding: 10px 15px; z-index: 1001; display: flex; justify-content: flex-start; align-items: center; border-bottom: 1px solid rgba(255, 162, 0, 0.2); }
+        .abt a { position: relative; text-decoration: none; color: #ccc; background-color: transparent; padding: 5px 10px; border-radius: 6px; font-weight: bold; transition: color 0.3s ease, background-color 0.3s ease; }
+        .abt a:hover { color: #ffa200; background-color: rgba(255, 162, 0, 0.1); }
+        .abt::after { content: "MyAnime"; font-family: "Play", sans-serif; font-weight: bold; font-size: 1.5em; color: #ffa200; text-shadow: 0 0 10px #ff6b00; position: absolute; top: 50%; right: 20px; transform: translateY(-50%); pointer-events: none; }
+
+        /* Konten Utama */
+        main { flex-grow: 1; padding-top: 80px; /* Jarak dari header fixed */ }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px 15px; }
+        .about-box {
+            background-color: rgba(40, 40, 40, 0.8); backdrop-filter: blur(4px);
+            padding: 30px; border-radius: 10px; border: 1px solid rgba(255, 162, 0, 0.15);
         }
-        
-        .navbar .nav-link {
-            color: orange;
-            text-decoration: none;
-            font-size: 18px;
+        .about-box h1 {
+            font-size: 2.5em; color: #ffa200; text-align: center;
+            margin-bottom: 25px; font-weight: bold;
         }
-        
-        .navbar .nav-link:hover {
-            text-decoration: underline;
+        .about-box p {
+            color: #ccc; font-size: 1.1em; line-height: 1.7;
+            text-align: justify; margin-bottom: 20px;
         }
-        
-        /* About Section */
-        .about-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 80vh; /* Takes 80% of the viewport height */
-            padding: 20px;
+        .about-box hr {
+            border: none; height: 1px;
+            background-color: rgba(255, 162, 0, 0.2);
+            margin: 30px 0;
         }
-        
-        .about-container {
-            max-width: 800px;
-            text-align: center;
+
+        /* Footer Konsisten */
+        .footer { background-color: #1f1f1f; color: #aaa; padding: 30px 0; font-size: 14px; position: relative; z-index: 3; border-top: 1px solid #333; }
+        .footer-section { display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; padding: 0 15px; gap: 30px; }
+        .footer-item { flex: 1; min-width: 220px; margin-bottom: 20px; padding: 0 10px; text-align: left; }
+        .footer-item h3 { margin: 0 0 15px 0; font-size: 18px; border-bottom: 1px solid #444; padding-bottom: 8px; color: #ffa200; font-weight: bold; }
+        .footer-item p { margin: 0 0 8px 0; display: flex; align-items: center; font-size: 14px; line-height: 1.6; color: #ccc; }
+        .footer-item p a { color: #ccc; transition: color 0.3s ease; margin-left: 5px; text-decoration: none; }
+        .footer-item p a:hover { color: #ffa200; }
+        .social-icon { margin-right: 10px; width: 20px; color: #aaa; transition: all 0.3s ease; }
+        .footer-item p a:hover .social-icon { transform: scale(1.2) rotate(5deg); color: #ffa200; }
+
+        @media (max-width: 768px) {
+            .footer-section { flex-direction: column; align-items: center; text-align: center; }
+            .footer-item { width: 95%; text-align: center; }
+            .footer-item h3, .footer-item p { justify-content: center; }
         }
-        
-        .about-container h1 {
-            font-size: 25px;
-            margin-bottom: 20px;
-            color: orange;
-            text-align: center;
-        }
-        
-        .about-container p {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        
-        .batas {
-            align-items: center;
-            border-color: #ffa200;
-        }
-        
-        
-        /*Footer mulai /*
-        
-        /* Footer Styles */
-        .footer {
-            background-color: #1f1f1f;
-            color: #fff;
-            padding: 20px;
-            text-align: left;
-        }
-        
-        .footer-section {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-start;
-        }
-        
-        .footer-item {
-            width: 30%;
-            padding: 10px;
-        }
-        
-        .footer-icon {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-        
-        .footer-item h3 {
-            display: inline-block;
-            margin: 0;
-            font-size: 18px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 5px;
-            color: orange;
-        }
-        
-        .footer-item p {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #ccc;
-        }
-        
-        </style>
+    </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="index.html" class="nav-link">Home</a>
-    </nav>
-
-    <!-- About Section -->
-    <section class="about-section">
-        <div class="about-container">
-            <h1>Welcome In My Anime</h1>
-            <p>
-                This site only provides anime that has been released, and is suitable for rewatching for those who want to watch it again. If you are looking for anime that is currently airing (on-going), please search on other sites. However, if you need recommendations or want to request a particular anime, we will be happy to help. There is also no adult genre here, because we focus on providing a comfortable viewing experience without ads!
-            </p>
-<hr class="batas">
-            <P>
-                "The reason I created this website is to make watching more comfortable. I also provide batch and streaming options so you can enjoy watching more easily, without annoying ads. This website is specifically made for sharing, not for distribution to other countries. The main goal is to make it easier for us to watch and download anime. Hopefully with this website, your watching experience will be more enjoyable and free from interference!"
-            </P>
-        </div>
-    </section>
-    <footer class="footer">
-    <div class="footer-section">
-        <div class="footer-item">
-            <img src="https://cdn-icons-png.flaticon.com/128/3631/3631618.png" alt="Tips Icon" class="footer-icon">
-            <h3>Follow us</h3>
-            <p>Instragram : ransyah_32</p>
-        </div>
-
-        <div class="footer-item">
-            <img src="https://cdn-icons-png.flaticon.com/128/8316/8316145.png" alt="Info Icon" class="footer-icon">
-            <h3>Info</h3>
-            <p>Webnya masih dalam tahap pengembangan, admin jika melihat error atau bug.</p>
-        </div>
+    <!-- Header yang Sama dengan Halaman Lain -->
+    <div class="abt">
+      <a href="index.html">Beranda</a>
+      <a href="About.html">About</a>
     </div>
-</footer>
+
+    <!-- Konten Utama -->
+    <main>
+        <div class="container">
+            <div class="about-box">
+                <h1>Tentang MyAnime</h1>
+                <p>
+                    Situs ini hanya menyediakan anime yang sudah tamat tayang, cocok untuk ditonton ulang bagi yang ingin bernostalgia. Jika Anda mencari anime yang sedang tayang (on-going), silakan cari di situs lain. Namun, jika Anda membutuhkan rekomendasi atau ingin request anime tertentu, kami akan dengan senang hati membantu.
+                </p>
+                <hr>
+                <p>
+                    Alasan saya membuat website ini adalah untuk menciptakan pengalaman menonton yang lebih nyaman. Saya juga menyediakan opsi unduh batch dan streaming agar Anda bisa menikmati tontonan dengan lebih mudah, tanpa iklan yang mengganggu. Website ini dibuat khusus untuk berbagi, bukan untuk didistribusikan ke negara lain. Semoga dengan website ini, pengalaman menonton Anda menjadi lebih menyenangkan dan bebas dari gangguan!
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer yang Sama dengan Halaman Lain -->
+    <footer class="footer">
+      <div class="footer-section">
+        <div class="footer-item">
+          <h3>Hak Cipta</h3>
+          <p>© 2024 MyAnime.</p>
+          <p>Dikelola dan dikembangkan oleh Ransyah</p>
+        </div>
+        <div class="footer-item">
+          <h3>Ikuti & Support Kami</h3>
+          <p><a href="https://www.instagram.com/ransyah_32/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram social-icon"></i> Instagram</a></p>
+          <p><a href="mailto:rizky1234kb@gmail.com"><i class="fas fa-envelope social-icon"></i> Email</a></p>
+        </div>
+        <div class="footer-item">
+          <h3>Hubungi Kami</h3>
+          <p><a href="mailto:rizky1234kb@gmail.com">rizky1234kb@gmail.com</a></p>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script> window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function(OneSignal) {
+          await OneSignal.init({
+            appId: "35924ada-6b18-4d09-82da-78c9021dae3f",
+          });
+        });</script>
 </body>
-<script></script>
 </html>

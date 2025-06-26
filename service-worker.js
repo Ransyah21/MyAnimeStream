@@ -1,43 +1,67 @@
 // File: service-worker.js
 
-const CACHE_NAME = 'myanimestream-cache-v2'; // Ganti versi cache agar update
+// Versi cache dinaikkan ke v3 untuk memaksa update
+const CACHE_NAME = 'myanimestream-cache-v3'; 
 const URLS_TO_CACHE = [
-  './', // Ini akan mengacu ke https://ransyah21.github.io/MyAnimeStream/
+  './',
   './index.html',
-  './About.html', // Cache halaman About juga!
-  './anime-data.json', // Cache data anime agar bisa dibuka offline!
+  './About.html',
+  './anime.html',       // PERUBAHAN: Menambahkan anime.html
+  './streaming.html',   // PERUBAHAN: Menambahkan streaming.html
+  './anime-data.json',
   './manifest.json',
-  './Gambar/logo-Myanime512.png',
-  './Gambar/logo-Myanime192.png',
-  './Gambar/default-thumbnail.png' // Cache gambar default
-  // Kalau kamu punya file CSS atau JS eksternal, tambahkan di sini.
-  // Contoh: './style.css', './script.js'
+  './Gambar/Logo-APL-Myanime.png', // Logo utama
+  './Gambar/default-thumbnail.png'
 ];
 
-// Event 'install' - dijalankan saat service worker pertama kali diinstal
 self.addEventListener('install', event => {
+  // Langsung aktifkan service worker baru tanpa menunggu
+  self.skipWaiting(); 
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
         console.log('Opened cache and caching assets');
-        return cache.addAll(URLS_TO_CACHE);
+        // Menggunakan addAll dengan opsi untuk tidak gagal jika salah satu URL error
+        const cachePromises = URLS_TO_CACHE.map(urlToCache => {
+            return cache.add(urlToCache).catch(err => {
+                console.warn(`Failed to cache ${urlToCache}:`, err);
+            });
+        });
+        return Promise.all(cachePromises);
       })
   );
 });
 
-// Event 'fetch' - dijalankan setiap kali ada request network dari halaman
 self.addEventListener('fetch', event => {
+  // Strategi: Cache-first, lalu network.
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        // Jika request ada di cache, kembalikan dari cache.
-        // Jika tidak, lakukan fetch ke network.
-        return response || fetch(event.request);
+        // Jika ada di cache, langsung kembalikan
+        if (response) {
+          return response;
+        }
+        // Jika tidak, fetch dari network
+        return fetch(event.request).then(
+          (networkResponse) => {
+            // Jika request berhasil, simpan ke cache untuk lain waktu
+            if (networkResponse && networkResponse.status === 200) {
+              const responseToCache = networkResponse.clone();
+              caches.open(CACHE_NAME)
+                .then(cache => {
+                  cache.put(event.request, responseToCache);
+                });
+            }
+            return networkResponse;
+          }
+        ).catch(() => {
+            // Jika fetch gagal (misal: offline), berikan fallback jika ada
+            // Di sini kita bisa mengembalikan halaman offline custom, tapi untuk sekarang biarkan default error
+        });
       })
   );
 });
 
-// Event 'activate' - untuk membersihkan cache lama
 self.addEventListener('activate', event => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
@@ -45,6 +69,7 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
+            console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })

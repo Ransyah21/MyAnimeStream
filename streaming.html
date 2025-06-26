@@ -133,7 +133,15 @@
 
     <!-- Footer bisa ditambahkan di sini jika mau -->
 
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
+         window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "35924ada-6b18-4d09-82da-78c9021dae3f",
+        });
+      });
+      
         const urlParams = new URLSearchParams(window.location.search);
         const animeSlug = decodeURIComponent(urlParams.get('slug') || '');
         let seasonSlug = urlParams.get('season_slug'); // Deklarasikan di sini
