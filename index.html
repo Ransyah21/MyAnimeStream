@@ -134,15 +134,19 @@
       .social-icon { margin-right: 10px; width: 20px; color: #aaa; transition: all 0.3s ease; }
       .footer-item p a:hover .social-icon { transform: scale(1.2) rotate(5deg); color: #ffa200; }
 
-      #myDynamicSplash { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #181818; display: flex; align-items: center; justify-content: center; text-align: center; z-index: 99999; transition: opacity 0.5s ease; }
-      .splash-content { position: relative; }
-      .splash-title { font-size: clamp(30px, 8vw, 45px); margin-bottom: 2rem; display: flex; justify-content: center; }
-      .splash-title span { display: inline-flex; font-family: "Play", sans-serif; animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate; margin: 0 clamp(1px, 0.5vw, 3px); color: #ffa200; text-shadow: 0 0 10px #ff6b00; font-weight: bold; }
-      .sk-cube-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; width: 40px; height: 40px; margin: 20px auto; }
-      .sk-cube { width: 10px; height: 10px; background-color: #ffa200; animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; }
-      @keyframes sk-cubeGridScaleDelay { 0%, 70%, 100% { transform: scale3D(1, 1, 1); } 35% { transform: scale3D(0, 0, 1); } }
-      .network-status { position: absolute; bottom: 15%; left: 50%; transform: translateX(-50%); color: #ff5555; font-size: 1.1em; text-align: center; opacity: 0; transition: opacity 0.3s ease; width: 80%; max-width: 300px; font-weight: bold; }
-      .network-status.show { opacity: 1; }
+      /* ======================================== */
+      /* --- CSS ANIMASI SPLASH SCREEN BARU --- */
+      /* ======================================== */
+      body.welcome { overflow: hidden; }
+      .welcome .splash { height: 0px; padding: 0px; border: 130em solid #021027; position: fixed; left: 50%; top: 100%; display: block; box-sizing: initial; overflow: hidden; border-radius: 50%; transform: translate(-50%, -50%); animation: puff 0.5s 1.8s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, borderRadius 0.2s 2.3s linear forwards; z-index: 99998; }
+      .welcome #welcome { background: #181818; width: 56px; height: 56px; position: absolute; left: 50%; top: 50%; overflow: hidden; opacity: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 99999; animation: init 0.5s 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, moveDown 1s 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards, moveUp 1s 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, materia 0.5s 2.7s cubic-bezier(0.86, 0, 0.07, 1) forwards, hide 2s 2.9s ease forwards; }
+      @keyframes init { 0% { width: 0px; height: 0px; } 100% { width: 56px; height: 56px; margin-top: 0px; opacity: 1; } }
+      @keyframes puff { 0% { top: 100%; height: 0px; padding: 0px; } 100% { top: 50%; height: 100%; padding: 0px 100%; } }
+      @keyframes borderRadius { 0% { border-radius: 50%; } 100% { border-radius: 0px; } }
+      @keyframes moveDown { 0% { top: 50%; } 50% { top: 40%; } 100% { top: 100%; } }
+      @keyframes moveUp { 0% { background: #181818; top: 100%; } 50% { top: 40%; } 100% { top: 50%; background: #021027; } }
+      @keyframes materia { 0% { background: #021027; } 50% { background: #021027; top: 26px; } 100% { background: #181818; width: 100%; height: 64px; border-radius: 0px; top: 26px; } }
+      @keyframes hide { 0% { opacity: 1; } 100% { opacity: 0; pointer-events: none; } }
 
       @media (max-width: 768px) {
         .footer-section { flex-direction: column; align-items: center; text-align: center; }
@@ -155,7 +159,9 @@
       #scrollToTopBtn:hover { background-color: #ff8c00; transform: scale(1.1); }
     </style>
   </head>
-  <body>
+  <body class="welcome">
+    <span id="splash-overlay" class="splash"></span>
+    <span id="welcome" class="z-depth-4"></span>
     <div id="particles-background"></div>
 
     <div class="abt"><a href="About.html">About</a>
@@ -231,8 +237,22 @@
           appId: "35924ada-6b18-4d09-82da-78c9021dae3f",
         });
       });
-// --- BAGIAN 1: DEFINISI VARIABEL & FUNGSI ---
 
+// --- JS UNTUK SPLASH SCREEN BARU ---
+if (document.body.classList.contains('welcome')) {
+  if (!sessionStorage.getItem("splashShown")) {
+    setTimeout(() => {
+      document.body.classList.remove('welcome');
+      sessionStorage.setItem("splashShown", "true"); 
+    }, 3500);
+  } else {
+    document.body.classList.remove('welcome');
+    document.getElementById('splash-overlay')?.remove();
+    document.getElementById('welcome')?.remove();
+  }
+}
+
+// --- BAGIAN 1: DEFINISI VARIABEL & FUNGSI ---
 let currentPage = 1;
 let itemsPerPage = 21;
 let totalPages = 1;
@@ -248,8 +268,13 @@ const clearSearchBtn = document.getElementById('clear-search-btn');
 function formatTimeAgo(dateString) {
   if (!dateString) return '';
   const date = new Date(dateString);
+  if (isNaN(date.getTime())) return ''; 
   const now = new Date();
   const seconds = Math.floor((now - date) / 1000);
+  if (seconds < 0) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return `Upload : ${date.toLocaleDateString('id-ID', options)}`;
+  }
   let interval = seconds / 31536000;
   if (interval > 1) return Math.floor(interval) + " tahun yang lalu";
   interval = seconds / 2592000;
@@ -261,37 +286,6 @@ function formatTimeAgo(dateString) {
   interval = seconds / 60;
   if (interval > 1) return Math.floor(interval) + " menit yang lalu";
   return "Baru saja";
-}
-
-function createSplashScreen() {
-  const isHomePage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/" || window.location.pathname.endsWith("/MyAnime/") || window.location.pathname.endsWith("/MyAnime");
-  if (!sessionStorage.getItem("splashShown") && isHomePage) {
-    const splashScreen = document.createElement("div");
-    splashScreen.id = "myDynamicSplash";
-    splashScreen.innerHTML = `<div class="splash-content"><div class="splash-title">${Array.from("MyAnime").map((l, i) => `<span style="animation-delay: ${0.3 + i * 0.1}s">${l}</span>`).join('')}</div><div class="sk-cube-grid">${Array(9).fill('<div class="sk-cube"></div>').join('')}</div><div class="network-status"></div></div>`;
-    document.body.prepend(splashScreen);
-    sessionStorage.setItem("splashShown", "true");
-    return { splashScreen, errorMessage: splashScreen.querySelector('.network-status') };
-  }
-  return null;
-}
-function initSplashScreen() {
-  const splashData = createSplashScreen();
-  if (!splashData) return () => {};
-  const { splashScreen, errorMessage } = splashData;
-  let isLoaded = false;
-  const showNetworkError = (message) => { errorMessage.textContent = message; errorMessage.classList.add("show"); };
-  if (!navigator.onLine) showNetworkError("Koneksi internet offline");
-  window.addEventListener("offline", () => showNetworkError("Koneksi internet offline"));
-  window.addEventListener("online", () => errorMessage.classList.remove("show"));
-  const hideSplash = () => {
-    if (isLoaded || !splashScreen) return;
-    isLoaded = true;
-    splashScreen.style.opacity = "0";
-    splashScreen.addEventListener("transitionend", () => splashScreen.remove());
-  };
-  setTimeout(() => { if (!isLoaded) showNetworkError("Memuat data agak lama..."); }, 7000);
-  return hideSplash;
 }
 
 function saveState() {
@@ -324,6 +318,7 @@ async function loadAnimeData() {
 
 function renderAnimeItems(data) {
   if (!animeListContainer) return;
+  animeListContainer.innerHTML = ""; 
   if (data.length === 0) {
     const info = selectedGenre !== "All" ? `untuk genre "${selectedGenre}"` : searchInput.value ? `dengan kata kunci "${searchInput.value}"` : "";
     animeListContainer.innerHTML = `<p style="text-align: center; color: #ccc; width: 100%; grid-column: 1 / -1; padding: 20px 0;">Tidak ada anime ditemukan ${info}.</p>`;
@@ -346,7 +341,7 @@ function renderAnimeItems(data) {
       </a>
       <div class="anime-details">
         <h3 class="anime-title"><a href="anime.html?slug=${encodeURIComponent(anime.slug)}" title="${anime.title}">${anime.title}</a></h3>
-        <div class="meta-wrapper">${metaInfoHtml}</div>
+        ${metaInfoHtml}
         <p class="anime-description">${anime.desc || 'Deskripsi tidak tersedia.'}</p>
       </div>
     </div>`;
@@ -354,43 +349,36 @@ function renderAnimeItems(data) {
 }
 
 function renderPagination() {
-  let paginationContainer = document.getElementById("pagination-top");
-  
-  const isFiltered = searchInput.value.trim() !== "" || selectedGenre !== "All";
-  if (!isFiltered && currentPage === 1) { 
-      paginationContainer.innerHTML = "";
-  }
+    const paginationContainers = document.querySelectorAll('.pagination-container');
+    paginationContainers.forEach(container => container.innerHTML = ''); 
 
-  let bottomPaginationContainer = document.querySelector('.pagination-bottom');
-  if (!bottomPaginationContainer) {
-      bottomPaginationContainer = document.createElement('div');
-      bottomPaginationContainer.className = 'pagination-container pagination-bottom';
-      animeListContainer.insertAdjacentElement('afterend', bottomPaginationContainer);
-  }
+    const isFiltered = searchInput.value.trim() !== "" || selectedGenre !== "All";
 
-  if (totalPages <= 1) {
-    paginationContainer.innerHTML = "";
-    bottomPaginationContainer.innerHTML = "";
-    return;
-  }
+    if (totalPages <= 1) return; 
 
-  const paginationHtml = `
+    const paginationHtml = `
     <div class="pagination-controls">
         <button class="pagination-btn prev-btn" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
         <span class="page-info">Hal ${currentPage} / ${totalPages}</span>
         <button class="pagination-btn next-btn" ${currentPage === totalPages ? "disabled" : ""}>Next</button>
     </div>`;
-  
-  if (isFiltered) {
-    paginationContainer.innerHTML = paginationHtml;
-    bottomPaginationContainer.innerHTML = paginationHtml;
-  } else {
-    paginationContainer.innerHTML = ""; 
-    bottomPaginationContainer.innerHTML = paginationHtml;
-  }
 
-  document.querySelectorAll(".prev-btn").forEach(btn => btn.addEventListener("click", () => { if (currentPage > 1) { currentPage--; updateDisplay(); document.getElementById('anime-list-container').scrollIntoView({ behavior: 'smooth' }); } }));
-  document.querySelectorAll(".next-btn").forEach(btn => btn.addEventListener("click", () => { if (currentPage < totalPages) { currentPage++; updateDisplay(); document.getElementById('anime-list-container').scrollIntoView({ behavior: 'smooth' }); } }));
+    let targetContainer;
+    if (isFiltered) {
+        targetContainer = document.getElementById('pagination-top');
+    } else {
+        targetContainer = document.querySelector('.pagination-bottom');
+        if (!targetContainer) {
+            targetContainer = document.createElement('div');
+            targetContainer.className = 'pagination-container pagination-bottom';
+            animeListContainer.insertAdjacentElement('afterend', targetContainer);
+        }
+    }
+    
+    if (targetContainer) targetContainer.innerHTML = paginationHtml;
+    
+    document.querySelectorAll(".prev-btn").forEach(btn => btn.onclick = () => { if (currentPage > 1) { currentPage--; updateDisplay(); document.querySelector('section.nama h2').scrollIntoView({ behavior: 'smooth' }); } });
+    document.querySelectorAll(".next-btn").forEach(btn => btn.onclick = () => { if (currentPage < totalPages) { currentPage++; updateDisplay(); document.querySelector('section.nama h2').scrollIntoView({ behavior: 'smooth' }); } });
 }
 
 function updateDisplay() {
@@ -426,7 +414,7 @@ function filterAndDisplay(searchValue = "", genre = "All") {
       (anime.title?.toLowerCase().includes(searchValue))
     );
   } else {
-    temp_data.sort((a, b) => {
+    temp_data = [...allAnimeData].sort((a, b) => { 
         if (!a.uploadInfo || !a.uploadInfo.releasedOn) return 1;
         if (!b.uploadInfo || !b.uploadInfo.releasedOn) return -1;
         return new Date(b.uploadInfo.releasedOn) - new Date(a.uploadInfo.releasedOn);
@@ -435,7 +423,9 @@ function filterAndDisplay(searchValue = "", genre = "All") {
 
   filteredData = temp_data;
   totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
-  if (!sessionStorage.getItem('pageState')) currentPage = 1;
+  if (!sessionStorage.getItem('pageState') || !isFiltered) {
+      currentPage = 1;
+  }
   updateDisplay();
 }
 
@@ -501,7 +491,10 @@ function setupEventListeners() {
     clearSearchBtn.addEventListener('click', () => {
         searchInput.value = '';
         clearSearchBtn.classList.remove('visible');
-        filterAndDisplay("", selectedGenre);
+        filterAndDisplay("", "All"); 
+        selectedGenre = "All"; 
+        document.querySelectorAll("#genre-popup-container .genre-btn").forEach(btn => btn.classList.remove("selected"));
+        document.querySelector("#genre-popup-container .genre-btn[data-genre='All']").classList.add("selected");
         searchInput.focus();
     });
 
@@ -519,7 +512,6 @@ function setupEventListeners() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const hideSplash = initSplashScreen();
   try {
     allAnimeData = await loadAnimeData();
     const restoredScrollY = restoreState();
@@ -537,7 +529,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (error) {
     console.error("❌ Error kritis saat inisialisasi:", error);
   } finally {
-    setTimeout(hideSplash, 500);
     initScrollToTopButton();
   }
 });
