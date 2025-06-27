@@ -1,5 +1,82 @@
 {
     "data": [
+
+        {
+            "title": "Blood Lad",
+            "slug": "blood-lad",
+            "image": "https://i.pinimg.com/736x/a6/be/c1/a6bec1ff4fd7c53f24e2160b64e888b4.jpg",
+            "info": {
+                "type": "TV",
+                "episodes": 10,
+                "status": "Finished Airing",
+                "aired": "Jul 8, 2013 to Sep 9, 2013",
+                "premiered": "Summer 2013",
+                "broadcast": "Mondays at 00:30 (JST)",
+                "producers": [
+                    "Lantis",
+                    "Kadokawa Shoten",
+                    "KlockWorx",
+                    "Flying Dog",
+                    "Asatsu DK"
+                ],
+                "studios": [
+                    "Brain's Base"
+                ],
+                "source": "Manga",
+                "genres": [
+                    "Action",
+                    "Comedy",
+                    "Supernatural"
+                ],
+                "themes": [
+                    "Vampire"
+                ],
+                "demographic": "Seinen",
+                "duration": "24 min. per ep.",
+                "rating": "PG-13 - Teens 13 or older"
+            },
+            "uploadInfo": {
+                "episode": 11,
+                "isEnd": true,
+                "postedBy": "Ransyah",
+                "releasedOn": "2025-06-27T02:50:45Z"
+            },
+            "desc": "Staz Charlie Blood adalah bos vampir di Dunia Iblis, tetapi dia lebih tertarik pada budaya Jepang daripada darah manusia. Ketika seorang gadis Jepang bernama Fuyumi Yanagi secara tidak sengaja masuk ke wilayahnya, Staz sangat gembira. Sayangnya, Fuyumi terbunuh dan menjadi hantu. Bertekad untuk menghidupkannya kembali, Staz memulai petualangan untuk mencari sihir kebangkitan, yang membawanya ke dunia manusia dan berbagai masalah di dunianya sendiri.",
+            "download": "https://drive.usercontent.google.com/download?id=13-_228q6fiYo4pDUxMbS5IKGjKd9VCcm&export=download&authuser=0",
+            "seasons": [
+                {
+                    "name": "Blood Lad",
+                    "season_slug": "main-story",
+                    "image": "https://i.pinimg.com/736x/a6/be/c1/a6bec1ff4fd7c53f24e2160b64e888b4.jpg",
+                    "desc": "Staz Charlie Blood adalah bos vampir di Dunia Iblis, tetapi dia lebih tertarik pada budaya Jepang daripada darah manusia. Ketika seorang gadis Jepang bernama Fuyumi Yanagi secara tidak sengaja masuk ke wilayahnya, Staz sangat gembira. Sayangnya, Fuyumi terbunuh dan menjadi hantu. Bertekad untuk menghidupkannya kembali, Staz memulai petualangan untuk mencari sihir kebangkitan, yang membawanya ke dunia manusia dan berbagai masalah di dunianya sendiri.",
+                    "info": {
+                        "type": "TV",
+                        "episodes": 10,
+                        "status": "Finished Airing",
+                        "aired": "Jul 8, 2013 to Sep 9, 2013",
+                        "studios": [
+                            "Brain's Base"
+                        ],
+                        "source": "Manga",
+                        "duration": "24 min. per ep."
+                    },
+                    "streaming": [
+                        "https://drive.google.com/file/d/1plgKoQjVTsEw-iijtaacymn2yJgWqihK/preview",
+                        "https://drive.google.com/file/d/1y83pf5H3onUaazUCMol6XRvlE_K-1MWB/preview",
+                        "https://drive.google.com/file/d/1gPrXGUFn-w8ns3xXLhxZiWWBdkbH9oZh/preview",
+                        "https://drive.google.com/file/d/1VgjwvOIO51btaO6BAtRfEWzickOIdP34/preview",
+                        "https://drive.google.com/file/d/1uZ8qv_Bo4Jw-VFEnmwOFQIOoXe8uDnm3/preview",
+                        "https://drive.google.com/file/d/1RGBphk7LrV48E9CFi0jVkY6d8qDcadKJ/preview",
+                        "https://drive.google.com/file/d/1vPsK2XCAQ2P8rLDs2jPYHZG2u10TgUtE/preview",
+                        "https://drive.google.com/file/d/1nwsil78i0i7k2F6IerDnjYa_Qz4gqhn9/preview",
+                        "https://drive.google.com/file/d/1aRhrNRPu5RE9HxuLRKcKjDrhagFCMIYI/preview",
+                        "https://drive.google.com/file/d/1J788uBJx9wrtq2w06chejVR1qRqhXR7s/preview",
+                        "https://drive.google.com/file/d/1PqAqu5baQbl-9RL84fUDvDpLttgTcGlk/preview"
+                    ]
+                }
+            ]
+        },
+
         {
             "title": "GJ-bu",
             "slug": "gj-bu",

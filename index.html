@@ -534,7 +534,7 @@ function filterAndDisplay(searchValue = "", genre = "All") {
     );
   } else {
     temp_data = [...allAnimeData].sort((a, b) => { 
-        if (!a.uploadInfo || !a.uploadInfo.releasedOn) return 1;
+        if (!a.uploadInfo || !a.uploadInfo.Uploo) return 1;
         if (!b.uploadInfo || !b.uploadInfo.releasedOn) return -1;
         return new Date(b.uploadInfo.releasedOn) - new Date(a.uploadInfo.releasedOn);
     });
@@ -588,35 +588,36 @@ function initScrollToTopButton() {
   scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
+/* ======================================== */
+/* --- PERBAIKAN: EVENT LISTENER DIKEMBALIKAN KE SEMULA --- */
+/* ======================================== */
 function setupEventListeners() {
-    searchInput.addEventListener("input", () => {
-        clearSearchBtn.classList.toggle('visible', searchInput.value.length > 0);
-        clearTimeout(searchTimer);
-        searchTimer = setTimeout(() => {
-            filterAndDisplay(searchInput.value.toLowerCase().trim(), selectedGenre);
-        }, 300);
-    });
 
+
+    // 2. Event saat pengguna menekan 'Enter'
     searchInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
             event.preventDefault(); 
-            clearTimeout(searchTimer);
+            clearTimeout(searchTimer); // Batalkan timer ketik
             filterAndDisplay(searchInput.value.toLowerCase().trim(), selectedGenre);
             const targetElement = document.querySelector("section.nama h2");
             if (targetElement) { targetElement.scrollIntoView({ behavior: "smooth", block: "start" }); }
         }
     });
 
+    // 3. Event untuk tombol 'X' (clear)
     clearSearchBtn.addEventListener('click', () => {
         searchInput.value = '';
         clearSearchBtn.classList.remove('visible');
-        filterAndDisplay("", "All"); 
+        filterAndDisplay("", "All"); // Reset ke tampilan default
         selectedGenre = "All"; 
         document.querySelectorAll("#genre-popup-container .genre-btn").forEach(btn => btn.classList.remove("selected"));
-        document.querySelector("#genre-popup-container .genre-btn[data-genre='All']").classList.add("selected");
+        const allBtn = document.querySelector("#genre-popup-container .genre-btn[data-genre='All']");
+        if (allBtn) allBtn.classList.add("selected");
         searchInput.focus();
     });
 
+    // 4. Event untuk popup Genre (tidak berubah)
     const genrePopupBtn = document.getElementById('genre-popup-btn');
     const genrePopupContainer = document.getElementById('genre-popup-container');
     genrePopupBtn.addEventListener('click', (e) => {
