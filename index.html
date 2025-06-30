@@ -9,6 +9,11 @@
     <title>MyAnime</title>
     <link rel="icon" href="Gambar/Logo-APL-Myanime.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Menambahkan Font 'Play' yang digunakan untuk judul -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+
 
     <style>
       /* Reset dan Base Styles */
@@ -22,7 +27,7 @@
       body::-webkit-scrollbar { display: none; }
 
       /* ======================================== */
-      /* --- CSS SPLASH SCREEN BARU & LEBIH BAIK --- */
+      /* --- CSS SPLASH SCREEN DENGAN ANIMASI KUBUS --- */
       /* ======================================== */
       #splash-screen {
         position: fixed;
@@ -43,55 +48,144 @@
         opacity: 0;
         pointer-events: none; /* Agar tidak bisa diklik setelah hilang */
       }
-      .splash-title {
-        font-size: clamp(40px, 10vw, 60px);
-        display: flex;
-        justify-content: center;
-        margin-bottom: 25px;
-      }
-      .splash-title span {
-        font-family: "Play", sans-serif;
+      
+      /* Style untuk Judul "MyAnime Stream!" */
+      .splash-logo-text {
+        font-family: 'Play', sans-serif;
+        font-size: clamp(38px, 10vw, 55px);
         color: #ffa200;
-        font-weight: bold;
-        text-shadow: 0 0 10px #ff6b00;
-        animation: fire 2s ease-in-out infinite alternate;
+        font-weight: 700;
+        text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
       }
-      .splash-loader {
-        width: 80%;
-        max-width: 250px;
-        height: 8px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
-        overflow: hidden;
-        margin-bottom: 15px;
-      }
-      .splash-loader-bar {
-        width: 0;
-        height: 100%;
-        background: linear-gradient(90deg, #ff8c00, #ffa200);
-        border-radius: 4px;
-        animation: loading 2.5s ease-out forwards;
-      }
+
       .splash-network-status {
         color: #ff5555;
         font-weight: bold;
         opacity: 0;
         transition: opacity 0.3s ease;
-        height: 20px; /* Beri ruang agar layout tidak loncat */
+        position: absolute; /* Posisikan di bawah */
+        bottom: 30px;
+        height: 20px; 
       }
       .splash-network-status.show {
         opacity: 1;
       }
-      
-      @keyframes fire { 
-        0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00; }
-        100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; }
+
+      /* CSS untuk Animasi Kubus (Ukuran Diperkecil) */
+      .scene {
+        position: relative;
+        z-index: 2;
+        height: 165px; /* 60px * 2.75 */
+        width: 165px;  /* 60px * 2.75 */
+        display: grid;
+        place-items: center;
       }
-      @keyframes loading {
-        from { width: 0%; }
-        to { width: 100%; }
+
+      .cube-wrapper {
+        transform-style: preserve-3d;
+        animation: bouncing 2s infinite;
       }
-      /* --- AKHIR CSS SPLASH SCREEN BARU --- */
+
+      .cube {
+        transform-style: preserve-3d;
+        transform: rotateX(45deg) rotateZ(45deg);
+        animation: rotation 2s infinite;
+      }
+
+      .cube-faces {
+        transform-style: preserve-3d;
+        height: 60px; /* Ukuran dasar kubus */
+        width: 60px;  /* Ukuran dasar kubus */
+        position: relative;
+        transform-origin: 0 0;
+        transform: translateX(0) translateY(0) translateZ(-30px); /* -60px / 2 */
+      }
+
+      .cube-face {
+        position: absolute;
+        inset: 0;
+        background: #181818; /* WARNA WAJAH KUBUS */
+        border: solid 1px #ffa200; /* WARNA BORDER KUBUS */
+      }
+      .cube-face.shadow {
+        transform: translateZ(-60px);
+        animation: bouncing-shadow 2s infinite;
+        border: none;
+      }
+      .cube-face.top {
+        transform: translateZ(60px);
+      }
+      .cube-face.front {
+        transform-origin: 0 50%;
+        transform: rotateY(-90deg);
+      }
+      .cube-face.back {
+        transform-origin: 0 50%;
+        transform: rotateY(-90deg) translateZ(-60px);
+      }
+      .cube-face.right {
+        transform-origin: 50% 0;
+        transform: rotateX(-90deg) translateY(-60px);
+      }
+      .cube-face.left {
+        transform-origin: 50% 0;
+        transform: rotateX(-90deg) translateY(-60px) translateZ(60px);
+      }
+
+      @keyframes rotation {
+        0% {
+          transform: rotateX(45deg) rotateY(0) rotateZ(45deg);
+          animation-timing-function: cubic-bezier(0.17,0.84,0.44,1);
+        }
+        50% {
+          transform: rotateX(45deg) rotateY(0) rotateZ(225deg);
+          animation-timing-function: cubic-bezier(0.76,0.05,0.86,0.06);
+        }
+        100% {
+          transform: rotateX(45deg) rotateY(0) rotateZ(405deg);
+          animation-timing-function: cubic-bezier(0.17,0.84,0.44,1);
+        }
+      }
+
+      @keyframes bouncing {
+        0% {
+          transform: translateY(-30px); /* -60px * 0.5 */
+          animation-timing-function: cubic-bezier(0.76, 0.05, 0.86, 0.06);
+        }
+        45% {
+          transform: translateY(30px); /* 60px * 0.5 */
+          animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        100% {
+          transform: translateY(-30px); /* -60px * 0.5 */
+          animation-timing-function: cubic-bezier(0.76, 0.05, 0.86, 0.06);
+        }
+      }
+
+      @keyframes bouncing-shadow {
+        0% {
+          transform: translateZ(-60px) scale(1.3);
+          animation-timing-function: cubic-bezier(0.76, 0.05, 0.86, 0.06);
+          opacity: .05;
+          background: #000;
+        }
+        45% {
+          transform: translateZ(0);
+          animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+          opacity: .2;
+          background: #000;
+        }
+        100% {
+          transform: translateZ(-60px) scale(1.3);
+          animation-timing-function: cubic-bezier(0.76, 0.05, 0.86, 0.06);
+          opacity: .05;
+          background: #000;
+        }
+      }
+      /* --- AKHIR CSS SPLASH SCREEN --- */
+
 
       /* Style Partikel */
       #particles-background { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -2; overflow: hidden; }
@@ -109,8 +203,9 @@
       .container a:hover { text-decoration: underline; color: #ffa200; }
       header { transition: padding-top 0.4s ease-in-out; text-align: center; position: relative; z-index: 2; padding-top: 50px; }
       .title { transition: all 0.4s ease-in-out; font-size: clamp(30px, 8vw, 45px); width: 100%; margin: 1.5rem auto; display: flex; flex-wrap: nowrap; justify-content: center; -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(0, 0, 0, 0.15)); position: relative; }
-      .title span { display: inline-block; font-family: "Play", sans-serif; animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate; margin: 0 clamp(1px, 0.5vw, 3px); color: #ffa200; text-shadow: 0 0 10px #ff6b00; font-weight: bold; }
+      .title span { display: inline-block; font-family: "Play", sans-serif; animation: title-bounce 2.5s infinite, fire-main 2s ease-in-out infinite alternate; margin: 0 clamp(1px, 0.5vw, 3px); color: #ffa200; text-shadow: 0 0 10px #ff6b00; font-weight: bold; }
       @keyframes title-bounce { 0%, 60%, 100% { transform: translateY(0) scale(1); } 30% { transform: translateY(clamp(-25px, -5vw, -15px)) scale(1.1); } }
+      @keyframes fire-main { 0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00; } 100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; } }
       .title span:nth-child(1) { animation-delay: 0.3s; } .title span:nth-child(2) { animation-delay: 0.4s; } .title span:nth-child(3) { animation-delay: 0.5s; } .title span:nth-child(4) { animation-delay: 0.6s; } .title span:nth-child(5) { animation-delay: 0.7s; } .title span:nth-child(6) { animation-delay: 0.8s; } .title span:nth-child(7) { animation-delay: 0.9s; }
       
       .abt { background-color: rgba(24, 24, 24, 0.85); backdrop-filter: blur(8px); position: fixed; top: 0; left: 0; right: 0; padding: 10px 15px; z-index: 1001; display: flex; justify-content: flex-start; align-items: center; border-bottom: 1px solid rgba(255, 162, 0, 0.2); }
@@ -212,14 +307,26 @@
     </style>
   </head>
   <body>
-    <!-- SPLASH SCREEN BARU -->
+    <!-- SPLASH SCREEN BARU DENGAN ANIMASI KUBUS -->
     <div id="splash-screen">
-      <div class="splash-title">
-        <span>M</span><span>y</span><span>A</span><span>n</span><span>i</span><span>m</span><span>e</span>
+      <div class="splash-logo-text">MyAnime</div>
+      
+      <div class="scene">
+        <div class="cube-wrapper">
+          <div class="cube">
+            <div class="cube-faces">
+              <div class="cube-face shadow"></div>
+              <div class="cube-face bottom"></div>
+              <div class="cube-face top"></div>
+              <div class="cube-face left"></div>
+              <div class="cube-face right"></div>
+              <div class="cube-face back"></div>
+              <div class="cube-face front"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="splash-loader">
-        <div class="splash-loader-bar"></div>
-      </div>
+
       <div class="splash-network-status"></div>
     </div>
 
@@ -314,68 +421,60 @@ const clearSearchBtn = document.getElementById('clear-search-btn');
 
 
 /* ======================================== */
-/* --- JS UNTUK SPLASH SCREEN BARU (DENGAN PENGECEKAN INTERNET & LOGIKA PWA) --- */
+/* --- JS SPLASH SCREEN (HANYA BERBASIS INTERNET) --- */
 /* ======================================== */
-
-// Fungsi untuk menangani splash screen
 function handleSplashScreen() {
     const splashScreen = document.getElementById('splash-screen');
     if (!splashScreen) return;
 
-    // Cek apakah halaman dibuka sebagai PWA atau dari navigasi biasa
-    const isPWA = window.matchMedia('(display-mode: standalone)').matches;
-    const isNavigation = performance.navigation.type === performance.navigation.TYPE_NAVIGATE;
-
-    // Hanya tampilkan splash jika ini adalah pembukaan pertama aplikasi (bukan refresh)
-    if (isNavigation && !sessionStorage.getItem("splashShownThisSession")) {
-        // Logika pengecekan internet
-        const networkStatusEl = document.querySelector('.splash-network-status');
-        const showNetworkError = (message) => {
-            if (networkStatusEl) {
-                networkStatusEl.textContent = message;
-                networkStatusEl.classList.add('show');
-            }
-        };
-
-        if (!navigator.onLine) showNetworkError("Koneksi internet offline.");
-        window.addEventListener("offline", () => showNetworkError("Koneksi terputus."));
-        window.addEventListener("online", () => { if (networkStatusEl) networkStatusEl.classList.remove('show'); });
-
-        const longLoadTimer = setTimeout(() => {
-            showNetworkError("Memuat data agak lama...");
-        }, 7000);
-
-        // Fungsi untuk menyembunyikan splash screen
-        const hideSplash = () => {
-            clearTimeout(longLoadTimer);
-            splashScreen.classList.add('hidden');
-            splashScreen.addEventListener('transitionend', () => {
-                splashScreen.style.display = 'none';
-            }, { once: true });
-        };
-
-        // Tunggu data anime dimuat atau timeout
-        let dataLoaded = false;
-        window.addEventListener('animeDataLoaded', () => {
-            dataLoaded = true;
-            setTimeout(hideSplash, 500);
-        }, { once: true });
-
-        // Fallback jika event tidak tertangkap
-        setTimeout(() => {
-            if (!dataLoaded) hideSplash();
-        }, 10000);
-
-        // Tandai bahwa splash sudah tampil di sesi ini
-        sessionStorage.setItem("splashShownThisSession", "true");
-    } else {
-        // Jika ini adalah refresh atau splash sudah tampil, langsung sembunyikan
-        splashScreen.style.display = 'none';
+    // Cek apakah pengguna datang dari tombol back/forward
+    let isBackForward = false;
+    if (performance.getEntriesByType && performance.getEntriesByType("navigation")[0]) {
+        if (performance.getEntriesByType("navigation")[0].type === 'back_forward') {
+            isBackForward = true;
+        }
+    } else if (performance.navigation && performance.navigation.type === 2) { 
+        isBackForward = true;
     }
+
+    if (isBackForward) {
+        splashScreen.style.display = 'none';
+        return; 
+    }
+
+    const networkStatusEl = document.querySelector('.splash-network-status');
+    const showNetworkError = (message) => {
+        if (networkStatusEl) {
+            networkStatusEl.textContent = message;
+            networkStatusEl.classList.add('show');
+        }
+    };
+
+    if (!navigator.onLine) showNetworkError("Koneksi internet offline.");
+    window.addEventListener("offline", () => showNetworkError("Koneksi terputus."));
+    window.addEventListener("online", () => { if (networkStatusEl) networkStatusEl.classList.remove('show'); });
+
+    const longLoadTimer = setTimeout(() => {
+        showNetworkError("Memuat data agak lama...");
+    }, 7000);
+
+    const hideSplash = () => {
+        clearTimeout(longLoadTimer);
+        splashScreen.classList.add('hidden');
+        splashScreen.addEventListener('transitionend', () => {
+            splashScreen.style.display = 'none';
+        }, { once: true });
+    };
+
+    // Pemicu HANYA dari event 'animeDataLoaded'. Tidak ada fallback timer.
+    window.addEventListener('animeDataLoaded', () => {
+        setTimeout(hideSplash, 250); // Jeda singkat untuk estetika
+    }, { once: true });
 }
 
 // Panggil fungsi splash screen di awal
 handleSplashScreen();
+
 
 function formatTimeAgo(dateString) {
   if (!dateString) return '';
@@ -422,14 +521,12 @@ async function loadAnimeData() {
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     const data = await response.json();
     
-    // PERUBAHAN 1: Kirim sinyal bahwa data sudah berhasil dimuat
     window.dispatchEvent(new Event('animeDataLoaded')); 
     
     return (data.data || data).filter(anime => anime && anime.title && anime.slug);
   } catch (error) {
     console.error("❌ Error kritikal saat memuat data anime:", error);
     
-    // PERUBAHAN 2: Tetap kirim sinyal agar splash screen hilang meskipun error
     window.dispatchEvent(new Event('animeDataLoaded')); 
     
     return [];
@@ -588,28 +685,21 @@ function initScrollToTopButton() {
   scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-/* ======================================== */
-/* --- PERBAIKAN: EVENT LISTENER DIKEMBALIKAN KE SEMULA --- */
-/* ======================================== */
 function setupEventListeners() {
-
-
-    // 2. Event saat pengguna menekan 'Enter'
     searchInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
             event.preventDefault(); 
-            clearTimeout(searchTimer); // Batalkan timer ketik
+            clearTimeout(searchTimer);
             filterAndDisplay(searchInput.value.toLowerCase().trim(), selectedGenre);
             const targetElement = document.querySelector("section.nama h2");
             if (targetElement) { targetElement.scrollIntoView({ behavior: "smooth", block: "start" }); }
         }
     });
 
-    // 3. Event untuk tombol 'X' (clear)
     clearSearchBtn.addEventListener('click', () => {
         searchInput.value = '';
         clearSearchBtn.classList.remove('visible');
-        filterAndDisplay("", "All"); // Reset ke tampilan default
+        filterAndDisplay("", "All");
         selectedGenre = "All"; 
         document.querySelectorAll("#genre-popup-container .genre-btn").forEach(btn => btn.classList.remove("selected"));
         const allBtn = document.querySelector("#genre-popup-container .genre-btn[data-genre='All']");
@@ -617,7 +707,6 @@ function setupEventListeners() {
         searchInput.focus();
     });
 
-    // 4. Event untuk popup Genre (tidak berubah)
     const genrePopupBtn = document.getElementById('genre-popup-btn');
     const genrePopupContainer = document.getElementById('genre-popup-container');
     genrePopupBtn.addEventListener('click', (e) => {
