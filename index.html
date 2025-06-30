@@ -22,7 +22,7 @@
       body::-webkit-scrollbar { display: none; }
 
       /* ======================================== */
-      /* --- CSS SPLASH SCREEN BARU & LEBIH BAIK --- */
+      /* --- CSS SPLASH SCREEN SEPERTI GAMBAR ANDA --- */
       /* ======================================== */
       #splash-screen {
         position: fixed;
@@ -38,39 +38,23 @@
         z-index: 99999;
         opacity: 1;
         transition: opacity 0.5s ease-in-out;
+        gap: 20px; /* Jarak antara logo dan animasi loading */
       }
       #splash-screen.hidden {
         opacity: 0;
         pointer-events: none; /* Agar tidak bisa diklik setelah hilang */
       }
-      .splash-title {
-        font-size: clamp(40px, 10vw, 60px);
-        display: flex;
-        justify-content: center;
-        margin-bottom: 25px;
-      }
-      .splash-title span {
-        font-family: "Play", sans-serif;
-        color: #ffa200;
-        font-weight: bold;
-        text-shadow: 0 0 10px #ff6b00;
-        animation: fire 2s ease-in-out infinite alternate;
-      }
-      .splash-loader {
+      /* Style untuk logo MyAnime Stream! */
+      .splash-logo {
         width: 80%;
-        max-width: 250px;
-        height: 8px;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
-        overflow: hidden;
-        margin-bottom: 15px;
+        max-width: 280px;
+        height: auto;
+        margin-bottom: 20px; /* Jarak ke bawah */
       }
-      .splash-loader-bar {
-        width: 0;
-        height: 100%;
-        background: linear-gradient(90deg, #ff8c00, #ffa200);
-        border-radius: 4px;
-        animation: loading 2.5s ease-out forwards;
+      /* Style untuk animasi chibi loading */
+      .splash-chibi-loader {
+        width: 100px; /* Atur lebar animasi chibi */
+        height: auto; /* Biarkan tinggi menyesuaikan */
       }
       .splash-network-status {
         color: #ff5555;
@@ -78,18 +62,11 @@
         opacity: 0;
         transition: opacity 0.3s ease;
         height: 20px; /* Beri ruang agar layout tidak loncat */
+        position: absolute;
+        bottom: 30px; /* Posisi pesan error di bawah */
       }
       .splash-network-status.show {
         opacity: 1;
-      }
-      
-      @keyframes fire { 
-        0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00; }
-        100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; }
-      }
-      @keyframes loading {
-        from { width: 0%; }
-        to { width: 100%; }
       }
       /* --- AKHIR CSS SPLASH SCREEN BARU --- */
 
@@ -111,6 +88,7 @@
       .title { transition: all 0.4s ease-in-out; font-size: clamp(30px, 8vw, 45px); width: 100%; margin: 1.5rem auto; display: flex; flex-wrap: nowrap; justify-content: center; -webkit-box-reflect: below -10px linear-gradient(transparent, rgba(0, 0, 0, 0.15)); position: relative; }
       .title span { display: inline-block; font-family: "Play", sans-serif; animation: title-bounce 2.5s infinite, fire 2s ease-in-out infinite alternate; margin: 0 clamp(1px, 0.5vw, 3px); color: #ffa200; text-shadow: 0 0 10px #ff6b00; font-weight: bold; }
       @keyframes title-bounce { 0%, 60%, 100% { transform: translateY(0) scale(1); } 30% { transform: translateY(clamp(-25px, -5vw, -15px)) scale(1.1); } }
+      @keyframes fire { 0% { text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00; } 100% { text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00, 0 0 50px #ff6b00; } }
       .title span:nth-child(1) { animation-delay: 0.3s; } .title span:nth-child(2) { animation-delay: 0.4s; } .title span:nth-child(3) { animation-delay: 0.5s; } .title span:nth-child(4) { animation-delay: 0.6s; } .title span:nth-child(5) { animation-delay: 0.7s; } .title span:nth-child(6) { animation-delay: 0.8s; } .title span:nth-child(7) { animation-delay: 0.9s; }
       
       .abt { background-color: rgba(24, 24, 24, 0.85); backdrop-filter: blur(8px); position: fixed; top: 0; left: 0; right: 0; padding: 10px 15px; z-index: 1001; display: flex; justify-content: flex-start; align-items: center; border-bottom: 1px solid rgba(255, 162, 0, 0.2); }
@@ -212,14 +190,14 @@
     </style>
   </head>
   <body>
-    <!-- SPLASH SCREEN BARU -->
+    <!-- SPLASH SCREEN BARU SESUAI GAMBAR ANDA -->
     <div id="splash-screen">
-      <div class="splash-title">
-        <span>M</span><span>y</span><span>A</span><span>n</span><span>i</span><span>m</span><span>e</span>
-      </div>
-      <div class="splash-loader">
-        <div class="splash-loader-bar"></div>
-      </div>
+      <!-- 1. Ganti dengan logo Anda -->
+      <img src="Gambar/logo-splash.png" alt="MyAnime Stream" class="splash-logo">
+      
+      <!-- 2. Ganti dengan animasi GIF/SVG Chibi Anda -->
+      <img src="https://i.pinimg.com/originals/a2/17/2c/a2172c8062a316d33383a17e07b83d16.gif" alt="Loading..." class="splash-chibi-loader">
+
       <div class="splash-network-status"></div>
     </div>
 
@@ -314,21 +292,14 @@ const clearSearchBtn = document.getElementById('clear-search-btn');
 
 
 /* ======================================== */
-/* --- JS UNTUK SPLASH SCREEN BARU (DENGAN PENGECEKAN INTERNET & LOGIKA PWA) --- */
+/* --- JS UNTUK SPLASH SCREEN (TIDAK PERLU DIUBAH, SUDAH BAGUS) --- */
 /* ======================================== */
-
-// Fungsi untuk menangani splash screen
 function handleSplashScreen() {
     const splashScreen = document.getElementById('splash-screen');
     if (!splashScreen) return;
-
-    // Cek apakah halaman dibuka sebagai PWA atau dari navigasi biasa
     const isPWA = window.matchMedia('(display-mode: standalone)').matches;
     const isNavigation = performance.navigation.type === performance.navigation.TYPE_NAVIGATE;
-
-    // Hanya tampilkan splash jika ini adalah pembukaan pertama aplikasi (bukan refresh)
     if (isNavigation && !sessionStorage.getItem("splashShownThisSession")) {
-        // Logika pengecekan internet
         const networkStatusEl = document.querySelector('.splash-network-status');
         const showNetworkError = (message) => {
             if (networkStatusEl) {
@@ -336,16 +307,12 @@ function handleSplashScreen() {
                 networkStatusEl.classList.add('show');
             }
         };
-
         if (!navigator.onLine) showNetworkError("Koneksi internet offline.");
         window.addEventListener("offline", () => showNetworkError("Koneksi terputus."));
         window.addEventListener("online", () => { if (networkStatusEl) networkStatusEl.classList.remove('show'); });
-
         const longLoadTimer = setTimeout(() => {
             showNetworkError("Memuat data agak lama...");
         }, 7000);
-
-        // Fungsi untuk menyembunyikan splash screen
         const hideSplash = () => {
             clearTimeout(longLoadTimer);
             splashScreen.classList.add('hidden');
@@ -353,28 +320,19 @@ function handleSplashScreen() {
                 splashScreen.style.display = 'none';
             }, { once: true });
         };
-
-        // Tunggu data anime dimuat atau timeout
         let dataLoaded = false;
         window.addEventListener('animeDataLoaded', () => {
             dataLoaded = true;
-            setTimeout(hideSplash, 500);
+            setTimeout(hideSplash, 500); // Beri jeda sedikit agar tidak terlalu cepat hilang
         }, { once: true });
-
-        // Fallback jika event tidak tertangkap
         setTimeout(() => {
             if (!dataLoaded) hideSplash();
         }, 10000);
-
-        // Tandai bahwa splash sudah tampil di sesi ini
         sessionStorage.setItem("splashShownThisSession", "true");
     } else {
-        // Jika ini adalah refresh atau splash sudah tampil, langsung sembunyikan
         splashScreen.style.display = 'none';
     }
 }
-
-// Panggil fungsi splash screen di awal
 handleSplashScreen();
 
 function formatTimeAgo(dateString) {
@@ -421,17 +379,11 @@ async function loadAnimeData() {
     const response = await fetch("./anime-data.json", { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     const data = await response.json();
-    
-    // PERUBAHAN 1: Kirim sinyal bahwa data sudah berhasil dimuat
     window.dispatchEvent(new Event('animeDataLoaded')); 
-    
     return (data.data || data).filter(anime => anime && anime.title && anime.slug);
   } catch (error) {
     console.error("❌ Error kritikal saat memuat data anime:", error);
-    
-    // PERUBAHAN 2: Tetap kirim sinyal agar splash screen hilang meskipun error
     window.dispatchEvent(new Event('animeDataLoaded')); 
-    
     return [];
   }
 }
@@ -588,28 +540,21 @@ function initScrollToTopButton() {
   scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-/* ======================================== */
-/* --- PERBAIKAN: EVENT LISTENER DIKEMBALIKAN KE SEMULA --- */
-/* ======================================== */
 function setupEventListeners() {
-
-
-    // 2. Event saat pengguna menekan 'Enter'
     searchInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
             event.preventDefault(); 
-            clearTimeout(searchTimer); // Batalkan timer ketik
+            clearTimeout(searchTimer);
             filterAndDisplay(searchInput.value.toLowerCase().trim(), selectedGenre);
             const targetElement = document.querySelector("section.nama h2");
             if (targetElement) { targetElement.scrollIntoView({ behavior: "smooth", block: "start" }); }
         }
     });
 
-    // 3. Event untuk tombol 'X' (clear)
     clearSearchBtn.addEventListener('click', () => {
         searchInput.value = '';
         clearSearchBtn.classList.remove('visible');
-        filterAndDisplay("", "All"); // Reset ke tampilan default
+        filterAndDisplay("", "All"); 
         selectedGenre = "All"; 
         document.querySelectorAll("#genre-popup-container .genre-btn").forEach(btn => btn.classList.remove("selected"));
         const allBtn = document.querySelector("#genre-popup-container .genre-btn[data-genre='All']");
@@ -617,7 +562,6 @@ function setupEventListeners() {
         searchInput.focus();
     });
 
-    // 4. Event untuk popup Genre (tidak berubah)
     const genrePopupBtn = document.getElementById('genre-popup-btn');
     const genrePopupContainer = document.getElementById('genre-popup-container');
     genrePopupBtn.addEventListener('click', (e) => {
