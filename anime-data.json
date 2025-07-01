@@ -1,7 +1,6 @@
 {
     "data": [
 
-        [
             {
               "title": "Kono Subarashii Sekai ni Shukufuku wo!",
               "slug": "konosuba",
@@ -276,8 +275,7 @@
                   ]
                 }
               ]
-            }
-          ],
+            },
         
         {
             "title": "Blood Lad",
