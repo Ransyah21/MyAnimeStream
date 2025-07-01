@@ -476,16 +476,31 @@ function handleSplashScreen() {
 handleSplashScreen();
 
 
+// GANTI FUNGSI LAMA DENGAN YANG INI
 function formatTimeAgo(dateString) {
   if (!dateString) return '';
-  const date = new Date(dateString);
-  if (isNaN(date.getTime())) return ''; 
+  let date = new Date(dateString); // Ganti dari const menjadi let
+  if (isNaN(date.getTime())) return '';
   const now = new Date();
+
+  // === LOGIKA BARU DITAMBAHKAN DI SINI ===
+  // Jika tanggal rilis ada di masa depan (dibandingkan dengan waktu sekarang),
+  // maka kita anggap saja tanggal rilisnya adalah "sekarang".
+  // Ini akan membuat perhitungan `seconds` menjadi 0, yang akan menghasilkan "Baru saja".
+  if (date > now) {
+    date = now;
+  }
+  // === AKHIR DARI LOGIKA BARU ===
+
   const seconds = Math.floor((now - date) / 1000);
+
+  // Blok 'if (seconds < 0)' sekarang tidak akan pernah dijalankan,
+  // tapi kita bisa biarkan untuk keamanan jika ada kasus lain.
   if (seconds < 0) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return `Upload : ${date.toLocaleDateString('id-ID', options)}`;
+    return date.toLocaleDateString('id-ID', options);
   }
+
   let interval = seconds / 31536000;
   if (interval > 1) return Math.floor(interval) + " tahun yang lalu";
   interval = seconds / 2592000;
@@ -631,8 +646,7 @@ function filterAndDisplay(searchValue = "", genre = "All") {
     );
   } else {
     temp_data = [...allAnimeData].sort((a, b) => { 
-        if (!a.uploadInfo || !a.uploadInfo.Uploo) return 1;
-        if (!b.uploadInfo || !b.uploadInfo.releasedOn) return -1;
+      if (!a.uploadInfo || !a.uploadInfo.releasedOn) return 1;        if (!b.uploadInfo || !b.uploadInfo.releasedOn) return -1;
         return new Date(b.uploadInfo.releasedOn) - new Date(a.uploadInfo.releasedOn);
     });
   }
