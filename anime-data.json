@@ -1,281 +1,283 @@
 {
     "data": [
 
-        {
-            "title": "Kono Subarashii Sekai ni Shukufuku wo!",
-            "slug": "konosuba",
-            "image": "https://i.pinimg.com/736x/ec/1b/ab/ec1bab587d5dade5df1b3f2c381923d1.jpg",
-            "info": {
-              "type": "TV",
-              "episodes": "20 (S1+S2) + 11 (S3) + 2 OVA + 1 Movie",
-              "status": "Finished Airing",
-              "aired": "Jan 14, 2016 to Present",
-              "premiered": "Winter 2016",
-              "broadcast": "Thursdays at 01:05 (JST)",
-              "producers": [
-                "Kadokawa Shoten",
-                "KlockWorx",
-                "Nippon Columbia",
-                "81 Produce",
-                "Kadokawa Media House",
-                "Studio Deen"
-              ],
-              "studios": [
-                "Drive"
-              ],
-              "source": "Light novel",
-              "genres": [
-                "Adventure",
-                "Comedy",
-                "Fantasy"
-              ],
-              "themes": [
-                "Isekai",
-                "Parody"
-              ],
-              "demographic": "Shounen",
-              "duration": "23 min. per ep.",
-              "rating": "PG-13 - Teens 13 or older"
-            },
-            "uploadInfo": {
-              "episode": 34,
-              "isEnd": false,
-              "postedBy": "Ransyah",
-              "releasedOn": "2025-07-01T07:15:10Z"
-            },
-            "desc": "Setelah meninggal secara konyol dan menyedihkan dalam perjalanan pulang dari membeli sebuah gim, siswa SMA Kazuma Satou mendapati dirinya duduk di hadapan seorang dewi cantik namun menyebalkan bernama Aqua. Dia memberikan pilihan kepada NEET tersebut: melanjutkan ke surga atau bereinkarnasi dalam dunia fantasi nyata. Memilih untuk memulai hidup baru, Kazuma ditugaskan untuk mengalahkan Raja Iblis yang meneror desa. Namun sebelum dia pergi, dia bisa memilih satu item dalam bentuk apa pun untuk membantunya dalam pencariannya, dan pahlawan masa depan itu memilih Aqua. Tapi Kazuma telah melakukan kesalahan besar—Aqua sama sekali tidak berguna!",
-            "download": [
-              "https://drive.google.com/open?id=1StP8N8sfwcHhieO8DV1gIUREUFNp-Jov&usp=drive_copy",
-              "https://drive.google.com/open?id=1Bq9P49UNdJV0QhX4vreSSbxs5yRPckfz&usp=drive_copy",
-              "https://drive.google.com/open?id=13T2m70q6dp05gL0QPPnedQhI8GZT-L7D&usp=drive_copy",
-              "https://drive.google.com/open?id=1EY8bu8L0KfUsYB4_EDmp12xG9J2WjYwc&usp=drive_copy"
-            ],
-            "seasons": [
-              {
-                "name": "Kono Subarashii Sekai ni Shukufuku wo!",
-                "season_slug": "season-1",
-                "image": "https://i.pinimg.com/736x/ec/1b/ab/ec1bab587d5dade5df1b3f2c381923d1.jpg",
-                "desc": "Musim pertama yang memperkenalkan Kazuma, Aqua, Megumin, dan Darkness saat mereka membentuk party yang kacau dan memulai petualangan pertama mereka yang penuh kesialan.",
-                "info": {
-                  "type": "TV",
-                  "episodes": 10,
-                  "status": "Finished Airing",
-                  "aired": "Jan 14, 2016 to Mar 17, 2016",
-                  "studios": [
-                    "Studio Deen"
-                  ],
-                  "source": "Light novel",
-                  "duration": "23 min. per ep."
-                },
-                "streaming": [
-                  "https://drive.google.com/open?id=1fuvMbJS5fSGK4r09c8fdUIqj3aQbnRd0&usp=drive_copy",
-                  "https://drive.google.com/open?id=1ISVO-ssuwhueZDUedzTcU-uar_oPZ0I6&usp=drive_copy",
-                  "https://drive.google.com/open?id=1wtb5Y2NP2VR6TVXVVm4BetOIapUfLID7&usp=drive_copy",
-                  "https://drive.google.com/open?id=1mDaf_Wwf3nAoGQefixZfhQHfKd4LLsD2&usp=drive_copy",
-                  "https://drive.google.com/open?id=1Ut2kJjG7-yj06hqOVsbgsAovgTU-auv6&usp=drive_copy",
-                  "https://drive.google.com/open?id=1G1U0uCpmcrc8obLJK14qyDeLnP2r_8Ov&usp=drive_copy",
-                  "https://drive.google.com/open?id=1YQlfa7DixjHu2shlU7WU9TBe7vq0VlZn&usp=drive_copy",
-                  "https://drive.google.com/open?id=1WOVweQEaS4nitzsI9rzHXxOGN8saGAIj&usp=drive_copy",
-                  "https://drive.google.com/open?id=1nM7p0m_FuMrp8Mrxw6zQJ3yQcd-YuS3B&usp=drive_copy",
-                  "https://drive.google.com/open?id=1cDCp_gCrFZt7G7i5lrAT2xl3Zziu4JNQ&usp=drive_copy",
-                  "https://drive.google.com/open?id=1ajeKXTW3Jvrzw1SjdCV1IIzr3VAj1_i_&usp=drive_copy"
-                ]
+        [
+            {
+              "title": "Kono Subarashii Sekai ni Shukufuku wo!",
+              "slug": "konosuba",
+              "image": "https://i.pinimg.com/736x/ec/1b/ab/ec1bab587d5dade5df1b3f2c381923d1.jpg",
+              "info": {
+                "type": "TV",
+                "episodes": "20 (S1+S2) + 11 (S3) + 2 OVA + 1 Movie",
+                "status": "Finished Airing",
+                "aired": "Jan 14, 2016 to Present",
+                "premiered": "Winter 2016",
+                "broadcast": "Thursdays at 01:05 (JST)",
+                "producers": [
+                  "Kadokawa Shoten",
+                  "KlockWorx",
+                  "Nippon Columbia",
+                  "81 Produce",
+                  "Kadokawa Media House",
+                  "Studio Deen"
+                ],
+                "studios": [
+                  "Drive"
+                ],
+                "source": "Light novel",
+                "genres": [
+                  "Adventure",
+                  "Comedy",
+                  "Fantasy"
+                ],
+                "themes": [
+                  "Isekai",
+                  "Parody"
+                ],
+                "demographic": "Shounen",
+                "duration": "23 min. per ep.",
+                "rating": "PG-13 - Teens 13 or older"
               },
-              {
-                "name": "Kono Subarashii Sekai ni Shukufuku wo! 2",
-                "season_slug": "season-2",
-                "image": "https://i.pinimg.com/736x/99/b8/05/99b80569f5a630b0b589b857776600e5.jpg",
-                "desc": "Petualangan Kazuma dan teman-temannya berlanjut dengan lebih banyak kekacauan, hutang, dan musuh-musuh baru yang harus dihadapi dengan cara mereka yang unik.",
-                "info": {
-                  "type": "TV",
-                  "episodes": 10,
-                  "status": "Finished Airing",
-                  "aired": "Jan 12, 2017 to Mar 16, 2017",
-                  "studios": [
-                    "Studio Deen"
-                  ],
-                  "source": "Light novel",
-                  "duration": "23 min. per ep."
-                },
-                "streaming": [
-                  "https://drive.google.com/open?id=13IN6TWId_4HiRaucLAgSxd6mO2Dy5SoJ&usp=drive_copy",
-                  "https://drive.google.com/open?id=1NmRmPMrD70JlfzB8sKEW8dohz1WEWC71&usp=drive_copy",
-                  "https://drive.google.com/open?id=1zJ6TA1hr6FhS4dTnD4pLv8Gy6Q9n7wos&usp=drive_copy",
-                  "https://drive.google.com/open?id=1fOP1NG2nIR0V1DjmrR7rdbkuLK65fGsy&usp=drive_copy",
-                  "https://drive.google.com/open?id=1inzNFYb6OoGWoaG-dCuQtLgysbdwr5rM&usp=drive_copy",
-                  "https://drive.google.com/open?id=16j9vqCo4080fccZXx_L2laLMd7WvlIh-&usp=drive_copy",
-                  "https://drive.google.com/open?id=1uKwtVBWsGB0dHVeIWn3DUzBGLv1vCHJW&usp=drive_copy",
-                  "https://drive.google.com/open?id=1cDaX5dz9WIfBejKD0RLuQuqvrJSMBSle&usp=drive_copy",
-                  "https://drive.google.com/open?id=13AkjC4FIh_dBN7j_MRS7g-x9OV8pZ-Eq&usp=drive_copy",
-                  "https://drive.google.com/open?id=1YSnM0DWRgRHqY-X26w1e0UfSFLmzBekQ&usp=drive_copy",
-                  "https://drive.google.com/open?id=1QQcurqtGPfdEQHIdremyqxTbJlzpIqcO&usp=drive_copy"
-                ]
+              "uploadInfo": {
+                "episode": 34,
+                "isEnd": false,
+                "postedBy": "Ransyah",
+                "releasedOn": "2025-07-01T07:15:10Z"
               },
-              {
-                "name": "Kono Subarashii Sekai ni Shukufuku wo! 3",
-                "season_slug": "season-3",
-                "image": "https://i.pinimg.com/736x/e5/bc/65/e5bc65783acc5d86d25f19ebaee3a9bc.jpg",
-                "desc": "Kembalinya party teraneh di dunia isekai. Kali ini, mereka harus berurusan dengan intrik kerajaan setelah Kazuma secara tidak sengaja terlibat dengan Putri Iris.",
-                "info": {
-                  "type": "TV",
-                  "episodes": 11,
-                  "status": "Finished Airing",
-                  "aired": "Apr 10, 2024 to Jun 19, 2024",
-                  "studios": [
-                    "Drive"
-                  ],
-                  "source": "Light novel",
-                  "duration": "23 min. per ep."
+              "desc": "Setelah meninggal secara konyol dan menyedihkan dalam perjalanan pulang dari membeli sebuah gim, siswa SMA Kazuma Satou mendapati dirinya duduk di hadapan seorang dewi cantik namun menyebalkan bernama Aqua. Dia memberikan pilihan kepada NEET tersebut: melanjutkan ke surga atau bereinkarnasi dalam dunia fantasi nyata. Memilih untuk memulai hidup baru, Kazuma ditugaskan untuk mengalahkan Raja Iblis yang meneror desa. Namun sebelum dia pergi, dia bisa memilih satu item dalam bentuk apa pun untuk membantunya dalam pencariannya, dan pahlawan masa depan itu memilih Aqua. Tapi Kazuma telah melakukan kesalahan besar—Aqua sama sekali tidak berguna!",
+              "download": [
+                "https://drive.usercontent.google.com/download?id=1StP8N8sfwcHhieO8DV1gIUREUFNp-Jov&export=download&authuser=0",
+                "https://drive.usercontent.google.com/download?id=1Bq9P49UNdJV0QhX4vreSSbxs5yRPckfz&export=download&authuser=0",
+                "https://drive.usercontent.google.com/download?id=13T2m70q6dp05gL0QPPnedQhI8GZT-L7D&export=download&authuser=0",
+                "https://drive.usercontent.google.com/download?id=1EY8bu8L0KfUsYB4_EDmp12xG9J2WjYwc&export=download&authuser=0"
+              ],
+              "seasons": [
+                {
+                  "name": "Kono Subarashii Sekai ni Shukufuku wo!",
+                  "season_slug": "season-1",
+                  "image": "https://i.pinimg.com/736x/ec/1b/ab/ec1bab587d5dade5df1b3f2c381923d1.jpg",
+                  "desc": "Musim pertama yang memperkenalkan Kazuma, Aqua, Megumin, dan Darkness saat mereka membentuk party yang kacau dan memulai petualangan pertama mereka yang penuh kesialan.",
+                  "info": {
+                    "type": "TV",
+                    "episodes": 10,
+                    "status": "Finished Airing",
+                    "aired": "Jan 14, 2016 to Mar 17, 2016",
+                    "studios": [
+                      "Studio Deen"
+                    ],
+                    "source": "Light novel",
+                    "duration": "23 min. per ep."
+                  },
+                  "streaming": [
+                    "https://drive.google.com/file/d/1fuvMbJS5fSGK4r09c8fdUIqj3aQbnRd0/preview",
+                    "https://drive.google.com/file/d/1ISVO-ssuwhueZDUedzTcU-uar_oPZ0I6/preview",
+                    "https://drive.google.com/file/d/1wtb5Y2NP2VR6TVXVVm4BetOIapUfLID7/preview",
+                    "https://drive.google.com/file/d/1mDaf_Wwf3nAoGQefixZfhQHfKd4LLsD2/preview",
+                    "https://drive.google.com/file/d/1Ut2kJjG7-yj06hqOVsbgsAovgTU-auv6/preview",
+                    "https://drive.google.com/file/d/1G1U0uCpmcrc8obLJK14qyDeLnP2r_8Ov/preview",
+                    "https://drive.google.com/file/d/1YQlfa7DixjHu2shlU7WU9TBe7vq0VlZn/preview",
+                    "https://drive.google.com/file/d/1WOVweQEaS4nitzsI9rzHXxOGN8saGAIj/preview",
+                    "https://drive.google.com/file/d/1nM7p0m_FuMrp8Mrxw6zQJ3yQcd-YuS3B/preview",
+                    "https://drive.google.com/file/d/1cDCp_gCrFZt7G7i5lrAT2xl3Zziu4JNQ/preview",
+                    "https://drive.google.com/file/d/1ajeKXTW3Jvrzw1SjdCV1IIzr3VAj1_i_/preview"
+                  ]
                 },
-                "streaming": [
-                  "https://drive.google.com/open?id=1dM-qT5f9idKNy1sad3tWCbNKm-YcYfgf&usp=drive_copy",
-                  "https://drive.google.com/open?id=1UlAA4mnTiwXndtNpmr5wNQSHavOQX23H&usp=drive_copy",
-                  "https://drive.google.com/open?id=1w2VwpstbMAmmIcy9_w43o1fAOCzOyhfe&usp=drive_copy",
-                  "https://drive.google.com/open?id=1cPqBypP0k2HRLP3LxTkiYZtNEiouzvlE&usp=drive_copy",
-                  "https://drive.google.com/open?id=1BnpG9JSTIT3kbuen37s37A4nExRyCd8v&usp=drive_copy",
-                  "https://drive.google.com/open?id=1RtJdo48oNnwIVUcHnELNw9vuRSx2FIDG&usp=drive_copy",
-                  "https://drive.google.com/open?id=1iMTobOlMl6rO09E9iRMpDPNdc9bmKNA1&usp=drive_copy",
-                  "https://drive.google.com/open?id=1Zc5yW10t0YJi_GbFnJPysaarXvnA3EP8&usp=drive_copy",
-                  "https://drive.google.com/open?id=1TffPeNQ-jaFqYzG1wV5bXA4GemxvlZwi&usp=drive_copy",
-                  "https://drive.google.com/open?id=1EEkfdd6wppJNRU-oDRSZshJnk0xT1rhv&usp=drive_copy",
-                  "https://drive.google.com/open?id=1-HgFLWNh7iGtLIwlu9Of0brLQa06j6Pa&usp=drive_copy"
-                ]
-              },
-              {
-                "name": "Kono Subarashii Sekai ni Shukufuku wo! Movie: Kurenai Densetsu",
-                "season_slug": "movie",
-                "image": "https://i.pinimg.com/736x/84/ad/6f/84ad6f29716a1cb1277eb7e90b97fa67.jpg",
-                "desc": "Party Kazuma pergi ke kampung halaman Megumin, Desa Crimson Demon, dan menemukan diri mereka terlibat dalam pertempuran untuk menyelamatkan desa dari ancaman Jenderal Raja Iblis.",
-                "info": {
-                  "type": "Movie",
-                  "episodes": 1,
-                  "status": "Finished Airing",
-                  "aired": "Aug 30, 2019",
-                  "studios": [
-                    "J.C.Staff"
-                  ],
-                  "source": "Light novel",
-                  "duration": "1 hr. 30 min."
+                {
+                  "name": "Kono Subarashii Sekai ni Shukufuku wo! 2",
+                  "season_slug": "season-2",
+                  "image": "https://i.pinimg.com/736x/99/b8/05/99b80569f5a630b0b589b857776600e5.jpg",
+                  "desc": "Petualangan Kazuma dan teman-temannya berlanjut dengan lebih banyak kekacauan, hutang, dan musuh-musuh baru yang harus dihadapi dengan cara mereka yang unik.",
+                  "info": {
+                    "type": "TV",
+                    "episodes": 10,
+                    "status": "Finished Airing",
+                    "aired": "Jan 12, 2017 to Mar 16, 2017",
+                    "studios": [
+                      "Studio Deen"
+                    ],
+                    "source": "Light novel",
+                    "duration": "23 min. per ep."
+                  },
+                  "streaming": [
+                    "https://drive.google.com/file/d/13IN6TWId_4HiRaucLAgSxd6mO2Dy5SoJ/preview",
+                    "https://drive.google.com/file/d/1NmRmPMrD70JlfzB8sKEW8dohz1WEWC71/preview",
+                    "https://drive.google.com/file/d/1zJ6TA1hr6FhS4dTnD4pLv8Gy6Q9n7wos/preview",
+                    "https://drive.google.com/file/d/1fOP1NG2nIR0V1DjmrR7rdbkuLK65fGsy/preview",
+                    "https://drive.google.com/file/d/1inzNFYb6OoGWoaG-dCuQtLgysbdwr5rM/preview",
+                    "https://drive.google.com/file/d/16j9vqCo4080fccZXx_L2laLMd7WvlIh-/preview",
+                    "https://drive.google.com/file/d/1uKwtVBWsGB0dHVeIWn3DUzBGLv1vCHJW/preview",
+                    "https://drive.google.com/file/d/1cDaX5dz9WIfBejKD0RLuQuqvrJSMBSle/preview",
+                    "https://drive.google.com/file/d/13AkjC4FIh_dBN7j_MRS7g-x9OV8pZ-Eq/preview",
+                    "https://drive.google.com/file/d/1YSnM0DWRgRHqY-X26w1e0UfSFLmzBekQ/preview",
+                    "https://drive.google.com/file/d/1QQcurqtGPfdEQHIdremyqxTbJlzpIqcO/preview"
+                  ]
                 },
-                "streaming": [
-                  "https://drive.google.com/open?id=1EY8bu8L0KfUsYB4_EDmp12xG9J2WjYwc&usp=drive_copy"
-                ]
-              }
-            ]
-          },
-          {
-            "title": "Kakumeiki Valvrave",
-            "slug": "kakumeiki-valvrave",
-            "image": "https://i.pinimg.com/736x/9c/13/40/9c13405284b06fdac0ba8ae9f70b6c20.jpg",
-            "info": {
-              "type": "TV",
-              "episodes": 24,
-              "status": "Finished Airing",
-              "aired": "Apr 12, 2013 to Dec 27, 2013",
-              "premiered": "Spring 2013",
-              "broadcast": "Fridays at 01:35 (JST)",
-              "producers": [
-                "Aniplex",
-                "Dentsu",
-                "Bandai Namco Filmworks",
-                "Movic",
-                "Bandai",
-                "Bandai Visual",
-                "Mainichi Broadcasting System"
-              ],
-              "studios": [
-                "Sunrise"
-              ],
-              "source": "Original",
-              "genres": [
-                "Action",
-                "Sci-Fi"
-              ],
-              "themes": [
-                "Mecha",
-                "Space",
-                "Vampire"
-              ],
-              "demographic": "Unknown",
-              "duration": "24 min. per ep.",
-              "rating": "R - 17+ (violence & profanity)"
+                {
+                  "name": "Kono Subarashii Sekai ni Shukufuku wo! 3",
+                  "season_slug": "season-3",
+                  "image": "https://i.pinimg.com/736x/e5/bc/65/e5bc65783acc5d86d25f19ebaee3a9bc.jpg",
+                  "desc": "Kembalinya party teraneh di dunia isekai. Kali ini, mereka harus berurusan dengan intrik kerajaan setelah Kazuma secara tidak sengaja terlibat dengan Putri Iris.",
+                  "info": {
+                    "type": "TV",
+                    "episodes": 11,
+                    "status": "Finished Airing",
+                    "aired": "Apr 10, 2024 to Jun 19, 2024",
+                    "studios": [
+                      "Drive"
+                    ],
+                    "source": "Light novel",
+                    "duration": "23 min. per ep."
+                  },
+                  "streaming": [
+                    "https://drive.google.com/file/d/1dM-qT5f9idKNy1sad3tWCbNKm-YcYfgf/preview",
+                    "https://drive.google.com/file/d/1UlAA4mnTiwXndtNpmr5wNQSHavOQX23H/preview",
+                    "https://drive.google.com/file/d/1w2VwpstbMAmmIcy9_w43o1fAOCzOyhfe/preview",
+                    "https://drive.google.com/file/d/1cPqBypP0k2HRLP3LxTkiYZtNEiouzvlE/preview",
+                    "https://drive.google.com/file/d/1BnpG9JSTIT3kbuen37s37A4nExRyCd8v/preview",
+                    "https://drive.google.com/file/d/1RtJdo48oNnwIVUcHnELNw9vuRSx2FIDG/preview",
+                    "https://drive.google.com/file/d/1iMTobOlMl6rO09E9iRMpDPNdc9bmKNA1/preview",
+                    "https://drive.google.com/file/d/1Zc5yW10t0YJi_GbFnJPysaarXvnA3EP8/preview",
+                    "https://drive.google.com/file/d/1TffPeNQ-jaFqYzG1wV5bXA4GemxvlZwi/preview",
+                    "https://drive.google.com/file/d/1EEkfdd6wppJNRU-oDRSZshJnk0xT1rhv/preview",
+                    "https://drive.google.com/file/d/1-HgFLWNh7iGtLIwlu9Of0brLQa06j6Pa/preview"
+                  ]
+                },
+                {
+                  "name": "Kono Subarashii Sekai ni Shukufuku wo! Movie: Kurenai Densetsu",
+                  "season_slug": "movie",
+                  "image": "https://i.pinimg.com/736x/84/ad/6f/84ad6f29716a1cb1277eb7e90b97fa67.jpg",
+                  "desc": "Party Kazuma pergi ke kampung halaman Megumin, Desa Crimson Demon, dan menemukan diri mereka terlibat dalam pertempuran untuk menyelamatkan desa dari ancaman Jenderal Raja Iblis.",
+                  "info": {
+                    "type": "Movie",
+                    "episodes": 1,
+                    "status": "Finished Airing",
+                    "aired": "Aug 30, 2019",
+                    "studios": [
+                      "J.C.Staff"
+                    ],
+                    "source": "Light novel",
+                    "duration": "1 hr. 30 min."
+                  },
+                  "streaming": [
+                    "https://drive.google.com/file/d/1EY8bu8L0KfUsYB4_EDmp12xG9J2WjYwc/preview"
+                  ]
+                }
+              ]
             },
-            "uploadInfo": {
-              "episode": 24,
-              "isEnd": true,
-              "postedBy": "Ransyah",
-              "releasedOn": "2025-07-01T07:15:10Z"
-            },
-            "desc": "Di masa depan, umat manusia telah terbagi menjadi dua kekuatan super: Federasi Pakta Militer Dorrsia dan Lingkar Atlantik Amerika Serikat (ARUS). Di antara mereka terdapat sebuah negara netral kecil bernama JIOR, yang telah makmur secara ekonomi. Suatu hari, siswa SMA Haruto Tokishima menemukan senjata mecha misterius bernama Valvrave. Ketika JIOR diserang oleh pasukan Dorrsia, Haruto harus menggunakan Valvrave untuk mempertahankan negaranya, tetapi dengan harga yang sangat mahal: ia harus menyerahkan kemanusiaannya.",
-            "download": [
-              "https://drive.google.com/open?id=1srF1zg_Hfarq3dFWZYuykmgMrM8971h5&usp=drive_copy",
-              "https://drive.google.com/open?id=1azg1tYisrdvJKalmEl-sdd9GMrfi99l8&usp=drive_copy"
-            ],
-            "seasons": [
-              {
-                "name": "Kakumeiki Valvrave",
-                "season_slug": "season-1",
-                "image": "https://i.pinimg.com/736x/9c/13/40/9c13405284b06fdac0ba8ae9f70b6c20.jpg",
-                "desc": "Musim pertama memperkenalkan Haruto dan teman-teman sekolahnya saat mereka menemukan Valvrave dan terpaksa berjuang untuk kemerdekaan negara mereka yang kecil, JIOR.",
-                "info": {
-                  "type": "TV",
-                  "episodes": 12,
-                  "status": "Finished Airing",
-                  "aired": "Apr 12, 2013 to Jun 28, 2013",
-                  "studios": [
-                    "Sunrise"
-                  ],
-                  "source": "Original",
-                  "duration": "24 min. per ep."
-                },
-                "streaming": [
-                  "https://drive.google.com/open?id=1hUpPh5KQxd4tJwzZBUqSCteXJBRWsV7C&usp=drive_copy",
-                  "https://drive.google.com/open?id=1qWVZNi0zKUo7u_ocEownB5rJB2zxE1AR&usp=drive_copy",
-                  "https://drive.google.com/open?id=1zqa2XlPpdINr8fgHfQisxSLtHMNrRaWF&usp=drive_copy",
-                  "https://drive.google.com/open?id=1ChcFQbktZw5TS-VlF0NWe08ypyOT2jPM&usp=drive_copy",
-                  "https://drive.google.com/open?id=1iyZ8-E3wGv8JFN64WtVEG231krO_Mu66&usp=drive_copy",
-                  "https://drive.google.com/open?id=1vL7kooQtehhF3oANON7TMXb8j5iSipTk&usp=drive_copy",
-                  "https://drive.google.com/open?id=1TwnnBh1A4Re1HMZYIPeu3yiVxZzQidjn&usp=drive_copy",
-                  "https://drive.google.com/open?id=1n8PXmC3VzWzFfkmyjkuy6jCtPxNCmq7z&usp=drive_copy",
-                  "https://drive.google.com/open?id=1NbmcabpcctKoW_wezTQMLsi0xTw5t2MM&usp=drive_copy",
-                  "https://drive.google.com/open?id=1_bhMZ_IDUlHy4F7d8FJhk8SWQpoGmWCn&usp=drive_copy",
-                  "https://drive.google.com/open?id=1-Lr1v8MWb6PFRggCwSwGAByIKeDI0s7l&usp=drive_copy",
-                  "https://drive.google.com/open?id=1OPojUOP8Z_nY-yQ63p8ikLtoBVGxAES1&usp=drive_copy"
-                ]
+            {
+              "title": "Kakumeiki Valvrave",
+              "slug": "kakumeiki-valvrave",
+              "image": "https://i.pinimg.com/736x/9c/13/40/9c13405284b06fdac0ba8ae9f70b6c20.jpg",
+              "info": {
+                "type": "TV",
+                "episodes": 24,
+                "status": "Finished Airing",
+                "aired": "Apr 12, 2013 to Dec 27, 2013",
+                "premiered": "Spring 2013",
+                "broadcast": "Fridays at 01:35 (JST)",
+                "producers": [
+                  "Aniplex",
+                  "Dentsu",
+                  "Bandai Namco Filmworks",
+                  "Movic",
+                  "Bandai",
+                  "Bandai Visual",
+                  "Mainichi Broadcasting System"
+                ],
+                "studios": [
+                  "Sunrise"
+                ],
+                "source": "Original",
+                "genres": [
+                  "Action",
+                  "Sci-Fi"
+                ],
+                "themes": [
+                  "Mecha",
+                  "Space",
+                  "Vampire"
+                ],
+                "demographic": "Unknown",
+                "duration": "24 min. per ep.",
+                "rating": "R - 17+ (violence & profanity)"
               },
-              {
-                "name": "Kakumeiki Valvrave 2nd Season",
-                "season_slug": "season-2",
-                "image": "https://cdn.myanimelist.net/images/anime/5/56573.jpg",
-                "desc": "Melanjutkan perjuangan modul New JIOR, Haruto dan L-elf memperdalam aliansi mereka untuk mengungkap kebenaran di balik Valvrave dan kekuatan dunia, menghadapi musuh dan pengkhianatan yang lebih besar.",
-                "info": {
-                  "type": "TV",
-                  "episodes": 12,
-                  "status": "Finished Airing",
-                  "aired": "Oct 11, 2013 to Dec 27, 2013",
-                  "studios": [
-                    "Sunrise"
-                  ],
-                  "source": "Original",
-                  "duration": "24 min. per ep."
+              "uploadInfo": {
+                "episode": 24,
+                "isEnd": true,
+                "postedBy": "Ransyah",
+                "releasedOn": "2025-07-01T07:15:10Z"
+              },
+              "desc": "Di masa depan, umat manusia telah terbagi menjadi dua kekuatan super: Federasi Pakta Militer Dorrsia dan Lingkar Atlantik Amerika Serikat (ARUS). Di antara mereka terdapat sebuah negara netral kecil bernama JIOR, yang telah makmur secara ekonomi. Suatu hari, siswa SMA Haruto Tokishima menemukan senjata mecha misterius bernama Valvrave. Ketika JIOR diserang oleh pasukan Dorrsia, Haruto harus menggunakan Valvrave untuk mempertahankan negaranya, tetapi dengan harga yang sangat mahal: ia harus menyerahkan kemanusiaannya.",
+              "download": [
+                "https://drive.usercontent.google.com/download?id=1srF1zg_Hfarq3dFWZYuykmgMrM8971h5&export=download&authuser=0",
+                "https://drive.usercontent.google.com/download?id=1azg1tYisrdvJKalmEl-sdd9GMrfi99l8&export=download&authuser=0"
+              ],
+              "seasons": [
+                {
+                  "name": "Kakumeiki Valvrave",
+                  "season_slug": "season-1",
+                  "image": "https://i.pinimg.com/736x/9c/13/40/9c13405284b06fdac0ba8ae9f70b6c20.jpg",
+                  "desc": "Musim pertama memperkenalkan Haruto dan teman-teman sekolahnya saat mereka menemukan Valvrave dan terpaksa berjuang untuk kemerdekaan negara mereka yang kecil, JIOR.",
+                  "info": {
+                    "type": "TV",
+                    "episodes": 12,
+                    "status": "Finished Airing",
+                    "aired": "Apr 12, 2013 to Jun 28, 2013",
+                    "studios": [
+                      "Sunrise"
+                    ],
+                    "source": "Original",
+                    "duration": "24 min. per ep."
+                  },
+                  "streaming": [
+                    "https://drive.google.com/file/d/1hUpPh5KQxd4tJwzZBUqSCteXJBRWsV7C/preview",
+                    "https://drive.google.com/file/d/1qWVZNi0zKUo7u_ocEownB5rJB2zxE1AR/preview",
+                    "https://drive.google.com/file/d/1zqa2XlPpdINr8fgHfQisxSLtHMNrRaWF/preview",
+                    "https://drive.google.com/file/d/1ChcFQbktZw5TS-VlF0NWe08ypyOT2jPM/preview",
+                    "https://drive.google.com/file/d/1iyZ8-E3wGv8JFN64WtVEG231krO_Mu66/preview",
+                    "https://drive.google.com/file/d/1vL7kooQtehhF3oANON7TMXb8j5iSipTk/preview",
+                    "https://drive.google.com/file/d/1TwnnBh1A4Re1HMZYIPeu3yiVxZzQidjn/preview",
+                    "https://drive.google.com/file/d/1n8PXmC3VzWzFfkmyjkuy6jCtPxNCmq7z/preview",
+                    "https://drive.google.com/file/d/1NbmcabpcctKoW_wezTQMLsi0xTw5t2MM/preview",
+                    "https://drive.google.com/file/d/1_bhMZ_IDUlHy4F7d8FJhk8SWQpoGmWCn/preview",
+                    "https://drive.google.com/file/d/1-Lr1v8MWb6PFRggCwSwGAByIKeDI0s7l/preview",
+                    "https://drive.google.com/file/d/1OPojUOP8Z_nY-yQ63p8ikLtoBVGxAES1/preview"
+                  ]
                 },
-                "streaming": [
-                  "https://drive.google.com/open?id=1e_OxaJlbIc_PL_CeGoznWirYvyEdkTXY&usp=drive_copy",
-                  "https://drive.google.com/open?id=1aVQPBoyxiu62j-Gmqct7AyCY_iX9Gwzc&usp=drive_copy",
-                  "https://drive.google.com/open?id=1b1QdcHMbM3BFKBZuY4Rl58j7x4fF7Pxz&usp=drive_copy",
-                  "https://drive.google.com/open?id=1k5Qz-eOzuTTVvClUjIXY0ZyxSMhIDTEw&usp=drive_copy",
-                  "https://drive.google.com/open?id=1jEc0QO8GsfME-yoneGSetI791HYDm-rA&usp=drive_copy",
-                  "https://drive.google.com/open?id=1FuS7wjAs7ZjCZUTMjvrxM8xubGhZ4j3r&usp=drive_copy",
-                  "https://drive.google.com/open?id=1t_lFoU3AxN9im0MH6bj7RWqRwN0dWUnB&usp=drive_copy",
-                  "https://drive.google.com/open?id=1nO1k4f7V8Mp1nM02kGEqtzvQcjZ5Kktz&usp=drive_copy",
-                  "https://drive.google.com/open?id=1gDH5xvZ9e8u2zQUDoGgQDy8OUnct6IZ2&usp=drive_copy",
-                  "https://drive.google.com/open?id=1B87_CUKiZQCjmsiDAb0JHwntTwIUfGDC&usp=drive_copy",
-                  "https://drive.google.com/open?id=1AVBNLNoJIrmYYJwpsHFVKFaDfRxl9oAD&usp=drive_copy",
-                  "https://drive.google.com/open?id=1ATNzH73ZNVMo9cv6qYpjlCmKaACpmKtn&usp=drive_copy"
-                ]
-              }
-            ]
-          },
+                {
+                  "name": "Kakumeiki Valvrave 2nd Season",
+                  "season_slug": "season-2",
+                  "image": "https://cdn.myanimelist.net/images/anime/5/56573.jpg",
+                  "desc": "Melanjutkan perjuangan modul New JIOR, Haruto dan L-elf memperdalam aliansi mereka untuk mengungkap kebenaran di balik Valvrave dan kekuatan dunia, menghadapi musuh dan pengkhianatan yang lebih besar.",
+                  "info": {
+                    "type": "TV",
+                    "episodes": 12,
+                    "status": "Finished Airing",
+                    "aired": "Oct 11, 2013 to Dec 27, 2013",
+                    "studios": [
+                      "Sunrise"
+                    ],
+                    "source": "Original",
+                    "duration": "24 min. per ep."
+                  },
+                  "streaming": [
+                    "https://drive.google.com/file/d/1e_OxaJlbIc_PL_CeGoznWirYvyEdkTXY/preview",
+                    "https://drive.google.com/file/d/1aVQPBoyxiu62j-Gmqct7AyCY_iX9Gwzc/preview",
+                    "https://drive.google.com/file/d/1b1QdcHMbM3BFKBZuY4Rl58j7x4fF7Pxz/preview",
+                    "https://drive.google.com/file/d/1k5Qz-eOzuTTVvClUjIXY0ZyxSMhIDTEw/preview",
+                    "https://drive.google.com/file/d/1jEc0QO8GsfME-yoneGSetI791HYDm-rA/preview",
+                    "https://drive.google.com/file/d/1FuS7wjAs7ZjCZUTMjvrxM8xubGhZ4j3r/preview",
+                    "https://drive.google.com/file/d/1t_lFoU3AxN9im0MH6bj7RWqRwN0dWUnB/preview",
+                    "https://drive.google.com/file/d/1nO1k4f7V8Mp1nM02kGEqtzvQcjZ5Kktz/preview",
+                    "https://drive.google.com/file/d/1gDH5xvZ9e8u2zQUDoGgQDy8OUnct6IZ2/preview",
+                    "https://drive.google.com/file/d/1B87_CUKiZQCjmsiDAb0JHwntTwIUfGDC/preview",
+                    "https://drive.google.com/file/d/1AVBNLNoJIrmYYJwpsHFVKFaDfRxl9oAD/preview",
+                    "https://drive.google.com/file/d/1ATNzH73ZNVMo9cv6qYpjlCmKaACpmKtn/preview"
+                  ]
+                }
+              ]
+            }
+          ],
         
         {
             "title": "Blood Lad",
